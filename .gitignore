@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv*/
+.pytest_cache/
+*.egg-info/
+.cache/
+third_party/
+artifacts/
+datasets/
+checkpoints/
+*.safetensors
+*.pt
+*.pth
+*.npz
+*.log
+configs/local*.json
+.env
