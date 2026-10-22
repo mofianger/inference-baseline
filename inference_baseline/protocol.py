@@ -46,6 +46,22 @@ class ModelProtocol:
             raise ValueError("Token batch/mask mismatch")
         if t["embodiment_id"].tolist() != [self.embodiment_id]:
             raise ValueError("Embodiment mismatch")
+        if self.boundary != "device_tensor_to_device_normalized_action" or self.timer != "synchronized_wall":
+            raise ValueError("Runner v1 cannot silently execute a different timing boundary")
+        for key in ("pixel_values", "state"):
+            if str(t[key].dtype) != "torch." + self.input_dtype:
+                raise ValueError(f"{key} dtype differs from frozen protocol")
+        if str(sample["noise"].dtype) != "torch." + self.input_dtype:
+            raise ValueError("Initial noise dtype differs from protocol")
+        for key in ("input_ids", "attention_mask", "image_grid_thw", "embodiment_id"):
+            if str(t[key].dtype) != "torch.int64":
+                raise ValueError(f"Expected int64 metadata for {key}")
+        grid = t["image_grid_thw"]
+        if (grid[:, 0] != 1).any().item():
+            raise ValueError("This protocol requires single-frame image views, not video")
+        expected_grid = [self.image_size[0] // 16, self.image_size[1] // 16]
+        if grid[:, 1:].tolist() != [expected_grid] * self.views:
+            raise ValueError("Image grid differs from official checkpoint image size")
         rows = int(t["image_grid_thw"].prod(dim=1).sum().item())
         if t["pixel_values"].shape[0] != rows:
             raise ValueError("Patch count does not match image grid")
