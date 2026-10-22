@@ -3,6 +3,7 @@ import ast
 import inspect
 import textwrap
 import types
+from pathlib import Path
 
 
 def inject_noise(head):
@@ -32,7 +33,15 @@ class ReferenceAdapter:
         import gr00t.model
         from transformers import AutoConfig, AutoModel
         c = AutoConfig.from_pretrained(config["checkpoint"], local_files_only=True)
-        # Keep the official registered model-name dispatch; HF_HOME resolves the cached backbone.
+        # Keep official dispatch's nvidia/Cosmos-Reason2 substring while using a
+        # local path: Transformers 4.57 otherwise queries model_info even offline.
+        alias = Path("artifacts/backbones/nvidia/Cosmos-Reason2-2B").absolute()
+        alias.parent.mkdir(parents=True, exist_ok=True)
+        if not alias.exists():
+            alias.symlink_to(Path(config["cosmos"]).resolve(), target_is_directory=True)
+        if alias.resolve() != Path(config["cosmos"]).resolve():
+            raise ValueError("Existing backbone alias points to a different snapshot")
+        c.model_name = str(alias)
         c.use_flash_attention = False
         model, info = AutoModel.from_pretrained(config["checkpoint"], config=c,
             torch_dtype=torch.bfloat16, local_files_only=True, output_loading_info=True,
