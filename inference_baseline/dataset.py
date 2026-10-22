@@ -10,6 +10,10 @@ def prepare(config, destination, count=5):
     from PIL import Image
     from transformers import AutoProcessor
     from .adapters.reference import ReferenceAdapter
+    torch.set_num_threads(config.get("cpu_threads", 8))
+    torch.set_num_interop_threads(1)
+    torch.backends.cuda.matmul.allow_tf32 = False
+    torch.backends.cudnn.allow_tf32 = False
     if count < 3:
         raise ValueError("Need one calibration and at least two evaluation samples")
     root = Path(destination)

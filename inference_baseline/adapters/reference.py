@@ -48,7 +48,7 @@ class ReferenceAdapter:
             transformers_loading_kwargs={"local_files_only": True, "trust_remote_code": False})
         if info["missing_keys"] or info["unexpected_keys"] or info.get("mismatched_keys"):
             raise RuntimeError(f"Checkpoint did not load exactly: {info}")
-        self.model = model.to(config["device"]).eval()
+        self.model = model.to(device=config["device"], dtype=torch.bfloat16).eval()
         self.protocol = protocol
         inject_noise(self.model.action_head)
         self.metadata = {"implementation": "official eager SDPA", "precision": "BF16",
