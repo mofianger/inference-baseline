@@ -12,6 +12,8 @@ case "$engine" in
   *) echo "Unknown engine: $engine" >&2; exit 2 ;;
 esac
 export NO_ALBUMENTATIONS_UPDATE=1
+export PATH="$(dirname "$python_bin"):/usr/local/cuda/bin:$PATH"
+export CUDA_HOME="${CUDA_HOME:-/usr/local/cuda}"
 # Cooperative lock prevents two runs of this script from sharing the GPU.
 mkdir -p artifacts
 exec 9>artifacts/gpu-0.lock
