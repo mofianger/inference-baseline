@@ -43,6 +43,11 @@ def _run(config, dataset, out, torch):
     start = time.perf_counter()
     with torch.inference_mode():
         adapter = create(config["engine"], config, protocol, samples)
+        # Some engines change process-global Torch settings during construction.
+        # Reapply the declared benchmark controls before correctness/timing.
+        torch.set_num_threads(config.get("cpu_threads", 8))
+        torch.backends.cuda.matmul.allow_tf32 = False
+        torch.backends.cudnn.allow_tf32 = False
         device.sync()
         setup_seconds = time.perf_counter() - start
         for i in range(config.get("warmup", 10)):

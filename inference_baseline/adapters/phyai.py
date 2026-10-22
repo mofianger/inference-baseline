@@ -29,7 +29,7 @@ class PhyAIAdapter:
             capture_profiles=tuple(self.request(s) for s in samples)), config=EngineConfig(
                 device=DeviceConfig(target=config["device"], params_dtype=torch.bfloat16),
                 runtime=RuntimeConfig(use_cuda_graph=graph))))
-        self.metadata = {"precision": "BF16", "cuda_graph": graph, "implementation": "GR00TN17 Engine"}
+        self.metadata = {"precision": "BF16 with native FP32 normalization parameters", "cuda_graph": graph, "implementation": "GR00TN17 Engine"}
 
     def request(self, sample):
         return self.request_type(tensors=sample["inputs"], noise=sample["noise"])
