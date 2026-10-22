@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 def inject_noise(head):
-    original = head.get_action_with_features.__func__
+    original = inspect.unwrap(head.get_action_with_features.__func__)
     tree = ast.parse(textwrap.dedent(inspect.getsource(original)))
     class ReplaceNoise(ast.NodeTransformer):
         count = 0
