@@ -1,0 +1,26 @@
+[
+    {
+        "label":  "embodiinfer_optimized",
+        "count":  100,
+        "raw_latency_statistics_verified":  true,
+        "same_frozen_dataset_as_reference":  true,
+        "runtime_unchanged":  true,
+        "accuracy_gate":  "not_configured"
+    },
+    {
+        "label":  "flashrt_fp8",
+        "count":  100,
+        "raw_latency_statistics_verified":  true,
+        "same_frozen_dataset_as_reference":  true,
+        "runtime_unchanged":  true,
+        "accuracy_gate":  "not_configured"
+    },
+    {
+        "label":  "flashrt_nvfp4",
+        "count":  100,
+        "raw_latency_statistics_verified":  true,
+        "same_frozen_dataset_as_reference":  true,
+        "runtime_unchanged":  true,
+        "accuracy_gate":  "not_configured"
+    }
+]

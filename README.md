@@ -106,6 +106,8 @@ python -m compileall -q inference_baseline
 
 ## 已完成的 5090 接入验证（2026-10-23）
 
+**后续优化复测已完成：**EmbodiInfer 完整图路径 mean=28.482 ms，独立构建 FlashRT FP8 mean=14.418 ms，NVFP4 mean=8.974 ms。配置、精度误差、构建来源和原始记录见 [优化复测报告](reports/2026-10-23-5090-optimized/README.md)。下表保留首次接入结果，不能当作当前配置结果。
+
 四条路径均已实际执行；7 项核心/fixture 测试通过。服务器提交报告后，本地已通过 `git pull --ff-only` 拉回，验证了双向 Git 协作。详见 [本轮报告](reports/2026-10-23-5090-smoke/README.md)。
 
 | 路径 | model-only p50 / ms | 平均 MAE | 最大绝对误差 |
