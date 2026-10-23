@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import time
+import google_crc32c
 from urllib.parse import urlencode, quote
 from urllib.request import Request, urlopen
 
@@ -14,12 +15,13 @@ PREFIX = "checkpoints/pi05_base/"
 
 
 def digests(path):
-    md5, sha = hashlib.md5(), hashlib.sha256()
+    md5, sha, crc = hashlib.md5(), hashlib.sha256(), google_crc32c.Checksum()
     with path.open("rb") as f:
         for block in iter(lambda: f.read(8 * 1024 * 1024), b""):
             md5.update(block)
             sha.update(block)
-    return base64.b64encode(md5.digest()).decode(), sha.hexdigest()
+            crc.update(block)
+    return base64.b64encode(md5.digest()).decode(), sha.hexdigest(), base64.b64encode(crc.digest()).decode()
 
 
 def main():
@@ -47,7 +49,7 @@ def main():
         if not items:
             raise RuntimeError("Official checkpoint listing is empty")
         manifest = {"source": f"gs://{BUCKET}/{PREFIX}", "objects": [
-            {k: x[k] for k in ("name", "generation", "size", "md5Hash", "updated")} for x in items]}
+            {k: x.get(k) for k in ("name", "generation", "size", "md5Hash", "crc32c", "updated")} for x in items]}
         source.write_text(json.dumps(manifest, indent=2) + "\n")
     print(json.dumps({"objects": len(manifest["objects"]), "bytes": sum(int(x["size"]) for x in manifest["objects"])}), flush=True)
 
@@ -58,8 +60,8 @@ def main():
             raise ValueError("Invalid object path")
         path.parent.mkdir(parents=True, exist_ok=True)
         if path.exists():
-            md5, sha = digests(path)
-            if path.stat().st_size != int(item["size"]) or md5 != item["md5Hash"]:
+            md5, sha, crc = digests(path)
+            if path.stat().st_size != int(item["size"]) or crc != item["crc32c"] or (item["md5Hash"] and md5 != item["md5Hash"]):
                 raise ValueError(f"Existing file has unexpected bytes: {relative}")
             return {"path": relative, "sha256": sha, "bytes": path.stat().st_size}
         partial = path.with_name(path.name + ".partial")
@@ -76,8 +78,8 @@ def main():
                         with partial.open("ab" if offset else "wb") as out:
                             while block := response.read(4 * 1024 * 1024):
                                 out.write(block)
-                md5, sha = digests(partial)
-                if partial.stat().st_size != int(item["size"]) or md5 != item["md5Hash"]:
+                md5, sha, crc = digests(partial)
+                if partial.stat().st_size != int(item["size"]) or crc != item["crc32c"] or (item["md5Hash"] and md5 != item["md5Hash"]):
                     raise ValueError(f"Downloaded checksum mismatch: {relative}")
                 partial.rename(path)
                 print(f"verified {relative} ({item['size']} bytes)", flush=True)
