@@ -94,4 +94,6 @@ class Pi05FlashRTAdapter:
         if f.pipeline._graph is None:
             raise RuntimeError("FlashRT pi05 full graph was not captured")
         return {"full_graph": True, "steps": f._num_steps, "fixed_prompt_capacity": f.pipeline.max_prompt_len,
-                "prefix_precision": f._prefix_precision, "decoder_precision": f._decoder_precision}
+                "prefix_precision": f._prefix_precision, "decoder_precision": f._decoder_precision,
+                "use_fp8": f.pipeline.use_fp8, "use_fp8_decoder": f.pipeline.use_fp8_decoder,
+                "force_bf16": f._force_bf16}

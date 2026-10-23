@@ -38,7 +38,7 @@ class Pi05EmbodiInferAdapter:
             prefix_cuda_graph=options.get("prefix_cuda_graph", True), request_cuda_graph=self.request_graph,
             optimizations=Pi05OptimizationConfig() if options.get("fused_ops", False) else None).eval()
         self.metadata = {"implementation": "EmbodiInfer native Pi05Runtime",
-                         "precision": "selected BF16 / FP32",
+                         "precision": "BF16 text/expert with FP32 full vision, projector, norms and action projections (LeRobot policy)",
                          "request_cuda_graph": self.request_graph,
                          "fused_ops": options.get("fused_ops", False),
                          "weight_loading": "strict canonical OpenPI tensors; no raw-observation processor",

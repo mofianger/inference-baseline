@@ -1,0 +1,15 @@
+{
+  "model": "pi0.5",
+  "engine": "flashrt",
+  "label": "FlashRT pi05 BF16 full graph",
+  "checkpoint": "/data/huggingface/openpi/pi05_base_pytorch_fp32",
+  "engine_source": "/data/inference-baseline/third_party/FlashRT",
+  "python_paths": ["/data/inference-baseline/third_party/FlashRT"],
+  "device": "cuda:0",
+  "warmup": 10,
+  "iterations": 100,
+  "cpu_threads": 8,
+  "thresholds": null,
+  "environment": {"HF_HOME": "/data/huggingface", "HF_HUB_OFFLINE": "1", "FVK_RTX_FA2": "1", "FVK_PI05_RTX_FORCE_BF16": "1"},
+  "options": {"prefix_precision": "fp8", "decoder_precision": "fp8", "use_fp8": false, "calibration_seed": 0}
+}

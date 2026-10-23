@@ -60,6 +60,7 @@ def main():
     runs = [("reference", reference),
             ("phyai", root / "third_party/phyai/.venv/bin/python"),
             ("embodiinfer", root / "third_party/EmbodiInfer/.venv-pi05/bin/python"),
+            ("flashrt-bf16", root / "third_party/FlashRT/.venv/bin/python"),
             ("flashrt-fp8", root / "third_party/FlashRT/.venv/bin/python"),
             ("flashrt-nvfp4", root / "third_party/FlashRT/.venv/bin/python")]
     status["status"] = "running"
