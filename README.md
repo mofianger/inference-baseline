@@ -36,11 +36,14 @@ third_party/          引擎独立 clone 与环境，Git 忽略
 
 ## 5090-machine 使用
 
-服务器仓库：`/data/inference-baseline`。模型只读取 `/data/huggingface` 的缓存，不复制到 Git。官方和 FlashRT 使用已有环境；EmbodiInfer 和 PhyAI 使用单独环境，避免 Transformers 版本冲突。
+服务器仓库：`/data/inference-baseline`。模型只读取 `/data/huggingface` 的缓存，不复制到 Git。官方 reference 复用已有环境；FlashRT 使用 `third_party/FlashRT/.venv` 和独立源码构建，EmbodiInfer、PhyAI 也使用各自环境，避免依赖冲突。FlashRT 不再使用 `/data/5090-machine/FlashRT`。
 
 ```bash
 cd /data/inference-baseline
 git pull --ff-only
+
+# FlashRT 独立克隆、固定版本、建立环境并编译 sm_120a kernels。
+bash scripts/install_flashrt.sh
 
 # 生成一次后固定；已存在的非空目录拒绝覆盖。
 /data/5090-machine/Isaac-GR00T/.venv/bin/python -m inference_baseline.cli prepare \
@@ -48,8 +51,9 @@ git pull --ff-only
 
 # 逐引擎执行，避免多模型同时占 GPU。
 bash scripts/run_5090.sh reference artifacts/reference-001
-bash scripts/run_5090.sh flashrt artifacts/flashrt-001
-bash scripts/run_5090.sh embodiinfer artifacts/embodiinfer-001
+bash scripts/run_5090.sh flashrt artifacts/flashrt-fp8-new-run
+bash scripts/run_5090.sh flashrt_nvfp4 artifacts/flashrt-nvfp4-new-run
+bash scripts/run_5090.sh embodiinfer artifacts/embodiinfer-optimized-new-run
 bash scripts/run_5090.sh phyai artifacts/phyai-001
 
 # 只有相同数据集 manifest 的结果才能合并。
@@ -68,13 +72,16 @@ bash scripts/run_5090.sh phyai artifacts/phyai-001
 | 适配器 | 当前路径 | 注意事项 |
 |---|---|---|
 | reference | 官方 Gr00tN1d7 eager SDPA BF16 | 校验无缺失/意外权重；仅初始噪声注入 |
-| embodiinfer | native Gr00tPolicy.sample_actions，BF16 | 初版未启用完整去噪图；不是该引擎最优性能承诺 |
+| embodiinfer | BF16 native prefix graph + Inductor denoise_step + 完整 LoopGraph | 每个请求重算前缀；4 步内复用 cross K/V；预热后禁止新增编译/捕获 |
 | phyai | GR00TN17 Engine + 固定 CUDA Graph profiles | 包含 backbone 与 action head，显式传入噪声 |
-| flashrt | RTX FP8 backbone + mixed BF16 action head | 包含每次 BF16 patch/token embedding；每次传入新 aux 重跑视觉骨干 |
+| flashrt | 融合 FP8 backbone + mixed FP8/BF16 action head | action head 的 FFN/QKV 也有 FP8；包含每次 BF16 patch/token embedding |
+| flashrt_nvfp4 配置 | 融合 FP8 backbone + NVFP4 DiT/cross K/V | 复用 FlashRT 适配器，结果使用独立 label；其余操作保留混合精度 |
 
 FlashRT 的原生 aux 含 learned embeddings。适配器因此从原始 checkpoint 加载 embedding 权重，将这部分计算放回计时范围；仅常量位置表来自参考实现。其版本目前要求 H40/A132，不满足时直接报错，禁止静默改工作量。
 
-数值核验与计时分开。每个 evaluation observation 与官方参考比较 MAE、RMSE、relative RMSE、max abs、cosine 和每动作维度 MAE。另做 A/B/A 重复输入校验、不同 observation 输出不恒定、输入/noise 不被修改检查。完整 132 维均比较；不按任务 mask 隐藏误差。
+数值核验与计时分开。每个 evaluation observation 与官方参考比较 MAE、RMSE、relative RMSE、max abs、cosine 和每动作维度 MAE。另做 A/B/A 重复输入校验、分别仅更换图像/state/noise 的输出响应检查、输入/noise 不被修改检查。完整 132 维均比较；不按任务 mask 隐藏误差。
+
+EmbodiInfer 的“前缀图”覆盖视觉 patch embedding、ViT/DeepStack、语言编码、状态编码及观测相关 cross K/V；每次把新观测写入固定缓冲区后重放。“完整去噪图”把 4 次 denoise_step、Euler 更新和时间步推进捕获到一次图重放中，每次更新条件特征和初始噪声。CUDA Graph 复用的是执行计划及缓冲区，不是上一观测的计算结果。当前 token layout 固定，位置/RoPE 等布局常量缓存遵循同一协议。
 
 ## Git 协作
 

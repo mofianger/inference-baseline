@@ -38,7 +38,7 @@ class FlashRTAdapter:
         from flash_rt.frontends.torch.groot_n17_rtx_fp8 import _fused_backbone_available
         if not _fused_backbone_available(self.frontend._fvk):
             raise RuntimeError("Requested fused FP8 backbone is unavailable; refusing silent fallback")
-        self.metadata = {"precision": "FP8 backbone / mixed BF16 action head", "cuda_graph": True,
+        self.metadata = {"precision": "FP8 backbone / mixed FP8-BF16 action head", "cuda_graph": True,
             "implementation": "GrootN17TorchFrontendRtxFP8 + timed BF16 patch/token embedding",
             "calibration_sample": samples[0]["id"], "constant_cache": "position/RoPE only; no cached observation features"}
         self.metadata.update(implementation=frontend_class.__name__ + " + timed BF16 patch/token embedding",
@@ -50,6 +50,18 @@ class FlashRTAdapter:
             for m in (flash_rt_kernels, flash_rt_fa2, flash_rt_fp4)}
         self.metadata["fused_backbone"] = True
         self.metadata["calibration_files"] = {p.name: sha256(p) for p in calibrator.CACHE_DIR.glob("*.json")}
+
+    def runtime_stats(self):
+        f = self.frontend
+        if not hasattr(f, "_kbb_graph") or not hasattr(f, "_k_dit_graph"):
+            raise RuntimeError("FlashRT backbone/action graph was not captured")
+        if f._k_nsteps != self.protocol.denoising_steps:
+            raise RuntimeError("FlashRT captured a different denoising step count")
+        if self.metadata["use_fp4"] and not hasattr(f, "_ck_nvfp4"):
+            raise RuntimeError("NVFP4 cross-KV was not enabled")
+        return {"backbone_graph": True, "action_graph": True, "steps": f._k_nsteps,
+                "dit_quant": f._DIT_QUANT, "dit_use_fp8": f._DIT_USE_FP8,
+                "nvfp4_cross_kv": hasattr(f, "_ck_nvfp4")}
 
     def aux(self, sample):
         t = sample["inputs"]
