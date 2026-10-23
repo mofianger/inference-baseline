@@ -21,4 +21,4 @@ export CUDA_HOME=/usr/local/cuda
 cmake -B "$root/build" -S "$root" -DGPU_ARCH=120 -DFLASHRT_ENABLE_MOTUS=OFF
 cmake --build "$root/build" -j "${BUILD_JOBS:-8}"
 "$uv_bin" pip freeze --python "$root/.venv/bin/python" > "$root/environment-freeze.txt"
-python -c 'import flash_rt; from flash_rt import flash_rt_kernels, flash_rt_fa2, flash_rt_fp4; print(flash_rt.__file__); print(flash_rt_kernels.__file__)'
+python -c 'import flash_rt; from flash_rt import flash_rt_kernels as k, flash_rt_fa2; assert hasattr(k, "nvfp4_skinny_quantize_weight"); assert hasattr(k, "fp8_residual_norm_quant"); print(flash_rt.__file__); print(k.__file__); print(flash_rt_fa2.__file__)'

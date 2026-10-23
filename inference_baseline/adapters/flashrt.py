@@ -50,9 +50,11 @@ class FlashRTAdapter:
             use_fp4=opts.get("use_fp4", False))
         if opts.get("use_fp4", False):
             self.metadata["precision"] = "FP8 backbone / NVFP4 DiT and cross-KV / mixed BF16 remaining ops"
-        from flash_rt import flash_rt_kernels, flash_rt_fa2, flash_rt_fp4
+        # SM120 GR00T NVFP4 lives in flash_rt_kernels. The separate
+        # flash_rt_fp4 add-on is built for SM100/110, not this target.
+        from flash_rt import flash_rt_kernels, flash_rt_fa2
         self.metadata["binaries"] = {m.__name__: {"path": m.__file__, "sha256": sha256(m.__file__)}
-            for m in (flash_rt_kernels, flash_rt_fa2, flash_rt_fp4)}
+            for m in (flash_rt_kernels, flash_rt_fa2)}
         self.metadata["fused_backbone"] = True
         self.metadata["calibration_files"] = {p.name: sha256(p) for p in calibrator.CACHE_DIR.glob("*.json")}
 
