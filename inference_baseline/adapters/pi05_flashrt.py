@@ -86,6 +86,7 @@ class Pi05FlashRTAdapter:
                                           f._noise_out.numel() * f._noise_out.element_size(), 3, stream)
             if rc:
                 raise RuntimeError(f"FlashRT output D2D copy failed: {rc}")
+        torch.cuda.current_stream().wait_stream(f._graph_torch_stream)
         return f._noise_out.unsqueeze(0)
 
     def runtime_stats(self):

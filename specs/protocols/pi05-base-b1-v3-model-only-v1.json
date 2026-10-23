@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "id": "pi05-base-b1-v3-model-only-v1",
+  "status": "implementation_pending_model_validation",
+  "official_source": "gs://openpi-assets/checkpoints/pi05_base",
+  "workload": {"batch": 1, "views": 3, "image_size": [224, 224], "denoising_steps": 10, "action_horizon": 50, "action_dim": 32, "max_token_len": 200},
+  "input_boundary": "prepared FP32 GPU images and noise, GPU token IDs and masks, before learned embeddings",
+  "output_boundary": "completed GPU normalized action tensor [1,50,32]",
+  "timer": "synchronized_wall",
+  "state_conditioning": "official discrete state tokens prepared before timing",
+  "accuracy_thresholds": null,
+  "guide": "docs/guides/pi05-5090.md"
+}
