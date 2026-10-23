@@ -10,6 +10,8 @@ class Pi05ReferenceAdapter:
         from openpi.models_pytorch.pi0_pytorch import PI0Pytorch
         self.protocol = protocol
         self.model = PI0Pytorch(Pi0Config(pi05=True, dtype="float32", pytorch_compile_mode=None))
+        self.model.paligemma_with_expert.paligemma.lm_head = None
+        self.model.paligemma_with_expert.gemma_expert.lm_head = None
         load_model(self.model, str(Path(config["checkpoint"]) / "model.safetensors"), strict=True)
         self.model.paligemma_with_expert.to_bfloat16_for_selected_params("bfloat16")
         self.model.to(config["device"]).eval()

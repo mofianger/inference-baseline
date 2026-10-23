@@ -63,6 +63,12 @@ def main():
             raise RuntimeError(f"Unaccounted checkpoint keys: {result}")
         audit.update(missing_unused_heads=result.missing_keys, unexpected_keys=result.unexpected_keys,
                      loaded_tensor_count=len(state_dict))
+        # Continuous action sampling never uses vocabulary output heads.
+        # Removing them retains the required input embedding in save_model
+        # and avoids exporting a random, untrained expert vocabulary head.
+        self.paligemma_with_expert.paligemma.lm_head = None
+        self.paligemma_with_expert.gemma_expert.lm_head = None
+        audit["export_omits_unused_vocabulary_heads"] = True
         return result
     PI0Pytorch.load_state_dict = audited_load
     # Construct in FP32 so upstream load_state_dict cannot round weights before
