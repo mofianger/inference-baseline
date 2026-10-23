@@ -53,6 +53,7 @@ def _run(config, dataset, out, torch):
         for i in range(config.get("warmup", 10)):
             adapter.infer(eval_samples[i % len(eval_samples)])
         device.sync()
+        runtime_before = adapter.runtime_stats() if hasattr(adapter, "runtime_stats") else None
         correctness = []
         # A/B/A detects stale cached outputs and output-buffer aliasing.
         sequence = eval_samples + [eval_samples[0]]
@@ -91,6 +92,15 @@ def _run(config, dataset, out, torch):
                     raise ValueError(f"Adapter mutated input {key}")
             if not torch.equal(original["noise"], current["noise"].cpu()):
                 raise ValueError("Adapter mutated initial noise")
+        runtime_after = adapter.runtime_stats() if hasattr(adapter, "runtime_stats") else None
+        if runtime_before != runtime_after:
+            raise ValueError(f"Runtime graphs/compilation changed after warmup: {runtime_before} -> {runtime_after}")
+        if config.get("options", {}).get("denoise_graph") and (
+            not runtime_before or not runtime_before["denoise_graphs"] or
+            (config["options"].get("prefix_cuda_graph") and not runtime_before["prefix"]["layouts"]) or
+            (config["options"].get("compile_backend") == "inductor" and not runtime_before["compiled_graphs"])
+        ):
+            raise ValueError("Requested optimization did not produce captured/compiled graphs")
         packages = {}
         for name in ("torch", "transformers", "diffusers", "triton", "flashinfer-python"):
             try:
@@ -104,6 +114,7 @@ def _run(config, dataset, out, torch):
             "runner": revision(Path(__file__).resolve().parents[1]), "engine_source": revision(config["engine_source"]),
             "engine": adapter.metadata, "packages": packages, "hardware_before": before, "hardware_after": device.metadata(),
             "setup_seconds": setup_seconds, "latency": latency_summary([r["wall_ms"] for r in rows]),
+            "runtime_before": runtime_before, "runtime_after": runtime_after,
             "correctness": correctness, "repeat_error": repeat_error,
             "peak_allocated_bytes": torch.cuda.max_memory_allocated(device.device) if device.device.type == "cuda" else None,
             "peak_reserved_bytes": torch.cuda.max_memory_reserved(device.device) if device.device.type == "cuda" else None,

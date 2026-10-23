@@ -8,6 +8,13 @@ class FlashRTAdapter:
         import torch
         from safetensors import safe_open
         from flash_rt.frontends.torch.groot_n17_rtx_fp8 import GrootN17TorchFrontendRtxFP8
+        from flash_rt.core.quant import calibrator
+        opts = config.get("options", {})
+        calibrator.CACHE_DIR = Path(opts["calibration_cache"]).resolve()
+        frontend_class = GrootN17TorchFrontendRtxFP8
+        if opts.get("use_fp4", False):
+            from flash_rt.frontends.torch.groot_n17_rtx_fp4 import GrootN17TorchFrontendRtxFP4
+            frontend_class = GrootN17TorchFrontendRtxFP4
         self.torch = torch
         self.protocol = protocol
         self.device = config["device"]
@@ -21,7 +28,7 @@ class FlashRTAdapter:
         self.patch_bias = load(prefix + "visual.patch_embed.proj.bias") if prefix + "visual.patch_embed.proj.bias" in index else None
         self.token_weight = load(prefix + "language_model.embed_tokens.weight")
         # Frontend maps this spelling to the checkpoint's same category 24.
-        self.frontend = GrootN17TorchFrontendRtxFP8(config["checkpoint"], num_views=protocol.views,
+        self.frontend = frontend_class(config["checkpoint"], num_views=protocol.views,
             embodiment_tag="oxe_droid_relative_eef_relative_joint", device=self.device)
         if self.frontend._embodiment_id != protocol.embodiment_id:
             raise ValueError("FlashRT embodiment does not match fixture")
@@ -31,6 +38,10 @@ class FlashRTAdapter:
         self.metadata = {"precision": "FP8 backbone / mixed BF16 action head", "cuda_graph": True,
             "implementation": "GrootN17TorchFrontendRtxFP8 + timed BF16 patch/token embedding",
             "calibration_sample": samples[0]["id"], "constant_cache": "position/RoPE only; no cached observation features"}
+        self.metadata.update(implementation=frontend_class.__name__ + " + timed BF16 patch/token embedding",
+            calibration_cache=str(calibrator.CACHE_DIR), use_fp4=opts.get("use_fp4", False))
+        if opts.get("use_fp4", False):
+            self.metadata["precision"] = "FP8 backbone / NVFP4 DiT and cross-KV / mixed BF16 remaining ops"
 
     def aux(self, sample):
         t = sample["inputs"]

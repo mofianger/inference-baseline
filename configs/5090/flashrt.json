@@ -1,20 +1,24 @@
 {
-  "checkpoint": "/data/huggingface/hub/models--nvidia--GR00T-N1.7-3B/snapshots/2fc962b973bccdd5d8ce4f67cc63b264d6886495",
-  "cosmos": "/data/huggingface/hub/models--nvidia--Cosmos-Reason2-2B/snapshots/9ce19a195e423419c349abfc86fd07178b230561",
-  "device": "cuda:0",
-  "warmup": 10,
-  "iterations": 100,
-  "cpu_threads": 8,
-  "thresholds": null,
-  "environment": {
-    "HF_HOME": "/data/huggingface",
-    "HF_HUB_OFFLINE": "1",
-    "TOKENIZERS_PARALLELISM": "false"
-  },
-  "engine": "flashrt",
-  "engine_source": "/data/5090-machine/FlashRT",
-  "python_paths": [
-    "/data/5090-machine/FlashRT"
-  ],
-  "options": {}
+    "checkpoint":  "/data/huggingface/hub/models--nvidia--GR00T-N1.7-3B/snapshots/2fc962b973bccdd5d8ce4f67cc63b264d6886495",
+    "cosmos":  "/data/huggingface/hub/models--nvidia--Cosmos-Reason2-2B/snapshots/9ce19a195e423419c349abfc86fd07178b230561",
+    "device":  "cuda:0",
+    "warmup":  10,
+    "iterations":  100,
+    "cpu_threads":  8,
+    "thresholds":  null,
+    "environment":  {
+                        "HF_HOME":  "/data/huggingface",
+                        "HF_HUB_OFFLINE":  "1",
+                        "TOKENIZERS_PARALLELISM":  "false",
+                        "FLASHRT_GROOT_N17_BB_FUSED":  "1"
+                    },
+    "engine":  "flashrt",
+    "engine_source":  "/data/inference-baseline/third_party/FlashRT",
+    "python_paths":  [
+                         "/data/inference-baseline/third_party/FlashRT"
+                     ],
+    "options":  {
+                    "calibration_cache":  "/data/inference-baseline/third_party/FlashRT/.cache/baseline-v3-calibration",
+                    "use_fp4":  false
+                }
 }

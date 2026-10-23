@@ -18,6 +18,8 @@
   ],
   "options": {
     "native_inference": true,
-    "prefix_cuda_graph": false
+    "prefix_cuda_graph": true,
+    "denoise_graph": true,
+    "compile_backend": "inductor"
   }
 }
