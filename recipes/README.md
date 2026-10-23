@@ -1,0 +1,18 @@
+# Recipe 目录
+
+Recipe = 引擎 × 模型 × 适用硬件的一套精度/执行/校准配置。下面的 ID 是研究目录标识，当前 CLI 使用对应的 config，尚不接受 recipe ID 自动解析。
+
+| 引擎 | Recipe | 状态 | 说明 |
+|---|---|---|---|
+| FlashRT | `flashrt-groot-n17-sm120-fp8-v1` | measured | 融合 FP8 backbone、混合 FP8/BF16 action head |
+| FlashRT | `flashrt-groot-n17-sm120-nvfp4-v1` | measured | FP8 backbone、NVFP4 DiT/cross-KV |
+| FlashRT | `flashrt-groot-n17-sm120-fp16-candidate` | proposed | 待核实完整精度范围和入口，未接入/未测 |
+| EmbodiInfer | `embodiinfer-groot-n17-bf16-graphs-v1` | measured | 前缀图、Inductor、完整 4 步去噪图 |
+| PhyAI | `phyai-groot-n17-bf16-graphs-v1` | measured | 首轮已测，本轮没有重跑 |
+| 官方 reference | `reference-groot-n17-eager-bf16-v1` | measured | 精确版本作为数值参考 |
+
+细节：[FlashRT](flashrt/gr00t-n17.md)、[EmbodiInfer](embodiinfer/gr00t-n17.md)、[PhyAI](phyai/gr00t-n17.md)、[reference](reference/gr00t-n17.md)。
+
+当前已测硬件仅 RTX 5090。此清单不是对所有引擎版本、模型或硬件的穷尽调查；4090/Thor 的支持需要分别验证。旧 FlashRT 和无图 EmbodiInfer 保留在历史报告，不作为当前配置的同义名称。
+
+新增条目模板：ID/版本、状态、目标模型与硬件、上游证据及核对日期、commit、精度范围、执行方式、工作量变化、校准、环境/构建、输入限制、执行 config、真实 Run 链接、未解决问题。

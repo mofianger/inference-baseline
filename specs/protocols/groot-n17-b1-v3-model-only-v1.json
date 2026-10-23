@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "id": "groot-n17-b1-v3-model-only-v1",
+  "model_spec": "gr00t-n17-3b-base-v1",
+  "workload": {"batch": 1, "views": 3, "image_size": [256, 256], "denoising_steps": 4, "action_horizon": 40, "embodiment_id": 24},
+  "input_boundary": "prepared device tensors before learned patch/token embeddings",
+  "output_boundary": "completed device normalized action tensor [1,40,132]",
+  "timer": "synchronized_wall",
+  "included": ["learned embeddings", "backbone", "state encoding", "all denoising steps", "internal copies and metadata transfers", "CPU dispatch and completion synchronization"],
+  "excluded": ["raw preprocessing", "external H2D/D2H staging", "loading", "calibration", "compilation", "graph capture", "warmup", "physical action decoding"],
+  "allowed_cache": ["fixed-layout position/RoPE constants", "within-request cross-KV reuse"],
+  "forbidden_cache": ["observation features reused across different observations"],
+  "current_smoke_plan": {"warmup": 10, "iterations": 100, "cpu_threads": 8, "interop_threads": 1, "tf32": false},
+  "accuracy_thresholds": null,
+  "reference_spec": "groot-n17-official-bf16-v1"
+}

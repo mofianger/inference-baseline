@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "id": "groot-n17-official-bf16-v1",
+  "model_spec": "gr00t-n17-3b-base-v1",
+  "repository": "https://github.com/NVIDIA/Isaac-GR00T",
+  "commit": "51d4c89f72fda44cbf77285c6a8114b52676b8a1",
+  "implementation": "official eager SDPA BF16",
+  "environment": {"torch": "2.9.0+cu128", "transformers": "4.57.3"},
+  "noise": "instance-local sampler noise injection; same explicit BF16 tensor",
+  "comparison_space": "all 40x132 normalized padded action elements",
+  "metrics": ["mae", "rmse", "relative_rmse", "max_abs", "cosine", "per_action_dim_mae"],
+  "thresholds": null,
+  "provenance_note": "Existing reference checkout had pre-existing pyproject.toml and uv.lock modifications; model source was unchanged. See historical run metadata."
+}

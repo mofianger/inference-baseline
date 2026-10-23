@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "id": "gr00t-n17-3b-base-v1",
+  "model": "GR00T N1.7-3B",
+  "checkpoint": {
+    "repository": "nvidia/GR00T-N1.7-3B",
+    "revision": "2fc962b973bccdd5d8ce4f67cc63b264d6886495",
+    "hash_manifest": "../../reports/2026-10-23-5090-smoke/dataset-manifest.json"
+  },
+  "processor_assets": {
+    "repository": "nvidia/Cosmos-Reason2-2B",
+    "revision": "9ce19a195e423419c349abfc86fd07178b230561"
+  },
+  "checkpoint_defaults": {"denoising_steps": 4, "action_horizon": 40, "action_dim": 132, "state_dim": 132},
+  "output_semantics": "normalized padded action tensor; physical decoding is separate",
+  "implemented_protocols": ["groot-n17-b1-v3-model-only-v1"],
+  "limitations": ["Base checkpoint, not LIBERO fine-tuned weights", "Current model plugin supports only the registered three-view workload"]
+}
