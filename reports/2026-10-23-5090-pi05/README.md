@@ -25,4 +25,5 @@ GPU 未锁频；硬件/驱动/时钟前后快照见 summary。单次运行的分
 
 完整操作见 [运行指引](../../docs/guides/pi05-5090.md)。各目录包含 summary.json 和 100 行 latency.jsonl；*-run.txt 保留初始化和校准日志。summary 记录配置、源码提交、环境版本、checkpoint/fixture 哈希、运行时图状态；FlashRT 另记录实际 kernel 二进制 SHA256。
 official-source.json 固定下载来源和版本，verified-files.json 记录逐文件校验；conversion-provenance.json 记录官方转换来源。权重和 tensor fixtures 保留在服务器，不提交 Git。
+OpenPI checkout 在测量时有 `uv.lock` 修改（依赖镜像及锁文件元数据），差异保存在 [openpi-uv-lock.patch](openpi-uv-lock.patch)；模型源码无修改。实际使用的模型专用环境以 requirements 快照和 summary 为准，并非完整 `uv sync` 环境。其他三个引擎 checkout 与 benchmark runner 均为干净提交。
 首轮失败原因及修复：PhyAI 直接调用 venv Python 时 ninja 不在 PATH（CLI 加入环境 bin），FlashInfer workspace 由 128 MiB 调整为 256 MiB；FlashRT 安装 ml-dtypes，并开启 π0.5 SKINNY/NVFP4 kernels 重新构建。最终正式测量在这些修复后顺序执行。
