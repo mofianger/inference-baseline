@@ -4,6 +4,7 @@ import base64
 from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
+import shutil
 from pathlib import Path
 import time
 import google_crc32c
@@ -28,6 +29,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--output", required=True)
     p.add_argument("--workers", type=int, default=3)
+    p.add_argument("--chunk-workers", type=int, default=8)
     args = p.parse_args()
     root = Path(args.output).resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -67,6 +69,39 @@ def main():
         partial = path.with_name(path.name + ".partial")
         url = f"https://storage.googleapis.com/download/storage/v1/b/{BUCKET}/o/" + quote(item["name"], safe="")
         url += "?" + urlencode({"alt": "media", "generation": item["generation"]})
+        if int(item["size"]) > 16 * 1024 * 1024:
+            parts = path.with_name(path.name + ".parts")
+            parts.mkdir(exist_ok=True)
+            chunk_size = 4 * 1024 * 1024
+            def fetch_chunk(start):
+                end = min(start + chunk_size, int(item["size"])) - 1
+                part = parts / str(start)
+                if part.exists() and part.stat().st_size == end - start + 1:
+                    return part
+                for attempt in range(8):
+                    try:
+                        request = Request(url, headers={"Range": f"bytes={start}-{end}", "Accept-Encoding": "identity"})
+                        with urlopen(request, timeout=90) as response:
+                            expected = f"bytes {start}-{end}/{item['size']}"
+                            if response.status != 206 or response.headers.get("Content-Range") != expected:
+                                raise RuntimeError("Server returned an unexpected byte range")
+                            temporary = part.with_suffix(".tmp")
+                            with temporary.open("wb") as out:
+                                shutil.copyfileobj(response, out, 1024 * 1024)
+                        if temporary.stat().st_size != end - start + 1:
+                            raise RuntimeError("Truncated range")
+                        temporary.replace(part)
+                        return part
+                    except Exception:
+                        if attempt == 7:
+                            raise
+                        time.sleep(min(2 ** attempt, 16))
+            with ThreadPoolExecutor(max_workers=args.chunk_workers) as pool:
+                chunks = list(pool.map(fetch_chunk, range(0, int(item["size"]), chunk_size)))
+            with partial.open("wb") as out:
+                for chunk in chunks:
+                    with chunk.open("rb") as inp:
+                        shutil.copyfileobj(inp, out, 8 * 1024 * 1024)
         for attempt in range(5):
             try:
                 offset = partial.stat().st_size if partial.exists() else 0
