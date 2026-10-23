@@ -10,6 +10,10 @@ class FlashRTAdapter:
         from flash_rt.frontends.torch.groot_n17_rtx_fp8 import GrootN17TorchFrontendRtxFP8
         from flash_rt.core.quant import calibrator
         opts = config.get("options", {})
+        # Upstream action-head calibration may sample noise during setup.
+        # Timed inference still receives the shared fixture noise explicitly.
+        calibration_seed = opts.get("calibration_seed", 0)
+        torch.manual_seed(calibration_seed)
         calibrator.CACHE_DIR = Path(opts["calibration_cache"]).resolve()
         frontend_class = GrootN17TorchFrontendRtxFP8
         if opts.get("use_fp4", False):
@@ -42,7 +46,8 @@ class FlashRTAdapter:
             "implementation": "GrootN17TorchFrontendRtxFP8 + timed BF16 patch/token embedding",
             "calibration_sample": samples[0]["id"], "constant_cache": "position/RoPE only; no cached observation features"}
         self.metadata.update(implementation=frontend_class.__name__ + " + timed BF16 patch/token embedding",
-            calibration_cache=str(calibrator.CACHE_DIR), use_fp4=opts.get("use_fp4", False))
+            calibration_cache=str(calibrator.CACHE_DIR), calibration_seed=calibration_seed,
+            use_fp4=opts.get("use_fp4", False))
         if opts.get("use_fp4", False):
             self.metadata["precision"] = "FP8 backbone / NVFP4 DiT and cross-KV / mixed BF16 remaining ops"
         from flash_rt import flash_rt_kernels, flash_rt_fa2, flash_rt_fp4
