@@ -16,6 +16,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--wait-for-download", action="store_true")
     p.add_argument("--output", required=True)
+    p.add_argument("--recipes", nargs="+", help="Run only these recipe names (for isolated retries)")
     args = p.parse_args()
     root = Path(__file__).resolve().parents[1]
     os.chdir(root)
@@ -63,6 +64,11 @@ def main():
             ("flashrt-bf16", root / "third_party/FlashRT/.venv/bin/python"),
             ("flashrt-fp8", root / "third_party/FlashRT/.venv/bin/python"),
             ("flashrt-nvfp4", root / "third_party/FlashRT/.venv/bin/python")]
+    if args.recipes:
+        unknown = set(args.recipes) - {name for name, _ in runs}
+        if unknown:
+            raise ValueError(f"Unknown recipes: {sorted(unknown)}")
+        runs = [(name, python) for name, python in runs if name in args.recipes]
     status["status"] = "running"
     save()
     for name, python in runs:

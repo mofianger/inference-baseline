@@ -8,6 +8,9 @@ from .io import read_json, write_json
 def configure(config):
     for k, v in config.get("environment", {}).items():
         os.environ[k] = str(v)
+    # Invoking a venv's Python directly does not activate its executables.
+    # JIT backends must find that environment's ninja and other build tools.
+    os.environ["PATH"] = str(Path(sys.executable).parent) + os.pathsep + os.environ.get("PATH", "")
     for p in reversed(config.get("python_paths", [])):
         sys.path.insert(0, str(Path(p).resolve()))
 

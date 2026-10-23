@@ -14,7 +14,7 @@ if [[ ! -x "$root/.venv/bin/python" ]]; then
   "$uv_bin" venv --python python3.12 "$root/.venv"
 fi
 "$uv_bin" pip install --python "$root/.venv/bin/python" 'torch==2.11.0' --index-url https://download.pytorch.org/whl/cu128
-"$uv_bin" pip install --python "$root/.venv/bin/python" pybind11 cmake ninja 'transformers==4.55.4' safetensors sentencepiece pillow numpy pyyaml einops
+"$uv_bin" pip install --python "$root/.venv/bin/python" pybind11 cmake ninja 'transformers==4.55.4' safetensors sentencepiece pillow numpy pyyaml einops 'ml-dtypes==0.5.4'
 "$uv_bin" pip install --python "$root/.venv/bin/python" --no-deps -e "$root"
 export PATH="$root/.venv/bin:/usr/local/cuda/bin:$PATH"
 export CUDA_HOME=/usr/local/cuda
