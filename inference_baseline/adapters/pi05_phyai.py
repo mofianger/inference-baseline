@@ -40,3 +40,12 @@ class Pi05PhyAIAdapter:
         t = sample["inputs"]
         return self.engine.step(self.request(pixel_values=t["pixel_values"], input_ids=t["input_ids"],
             lang_lens=t["attention_mask"].sum(dim=1), noise=sample["noise"]))
+
+    def runtime_stats(self):
+        scheduler = self.engine.entry.scheduler
+        stats = {"vision_graph": scheduler.vision_runner.graph is not None,
+                 "prefix_graph_buckets": sorted(scheduler.llm_runner.graphs),
+                 "complete_euler_graph": scheduler.expert_runner.graph is not None}
+        if self.metadata["cuda_graph_requested"] and not all(stats.values()):
+            raise RuntimeError("PhyAI requested graphs are not all captured")
+        return stats

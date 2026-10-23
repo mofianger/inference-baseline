@@ -1,5 +1,6 @@
 """FlashRT pi05 GPU-only boundary including dynamic token embeddings."""
 import ctypes
+import hashlib
 from pathlib import Path
 
 
@@ -58,6 +59,10 @@ class Pi05FlashRTAdapter:
                          "calibration_sample": calibration[0]["id"], "calibration_seed": seed,
                          "weight_alias": "PaliGemma lm_head -> identical input embedding",
                          "normalization": "excluded; normalized model actions returned directly"}
+        from flash_rt import flash_rt_kernels, flash_rt_fa2
+        self.metadata["kernel_binaries"] = {
+            m.__name__: {"path": m.__file__, "sha256": hashlib.sha256(Path(m.__file__).read_bytes()).hexdigest()}
+            for m in (flash_rt_kernels, flash_rt_fa2)}
 
     def update_prompt(self, sample, stream):
         torch, f = self.torch, self.frontend
@@ -96,4 +101,6 @@ class Pi05FlashRTAdapter:
         return {"full_graph": True, "steps": f._num_steps, "fixed_prompt_capacity": f.pipeline.max_prompt_len,
                 "prefix_precision": f._prefix_precision, "decoder_precision": f._decoder_precision,
                 "use_fp8": f.pipeline.use_fp8, "use_fp8_decoder": f.pipeline.use_fp8_decoder,
+                "nvfp4_decoder_active": bool(f.pipeline._dec_fp4),
+                "nvfp4_prefix_ffn_active": bool(f.pipeline._ffn_fp4),
                 "force_bf16": f._force_bf16}
