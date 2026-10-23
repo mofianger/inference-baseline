@@ -26,12 +26,14 @@ class Pi05PhyAIAdapter:
             inputs_image_shape=[[224, 224, 3]] * 3, weight_remap=remap, weight_strict=True,
             vision_params_dtype=torch.float32 if vision_fp32 else None),
             config=EngineConfig(device=DeviceConfig(target=config["device"], params_dtype=torch.bfloat16),
-                                runtime=RuntimeConfig(use_cuda_graph=graph))))
+                                runtime=RuntimeConfig(use_cuda_graph=graph,
+                                    flashinfer_workspace_bytes=options.get("flashinfer_workspace_bytes", 268435456)))))
         if self.engine.mode != "inline":
             raise ValueError("Model-only protocol requires an inline single-GPU engine")
         self.metadata = {"implementation": "PhyAI pi05 inline Engine.step",
                          "precision": "BF16 with FP32 vision" if vision_fp32 else "BF16 with FP32 stem",
                          "cuda_graph_requested": graph, "weight_strict": True,
+                         "flashinfer_workspace_bytes": options.get("flashinfer_workspace_bytes", 268435456),
                          "boundary": "GPU images/tokens/noise through vision, prefix and complete Euler loop"}
 
     def infer(self, sample):

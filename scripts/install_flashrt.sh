@@ -18,7 +18,7 @@ fi
 "$uv_bin" pip install --python "$root/.venv/bin/python" --no-deps -e "$root"
 export PATH="$root/.venv/bin:/usr/local/cuda/bin:$PATH"
 export CUDA_HOME=/usr/local/cuda
-cmake -B "$root/build" -S "$root" -DGPU_ARCH=120 -DFLASHRT_ENABLE_MOTUS=OFF
+cmake -B "$root/build" -S "$root" -DGPU_ARCH=120 -DFLASHRT_ENABLE_MOTUS=OFF -DFLASHRT_ENABLE_PI05_SKINNY=ON -DFLASHRT_ENABLE_PI05_NVFP4=ON
 cmake --build "$root/build" -j "${BUILD_JOBS:-8}"
 "$uv_bin" pip freeze --python "$root/.venv/bin/python" > "$root/environment-freeze.txt"
 python -c 'import flash_rt; from flash_rt import flash_rt_kernels as k, flash_rt_fa2; assert hasattr(k, "nvfp4_skinny_quantize_weight"); assert hasattr(k, "fp8_residual_norm_quant"); print(flash_rt.__file__); print(k.__file__); print(flash_rt_fa2.__file__)'

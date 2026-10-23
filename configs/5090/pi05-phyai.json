@@ -11,5 +11,5 @@
   "cpu_threads": 8,
   "thresholds": null,
   "environment": {"HF_HOME": "/data/huggingface", "HF_HUB_OFFLINE": "1", "TOKENIZERS_PARALLELISM": "false"},
-  "options": {"cuda_graph": true, "vision_fp32": false}
+  "options": {"cuda_graph": true, "vision_fp32": false, "flashinfer_workspace_bytes": 268435456}
 }
