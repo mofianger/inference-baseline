@@ -6,7 +6,7 @@ __pycache__/
 .cache/
 third_party/
 artifacts/
-datasets/
+/datasets/
 checkpoints/
 *.safetensors
 *.pt

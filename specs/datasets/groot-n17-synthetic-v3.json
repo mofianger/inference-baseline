@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "id": "groot-n17-synthetic-v3",
+  "protocol": "groot-n17-b1-v3-model-only-v1",
+  "kind": "synthetic_three_distinct_views",
+  "roles": {"calibration": 1, "evaluation": 4},
+  "prompt": "Pick up the object and place it on the table.",
+  "embodiment_tag": "oxe_droid_relative_eef_relative_joint_3view",
+  "input_shapes": {"pixel_values": [768, 1536], "input_ids": [1, 217], "attention_mask": [1, 217], "image_grid_thw": [3, 3], "state": [1, 1, 132], "embodiment_id": [1], "noise": [1, 40, 132]},
+  "floating_dtype": "bfloat16",
+  "metadata_dtype": "int64",
+  "manifest_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+  "manifest": "../../reports/2026-10-23-5090-smoke/dataset-manifest.json",
+  "artifact_location": "5090-machine:/data/inference-baseline/datasets/groot-n17-v3",
+  "access": "Coordinate access with the machine owner; no public dataset download is published. Verify every fixture hash against the frozen manifest.",
+  "reference_spec": "groot-n17-official-bf16-v1",
+  "limitations": ["Synthetic state and images; no task semantics", "Fixed prompt/layout", "Recreating samples is not equivalent unless all hashes match", "Camera order is frozen by fixture tensors, not real camera identities"]
+}
