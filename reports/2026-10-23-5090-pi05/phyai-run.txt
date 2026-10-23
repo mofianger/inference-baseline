@@ -1,0 +1,40 @@
+2026-10-23 20:56:26,687 INFO phyai.utils.env_setup: env setup applied 6 var(s): CUDA_DEVICE_MAX_CONNECTIONS=8, CUDA_MODULE_LOADING=LAZY, TRTLLM_ENABLE_PDL=1, CUTE_DSL_LOG_LEVEL=30, CUTE_DSL_LOG_TO_CONSOLE=1, OMP_NUM_THREADS=1
+2026-10-23 20:56:26,687 INFO phyai.utils.torch_setup: torch intra-op threads 8 -> 1 (device_type=cuda)
+2026-10-23 20:56:26,687 INFO phyai.engine: init stage=torch_setup elapsed=0.00s used=0.00 GiB free=30.84 GiB
+2026-10-23 20:56:26,956 INFO phyai.engine: init stage=cuda elapsed=0.27s used=0.09 GiB free=30.75 GiB
+2026-10-23 20:56:26,956 INFO phyai.engine: init stage=dist elapsed=0.00s used=0.00 GiB free=30.75 GiB
+2026-10-23 20:56:26,957 INFO phyai.engine: init stage=mesh elapsed=0.00s used=0.00 GiB free=30.75 GiB
+2026-10-23 20:56:26,962 INFO phyai.engine: init stage=kernel elapsed=0.01s used=0.00 GiB free=30.75 GiB
+2026-10-23 20:56:33,195 WARNING phyai.weights.loader: load_pretrained dtype cast at 'action_in_proj.bias': torch.float32 -> torch.bfloat16
+2026-10-23 20:56:33,195 WARNING phyai.weights.loader: load_pretrained dtype cast at 'action_in_proj.weight': torch.float32 -> torch.bfloat16
+2026-10-23 20:56:33,195 WARNING phyai.weights.loader: load_pretrained dtype cast at 'action_out_proj.bias': torch.float32 -> torch.bfloat16
+2026-10-23 20:56:33,195 WARNING phyai.weights.loader: load_pretrained dtype cast at 'action_out_proj.weight': torch.float32 -> torch.bfloat16
+2026-10-23 20:56:33,195 WARNING phyai.weights.loader: load_pretrained dtype cast at 'paligemma_with_expert.gemma_expert.model.layers.0.input_layernorm.dense.bias': torch.float32 -> torch.bfloat16
+2026-10-23 20:56:33,195 WARNING phyai.weights.loader: load_pretrained dtype cast at 'paligemma_with_expert.gemma_expert.model.layers.0.input_layernorm.dense.weight': torch.float32 -> torch.bfloat16
+2026-10-23 20:56:33,195 WARNING phyai.weights.loader: load_pretrained dtype cast at 'paligemma_with_expert.gemma_expert.model.layers.0.mlp.down_proj.weight': torch.float32 -> torch.bfloat16
+2026-10-23 20:56:33,195 WARNING phyai.weights.loader: load_pretrained dtype cast at 'paligemma_with_expert.gemma_expert.model.layers.0.mlp.gate_proj.weight': torch.float32 -> torch.bfloat16
+2026-10-23 20:56:33,195 WARNING phyai.weights.loader: load_pretrained dtype cast at 'paligemma_with_expert.gemma_expert.model.layers.0.mlp.up_proj.weight': torch.float32 -> torch.bfloat16
+2026-10-23 20:56:33,195 WARNING phyai.weights.loader: load_pretrained dtype cast at 'paligemma_with_expert.gemma_expert.model.layers.0.post_attention_layernorm.dense.bias': torch.float32 -> torch.bfloat16
+2026-10-23 20:56:33,196 INFO phyai.weights.loader: load_pretrained(pi05_base_pytorch_fp32): loaded=811 | missing=0 | optional_missing=0 | unexpected=0 | casts=701
+2026-10-23 20:56:33,497 INFO phyai.models.pi05.model_runner_pi05: Entering PI05VisionRunner.setup
+2026-10-23 20:56:33,497 INFO phyai.models.pi05.model_runner_pi05: Entering PI05VisionRunner.setup: capturing vision-tower CUDA graph at fixed shape (3, 3, 224, 224).
+2026-10-23 20:56:35,213 INFO phyai.models.pi05.model_runner_pi05: Entering PI05LLMRunner.setup
+2026-10-23 20:56:35,217 INFO phyai.models.pi05.model_runner_pi05: Entering PI05LLMRunner.setup: capturing 4 prefix-forward CUDA graph(s) at B*n_per_sample in [784, 816, 880, 968] (hidden_size=2048).
+cudnn_handle created for device_id = 0
+
+2026-10-23 20:56:36,286 INFO phyai.models.pi05.model_runner_pi05: Entering PI05ExpertRunner.setup
+2026-10-23 20:56:36,290 INFO phyai.models.pi05.model_runner_pi05: Entering PI05ExpertRunner.setup: capturing the full 10-step Euler loop as one CUDA graph at fixed shape (B=1, chunk_size=50, max_action_dim=32).
+2026-10-23 20:56:37,795 INFO phyai.engine: init stage=plugin_setup elapsed=10.83s used=7.31 GiB free=23.44 GiB
+2026-10-23 20:56:37,795 INFO phyai.engine: Engine ready (plugin=pi05). total=11.11s free=23.44 GiB
+{
+  "engine": "phyai",
+  "latency": {
+    "count": 100,
+    "mean_ms": 41.77345482,
+    "min_ms": 41.470884,
+    "p50_ms": 41.8510105,
+    "p95_ms": 41.90635435,
+    "p99_ms": 41.96628041
+  },
+  "accuracy_gate": "not_configured"
+}

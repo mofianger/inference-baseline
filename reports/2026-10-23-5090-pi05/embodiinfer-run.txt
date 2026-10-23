@@ -1,0 +1,12 @@
+{
+  "engine": "embodiinfer",
+  "latency": {
+    "count": 100,
+    "mean_ms": 91.25526772,
+    "min_ms": 91.099578,
+    "p50_ms": 91.245203,
+    "p95_ms": 91.3278357,
+    "p99_ms": 91.35515695000001
+  },
+  "accuracy_gate": "not_configured"
+}

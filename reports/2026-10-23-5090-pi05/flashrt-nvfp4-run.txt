@@ -1,0 +1,27 @@
+  autotune: tested 7 algos, best=1 (12.9984 us)
+  autotune: tested 7 algos, best=3 (15.5936 us)
+  autotune: tested 5 algos, best=1 (8.8288 us)
+  autotune: tested 7 algos, best=5 (20.1408 us)
+  autotune: tested 2 algos, best=0 (29.9584 us)
+  autotune: tested 7 algos, best=4 (11.6704 us)
+  autotune: tested 7 algos, best=1 (21.6352 us)
+  autotune: tested 7 algos, best=3 (19.68 us)
+  autotune: tested 7 algos, best=1 (216.65 us)
+  autotune: tested 3 algos, best=1 (130.611 us)
+  autotune: tested 3 algos, best=0 (7.5744 us)
+  autotune: tested 3 algos, best=0 (7.1904 us)
+  autotune: tested 5 algos, best=0 (8.8608 us)
+  autotune: tested 3 algos, best=1 (11.4592 us)
+[pi05_rtx] 12 scale(s) exceed 20.0 x median (0.011) — calibration set may contain outliers. Top offenders: encoder_ffn_down_w_16=15.286, encoder_ffn_down_w_15=2.375, encoder_ffn_down_w_14=0.879, encoder_ffn_down_w_7=0.853, encoder_ffn_down_w_0=0.598. FP8 will still run but dynamic-range headroom on these layers is compressed. Consider lowering percentile, sampling more diversely, or keeping these layers in FP16.
+{
+  "engine": "flashrt",
+  "latency": {
+    "count": 100,
+    "mean_ms": 14.228791299999997,
+    "min_ms": 14.186859,
+    "p50_ms": 14.2227905,
+    "p95_ms": 14.2702066,
+    "p99_ms": 14.29302411
+  },
+  "accuracy_gate": "not_configured"
+}

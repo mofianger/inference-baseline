@@ -1,0 +1,30 @@
+{
+  "started_utc": "2026-10-23T12:54:50.896534+00:00",
+  "status": "finished",
+  "stages": [
+    {
+      "name": "reference",
+      "returncode": 0
+    },
+    {
+      "name": "phyai",
+      "returncode": 0
+    },
+    {
+      "name": "embodiinfer",
+      "returncode": 0
+    },
+    {
+      "name": "flashrt-bf16",
+      "returncode": 0
+    },
+    {
+      "name": "flashrt-fp8",
+      "returncode": 0
+    },
+    {
+      "name": "flashrt-nvfp4",
+      "returncode": 0
+    }
+  ]
+}

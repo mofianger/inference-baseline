@@ -1,0 +1,12 @@
+{
+  "engine": "reference",
+  "latency": {
+    "count": 100,
+    "mean_ms": 174.25606425,
+    "min_ms": 170.522236,
+    "p50_ms": 173.601807,
+    "p95_ms": 180.33962005,
+    "p99_ms": 183.0074691
+  },
+  "accuracy_gate": "not_configured"
+}

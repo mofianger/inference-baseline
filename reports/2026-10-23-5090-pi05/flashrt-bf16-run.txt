@@ -1,0 +1,31 @@
+FVK_PI05_RTX_FORCE_BF16=1 set: disabling FP8 paths for the Pi0.5 RTX pipeline.
+  autotune: tested 7 algos, best=0 (12.9312 us)
+  autotune: tested 8 algos, best=0 (31.5904 us)
+  autotune: tested 8 algos, best=1 (16.992 us)
+  autotune: tested 8 algos, best=0 (46.3648 us)
+  autotune: tested 8 algos, best=1 (43.6768 us)
+  autotune: tested 8 algos, best=1 (24.976 us)
+  autotune: tested 8 algos, best=0 (51.7568 us)
+  autotune: tested 8 algos, best=3 (49.6704 us)
+  autotune: tested 8 algos, best=2 (324.022 us)
+  autotune: tested 8 algos, best=2 (324.064 us)
+  autotune: tested 8 algos, best=0 (337.83 us)
+  autotune: tested 8 algos, best=1 (5.2864 us)
+  autotune: tested 8 algos, best=3 (8.72 us)
+  autotune: tested 8 algos, best=3 (9.1456 us)
+  autotune: tested 8 algos, best=1 (8.9632 us)
+  autotune: tested 8 algos, best=1 (8.7328 us)
+  autotune: tested 8 algos, best=1 (9.744 us)
+  autotune: tested 8 algos, best=7 (8.8992 us)
+{
+  "engine": "flashrt",
+  "latency": {
+    "count": 100,
+    "mean_ms": 38.104159710000005,
+    "min_ms": 38.01928,
+    "p50_ms": 38.095760999999996,
+    "p95_ms": 38.1988754,
+    "p99_ms": 38.27416763
+  },
+  "accuracy_gate": "not_configured"
+}

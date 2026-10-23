@@ -1,0 +1,28 @@
+# π0.5 / RTX 5090 实测（2026-10-23）
+
+官方 pi05_base；B1；3 路有效 RGB 224×224；token 容量 200；10 步 Euler；完整 normalized action [1,50,32]。
+同一 FP32 canonical checkpoint、fixture、初始噪声。计时从 GPU 预处理输入到 GPU action 完成，包含 embeddings、prefix、全部去噪、内部复制和同步，不含预处理、H2D/D2H、初始化、校准、capture。
+每项 10 次预热、100 次串行测量；4 个合成评估样本轮换，另有 1 个独立合成校准样本。误差相对冻结的官方 OpenPI PyTorch 输出，MAE 对 4 个唯一评估样本等权平均。
+
+| Recipe | Mean ms | P50 ms | P95 ms | MAE | 最大绝对误差 | 最低 cosine |
+|---|---:|---:|---:|---:|---:|---:|
+| [reference](reference/summary.json) | 174.256 | 173.602 | 180.340 | 0.000000 | 0.000000 | 1.000000 |
+| [embodiinfer](embodiinfer/summary.json) | 91.255 | 91.245 | 91.328 | 0.003662 | 0.097993 | 0.999298 |
+| [phyai](phyai/summary.json) | 41.773 | 41.851 | 41.906 | 0.004542 | 0.057529 | 0.999560 |
+| [flashrt-bf16](flashrt-bf16/summary.json) | 38.104 | 38.096 | 38.199 | 0.004639 | 0.097278 | 0.999330 |
+| [flashrt-fp8](flashrt-fp8/summary.json) | 22.517 | 22.515 | 22.548 | 0.025541 | 0.461506 | 0.982618 |
+| [flashrt-nvfp4](flashrt-nvfp4/summary.json) | 14.229 | 14.223 | 14.270 | 0.111926 | 1.095385 | 0.811104 |
+
+## 解读与边界
+
+未设置数值验收阈值，所有结果均为 measured / accuracy_gate=not_configured，不能宣称精度合格。合成输入上的误差不等于机器人任务成功率；本轮不接模拟器。
+EmbodiInfer 保留完整 vision/projector FP32；OpenPI 与 PhyAI 使用各自混合 BF16/FP32 路径；FlashRT BF16、FP8、NVFP4 也并非所有算子使用单一精度。差异属于 Recipe，需要同时查看延迟与误差。
+FlashRT 量化仅用 1 个合成样本校准，FP8 日志存在 scale outlier 警告；低精度结果不能外推到真实观测分布。
+A/B/A 重复输入、图像/状态 token/噪声敏感性、输入不变性、输出形状与设备检查均由 runner 执行；图缓存统计在计时前后保持一致。这些是执行契约检查，不是数值精度验收。
+GPU 未锁频；硬件/驱动/时钟前后快照见 summary。单次运行的分位数不代表跨运行置信区间。显存字段仅统计 PyTorch allocator，可能漏掉引擎直接 CUDA 分配。
+
+## 复现与追溯
+
+完整操作见 [运行指引](../../docs/guides/pi05-5090.md)。各目录包含 summary.json 和 100 行 latency.jsonl；*-run.txt 保留初始化和校准日志。summary 记录配置、源码提交、环境版本、checkpoint/fixture 哈希、运行时图状态；FlashRT 另记录实际 kernel 二进制 SHA256。
+official-source.json 固定下载来源和版本，verified-files.json 记录逐文件校验；conversion-provenance.json 记录官方转换来源。权重和 tensor fixtures 保留在服务器，不提交 Git。
+首轮失败原因及修复：PhyAI 直接调用 venv Python 时 ninja 不在 PATH（CLI 加入环境 bin），FlashInfer workspace 由 128 MiB 调整为 256 MiB；FlashRT 安装 ml-dtypes，并开启 π0.5 SKINNY/NVFP4 kernels 重新构建。最终正式测量在这些修复后顺序执行。

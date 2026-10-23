@@ -1,0 +1,272 @@
+{
+  "schema": 1,
+  "protocol": {
+    "name": "pi05-base-b1-v3-model-only-v1",
+    "model": "pi0.5",
+    "batch": 1,
+    "views": 3,
+    "denoising_steps": 10,
+    "action_horizon": 50,
+    "action_dim": 32,
+    "state_dim": 32,
+    "image_size": [
+      224,
+      224
+    ],
+    "max_token_len": 200,
+    "input_dtype": "float32",
+    "boundary": "device_tensor_to_device_normalized_action",
+    "timer": "synchronized_wall"
+  },
+  "checkpoint": {
+    "config.json": "3673272c04c1d5eb6bc187d087104b4912a3a33624eb6e02c2250904d593b836",
+    "conversion-provenance.json": "c87babe550952706f0f3123da77f78a6c14c4bd0a029d90d822858ebb8397732",
+    "model.safetensors": "c6c51ef9904b0bc6ef7cf9b458755a9164130a3b97ebccf34a2ac9523c29aad7"
+  },
+  "tokenizer_sha256": "8986bb4f423f07f8c7f70d0dbe3526fb2316056c17bae71b1ea975e77a168fc6",
+  "prompt": "Pick up the object and place it on the table.",
+  "data_kind": "synthetic_three_distinct_views_discretized_state",
+  "samples": [
+    {
+      "id": "synthetic-0000",
+      "role": "calibration",
+      "file": "synthetic-0000.pt",
+      "sha256": "fbd3fc3ced83f76988ac0dd89d6e57c60081f4cbd3e348d8337b6713fd6500cb",
+      "inputs": {
+        "pixel_values": {
+          "shape": [
+            1,
+            3,
+            3,
+            224,
+            224
+          ],
+          "dtype": "torch.float32"
+        },
+        "image_mask": {
+          "shape": [
+            1,
+            3
+          ],
+          "dtype": "torch.bool"
+        },
+        "state": {
+          "shape": [
+            1,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        "input_ids": {
+          "shape": [
+            1,
+            200
+          ],
+          "dtype": "torch.int64"
+        },
+        "attention_mask": {
+          "shape": [
+            1,
+            200
+          ],
+          "dtype": "torch.bool"
+        }
+      }
+    },
+    {
+      "id": "synthetic-0001",
+      "role": "evaluation",
+      "file": "synthetic-0001.pt",
+      "sha256": "c694415b703dab8263a797ebd1f3eec6e311a65ba328f841cfe55641cdf1add9",
+      "inputs": {
+        "pixel_values": {
+          "shape": [
+            1,
+            3,
+            3,
+            224,
+            224
+          ],
+          "dtype": "torch.float32"
+        },
+        "image_mask": {
+          "shape": [
+            1,
+            3
+          ],
+          "dtype": "torch.bool"
+        },
+        "state": {
+          "shape": [
+            1,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        "input_ids": {
+          "shape": [
+            1,
+            200
+          ],
+          "dtype": "torch.int64"
+        },
+        "attention_mask": {
+          "shape": [
+            1,
+            200
+          ],
+          "dtype": "torch.bool"
+        }
+      }
+    },
+    {
+      "id": "synthetic-0002",
+      "role": "evaluation",
+      "file": "synthetic-0002.pt",
+      "sha256": "ba1938fb2b5aac63b501c11eed71c394f3fb08e02e52760c89c6ae942adc94fe",
+      "inputs": {
+        "pixel_values": {
+          "shape": [
+            1,
+            3,
+            3,
+            224,
+            224
+          ],
+          "dtype": "torch.float32"
+        },
+        "image_mask": {
+          "shape": [
+            1,
+            3
+          ],
+          "dtype": "torch.bool"
+        },
+        "state": {
+          "shape": [
+            1,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        "input_ids": {
+          "shape": [
+            1,
+            200
+          ],
+          "dtype": "torch.int64"
+        },
+        "attention_mask": {
+          "shape": [
+            1,
+            200
+          ],
+          "dtype": "torch.bool"
+        }
+      }
+    },
+    {
+      "id": "synthetic-0003",
+      "role": "evaluation",
+      "file": "synthetic-0003.pt",
+      "sha256": "5c4576255d82618a514b3c08ef4d749668b0746b8b3504456b3fc088a89e3ed4",
+      "inputs": {
+        "pixel_values": {
+          "shape": [
+            1,
+            3,
+            3,
+            224,
+            224
+          ],
+          "dtype": "torch.float32"
+        },
+        "image_mask": {
+          "shape": [
+            1,
+            3
+          ],
+          "dtype": "torch.bool"
+        },
+        "state": {
+          "shape": [
+            1,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        "input_ids": {
+          "shape": [
+            1,
+            200
+          ],
+          "dtype": "torch.int64"
+        },
+        "attention_mask": {
+          "shape": [
+            1,
+            200
+          ],
+          "dtype": "torch.bool"
+        }
+      }
+    },
+    {
+      "id": "synthetic-0004",
+      "role": "evaluation",
+      "file": "synthetic-0004.pt",
+      "sha256": "572d565d65f99b1a6c51413fa701e65f0caa3f2328f061b1f1887de60d714477",
+      "inputs": {
+        "pixel_values": {
+          "shape": [
+            1,
+            3,
+            3,
+            224,
+            224
+          ],
+          "dtype": "torch.float32"
+        },
+        "image_mask": {
+          "shape": [
+            1,
+            3
+          ],
+          "dtype": "torch.bool"
+        },
+        "state": {
+          "shape": [
+            1,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        "input_ids": {
+          "shape": [
+            1,
+            200
+          ],
+          "dtype": "torch.int64"
+        },
+        "attention_mask": {
+          "shape": [
+            1,
+            200
+          ],
+          "dtype": "torch.bool"
+        }
+      }
+    }
+  ],
+  "reference": {
+    "implementation": "official OpenPI eager sampler",
+    "precision": "official selected BF16 with FP32 stem, norms, projections and Euler state",
+    "boundary": "prepared GPU images/tokens/masks/noise through full 10-step sampler",
+    "preprocessing": "already normalized 224x224; upstream evaluation preprocessing performs only views and Python packaging",
+    "source": {
+      "commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "dirty": "M uv.lock"
+    },
+    "torch": "2.7.1+cu128"
+  }
+}
