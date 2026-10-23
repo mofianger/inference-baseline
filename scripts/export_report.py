@@ -20,11 +20,12 @@ def main():
         data = json.loads(source.read_text())
         if data["status"] != "measured":
             raise ValueError(f"Not a completed measurement: {run}")
-        dest = target / (data["config"]["engine"] + ".json")
+        label = data["config"].get("label", data["config"]["engine"])
+        dest = target / (label + ".json")
         if dest.exists():
             raise FileExistsError(f"Refusing to overwrite report {dest}")
         shutil.copyfile(source, dest)
-        shutil.copyfile(Path(run) / "latency.jsonl", target / (data["config"]["engine"] + "-latency.jsonl"))
+        shutil.copyfile(Path(run) / "latency.jsonl", target / (label + "-latency.jsonl"))
         summaries.append(str(dest))
     subprocess.run([sys.executable, "-m", "inference_baseline.cli", "report", *summaries,
                     "--output", str(target / "comparison.md")], check=True)

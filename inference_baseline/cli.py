@@ -35,7 +35,8 @@ def main():
                  "| Engine | Mean ms | p50 ms | p95 ms | p99 ms | Max abs error | Gate |", "|---|---:|---:|---:|---:|---:|---|"]
         for d in data:
             v = d["latency"]
-            lines.append(f"| {d['config']['engine']} | {v['mean_ms']:.3f} | {v['p50_ms']:.3f} | {v['p95_ms']:.3f} | {v['p99_ms']:.3f} | {max(x['max_abs'] for x in d['correctness']):.6f} | {d['accuracy_gate']} |")
+            label = d['config'].get('label', d['config']['engine'])
+            lines.append(f"| {label} | {v['mean_ms']:.3f} | {v['p50_ms']:.3f} | {v['p95_ms']:.3f} | {v['p99_ms']:.3f} | {max(x['max_abs'] for x in d['correctness']):.6f} | {d['accuracy_gate']} |")
         Path(args.output).write_text("\n".join(lines) + "\n", encoding="utf-8")
         return
     config = read_json(args.config)

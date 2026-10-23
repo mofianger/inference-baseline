@@ -20,5 +20,6 @@
     "options":  {
                     "calibration_cache":  "/data/inference-baseline/third_party/FlashRT/.cache/baseline-v3-calibration",
                     "use_fp4":  false
-                }
+                },
+    "label":  "flashrt_fp8"
 }

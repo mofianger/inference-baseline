@@ -38,4 +38,5 @@ class EmbodiInferAdapter:
         if self.graphs is None:
             return self.model.sample_actions(batch, x0=sample["noise"].clone(), num_steps=self.steps)
         prefix = self.model.encode_prefix(batch)
-        return self.model.decoder.integrate(sample["noise"].clone(), prefix, self.steps, 1, self.graphs)
+        actions = self.model.decoder.integrate(sample["noise"].clone(), prefix, self.steps, 1, self.graphs)
+        return self.model.finalize_actions(actions, prefix)

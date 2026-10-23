@@ -75,6 +75,24 @@ def _run(config, dataset, out, torch):
         if any(x["gate"] == "failed" for x in correctness):
             write_json(out / "correctness.json", correctness)
             raise ValueError("Configured accuracy gate failed")
+        # Change only one dynamic input at a time to detect graph buffers that
+        # accidentally retain old pixels, state or initial noise.
+        input_sensitivity = {}
+        for field in ("pixel_values", "state", "noise"):
+            probe = dict(eval_samples[0])
+            probe["inputs"] = dict(probe["inputs"])
+            if field == "noise":
+                probe["noise"] = eval_samples[1]["noise"]
+            else:
+                probe["inputs"][field] = eval_samples[1]["inputs"][field]
+            probe_array = adapter.infer(probe).detach().float().cpu().numpy().copy()
+            delta = errors(probe_array, frozen[0])
+            if delta["max_abs"] == 0:
+                raise ValueError(f"Output ignored changed {field}; possible stale graph buffer")
+            input_sensitivity[field] = {k: delta[k] for k in ("max_abs", "mae", "cosine")}
+        restored = adapter.infer(eval_samples[0]).detach().float().cpu().numpy()
+        if not np.allclose(restored, frozen[0], atol=1e-5, rtol=1e-5):
+            raise ValueError("Input sensitivity probes changed subsequent baseline output")
         if device.device.type == "cuda":
             torch.cuda.reset_peak_memory_stats(device.device)
         rows = []
@@ -116,6 +134,7 @@ def _run(config, dataset, out, torch):
             "setup_seconds": setup_seconds, "latency": latency_summary([r["wall_ms"] for r in rows]),
             "runtime_before": runtime_before, "runtime_after": runtime_after,
             "correctness": correctness, "repeat_error": repeat_error,
+            "input_sensitivity": input_sensitivity,
             "peak_allocated_bytes": torch.cuda.max_memory_allocated(device.device) if device.device.type == "cuda" else None,
             "peak_reserved_bytes": torch.cuda.max_memory_reserved(device.device) if device.device.type == "cuda" else None,
             "limitations": ["synthetic fixture, no task accuracy", "small fixture set; latency iterations reuse observations", "no acceptance claim without configured thresholds"]}

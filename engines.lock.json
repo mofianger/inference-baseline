@@ -1,6 +1,6 @@
 {
   "reference": {"repo": "https://github.com/NVIDIA/Isaac-GR00T", "commit": "51d4c89f72fda44cbf77285c6a8114b52676b8a1", "environment": "existing Isaac-GR00T .venv; torch 2.9.0+cu128 / transformers 4.57.3"},
-  "flashrt": {"repo": "https://github.com/flashrt-project/FlashRT", "commit": "a7d57c18e798d8247f3dea11236928615e3ab54c", "environment": "existing FlashRT .venv; torch 2.11.0+cu128 / transformers 4.55.4"},
+  "flashrt": {"repo": "https://github.com/flashrt-project/FlashRT", "commit": "1fbe995089af4148bacd10ead61764d0aeb80f7a", "environment": "third_party/FlashRT/.venv; fresh source build GPU_ARCH=120; torch 2.11.0+cu128 / transformers 4.55.4; CUTLASS v4.4.2"},
   "embodiinfer": {"repo": "https://github.com/BUAA-CI-LAB/EmbodiInfer", "commit": "2cd9a37a0f6f555c2a65991f1cf4ccb578caf23b", "environment": "isolated env; torch 2.10.0 / transformers 5.3.0 / diffusers 0.35.1"},
   "phyai": {"repo": "https://github.com/mingti-org/phyai", "commit": "f983a8f84684aa7db4dfac7184b7b5c787635978", "environment": "upstream uv workspace lock"}
 }
