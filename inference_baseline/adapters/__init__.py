@@ -6,6 +6,12 @@ ADAPTERS = {"reference": "reference:ReferenceAdapter", "embodiinfer": "embodiinf
 
 def create(name, config, protocol, samples):
     if protocol.model == "pi0.5" and name in ADAPTERS:
+        if name == "embodiinfer":
+            from .pi05_embodiinfer import Pi05EmbodiInferAdapter
+            return Pi05EmbodiInferAdapter(config, protocol, samples)
+        if name == "flashrt":
+            from .pi05_flashrt import Pi05FlashRTAdapter
+            return Pi05FlashRTAdapter(config, protocol, samples)
         if name == "phyai":
             from .pi05_phyai import Pi05PhyAIAdapter
             return Pi05PhyAIAdapter(config, protocol, samples)
