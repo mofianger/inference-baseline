@@ -67,6 +67,10 @@ def main():
                 raise ValueError(f"Existing file has unexpected bytes: {relative}")
             return {"path": relative, "sha256": sha, "bytes": path.stat().st_size}
         partial = path.with_name(path.name + ".partial")
+        # Orbax includes empty commit markers. No HTTP body is needed, but
+        # the file must exist before the common checksum/rename path runs.
+        if int(item["size"]) == 0:
+            partial.touch(exist_ok=True)
         url = f"https://storage.googleapis.com/download/storage/v1/b/{BUCKET}/o/" + quote(item["name"], safe="")
         url += "?" + urlencode({"alt": "media", "generation": item["generation"]})
         if int(item["size"]) > 16 * 1024 * 1024:
