@@ -6,6 +6,8 @@
 
 当前已实际支持 **GR00T N1.7-3B / B=1 / 三视角 256×256 / 4 步去噪 / H40 / 单张 RTX 5090**。计时为 GPU prepared tensor 到 GPU normalized action 完成的同步 wall time，包括 learned embeddings，不含外部预处理、传输和动作解码。当前为合成输入接入验证，不接模拟器、未设数值验收阈值。
 
+同时支持 **官方 π0.5 base / B=1 / 三视角 224×224 / 10 步 Euler / H50×A32 / RTX 5090**；已接入 OpenPI、EmbodiInfer、PhyAI、FlashRT BF16/FP8/NVFP4。见 [π0.5 操作指引](docs/guides/pi05-5090.md) 和 [延迟及误差报告](reports/2026-10-23-5090-pi05/README.md)。
+
 ## 从哪里开始
 
 | 目标 | 入口 |
@@ -34,7 +36,7 @@ inference_baseline/
   adapters/              各引擎的模型适配
   runner.py              预热、校验、计时和记录
   hardware.py            同步、计时与硬件元信息
-  protocol.py, dataset.py 当前 GR00T 协议与输入实现
+  *protocol.py, *dataset.py GR00T / π0.5 协议与输入实现
 scripts/                 安装、运行和报告导出
 results/                 实验索引、Run 模板及后续唯一 Run 目录
 reports/                 保留既有实测与上游对照记录
@@ -44,7 +46,7 @@ third_party/             独立引擎源码/环境，Git 忽略
 datasets/, artifacts/    大型输入与原始运行目录，Git 忽略
 ```
 
-`specs/` 中的 JSON 当前是描述性契约，**尚未接入自动配置解析**；CLI 仍读取 `configs/` 和 frozen dataset manifest。现有 ModelProtocol/数据集构建与部分 Runner 检查仍绑定 GR00T，不宣称已经支持任意模型或硬件。代码解耦的后续步骤见 [迁移计划](docs/migration.md)。
+`specs/` 中的 JSON 当前是描述性契约，**尚未接入自动配置解析**；CLI 仍读取 `configs/` 和 frozen dataset manifest。模型分派支持 GR00T 与 π0.5，其他模型仍需增加协议、数据集及 Adapter，不宣称已经支持任意模型或硬件。代码解耦的后续步骤见 [迁移计划](docs/migration.md)。
 
 ## 在现有服务器运行
 
@@ -60,7 +62,7 @@ bash scripts/run_5090.sh embodiinfer artifacts/UNIQUE_RUN_ID
 
 ## 已有结果
 
-同协议优化复测 mean：EmbodiInfer **28.482 ms**、FlashRT FP8 **14.418 ms**、FlashRT NVFP4 **8.974 ms**。最大绝对误差分别为 **0.1602、1.3008、1.3438**；所有精度 gate 均为 `not_configured`。详情、原始记录与历史比较见 [报告](reports/2026-10-23-5090-optimized/README.md)。
+GR00T 同协议优化复测 mean：EmbodiInfer **28.482 ms**、FlashRT FP8 **14.418 ms**、FlashRT NVFP4 **8.974 ms**。最大绝对误差分别为 **0.1602、1.3008、1.3438**；所有精度 gate 均为 `not_configured`。详情、原始记录与历史比较见 [报告](reports/2026-10-23-5090-optimized/README.md)。π0.5 独立记录在 [π0.5 报告](reports/2026-10-23-5090-pi05/README.md)。
 
 仓库远程为 `git@github.com:mofianger/inference-baseline.git`。多人使用独立分支/工作目录，以唯一 Run 目录和 PR 汇总；权重与大型输入不进入 Git，实际实验记录必须携带资产哈希和获取方式。
 

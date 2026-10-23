@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "id": "pi05-openpi-v1",
+  "model": "pi05-base-v1",
+  "implementation": "OpenPI PI0Pytorch.sample_actions eager",
+  "source_revision": "215abfb217dbac7d5f1273282331b9b1866c0479",
+  "precision": "official selected BF16/FP32 mixed policy, not full FP32 truth",
+  "config": "../../configs/5090/pi05-reference.json",
+  "accuracy_thresholds": null,
+  "output_space": "normalized padded action [1,50,32]"
+}

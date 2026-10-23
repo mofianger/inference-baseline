@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "id": "pi05-base-v3-v1",
+  "protocol": "pi05-base-b1-v3-model-only-v1",
+  "kind": "synthetic_three_distinct_views_discretized_state",
+  "calibration_samples": 1,
+  "evaluation_samples": 4,
+  "manifest": "../../reports/2026-10-23-5090-pi05/dataset-manifest.json",
+  "manifest_sha256": "8a99501ae6895c1809d79ba66dca224bbb5a843061b2fd3a364917dfd723c704",
+  "server_path": "/data/inference-baseline/datasets/pi05-base-v3-v1",
+  "limitations": ["Synthetic inputs only", "No task accuracy claim"]
+}

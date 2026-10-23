@@ -2,7 +2,7 @@
   "schema_version": 1,
   "document_only": true,
   "id": "pi05-base-b1-v3-model-only-v1",
-  "status": "implementation_pending_model_validation",
+  "status": "measured_on_rtx5090_no_accuracy_threshold",
   "official_source": "gs://openpi-assets/checkpoints/pi05_base",
   "workload": {"batch": 1, "views": 3, "image_size": [224, 224], "denoising_steps": 10, "action_horizon": 50, "action_dim": 32, "max_token_len": 200},
   "input_boundary": "prepared FP32 GPU images and noise, GPU token IDs and masks, before learned embeddings",

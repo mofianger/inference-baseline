@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "id": "pi05-base-v1",
+  "model": "pi0.5",
+  "checkpoint": {
+    "source": "gs://openpi-assets/checkpoints/pi05_base",
+    "source_manifest": "../../reports/2026-10-23-5090-pi05/official-source.json",
+    "verified_manifest": "../../reports/2026-10-23-5090-pi05/verified-files.json",
+    "canonical_sha256": "c6c51ef9904b0bc6ef7cf9b458755a9164130a3b97ebccf34a2ac9523c29aad7",
+    "conversion": "../../reports/2026-10-23-5090-pi05/conversion-provenance.json"
+  },
+  "checkpoint_defaults": {"denoising_steps": 10, "action_horizon": 50, "action_dim": 32, "state_dim": 32},
+  "output_semantics": "normalized full padded action tensor; robot decoding excluded",
+  "implemented_protocols": ["pi05-base-b1-v3-model-only-v1"]
+}
