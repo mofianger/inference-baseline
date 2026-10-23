@@ -5,6 +5,9 @@ from .protocol import ModelProtocol
 
 
 def prepare(config, destination, count=5):
+    if config.get("model") == "pi0.5":
+        from .pi05_dataset import prepare as prepare_pi05
+        return prepare_pi05(config, destination, count)
     import numpy as np
     import torch
     from PIL import Image
@@ -88,7 +91,11 @@ def load_dataset(root):
     import torch
     root = Path(root)
     m = read_json(root / "manifest.json")
-    p = ModelProtocol(**m["protocol"])
+    if m["protocol"]["model"] == "pi0.5":
+        from .pi05_protocol import Pi05Protocol
+        p = Pi05Protocol(**m["protocol"])
+    else:
+        p = ModelProtocol(**m["protocol"])
     samples = []
     for item in m["samples"]:
         path = (root / item["file"]).resolve()

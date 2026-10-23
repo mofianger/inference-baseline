@@ -78,13 +78,14 @@ def _run(config, dataset, out, torch):
         # Change only one dynamic input at a time to detect graph buffers that
         # accidentally retain old pixels, state or initial noise.
         input_sensitivity = {}
-        for field in ("pixel_values", "state", "noise"):
+        for field, keys in protocol.sensitivity_groups().items():
             probe = dict(eval_samples[0])
             probe["inputs"] = dict(probe["inputs"])
-            if field == "noise":
-                probe["noise"] = eval_samples[1]["noise"]
-            else:
-                probe["inputs"][field] = eval_samples[1]["inputs"][field]
+            for key in keys:
+                if key == "noise":
+                    probe["noise"] = eval_samples[1]["noise"]
+                else:
+                    probe["inputs"][key] = eval_samples[1]["inputs"][key]
             probe_array = adapter.infer(probe).detach().float().cpu().numpy().copy()
             delta = errors(probe_array, frozen[0])
             if delta["max_abs"] == 0:

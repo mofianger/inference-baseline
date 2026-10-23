@@ -31,6 +31,9 @@ class ModelProtocol:
     def to_dict(self):
         return asdict(self)
 
+    def sensitivity_groups(self):
+        return {key: (key,) for key in ("pixel_values", "state", "noise")}
+
     def validate(self, sample):
         t = sample["inputs"]
         required = {"input_ids", "attention_mask", "pixel_values", "image_grid_thw", "state", "embodiment_id"}

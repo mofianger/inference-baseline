@@ -5,6 +5,11 @@ ADAPTERS = {"reference": "reference:ReferenceAdapter", "embodiinfer": "embodiinf
 
 
 def create(name, config, protocol, samples):
+    if protocol.model == "pi0.5" and name in ADAPTERS:
+        if name != "reference":
+            raise NotImplementedError(f"pi05 {name} adapter has not been validated yet")
+        from .pi05_reference import Pi05ReferenceAdapter
+        return Pi05ReferenceAdapter(config, protocol, samples)
     path = ADAPTERS.get(name, name)
     module, cls = path.split(":")
     if name in ADAPTERS:
