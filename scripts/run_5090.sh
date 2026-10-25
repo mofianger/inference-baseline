@@ -6,9 +6,11 @@ output="${2:?Provide a new output directory}"
 dataset="${3:-datasets/groot-n17-v3}"
 case "$engine" in
   reference) python_bin=/data/5090-machine/Isaac-GR00T/.venv/bin/python ;;
-  flashrt|flashrt_nvfp4) python_bin=/data/inference-baseline/third_party/FlashRT/.venv/bin/python ;;
+  flashrt|flashrt_nvfp4|flashrt-fp16-head) python_bin=/data/inference-baseline/third_party/FlashRT/.venv/bin/python ;;
   embodiinfer) python_bin=/data/inference-baseline/.venv-embodiinfer/bin/python ;;
-  phyai) python_bin=/data/inference-baseline/third_party/phyai/.venv/bin/python ;;
+  phyai|phyai-llm-*) python_bin=/data/inference-baseline/third_party/phyai/.venv/bin/python ;;
+  groot-trt-*) python_bin=/data/inference-baseline/.venv-groot-trt/bin/python ;;
+  foldquant-*) python_bin=/data/inference-baseline/.venv-foldquant/bin/python ;;
   *) echo "Unknown engine: $engine" >&2; exit 2 ;;
 esac
 export NO_ALBUMENTATIONS_UPDATE=1
