@@ -1,0 +1,5 @@
+﻿reports/
+harness/build/
+harness/nvbit_release/
+*.so
+*.tar.bz2
