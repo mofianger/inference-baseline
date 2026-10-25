@@ -16,8 +16,8 @@ class GrootTRTAdapter(ReferenceAdapter):
         super().__init__(config, protocol, samples)
         options = config["options"]
         if options.get("mode") == "compile":
-            self.model.action_head.model = torch.compile(
-                self.model.action_head.model, mode="max-autotune")
+            self.model.action_head.model.forward = torch.compile(
+                self.model.action_head.model.forward, mode="max-autotune")
             self.metadata.update(implementation="official torch.compile DiT max-autotune")
             self.trt = False
             return
@@ -37,6 +37,7 @@ class GrootTRTAdapter(ReferenceAdapter):
         self.trt = True
         self.metadata = {"implementation": "NVIDIA upstream TensorRT full_pipeline",
                          "export_metadata": metadata,
+                         "fixture_binding": json.loads((directory.parent / "fixture_binding.json").read_text()),
                          "noise_injection": "upstream init_actions + captured initial_actions copy",
                          "boundary": "prepared GPU inputs before embeddings to full normalized GPU action"}
 
@@ -56,5 +57,8 @@ class GrootTRTAdapter(ReferenceAdapter):
 
     def runtime_stats(self):
         runner = getattr(self.model.action_head, "_trt_optimization_runner", None)
+        if self.trt and self.metadata["export_metadata"]["execution_profile"] == "optimized":
+            if getattr(runner, "_graph_state", None) is None or getattr(runner, "_capture_failed", False):
+                raise RuntimeError("Requested optimized TensorRT graph is not active")
         return {"optimized_graph": getattr(runner, "_graph_state", None) is not None,
                 "capture_failed": getattr(runner, "_capture_failed", False)}

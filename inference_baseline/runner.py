@@ -122,7 +122,8 @@ def _run(config, dataset, out, torch):
         ):
             raise ValueError("Requested optimization did not produce captured/compiled graphs")
         packages = {}
-        for name in ("torch", "transformers", "diffusers", "triton", "flashinfer-python"):
+        for name in ("torch", "transformers", "diffusers", "triton", "flashinfer-python",
+                     "tensorrt-cu12", "nvidia-modelopt", "onnx", "onnxruntime-gpu", "humming-kernels"):
             try:
                 packages[name] = importlib.metadata.version(name)
             except importlib.metadata.PackageNotFoundError:
