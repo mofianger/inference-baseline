@@ -69,6 +69,7 @@ def _run(config, dataset, out, torch):
         import numpy as np
         repeat_error = errors(frozen[-1], frozen[0])
         if not np.allclose(frozen[0], frozen[-1], atol=1e-5, rtol=1e-5):
+            write_json(out / "correctness.json", {"samples": correctness, "repeat_error": repeat_error})
             raise ValueError("Repeated input produced unstable output (A/B/A check)")
         if all(np.array_equal(frozen[0], x) for x in frozen[1:-1]):
             raise ValueError("Different observations produced identical outputs; possible stale cache")
