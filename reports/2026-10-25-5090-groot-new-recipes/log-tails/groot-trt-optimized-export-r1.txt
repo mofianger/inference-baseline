@@ -1,0 +1,37 @@
+/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/torch/backends/__init__.py:46: UserWarning: Please use the new API settings to control TF32 behavior, such as torch.backends.cudnn.conv.fp32_precision = 'tf32' or torch.backends.cuda.matmul.fp32_precision = 'ieee'. Old settings, e.g, torch.backends.cuda.matmul.allow_tf32 = True, torch.backends.cudnn.allow_tf32 = True, allowTF32CuDNN() and allowTF32CuBLAS() will be deprecated after Pytorch 2.9. Please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:80.)
+  self.setter(val)
+/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/albumentations/check_version.py:49: UserWarning: Error fetching version info <urlopen error _ssl.c:993: The handshake operation timed out>
+  data = fetch_version_info()
+Traceback (most recent call last):
+  File "/data/inference-baseline/scripts/export_groot_trt_fixture.py", line 96, in <module>
+    main()
+  File "/data/inference-baseline/scripts/export_groot_trt_fixture.py", line 92, in main
+    exporter.main(export_config)
+  File "/data/inference-baseline/third_party/Isaac-GR00T-deployment/scripts/deployment/trt/export_onnx_n1d7.py", line 1928, in main
+    args.embodiment_tag = EmbodimentTag.resolve(args.embodiment_tag)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/inference-baseline/third_party/Isaac-GR00T-deployment/gr00t/data/embodiment_tags.py", line 180, in resolve
+    raise ValueError(msg)
+ValueError: Unknown embodiment tag: 'oxe_droid_relative_eef_relative_joint_3view'
+
+  Base model tags (work with nvidia/GR00T-N1.7-3B):
+    REAL_R1_PRO_SHARPA_MECKA                 -> real_r1_pro_sharpa_relative_eef_mecka
+    REAL_G1                                  -> real_g1_relative_eef_relative_joints
+    OXE_DROID_RELATIVE_EEF_RELATIVE_JOINT    -> oxe_droid_relative_eef_relative_joint
+    REAL_R1_PRO_SHARPA_MAXINSIGHTS           -> real_r1_pro_sharpa_relative_eef_maxinsights
+    REAL_R1_PRO_SHARPA                       -> real_r1_pro_sharpa_relative_eef
+    XDOF                                     -> xdof_relative_eef_relative_joint
+    XDOF_SUBTASK                             -> xdof_relative_eef_relative_joint_subtask
+    REAL_R1_PRO_SHARPA_HUMAN                 -> real_r1_pro_sharpa_relative_eef_human
+
+  Posttrain tags (require a finetuned checkpoint):
+    SIMPLER_ENV_GOOGLE                       -> simpler_env_google
+    SIMPLER_ENV_WIDOWX                       -> simpler_env_widowx
+    UNITREE_G1                               -> unitree_g1_full_body_with_waist_height_nav_cmd
+    UNITREE_G1_SONIC                         -> unitree_g1_sonic
+    LIBERO_PANDA                             -> libero_sim
+
+  Finetuning-only tags (for custom robots):
+    ROBOCASA_PANDA_OMRON                     -> robocasa_panda_omron
+    NEW_EMBODIMENT                           -> new_embodiment
+    ROBOCASA_GR1_TABLETOP                    -> robocasa_gr1_tabletop

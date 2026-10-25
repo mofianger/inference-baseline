@@ -1,0 +1,122 @@
+{
+  "status": "verified",
+  "measured_runs": 12,
+  "checks": [
+    "100 raw latency rows and recomputed statistics",
+    "same evaluation manifest and protocol",
+    "null numerical thresholds",
+    "8 CPU threads and 10 warmups",
+    "stable runtime state",
+    "clean upstream source trees"
+  ],
+  "records": [
+    {
+      "recipe": "foldquant-awq",
+      "summary_sha256": "8a6eac4f86dd167901317c0915041f08175ab767ac3b50544d46bb9adffa81f0",
+      "latency_sha256": "317aedbbcff7505ebf63fff7b111aed17470e601f7e14a38f9ed0d18cb09422f",
+      "runner": {
+        "commit": "7af494c3ea928866cd074312032a85701ff96b74",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "foldquant-smoothquant",
+      "summary_sha256": "e55924d7f1b853ca005b3276fce22276d96d40cf3f852436e8b8e96aa43aca91",
+      "latency_sha256": "d1057580836f24f9c37dbde9c5cf54d0976f89435d33df10efb700cbfde104b4",
+      "runner": {
+        "commit": "03a6dc80b6997b0d24a7b869df7a199ce1948c3d",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "foldquant-w8a8",
+      "summary_sha256": "e8be41d0dffb9d443021e89b09ab8ec4726cff2a1a6445867f84c73bf20bd763",
+      "latency_sha256": "042b83af2dcc2f7f443e52ee638978d8296e64bafa6140e5ae2d35aeab09ef85",
+      "runner": {
+        "commit": "96a54378faa3aa7bac601a609fb10debb8c85692",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "groot-trt-baseline",
+      "summary_sha256": "1d45c06890c8768457f44d6acf98d983f2b3f8f57481c87a293da3cf461d9c1c",
+      "latency_sha256": "114c9ac218a555ce142142096d1349c3ba43448e0cf8d23a49d018f7d3a0ffde",
+      "runner": {
+        "commit": "0db74bdef2d517c1f9ea20415010cbf61c774fb1",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "groot-trt-compile",
+      "summary_sha256": "0be3de2b2d7e446b6cca8e5475f92baae7bf37ac4b15e49f0f6f51e786ae5d6e",
+      "latency_sha256": "5949c35141a679a98638d0f306531f616066c081e0034b15c568757b2250b14b",
+      "runner": {
+        "commit": "75ebe96e015642e51d06375513826e84bcaaa797",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "groot-trt-fp8",
+      "summary_sha256": "8f3d174a6840891e97c17983106201d4c2ac384226a8c147e4343970ba0c3eea",
+      "latency_sha256": "5e8a88a7b306d11f4595083f995be17c7c7d2425b35d8224d6241772d5b0402b",
+      "runner": {
+        "commit": "75ebe96e015642e51d06375513826e84bcaaa797",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "groot-trt-nvfp4",
+      "summary_sha256": "3dd5746c9911883c17f6693c77b2abcae617931d4874b7c9b1b958e414851935",
+      "latency_sha256": "04221ede20019a6ed29172b0ec87c9c323a9f4fad41442306ecbf421d30aa6f3",
+      "runner": {
+        "commit": "96a54378faa3aa7bac601a609fb10debb8c85692",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "groot-trt-optimized",
+      "summary_sha256": "a0ea9d0aadc43542f50e0f825bd5ae4e023e7ba12536e4dee82540689631abdf",
+      "latency_sha256": "d4f70b15d5ecde917a39d24122f1147f30e1be9a2f90517fafd6353eb1869f56",
+      "runner": {
+        "commit": "e82d5dc18fe81da5fa1f67f6dd9f985da0adcaf0",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "phyai-llm-fp8-a8-eager",
+      "summary_sha256": "bfaab2b0c078ddb2cc9293a41f981b2321fd0a0766ba6c946419aa90b6795c0f",
+      "latency_sha256": "28589857fb9f9f1ff0b5a694e1dcb7621a72e78034c457fad4c00c865713d136",
+      "runner": {
+        "commit": "03fb8a538f14b7b835796ade990690402dc55172",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "phyai-llm-fp8-a16",
+      "summary_sha256": "d26174e12939a2036dce79a13783271e49d8e5c0e0ed053f3a59ae8228d6e164",
+      "latency_sha256": "189a03ee4035bca56cb967e176f27399331cf3c2854b1db896a09143b707a061",
+      "runner": {
+        "commit": "a39cadcac801f9409ae35c8b55ed7852afd84c3f",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "phyai-llm-int4-a16",
+      "summary_sha256": "15e04bb9b92a8af08e1bf24e9c1a739efaadf6c2e9dd48d4a0bc3a547c1b386f",
+      "latency_sha256": "72433baf5ce5747ab2e24e0dc0ec0bba7305d1d3767babf965f44c3024e2852f",
+      "runner": {
+        "commit": "a39cadcac801f9409ae35c8b55ed7852afd84c3f",
+        "dirty": ""
+      }
+    },
+    {
+      "recipe": "phyai-llm-nvfp4-a16",
+      "summary_sha256": "2ef5ff3d2740c21ef206f07e45ba3dfbee09748185cf62588d9d9297cfd12f38",
+      "latency_sha256": "9d3f7169e3f5594f9ec0a58a26bb6a29959c256a38da3bb83c0eec156c40c164",
+      "runner": {
+        "commit": "a39cadcac801f9409ae35c8b55ed7852afd84c3f",
+        "dirty": ""
+      }
+    }
+  ]
+}

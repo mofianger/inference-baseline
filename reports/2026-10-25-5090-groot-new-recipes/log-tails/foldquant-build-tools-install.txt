@@ -1,0 +1,4 @@
+Using Python 3.12.14 environment at: .venv-foldquant
+Resolved 2 packages in 464ms
+Installed 1 package in 54ms
+ + cmake==4.4.4

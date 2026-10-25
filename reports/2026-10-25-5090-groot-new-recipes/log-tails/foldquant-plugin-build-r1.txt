@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/inference-baseline/third_party/FoldQuantVLA/foldquant/kernels/__main__.py", line 70, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/data/inference-baseline/third_party/FoldQuantVLA/foldquant/kernels/__main__.py", line 66, in main
+    return int(args.func(args))
+               ^^^^^^^^^^^^^^^
+  File "/data/inference-baseline/third_party/FoldQuantVLA/foldquant/kernels/__main__.py", line 46, in _cmd_build
+    paths = ensure_plugins_for_current_device(libs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/inference-baseline/third_party/FoldQuantVLA/foldquant/kernels/build.py", line 370, in ensure_plugins_for_current_device
+    rebuild_plugins(cache, stale)
+  File "/data/inference-baseline/third_party/FoldQuantVLA/foldquant/kernels/build.py", line 245, in rebuild_plugins
+    _rebuild_plugins_unlocked(out_dir, names)
+  File "/data/inference-baseline/third_party/FoldQuantVLA/foldquant/kernels/build.py", line 254, in _rebuild_plugins_unlocked
+    raise RuntimeError("`cmake` not found on PATH; cannot rebuild TensorRT plugins for this device.")
+RuntimeError: `cmake` not found on PATH; cannot rebuild TensorRT plugins for this device.

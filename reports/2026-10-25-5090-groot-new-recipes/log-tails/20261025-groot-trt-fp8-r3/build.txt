@@ -1,0 +1,100 @@
+[ONNX Layer: /Transpose_11][ONNX Layer: /Unsqueeze_117][ONNX Layer: /Reshape_9]
+[ONNX Layer: /Transpose_9][ONNX Layer: /Unsqueeze_116][ONNX Layer: /Reshape_7]
+[ONNX Layer: /Transpose_7][ONNX Layer: /Unsqueeze_115][ONNX Layer: /Reshape_5]
+[ONNX Layer: /Transpose_5][ONNX Layer: /Unsqueeze_114][ONNX Layer: /Reshape_3]
+[ONNX Layer: /Transpose_3][ONNX Layer: /Unsqueeze_113][ONNX Layer: /Reshape_1]
+[ONNX Layer: /Transpose_1][ONNX Layer: /Unsqueeze_112][ONNX Layer: /Concat_33][ONNX Layer: /Unsqueeze_127][ONNX Layer: /Reshape_31]
+[ONNX Layer: /Transpose_31][ONNX Layer: /Unsqueeze_126][ONNX Layer: /Reshape_29]
+[ONNX Layer: /Transpose_29][ONNX Layer: /Unsqueeze_125][ONNX Layer: /Reshape_27]
+[ONNX Layer: /Transpose_27][ONNX Layer: /Unsqueeze_124][ONNX Layer: /Reshape_25]
+[ONNX Layer: /Transpose_25][ONNX Layer: /Unsqueeze_123][ONNX Layer: /Reshape_23]
+[ONNX Layer: /Transpose_23][ONNX Layer: /Unsqueeze_122][ONNX Layer: /Reshape_21]
+[ONNX Layer: /Transpose_21][ONNX Layer: /Unsqueeze_121][ONNX Layer: /Reshape_19]
+[ONNX Layer: /Transpose_19][ONNX Layer: /Unsqueeze_120][ONNX Layer: /Reshape_17]
+[ONNX Layer: /Transpose_17]
+Name: __mye78867_myl0_35, LayerType: wait, Inputs: [], Outputs: [], TacticName: , StreamId: 1, EventId: 1, Metadata: 
+Name: __mye78923_myl0_36, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye78921_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^78919i64_myl0_37, LayerType: cast, Inputs: [ { Name: __mye78921_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^78919i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye78958_myl0_38, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye78956_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^78954i64_myl0_39, LayerType: cast, Inputs: [ { Name: __mye78956_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^78954i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye78993_myl0_40, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye78991_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^78989i64_myl0_41, LayerType: cast, Inputs: [ { Name: __mye78991_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^78989i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79028_myl0_42, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79026_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79024i64_myl0_43, LayerType: cast, Inputs: [ { Name: __mye79026_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79024i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79063_myl0_44, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79061_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79059i64_myl0_45, LayerType: cast, Inputs: [ { Name: __mye79061_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79059i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79098_myl0_46, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79096_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79094i64_myl0_47, LayerType: cast, Inputs: [ { Name: __mye79096_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79094i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79133_myl0_48, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79131_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79129i64_myl0_49, LayerType: cast, Inputs: [ { Name: __mye79131_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79129i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79168_myl0_50, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79166_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79164i64_myl0_51, LayerType: cast, Inputs: [ { Name: __mye79166_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79164i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79179_myl0_52, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79177_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79175i64_myl0_53, LayerType: cast, Inputs: [ { Name: __mye79177_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79175i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79214_myl0_54, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79212_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79210i64_myl0_55, LayerType: cast, Inputs: [ { Name: __mye79212_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79210i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79249_myl0_56, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79247_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79245i64_myl0_57, LayerType: cast, Inputs: [ { Name: __mye79247_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79245i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79284_myl0_58, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79282_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79280i64_myl0_59, LayerType: cast, Inputs: [ { Name: __mye79282_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79280i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79319_myl0_60, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79317_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79315i64_myl0_61, LayerType: cast, Inputs: [ { Name: __mye79317_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79315i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79354_myl0_62, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79352_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79350i64_myl0_63, LayerType: cast, Inputs: [ { Name: __mye79352_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79350i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79389_myl0_64, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79387_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79385i64_myl0_65, LayerType: cast, Inputs: [ { Name: __mye79387_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79385i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __mye79424_myl0_66, LayerType: reshape, Inputs: [], Outputs: [ { Name: __mye79422_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: cast_hvar^79420i64_myl0_67, LayerType: cast, Inputs: [ { Name: __mye79422_myl0, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: hvar^79420i64_myl0, Dimensions: [1], Format/Datatype: Int64 }], TacticName: , StreamId: 0, Metadata: 
+Name: __myl_TranReshTranReshTranReshTranReshTranReshTranReshTranReshTranReshTranReshTranReshTranReshEtc_myl0_68, LayerType: kgen, Inputs: [ { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }, { Name: __mye74234_myl0, Dimensions: [1,-1,32,48], Format/Datatype: Half }], Outputs: [ { Name: cross_keys, Dimensions: [16,1,32,-1,48], Format/Datatype: Half }], TacticName: __myl_TranReshTranReshTranReshTranReshTranReshTranReshTranReshTranReshTranReshTranReshTranReshEtc_0x888710e9a35a49c5aa6268c59eb032ad_vec, StreamI
+[ONNX Layer: /Transpose_14][ONNX Layer: /Unsqueeze_103][ONNX Layer: /Reshape_12]
+[ONNX Layer: /Transpose_12][ONNX Layer: /Unsqueeze_102][ONNX Layer: /Reshape_10]
+[ONNX Layer: /Transpose_10][ONNX Layer: /Unsqueeze_101][ONNX Layer: /Reshape_8]
+[ONNX Layer: /Transpose_8][ONNX Layer: /Unsqueeze_100][ONNX Layer: /Reshape_6]
+[ONNX Layer: /Transpose_6][ONNX Layer: /Unsqueeze_99][ONNX Layer: /Reshape_4]
+[ONNX Layer: /Transpose_4][ONNX Layer: /Unsqueeze_98][ONNX Layer: /Reshape_2]
+[ONNX Layer: /Transpose_2][ONNX Layer: /Unsqueeze_97][ONNX Layer: /Reshape]
+[ONNX Layer: /Transpose][ONNX Layer: /Unsqueeze_96][ONNX Layer: /Concat_32][ONNX Layer: /Unsqueeze_111][ONNX Layer: /Reshape_30]
+[ONNX Layer: /Transpose_30][ONNX Layer: /Unsqueeze_110][ONNX Layer: /Reshape_28]
+[ONNX Layer: /Transpose_28][ONNX Layer: /Unsqueeze_109][ONNX Layer: /Reshape_26]
+[ONNX Layer: /Transpose_26][ONNX Layer: /Unsqueeze_108][ONNX Layer: /Reshape_24]
+[ONNX Layer: /Transpose_24][ONNX Layer: /Unsqueeze_107][ONNX Layer: /Reshape_22]
+[ONNX Layer: /Transpose_22][ONNX Layer: /Unsqueeze_106][ONNX Layer: /Reshape_20]
+[ONNX Layer: /Transpose_20][ONNX Layer: /Unsqueeze_105][ONNX Layer: /Reshape_18]
+[ONNX Layer: /Transpose_18][ONNX Layer: /Unsqueeze_104][ONNX Layer: /Reshape_16]
+[ONNX Layer: /Transpose_16]
+Name: exit^bb^signal^1_myl0_69, LayerType: signal, Inputs: [], Outputs: [], TacticName: , StreamId: 1, EventId: 2, Metadata: 
+Name: exit^bb^wait^1_myl0_70, LayerType: wait, Inputs: [], Outputs: [], TacticName: , StreamId: 0, EventId: 2, Metadata: 
+
+Bindings:
+vl_embs
+cross_keys
+cross_values
+[10/25/2026-19:01:58] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 0 MiB, GPU 795 MiB
+[10/25/2026-19:01:58] [TRT] [V] Adding 1 engine(s) to plan file.
+[10/25/2026-19:01:58] [TRT] [V] Adding 1 engine weights(s) to plan file.
+2026-10-25 19:01:58,190 - INFO - Engine built in 2.4 seconds (0.0 minutes)
+2026-10-25 19:01:58,190 - INFO - 
+Saving engine to artifacts/groot-trt-fp8/engines/dit_cross_kv_fp8.engine...
+2026-10-25 19:01:58,250 - INFO - Engine saved! Size: 96.28 MB
+2026-10-25 19:01:58,250 - INFO - 
+================================================================================
+2026-10-25 19:01:58,250 - INFO - ENGINE BUILD COMPLETE!
+2026-10-25 19:01:58,250 - INFO - ================================================================================
+2026-10-25 19:01:58,250 - INFO - Engine file: artifacts/groot-trt-fp8/engines/dit_cross_kv_fp8.engine
+2026-10-25 19:01:58,250 - INFO - Size: 96.28 MB
+2026-10-25 19:01:58,250 - INFO - Build time: 2.4s
+2026-10-25 19:01:58,250 - INFO - Precision: FP16
+2026-10-25 19:01:58,250 - INFO - ================================================================================
+2026-10-25 19:01:58,675 - INFO - 
+================================================================================
+2026-10-25 19:01:58,676 - INFO - FULL PIPELINE BUILD SUMMARY
+2026-10-25 19:01:58,676 - INFO - ================================================================================
+2026-10-25 19:01:58,676 - INFO -   ViT                  -> SUCCESS
+2026-10-25 19:01:58,676 - INFO -   LLM                  -> SUCCESS
+2026-10-25 19:01:58,676 - INFO -   VL Self-Attention    -> SUCCESS
+2026-10-25 19:01:58,677 - INFO -   State Encoder        -> SUCCESS
+2026-10-25 19:01:58,677 - INFO -   Action Encoder       -> SUCCESS
+2026-10-25 19:01:58,677 - INFO -   DiT                  -> SUCCESS
+2026-10-25 19:01:58,677 - INFO -   Action Decoder       -> SUCCESS
+2026-10-25 19:01:58,677 - INFO -   DiT Cross-KV         -> SUCCESS
+2026-10-25 19:01:58,677 - INFO - ================================================================================

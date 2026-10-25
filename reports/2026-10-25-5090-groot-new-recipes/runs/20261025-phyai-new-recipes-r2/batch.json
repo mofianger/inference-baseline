@@ -1,0 +1,128 @@
+[
+  {
+    "config": "configs/5090/phyai-llm-fp8-a8.json",
+    "command": [
+      "third_party/phyai/.venv/bin/python",
+      "-m",
+      "inference_baseline.cli",
+      "run",
+      "--config",
+      "configs/5090/phyai-llm-fp8-a8.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-fp8-a8"
+    ],
+    "exit_code": 1,
+    "started_utc": "2026-10-25T10:07:25.853397+00:00",
+    "finished_utc": "2026-10-25T10:07:44.866221+00:00"
+  },
+  {
+    "config": "configs/5090/phyai-llm-fp8-a16.json",
+    "command": [
+      "third_party/phyai/.venv/bin/python",
+      "-m",
+      "inference_baseline.cli",
+      "run",
+      "--config",
+      "configs/5090/phyai-llm-fp8-a16.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-fp8-a16"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-25T10:07:44.867044+00:00",
+    "finished_utc": "2026-10-25T10:08:21.761185+00:00"
+  },
+  {
+    "config": "configs/5090/phyai-llm-fp8-block-a8.json",
+    "command": [
+      "third_party/phyai/.venv/bin/python",
+      "-m",
+      "inference_baseline.cli",
+      "run",
+      "--config",
+      "configs/5090/phyai-llm-fp8-block-a8.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-fp8-block-a8"
+    ],
+    "exit_code": 1,
+    "started_utc": "2026-10-25T10:08:21.762425+00:00",
+    "finished_utc": "2026-10-25T10:08:56.405633+00:00"
+  },
+  {
+    "config": "configs/5090/phyai-llm-nvfp4-a16.json",
+    "command": [
+      "third_party/phyai/.venv/bin/python",
+      "-m",
+      "inference_baseline.cli",
+      "run",
+      "--config",
+      "configs/5090/phyai-llm-nvfp4-a16.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-nvfp4-a16"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-25T10:08:56.406568+00:00",
+    "finished_utc": "2026-10-25T10:09:31.255196+00:00"
+  },
+  {
+    "config": "configs/5090/phyai-llm-int8-a8.json",
+    "command": [
+      "third_party/phyai/.venv/bin/python",
+      "-m",
+      "inference_baseline.cli",
+      "run",
+      "--config",
+      "configs/5090/phyai-llm-int8-a8.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-int8-a8"
+    ],
+    "exit_code": 1,
+    "started_utc": "2026-10-25T10:09:31.257172+00:00",
+    "finished_utc": "2026-10-25T10:10:01.377370+00:00"
+  },
+  {
+    "config": "configs/5090/phyai-llm-int4-a16.json",
+    "command": [
+      "third_party/phyai/.venv/bin/python",
+      "-m",
+      "inference_baseline.cli",
+      "run",
+      "--config",
+      "configs/5090/phyai-llm-int4-a16.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-int4-a16"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-25T10:10:01.377857+00:00",
+    "finished_utc": "2026-10-25T10:10:36.682874+00:00"
+  },
+  {
+    "config": "configs/5090/phyai-llm-int4-fp8-a8.json",
+    "command": [
+      "third_party/phyai/.venv/bin/python",
+      "-m",
+      "inference_baseline.cli",
+      "run",
+      "--config",
+      "configs/5090/phyai-llm-int4-fp8-a8.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-int4-fp8-a8"
+    ],
+    "exit_code": 1,
+    "started_utc": "2026-10-25T10:10:36.683928+00:00",
+    "finished_utc": "2026-10-25T10:11:05.943675+00:00"
+  }
+]

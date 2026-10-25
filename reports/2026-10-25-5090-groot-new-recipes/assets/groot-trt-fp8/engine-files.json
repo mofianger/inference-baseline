@@ -1,0 +1,52 @@
+[
+  {
+    "path": "artifacts/groot-trt-fp8/engines/action_decoder.engine",
+    "bytes": 76010516,
+    "sha256": "228b66ef52d894b4f04ca5366acd5bb479c9d865a7c51cca0732426323c177d0"
+  },
+  {
+    "path": "artifacts/groot-trt-fp8/engines/action_encoder.engine",
+    "bytes": 466558652,
+    "sha256": "c612daf730f1f40000a43e8c37d3b4e9fd04b0bf0cd003696668f57a2f95419c"
+  },
+  {
+    "path": "artifacts/groot-trt-fp8/engines/action_head_constants.pt",
+    "bytes": 1796713,
+    "sha256": "67c4685ae1b300143bb1c82912dee98d6e3d1fafa0b59be5a32f1c0c10224cc3"
+  },
+  {
+    "path": "artifacts/groot-trt-fp8/engines/dit_cross_kv_fp8.engine",
+    "bytes": 100955460,
+    "sha256": "6cc721626aa465202914118c60f29b3e45fd03bc101747a03e3aaa2d05a961a9"
+  },
+  {
+    "path": "artifacts/groot-trt-fp8/engines/dit_fp8.engine",
+    "bytes": 837214332,
+    "sha256": "6e8eb7340644731f414a52c6c672b751a91f85b252e651d6c3849d837e55b7fc"
+  },
+  {
+    "path": "artifacts/groot-trt-fp8/engines/export_metadata.json",
+    "bytes": 1192,
+    "sha256": "47725a3842c6958f405e8591c8d8bc874dfb7ec85dfe20124590c2a772ad72c0"
+  },
+  {
+    "path": "artifacts/groot-trt-fp8/engines/llm_fp8.engine",
+    "bytes": 810444676,
+    "sha256": "1431dd0938a2ce6d76c48756040ff4b29429a769dd4c2fe07da0402082422a5b"
+  },
+  {
+    "path": "artifacts/groot-trt-fp8/engines/state_encoder.engine",
+    "bytes": 109666868,
+    "sha256": "a0f166374d3c7edfbbc40bf10c96680a45205815efbe45bd9231dea901991736"
+  },
+  {
+    "path": "artifacts/groot-trt-fp8/engines/vit_fp8.engine",
+    "bytes": 415198668,
+    "sha256": "091f805801a8781ea7604febef2180cab7694f5c84e0dc3658439d0aabf52c60"
+  },
+  {
+    "path": "artifacts/groot-trt-fp8/engines/vl_self_attention.engine",
+    "bytes": 269401404,
+    "sha256": "f7ccd51ac3ff2d34d4adfcad42b16e27a7ed65ab41e86050241585dc85da5096"
+  }
+]

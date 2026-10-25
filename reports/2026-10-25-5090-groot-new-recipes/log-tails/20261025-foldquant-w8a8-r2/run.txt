@@ -1,0 +1,100 @@
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/torch/backends/__init__.py:46: UserWarning: Please use the new API settings to control TF32 behavior, such as torch.backends.cudnn.conv.fp32_precision = 'tf32' or torch.backends.cuda.matmul.fp32_precision = 'ieee'. Old settings, e.g, torch.backends.cuda.matmul.allow_tf32 = True, torch.backends.cudnn.allow_tf32 = True, allowTF32CuDNN() and allowTF32CuBLAS() will be deprecated after Pytorch 2.9. Please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:80.)
+  self.setter(val)
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/albumentations/__init__.py:13: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.18). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+`torch_dtype` is deprecated! Use `dtype` instead!
+/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/model/modules/dit.py:255: FutureWarning: Accessing config attribute `compute_dtype` directly via 'AlternateVLDiT' object attribute is deprecated. Please access 'compute_dtype' over 'AlternateVLDiT's config object instead, e.g. 'unet.config.compute_dtype'.
+  embedding_dim=self.inner_dim, compute_dtype=self.compute_dtype
+/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/model/modules/dit.py:286: FutureWarning: Accessing config attribute `output_dim` directly via 'AlternateVLDiT' object attribute is deprecated. Please access 'output_dim' over 'AlternateVLDiT's config object instead, e.g. 'unet.config.output_dim'.
+  self.proj_out_2 = nn.Linear(self.inner_dim, self.output_dim)
+Total number of DiT parameters:  1091722240
+Total number of SelfAttentionTransformer parameters:  201433088
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.18it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.32it/s]
+Loading ViT engine: /data/inference-baseline/artifacts/foldquant-w8a8/engines/vit_bf16.engine
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/foldquant-w8a8/engines/vit_bf16.engine
+Inputs: 1
+   0. pixel_values: 768x1536 [torch.float32]
+Outputs: 2
+   0. image_embeds: 192x2048 [torch.float32]
+   1. deepstack_features: 3x192x2048 [torch.float32]
+=============================================
+  Deleted PyTorch ViT (replaced by TRT engine)
+Loading LLM engine: /data/inference-baseline/artifacts/foldquant-w8a8/engines/llm_bf16.engine
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/foldquant-w8a8/engines/llm_bf16.engine
+Inputs: 7
+   0. inputs_embeds: 1x-1x2048 [torch.bfloat16]
+   1. attention_mask: 1x-1 [torch.int64]
+   2. position_ids: 3x1x-1 [torch.int64]
+   3. visual_pos_masks: 1x-1 [torch.bool]
+   4. deepstack_0: 192x2048 [torch.bfloat16]
+   5. deepstack_1: 192x2048 [torch.bfloat16]
+   6. deepstack_2: 192x2048 [torch.bfloat16]
+Outputs: 1
+   0. embeddings: 1x-1x2048 [torch.bfloat16]
+=============================================
+  Deleted PyTorch LLM layers (replaced by TRT engine)
+Loading VL Self-Attention engine: /data/inference-baseline/artifacts/foldquant-w8a8/engines/vl_self_attention.engine
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/foldquant-w8a8/engines/vl_self_attention.engine
+Inputs: 1
+   0. hidden_states: 1x-1x2048 [torch.bfloat16]
+Outputs: 1
+   0. output: 1x-1x2048 [torch.bfloat16]
+=============================================
+  Deleted PyTorch vl_self_attention (replaced by TRT engine)
+Loading action head engines from: /data/inference-baseline/artifacts/foldquant-w8a8/engines
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/foldquant-w8a8/engines/state_encoder.engine
+Inputs: 2
+   0. state: 1x1x132 [torch.bfloat16]
+   1. embodiment_id: 1 [torch.int64]
+Outputs: 1
+   0. output: 1x1x1536 [torch.bfloat16]
+=============================================
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/foldquant-w8a8/engines/action_encoder.engine
+Inputs: 3
+   0. actions: 1x40x132 [torch.bfloat16]
+   1. timesteps: 1 [torch.int64]
+   2. embodiment_id: 1 [torch.int64]
+Outputs: 1
+   0. output: 1x40x1536 [torch.bfloat16]
+=============================================
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/foldquant-w8a8/engines/dit_bf16.engine
+Inputs: 5
+   0. sa_embs: 1x-1x1536 [torch.bfloat16]
+   1. vl_embs: 1x-1x2048 [torch.bfloat16]
+   2. timestep: 1 [torch.int64]
+   3. image_mask: 1x-1 [torch.bool]
+   4. backbone_attention_mask: 1x-1 [torch.bool]
+Outputs: 1
+   0. output: 1x-1x1024 [torch.bfloat16]
+=============================================
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/foldquant-w8a8/engines/action_decoder.engine
+Inputs: 2
+   0. model_output: 1x41x1024 [torch.bfloat16]
+   1. embodiment_id: 1 [torch.int64]
+Outputs: 1
+   0. output: 1x41x132 [torch.bfloat16]
+=============================================
+N1.7 full-pipeline TRT engines loaded.
+  ViT: TRT | LLM: TRT | Action Head: TRT
+{
+  "engine": "inference_baseline.adapters.foldquant:FoldQuantAdapter",
+  "latency": {
+    "count": 100,
+    "mean_ms": 29.941258480000005,
+    "min_ms": 29.66133,
+    "p50_ms": 29.929241,
+    "p95_ms": 30.11102255,
+    "p99_ms": 30.23193766
+  },
+  "accuracy_gate": "not_configured"
+}

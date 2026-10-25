@@ -1,0 +1,6 @@
+target: sm120-x86_64-trt10.15
+committed dir: /data/inference-baseline/third_party/FoldQuantVLA/foldquant/kernels/prebuilt
+cache dir: /root/.cache/foldquant/plugins/sm120-x86_64-trt10.15
+  foldquant_int4_groupwise     (unresolved; run: python -m foldquant.kernels build)
+  foldquant_int4_per_row       (unresolved; run: python -m foldquant.kernels build)
+  foldquant_int8_per_row       (unresolved; run: python -m foldquant.kernels build)

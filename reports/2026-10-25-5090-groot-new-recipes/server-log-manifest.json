@@ -1,0 +1,506 @@
+[
+  {
+    "path": "artifacts/20261025-flashrt-fp16-head-r1.log",
+    "bytes": 976,
+    "sha256": "2d4c73f981d828ddbc76ff294524836585ae6fcf565c8f233eda5e080ab2d3d0",
+    "excerpt": "log-tails/20261025-flashrt-fp16-head-r1.txt"
+  },
+  {
+    "path": "artifacts/20261025-flashrt-fp16-head-r2.log",
+    "bytes": 767,
+    "sha256": "6a84ffbc28a5d0eb5e1176bc75fd8b6be442968c16aeaea43f886cc8c52a48d5",
+    "excerpt": "log-tails/20261025-flashrt-fp16-head-r2.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-awq-r1/quantize.log",
+    "bytes": 1829,
+    "sha256": "b2da8aa662c964b039c798a698b93b40b965f4a4c36bcf6e2f915e9d85aa7ab5",
+    "excerpt": "log-tails/20261025-foldquant-awq-r1/quantize.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-awq-r1-launch.log",
+    "bytes": 395,
+    "sha256": "28c56b4f5b7c31f74706632fe5b78c026b989da3adc6d0c61f501aedd67f8a47",
+    "excerpt": "log-tails/20261025-foldquant-awq-r1-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-awq-r2/export.log",
+    "bytes": 2477785,
+    "sha256": "658055a661c28babf61bcd178b0aa9151e66f23130728c4b76f41f86e794f5ce",
+    "excerpt": "log-tails/20261025-foldquant-awq-r2/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-awq-r2/quantize.log",
+    "bytes": 3680,
+    "sha256": "1edaeb04604913044347aaccbbb5b6be55a2856495aa838043aa6ea4bb72ea67",
+    "excerpt": "log-tails/20261025-foldquant-awq-r2/quantize.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-awq-r2-launch.log",
+    "bytes": 827,
+    "sha256": "a5f18d4fb0a4ceb4ebae37095d28961e010ffe040257f376c9b70d79a32cc99c",
+    "excerpt": "log-tails/20261025-foldquant-awq-r2-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-awq-r3/build.log",
+    "bytes": 30850,
+    "sha256": "01eedd5e948c3840c1b0be9d6acac3cc79d05e9c81368875abb06d642576ce5d",
+    "excerpt": "log-tails/20261025-foldquant-awq-r3/build.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-awq-r3/export.log",
+    "bytes": 608955,
+    "sha256": "a59a3b254a4b4eb9a40b654c74baf85bcf2d7b242bcf1056e3601b5990fb0412",
+    "excerpt": "log-tails/20261025-foldquant-awq-r3/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-awq-r3/quantize.log",
+    "bytes": 3679,
+    "sha256": "6b66c453810b0fda1a1102ea0f3544dc993afa8ca9772aca099f1feca7b7c1f1",
+    "excerpt": "log-tails/20261025-foldquant-awq-r3/quantize.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-awq-r3/run.log",
+    "bytes": 5591,
+    "sha256": "49685212ba9a796f7622a48cfecd44e7c6bbc5a0677b716eaebd34aaa8f99d02",
+    "excerpt": "log-tails/20261025-foldquant-awq-r3/run.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-awq-r3-launch.log",
+    "bytes": 1640,
+    "sha256": "2edce74e461be0d8cbd3ef62bc8795bf2fbf42e44f8fd1284463a5c3763179c2",
+    "excerpt": "log-tails/20261025-foldquant-awq-r3-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r1/quantize.log",
+    "bytes": 1829,
+    "sha256": "2b9b0d28b3927da8ec30d552ffb8f17b8e8cfe2a2664882c9756263a2eb421d8",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r1/quantize.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r1-launch.log",
+    "bytes": 411,
+    "sha256": "24fdc919683a2d5a6fa4cee40ab7bcbc2cd7b8bf763be9c8c7aae36eb4f3035a",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r1-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r2/export.log",
+    "bytes": 2575,
+    "sha256": "e73b08b8e7d7661212a071fe95f60b49692fc50a7ddbc2d80594d18c24508654",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r2/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r2/quantize.log",
+    "bytes": 11853,
+    "sha256": "254c7cd73b5a96a656ca3d16f47ab5968650692217974f59832bf48669720b52",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r2/quantize.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r2-launch.log",
+    "bytes": 411,
+    "sha256": "1b7a6d937aa1fbb4f55a3c128d36ac0f0829ee3d321ff6916f80dd6c31e1788f",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r2-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r3/export.log",
+    "bytes": 1909,
+    "sha256": "d5282a527bb7ec9a48ec7fff8d31eeb655b2eea8b2a8d45fdbd1f9d04ed856d7",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r3/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r3-launch.log",
+    "bytes": 448,
+    "sha256": "8838c127a3121740aebf3b6395481423653a60f6b4eb0ffc7d5bf27efffa7bd8",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r3-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r4/build.log",
+    "bytes": 30786,
+    "sha256": "aecaaeb800dfa689f33ee02da4358c224e2357ebc1fab4fc2804f90b0be74307",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r4/build.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r4/export.log",
+    "bytes": 249128,
+    "sha256": "4248261b639d6bb6ee5f80d01d148a52b168db2463d29de4646e6a465f4ed943",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r4/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r4/quantize.log",
+    "bytes": 11864,
+    "sha256": "29a34616dc7aabf029162c8b85c5f646753be235854dcf79b5b85d9ed86c2210",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r4/quantize.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r4/run.log",
+    "bytes": 5822,
+    "sha256": "26ec0f4309e1a9cc626016692188dbdbd735c30c2bf6d34e747f3af602de19cc",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r4/run.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-smoothquant-r4-launch.log",
+    "bytes": 1705,
+    "sha256": "5047cd501579eb48eb6e1fff12c8888090cc38df9633c851e8810110e91fe395",
+    "excerpt": "log-tails/20261025-foldquant-smoothquant-r4-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-w8a8-r1/quantize.log",
+    "bytes": 2142,
+    "sha256": "153c80b59c2dc633bb7e6063f40bc51e684861b0cea34638e2b6a631d8cf5b6e",
+    "excerpt": "log-tails/20261025-foldquant-w8a8-r1/quantize.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-w8a8-r1-launch.log",
+    "bytes": 397,
+    "sha256": "d9f39934b9eea5bc51fe55fa86790ec83a62e086fd4411e130031ab783fd3bbc",
+    "excerpt": "log-tails/20261025-foldquant-w8a8-r1-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-w8a8-r2/build.log",
+    "bytes": 102758,
+    "sha256": "30201058238c4d5f3897f13c2dc0a619b6aa736009ed3365ca60bbb10ac4fb90",
+    "excerpt": "log-tails/20261025-foldquant-w8a8-r2/build.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-w8a8-r2/export.log",
+    "bytes": 246057,
+    "sha256": "e20a7ee5a0c7c0ce98cdae0762f1d14db1ec44f9ac467a27bf6eb1595a32d856",
+    "excerpt": "log-tails/20261025-foldquant-w8a8-r2/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-w8a8-r2/quantize.log",
+    "bytes": 3215,
+    "sha256": "07b2b82e25ac9e595cb0ae599220fbc1aa704ae9d1b4ed7a45b77a3adb31e637",
+    "excerpt": "log-tails/20261025-foldquant-w8a8-r2/quantize.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-w8a8-r2/run.log",
+    "bytes": 5751,
+    "sha256": "e076d3c2ffafb54bf00331bcb0837bdc8ad8b83988146c07ecbb490912c8f620",
+    "excerpt": "log-tails/20261025-foldquant-w8a8-r2/run.txt"
+  },
+  {
+    "path": "artifacts/20261025-foldquant-w8a8-r2-launch.log",
+    "bytes": 1607,
+    "sha256": "7ed4092efa8410d500b6fb4203b5845cffeaf5c61843121a49d97e2fd3720e4c",
+    "excerpt": "log-tails/20261025-foldquant-w8a8-r2-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-baseline-r1/build.log",
+    "bytes": 17596057,
+    "sha256": "af5108c3c0eba4cef3d61d02c45abbb45612c0a3a75b7733bbfb4c900fd0520e",
+    "excerpt": "log-tails/20261025-groot-trt-baseline-r1/build.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-baseline-r1/export.log",
+    "bytes": 16308,
+    "sha256": "900305aa8632b65600c8c4fae120a7b399d1454e2e52179f63bab8d12e460b61",
+    "excerpt": "log-tails/20261025-groot-trt-baseline-r1/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-baseline-r1/run.log",
+    "bytes": 5893,
+    "sha256": "1ac028dc477c970932946d2d8178d8bf7afd048b95e92d1167faeca8caa77bc6",
+    "excerpt": "log-tails/20261025-groot-trt-baseline-r1/run.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-baseline-r1-launch.log",
+    "bytes": 1335,
+    "sha256": "701f57241e5f1df8e1d1fa255a1071ba61b362e758c4546db1097f9160b6c3ff",
+    "excerpt": "log-tails/20261025-groot-trt-baseline-r1-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-compile-r1.log",
+    "bytes": 15488,
+    "sha256": "27fd55800cc7d8f703c620db46aaf962253a0de66be4a20acef18ec7a63ead75",
+    "excerpt": "log-tails/20261025-groot-trt-compile-r1.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-fp8-r1/export.log",
+    "bytes": 8259,
+    "sha256": "60444d66971a66217fd7ec701755c403d5c0c267d840bdc80df6f3189a75a11c",
+    "excerpt": "log-tails/20261025-groot-trt-fp8-r1/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-fp8-r1-launch.log",
+    "bytes": 442,
+    "sha256": "0149a86e2de7054db568d448e91b7a02f5c40aba9e0deedc87c63be270f3a31b",
+    "excerpt": "log-tails/20261025-groot-trt-fp8-r1-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-fp8-r2/export.log",
+    "bytes": 240156,
+    "sha256": "9c85534ba6d20c8e385bcfadac8b4ebff39fdd0de504cfe24d955778f6fa9d62",
+    "excerpt": "log-tails/20261025-groot-trt-fp8-r2/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-fp8-r2-launch.log",
+    "bytes": 442,
+    "sha256": "3755d9f718df52dc7a7648969e3471eefe1738309ce4c7259774ea5c0000d003",
+    "excerpt": "log-tails/20261025-groot-trt-fp8-r2-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-fp8-r3/build.log",
+    "bytes": 23950085,
+    "sha256": "05a606afb25003a5241f6b81e79d6726b9d7a58884ff6175a4430506ee653b61",
+    "excerpt": "log-tails/20261025-groot-trt-fp8-r3/build.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-fp8-r3/export.log",
+    "bytes": 242455,
+    "sha256": "2dcba2878633a6960c29ddeca0f29a80e44d9138b1fd82291a4e984b0a1f5457",
+    "excerpt": "log-tails/20261025-groot-trt-fp8-r3/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-fp8-r3/run.log",
+    "bytes": 6140,
+    "sha256": "a7205c1c3283b4d946b6c638737e026d3e97688c769d89976462d2f7b2a9eec2",
+    "excerpt": "log-tails/20261025-groot-trt-fp8-r3/run.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-fp8-r3-launch.log",
+    "bytes": 1306,
+    "sha256": "ffc3febf076bd5dc7d8a9b929eb0bcc5c6056fddfa63199b22c26afcf3fa7344",
+    "excerpt": "log-tails/20261025-groot-trt-fp8-r3-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-nvfp4-r1/export.log",
+    "bytes": 8233,
+    "sha256": "10f7a5ac855aee08eb75fa25344e73e8804b284acd2d0dc837f9dd0e88352476",
+    "excerpt": "log-tails/20261025-groot-trt-nvfp4-r1/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-nvfp4-r1-launch.log",
+    "bytes": 454,
+    "sha256": "d5b48d42f977466d2aaf9b89f3d19a33ca658736f1bfb36c193ccb9fa5d59d67",
+    "excerpt": "log-tails/20261025-groot-trt-nvfp4-r1-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-nvfp4-r2/export.log",
+    "bytes": 146463,
+    "sha256": "f6b4d4140e87253416f89d11027159bae21e97af4962df13f099678db9a26a97",
+    "excerpt": "log-tails/20261025-groot-trt-nvfp4-r2/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-nvfp4-r2-launch.log",
+    "bytes": 454,
+    "sha256": "7534c5e43cdbe981e8b4a4425c74a8a8af63a18179989ca40bec268a987e4d0b",
+    "excerpt": "log-tails/20261025-groot-trt-nvfp4-r2-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-nvfp4-r3/build.log",
+    "bytes": 24466964,
+    "sha256": "72b9c5385fd2cf56fbc190daeaf1a14d9de1274d42a2acbf29ffaf290bb5c34d",
+    "excerpt": "log-tails/20261025-groot-trt-nvfp4-r3/build.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-nvfp4-r3/export.log",
+    "bytes": 328058,
+    "sha256": "4c46ad9961f2a67c5b7360b57a251e7d7c6fda8dd052d50e84e2cdbf7b97a4a4",
+    "excerpt": "log-tails/20261025-groot-trt-nvfp4-r3/export.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-nvfp4-r3/run.log",
+    "bytes": 6172,
+    "sha256": "10eb0acaa355cb2df602ad3accbc4641dcbc048095c7dce81c151dd63fe41ec5",
+    "excerpt": "log-tails/20261025-groot-trt-nvfp4-r3/run.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-nvfp4-r3-launch.log",
+    "bytes": 1334,
+    "sha256": "78436aea7bec28a1dcd37f54d9e15475ec4b55f5da3454fee80aaea01cdc3a84",
+    "excerpt": "log-tails/20261025-groot-trt-nvfp4-r3-launch.txt"
+  },
+  {
+    "path": "artifacts/20261025-groot-trt-optimized-r1.log",
+    "bytes": 5926,
+    "sha256": "7393a15cb195d1a1c915160cb5f63999c81e1acb575b4002e3d7a4d6406e9765",
+    "excerpt": "log-tails/20261025-groot-trt-optimized-r1.txt"
+  },
+  {
+    "path": "artifacts/20261025-new-phyai-fp8-a8-r1.log",
+    "bytes": 3838,
+    "sha256": "920391139ae57896d18951b1adb5a60e19a748aeeab9d0d633790a4dea18db58",
+    "excerpt": "log-tails/20261025-new-phyai-fp8-a8-r1.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-eager-r1/phyai-llm-fp8-a8-eager.log",
+    "bytes": 3182,
+    "sha256": "b5b94824e056c7027dbdaa88426e6e187fed47ac6f19dd1ebcf646716e545e53",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-eager-r1/phyai-llm-fp8-a8-eager.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-eager-r1/phyai-llm-fp8-block-a8-eager.log",
+    "bytes": 3690,
+    "sha256": "7810f315d86e74ea88f56b7d98d8488f592f41688c2d340e9b8acbc8b5755399",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-eager-r1/phyai-llm-fp8-block-a8-eager.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-eager-r1/phyai-llm-int4-fp8-a8-eager.log",
+    "bytes": 3690,
+    "sha256": "639825bda5c5f25f2ff3d492e161fca63de8e893bd83d5df99edf84bc7126165",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-eager-r1/phyai-llm-int4-fp8-a8-eager.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-eager-r1/phyai-llm-int8-a8-eager.log",
+    "bytes": 3690,
+    "sha256": "094254b394d8ba6b359138efeda069bd2347415c9332b8e790012bf050e81f62",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-eager-r1/phyai-llm-int8-a8-eager.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-fp8-a16.log",
+    "bytes": 3341,
+    "sha256": "38c687508a7a3b358e6cbd7b36022367808536416631e8b2c2344bea6d521c29",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-r2/phyai-llm-fp8-a16.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-fp8-a8.log",
+    "bytes": 3838,
+    "sha256": "e21bc85871923adbf92776621c7cd037c8a814f355b30eaa73186559f5e45ceb",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-r2/phyai-llm-fp8-a8.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-fp8-block-a8.log",
+    "bytes": 3838,
+    "sha256": "cb2e6e1c2dc9dab1ef0b9c0f0bdc3b6e47d228ee8977e8a06c0d491bb8b56870",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-r2/phyai-llm-fp8-block-a8.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-int4-a16.log",
+    "bytes": 3319,
+    "sha256": "8cccf73fcf02866c7d9973444e93fc3e477ef7f59b4de398a0cfd14a46eadfa0",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-r2/phyai-llm-int4-a16.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-int4-fp8-a8.log",
+    "bytes": 3838,
+    "sha256": "efb4d3952d472c9be6f22229d738ae6da68228d5c81557eb4ab2d9109baf78c3",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-r2/phyai-llm-int4-fp8-a8.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-int8-a8.log",
+    "bytes": 3838,
+    "sha256": "0dd67d98d21dc41165e96a03179be8abeb713f12d41fbc18982a99d0ff81fd09",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-r2/phyai-llm-int8-a8.txt"
+  },
+  {
+    "path": "artifacts/20261025-phyai-new-recipes-r2/phyai-llm-nvfp4-a16.log",
+    "bytes": 3334,
+    "sha256": "2ed4583e42a87a74ee80ed7bed91407c565aae6ca9b49068d32fec9257c96d27",
+    "excerpt": "log-tails/20261025-phyai-new-recipes-r2/phyai-llm-nvfp4-a16.txt"
+  },
+  {
+    "path": "artifacts/foldquant-build-tools-install.log",
+    "bytes": 126,
+    "sha256": "d55a688de3c418b56e44eb4c44e34762231e8e65cac304ab82a661d0a88483a2",
+    "excerpt": "log-tails/foldquant-build-tools-install.txt"
+  },
+  {
+    "path": "artifacts/foldquant-cutlass-clone.log",
+    "bytes": 431,
+    "sha256": "95d7867380643497da3bc1edeb9c47bcbc7424ab688021dd45bfa57526c17af6",
+    "excerpt": "log-tails/foldquant-cutlass-clone.txt"
+  },
+  {
+    "path": "artifacts/foldquant-extra-install-r2.log",
+    "bytes": 749,
+    "sha256": "532915b87fb5e798466d6275be16637fb7ed37f56d1abdbd076ef22b602c56b0",
+    "excerpt": "log-tails/foldquant-extra-install-r2.txt"
+  },
+  {
+    "path": "artifacts/foldquant-extra-install.log",
+    "bytes": 395,
+    "sha256": "109fbd78fefc0290880d036d00b54794c64add9fe538653cb490423ba50fb4ff",
+    "excerpt": "log-tails/foldquant-extra-install.txt"
+  },
+  {
+    "path": "artifacts/foldquant-install.log",
+    "bytes": 383,
+    "sha256": "7dd4b585b5e15b754a78d6901de60088ac13abd9ad3c0e5baef309359dc6bb5f",
+    "excerpt": "log-tails/foldquant-install.txt"
+  },
+  {
+    "path": "artifacts/foldquant-kernel-status.log",
+    "bytes": 438,
+    "sha256": "b4cae4b19e851daf644a31f6fb4991d8c5591e74936e790196ad96f12186a4d7",
+    "excerpt": "log-tails/foldquant-kernel-status.txt"
+  },
+  {
+    "path": "artifacts/foldquant-ninja-reinstall.log",
+    "bytes": 198,
+    "sha256": "a8faffbff43030236b0b15bcd2e1062cd5ffd626fa103e0fc806034f593e29ef",
+    "excerpt": "log-tails/foldquant-ninja-reinstall.txt"
+  },
+  {
+    "path": "artifacts/foldquant-plugin-build-r1.log",
+    "bytes": 1327,
+    "sha256": "de121a93689cc0abca6718079012ff011578e47bb994f23578da382d37338fd1",
+    "excerpt": "log-tails/foldquant-plugin-build-r1.txt"
+  },
+  {
+    "path": "artifacts/foldquant-plugin-build-r2.log",
+    "bytes": 1429,
+    "sha256": "551cb49453b6fafdc7f47e4c3661d0a1af9b585a132bf4b4e7b5ccb92f497c20",
+    "excerpt": "log-tails/foldquant-plugin-build-r2.txt"
+  },
+  {
+    "path": "artifacts/groot-calibration-v2-prepare.log",
+    "bytes": 102,
+    "sha256": "765cebb3c330bdee246870b2dbb15b7882143171fb9d9996cf859cb7d85ce43f",
+    "excerpt": "log-tails/groot-calibration-v2-prepare.txt"
+  },
+  {
+    "path": "artifacts/groot-modelopt-install.log",
+    "bytes": 303,
+    "sha256": "0f614325309e4ae6c88b01df6a7ab7b42f5bbf4789266f2e736db48eacd7785d",
+    "excerpt": "log-tails/groot-modelopt-install.txt"
+  },
+  {
+    "path": "artifacts/groot-modelopt-onnx-install-r2.log",
+    "bytes": 460,
+    "sha256": "1a353c89c959738b9ed970278782c0efa42dad9122cabd0281637136bb883a3a",
+    "excerpt": "log-tails/groot-modelopt-onnx-install-r2.txt"
+  },
+  {
+    "path": "artifacts/groot-modelopt-onnx-install.log",
+    "bytes": 395,
+    "sha256": "b04b6e61f6b0e3588eb1c7a1e79c836cec73d7a0981ce3aa0e9ae56df3863c93",
+    "excerpt": "log-tails/groot-modelopt-onnx-install.txt"
+  },
+  {
+    "path": "artifacts/groot-ninja-reinstall.log",
+    "bytes": 201,
+    "sha256": "25e3f1b0abe96b67b699a6d8cbccb2b8fd008eaeab254c3c5ada1005fa0f908e",
+    "excerpt": "log-tails/groot-ninja-reinstall.txt"
+  },
+  {
+    "path": "artifacts/groot-trt-install.log",
+    "bytes": 723,
+    "sha256": "4a008b9217a23d2cedacaac680a369b5f5df9503a157ec7c228594da9fe50ca6",
+    "excerpt": "log-tails/groot-trt-install.txt"
+  },
+  {
+    "path": "artifacts/groot-trt-optimized-build-r1.log",
+    "bytes": 15830538,
+    "sha256": "c08bf5a3b6ae4de84e0d250f6a6b3a711e2ea30634de9a40a49aaeeebac2062f",
+    "excerpt": "log-tails/groot-trt-optimized-build-r1.txt"
+  },
+  {
+    "path": "artifacts/groot-trt-optimized-export-r1.log",
+    "bytes": 3043,
+    "sha256": "176546257925a687fe0e16a1b20a74a65fe94b785ef08e4981eaffd283a2ceba",
+    "excerpt": "log-tails/groot-trt-optimized-export-r1.txt"
+  },
+  {
+    "path": "artifacts/groot-trt-optimized-export-r2.log",
+    "bytes": 19165,
+    "sha256": "e80bc41107a5c69f50193dae5c9984b30eaf61d487f06dcc6c11cf547e57f350",
+    "excerpt": "log-tails/groot-trt-optimized-export-r2.txt"
+  },
+  {
+    "path": "artifacts/groot-trt-optimized-retired.log",
+    "bytes": 41,
+    "sha256": "53747ba698d93f06fda40c07395db0f78d18a172262e97db9eb612883ffef373",
+    "excerpt": "log-tails/groot-trt-optimized-retired.txt"
+  }
+]

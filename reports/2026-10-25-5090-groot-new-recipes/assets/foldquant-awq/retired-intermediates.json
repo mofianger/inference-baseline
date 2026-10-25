@@ -1,0 +1,212 @@
+[
+  {
+    "path": "onnx/llm_bf16.onnx",
+    "bytes": 694942,
+    "sha256": "916d72a95c1c19066bc5607d070ef3416bd484167c89e0c37c677c1538fcf112"
+  },
+  {
+    "path": "onnx/llm_bf16.onnx.data",
+    "bytes": 416219136,
+    "sha256": "69ab86fba211755a2b5abcfd29dc9cd7383b1fe97d2fdc6c994117181ef47de6"
+  },
+  {
+    "path": "quantized/README.md",
+    "bytes": 2278,
+    "sha256": "ee75aa10f8407aa720622db169b668c4a7bbee7f4c68216632730d1feddbfda9"
+  },
+  {
+    "path": "quantized/config.json",
+    "bytes": 2071,
+    "sha256": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689"
+  },
+  {
+    "path": "quantized/embodiment_id.json",
+    "bytes": 2145,
+    "sha256": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35"
+  },
+  {
+    "path": "quantized/foldquant_modelopt_dit.pt",
+    "bytes": 287047,
+    "sha256": "9d33c2221f8d4e7c3de2615c03d269c59e1e53e10a06ce8e04f99bbf03ed5e6e"
+  },
+  {
+    "path": "quantized/foldquant_modelopt_llm.pt",
+    "bytes": 127559,
+    "sha256": "98d5fec66f55aa725859f648a782ae9fe103812ffbc1418b05219502315cf392"
+  },
+  {
+    "path": "quantized/foldquant_quant.json",
+    "bytes": 81726,
+    "sha256": "433f4d3b693e75e0cfe6fbc43a85fa580e3d589fbb7c0f9dfce47f8ab78db018"
+  },
+  {
+    "path": "quantized/hf_quant_config.json",
+    "bytes": 610,
+    "sha256": "442dc768b6685e61f698b3bc5f1eff089446949d284cccd0af78ba61fb973a6f"
+  },
+  {
+    "path": "quantized/model-00001-of-00002.safetensors",
+    "bytes": 5079428024,
+    "sha256": "f629cfb840469063f6bc35bb8cf144fdbc66be7c0c80a9271c9739ad4eae5d0f"
+  },
+  {
+    "path": "quantized/model-00002-of-00002.safetensors",
+    "bytes": 1864228843,
+    "sha256": "1eb39e0ce2cd7bb5621a74d0fc353418c4da2f5ae0309651c3476877f89c9b2f"
+  },
+  {
+    "path": "quantized/model.safetensors.index.json",
+    "bytes": 181795,
+    "sha256": "9abc3f5e6b3226826cc7261527cc5a9e5924dbab4d715553f52f710f9e59c57d"
+  },
+  {
+    "path": "quantized/processor_config.json",
+    "bytes": 21137,
+    "sha256": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be"
+  },
+  {
+    "path": "quantized/statistics.json",
+    "bytes": 4293096,
+    "sha256": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+  },
+  {
+    "path": "quantized/README.md",
+    "bytes": 2278,
+    "sha256": "ee75aa10f8407aa720622db169b668c4a7bbee7f4c68216632730d1feddbfda9"
+  },
+  {
+    "path": "quantized/config.json",
+    "bytes": 2071,
+    "sha256": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689"
+  },
+  {
+    "path": "quantized/embodiment_id.json",
+    "bytes": 2145,
+    "sha256": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35"
+  },
+  {
+    "path": "quantized/foldquant_modelopt_dit.pt",
+    "bytes": 287047,
+    "sha256": "8d8ec19c07594cbb022fb94d60b057248f83a2fdfc4e6808aabfe5f7d97c9be3"
+  },
+  {
+    "path": "quantized/foldquant_modelopt_llm.pt",
+    "bytes": 127559,
+    "sha256": "7539974ddd30c431c0ce458d19af7baf8c7a7f68bc0e41f512258c1d9e4545a8"
+  },
+  {
+    "path": "quantized/foldquant_quant.json",
+    "bytes": 81726,
+    "sha256": "433f4d3b693e75e0cfe6fbc43a85fa580e3d589fbb7c0f9dfce47f8ab78db018"
+  },
+  {
+    "path": "quantized/hf_quant_config.json",
+    "bytes": 610,
+    "sha256": "442dc768b6685e61f698b3bc5f1eff089446949d284cccd0af78ba61fb973a6f"
+  },
+  {
+    "path": "quantized/model-00001-of-00002.safetensors",
+    "bytes": 5079428024,
+    "sha256": "f629cfb840469063f6bc35bb8cf144fdbc66be7c0c80a9271c9739ad4eae5d0f"
+  },
+  {
+    "path": "quantized/model-00002-of-00002.safetensors",
+    "bytes": 1864228843,
+    "sha256": "1eb39e0ce2cd7bb5621a74d0fc353418c4da2f5ae0309651c3476877f89c9b2f"
+  },
+  {
+    "path": "quantized/model.safetensors.index.json",
+    "bytes": 181795,
+    "sha256": "9abc3f5e6b3226826cc7261527cc5a9e5924dbab4d715553f52f710f9e59c57d"
+  },
+  {
+    "path": "quantized/processor_config.json",
+    "bytes": 21137,
+    "sha256": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be"
+  },
+  {
+    "path": "quantized/statistics.json",
+    "bytes": 4293096,
+    "sha256": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+  },
+  {
+    "path": "onnx/action_decoder.onnx",
+    "bytes": 14524,
+    "sha256": "8bd87efceb90c9c29a3aff81f3dba685e961a62ef991972c16dbb1ce9f76f0d7"
+  },
+  {
+    "path": "onnx/action_decoder.onnx.data",
+    "bytes": 75890688,
+    "sha256": "14d3fa925b8a62a2be5ede30fcfacd9f86f0a073586347581d5acb935293e207"
+  },
+  {
+    "path": "onnx/action_encoder.onnx",
+    "bytes": 32032,
+    "sha256": "7d96af0f831f01e4a64f9b7b3265844bb504dac92c9ade497d58d187a9f1e813"
+  },
+  {
+    "path": "onnx/action_encoder.onnx.data",
+    "bytes": 466288640,
+    "sha256": "9b3e15c5f3e066b7db763006b11ec611ad5b9e463edaa08f1275eeeb2df29728"
+  },
+  {
+    "path": "onnx/dit_bf16.onnx",
+    "bytes": 849545,
+    "sha256": "72b337cce2c8cf7b7a5f3b99d365ca6bbfd8256cc6ee9a1624dc834ecfc683fb"
+  },
+  {
+    "path": "onnx/dit_bf16.onnx.data",
+    "bytes": 1104457728,
+    "sha256": "de04e962a4ad434b9a66ec9a9c53369c962cfafc095f1b40693701f96bf25720"
+  },
+  {
+    "path": "onnx/export_metadata.json",
+    "bytes": 588,
+    "sha256": "b54be28bcfad42b854c6937d26e40413f33b738cb1666c51104702cb38098b52"
+  },
+  {
+    "path": "onnx/foldquant_export.json",
+    "bytes": 4493,
+    "sha256": "e3ccd3e3cff152723edcbc7152c20eefebfbcefd17e246068a9d9a6fd25737d2"
+  },
+  {
+    "path": "onnx/llm_bf16.onnx",
+    "bytes": 694942,
+    "sha256": "916d72a95c1c19066bc5607d070ef3416bd484167c89e0c37c677c1538fcf112"
+  },
+  {
+    "path": "onnx/llm_bf16.onnx.data",
+    "bytes": 416219136,
+    "sha256": "d2ba2e1bd4ed409326f884f4abe470f8563e8e10834bc19ff0a0da13f8868769"
+  },
+  {
+    "path": "onnx/state_encoder.onnx",
+    "bytes": 14509,
+    "sha256": "66ba75fa956db3bdfb160d8be2930200c43d5efe9c70018adfa553ca52f017b6"
+  },
+  {
+    "path": "onnx/state_encoder.onnx.data",
+    "bytes": 109510656,
+    "sha256": "2cc3f462fd5e234de2ca8025d36603d0bd21e58f41adf5f8afed93876b16a9ae"
+  },
+  {
+    "path": "onnx/vit_fp32.onnx",
+    "bytes": 2469570,
+    "sha256": "3a715f5d7a44fdb7bb6b5e02af88b729de2550f85e39c02c47b2698e211bd970"
+  },
+  {
+    "path": "onnx/vit_fp32.onnx.data",
+    "bytes": 1621950464,
+    "sha256": "fc3b8a601510e9ecb8020230f7f9ed083927330c829998edc57ad9af83341191"
+  },
+  {
+    "path": "onnx/vl_self_attention.onnx",
+    "bytes": 310665,
+    "sha256": "ffe848610e2eab7d0a504f1809f295e45e7cf952740d60e0b262bd1644b8db82"
+  },
+  {
+    "path": "onnx/vl_self_attention.onnx.data",
+    "bytes": 402915328,
+    "sha256": "61e92552537a8996acde9d2c693f243218eddf81a3cad9d2e7421cbe70213055"
+  }
+]

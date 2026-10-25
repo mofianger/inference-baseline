@@ -1,0 +1,24 @@
+[
+  {
+    "stage": "export",
+    "command": [
+      "/data/inference-baseline/.venv-groot-trt/bin/python",
+      "scripts/export_groot_trt_fixture.py",
+      "--config",
+      "configs/5090/groot-trt-fp8.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/groot-trt-fp8",
+      "--stage",
+      "export",
+      "--profile",
+      "optimized",
+      "--quantization",
+      "fp8"
+    ],
+    "exit_code": 1,
+    "started_utc": "2026-10-25T10:17:36.795879+00:00",
+    "finished_utc": "2026-10-25T10:19:25.451707+00:00"
+  }
+]

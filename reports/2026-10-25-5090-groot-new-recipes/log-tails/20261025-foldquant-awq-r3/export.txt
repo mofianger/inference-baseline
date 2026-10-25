@@ -1,0 +1,100 @@
+2026-10-25 19:07:28,572 - INFO -   Action Encoder exported successfully!
+2026-10-25 19:07:28,572 - INFO -   Verifying artifacts/foldquant-awq/onnx/action_encoder.onnx ...
+2026-10-25 19:07:28,573 - INFO -   ONNX model verified successfully.
+2026-10-25 19:07:28,573 - INFO - 
+================================================================================
+2026-10-25 19:07:28,573 - INFO - Exporting Action Decoder to ONNX
+2026-10-25 19:07:28,573 - INFO - ================================================================================
+2026-10-25 19:07:28,573 - INFO -   model_output: torch.Size([1, 41, 1024]) (torch.bfloat16)
+2026-10-25 19:07:28,573 - INFO -   embodiment_id: torch.Size([1]) (torch.int64)
+2026-10-25 19:07:28,573 - INFO -   Exporting to artifacts/foldquant-awq/onnx/action_decoder.onnx...
+W1025 19:07:28.859000 3003362 .venv-foldquant/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'input' from (input, rois, spatial_scale: 'float', pooled_height: 'int', pooled_width: 'int', sampling_ratio: 'int' = -1, aligned: 'bool' = False). Treating as an Input.
+W1025 19:07:28.860000 3003362 .venv-foldquant/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'rois' from (input, rois, spatial_scale: 'float', pooled_height: 'int', pooled_width: 'int', sampling_ratio: 'int' = -1, aligned: 'bool' = False). Treating as an Input.
+W1025 19:07:28.860000 3003362 .venv-foldquant/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'input' from (input, boxes, output_size: 'Sequence[int]', spatial_scale: 'float' = 1.0). Treating as an Input.
+W1025 19:07:28.860000 3003362 .venv-foldquant/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'boxes' from (input, boxes, output_size: 'Sequence[int]', spatial_scale: 'float' = 1.0). Treating as an Input.
+2026-10-25 19:07:29,503 - INFO - Removed 2 unused functions
+2026-10-25 19:07:29,504 - INFO - No unused functions to remove
+2026-10-25 19:07:29,534 - INFO - Skipping constant folding for node 'node_Max_1' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,534 - INFO - Skipping constant folding for node 'node_Identity_31' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,534 - INFO - Skipping constant folding for node 'node_Unsqueeze_5' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,535 - INFO - Skipping constant folding for node 'node_Max_9' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,536 - INFO - Skipping constant folding for node 'node_Identity_34' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,536 - INFO - Skipping constant folding for node 'node_Unsqueeze_12' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,536 - INFO - Skipping constant folding for node 'node_bmm' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,542 - INFO - Skipping constant folding for node 'node_Max_17' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,542 - INFO - Skipping constant folding for node 'node_Identity_37' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,543 - INFO - Skipping constant folding for node 'node_Unsqueeze_20' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,543 - INFO - Skipping constant folding for node 'node_Max_24' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,544 - INFO - Skipping constant folding for node 'node_Identity_40' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,544 - INFO - Skipping constant folding for node 'node_Unsqueeze_27' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,550 - INFO - Removed 16 unused nodes
+2026-10-25 19:07:29,550 - INFO - Applied 4 of general pattern rewrite rules.
+2026-10-25 19:07:29,550 - INFO - No unused functions to remove
+2026-10-25 19:07:29,551 - INFO - Skipping constant folding for node 'node_Unsqueeze_5' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,551 - INFO - Skipping constant folding for node 'node_Unsqueeze_12' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,551 - INFO - Skipping constant folding for node 'node_bmm' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,552 - INFO - Skipping constant folding for node 'node_Unsqueeze_20' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,552 - INFO - Skipping constant folding for node 'node_Unsqueeze_27' because it is graph input to preserve graph signature
+2026-10-25 19:07:29,555 - INFO - Removed 4 unused nodes
+2026-10-25 19:07:29,555 - INFO - No unused functions to remove
+2026-10-25 19:07:29,597 - INFO -   Action Decoder exported successfully!
+2026-10-25 19:07:29,597 - INFO -   Verifying artifacts/foldquant-awq/onnx/action_decoder.onnx ...
+2026-10-25 19:07:29,598 - INFO -   ONNX model verified successfully.
+
+[W] Datatype: BFLOAT16 could not be converted to a NumPy type.
+Accessing the values of this constant tensor (/dit/transformer_blocks.31/ff/net.0/proj/weight_quantizer/Constant_attr::value) will cause them to be casted to a supported data type. This means that the weights will have a different type than the original model when they are exported again!
+If this is not what you intended, please avoid accessing the values of this constant tensor.
+[W] colored module is not installed, will not use colors when logging. To enable colors, please install the colored module: python3 -m pip install colored
+[W] Datatype: BFLOAT16 could not be converted to a NumPy type.
+Accessing the values of this constant tensor (trt::DequantizeLinear_9380) will cause them to be casted to a supported data type. This means that the weights will have a different type than the original model when they are exported again!
+If this is not what you intended, please avoid accessing the values of this constant tensor.
+[W] colored module is not installed, will not use colors when logging. To enable colors, please install the colored module: python3 -m pip install colored
+[W] Datatype: BFLOAT16 could not be converted to a NumPy type.
+Accessing the values of this constant tensor (/dit/transformer_blocks.31/ff/net.2/weight_quantizer/Constant_attr::value) will cause them to be casted to a supported data type. This means that the weights will have a different type than the original model when they are exported again!
+If this is not what you intended, please avoid accessing the values of this constant tensor.
+[W] colored module is not installed, will not use colors when logging. To enable colors, please install the colored module: python3 -m pip install colored
+[W] Datatype: BFLOAT16 could not be converted to a NumPy type.
+Accessing the values of this constant tensor (trt::DequantizeLinear_9386) will cause them to be casted to a supported data type. This means that the weights will have a different type than the original model when they are exported again!
+If this is not what you intended, please avoid accessing the values of this constant tensor.
+[W] colored module is not installed, will not use colors when logging. To enable colors, please install the colored module: python3 -m pip install colored
+[W] Datatype: BFLOAT16 could not be converted to a NumPy type.
+Accessing the values of this constant tensor (/dit/proj_out_1/weight_quantizer/Constant_attr::value) will cause them to be casted to a supported data type. This means that the weights will have a different type than the original model when they are exported again!
+If this is not what you intended, please avoid accessing the values of this constant tensor.
+[W] colored module is not installed, will not use colors when logging. To enable colors, please install the colored module: python3 -m pip install colored
+[W] Datatype: BFLOAT16 could not be converted to a NumPy type.
+Accessing the values of this constant tensor (trt::DequantizeLinear_9392) will cause them to be casted to a supported data type. This means that the weights will have a different type than the original model when they are exported again!
+If this is not what you intended, please avoid accessing the values of this constant tensor.
+[W] colored module is not installed, will not use colors when logging. To enable colors, please install the colored module: python3 -m pip install colored
+[W] Datatype: BFLOAT16 could not be converted to a NumPy type.
+Accessing the values of this constant tensor (/dit/proj_out_2/weight_quantizer/Constant_attr::value) will cause them to be casted to a supported data type. This means that the weights will have a different type than the original model when they are exported again!
+If this is not what you intended, please avoid accessing the values of this constant tensor.
+[torch.onnx] Obtain model graph for `Qwen3VisionForExport([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `Qwen3VisionForExport([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Obtain model graph for `SelfAttentionTransformer([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `SelfAttentionTransformer([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Obtain model graph for `CategorySpecificMLP([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CategorySpecificMLP([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Obtain model graph for `MultiEmbodimentActionEncoder([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `MultiEmbodimentActionEncoder([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Obtain model graph for `CategorySpecificMLP([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CategorySpecificMLP([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅

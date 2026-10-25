@@ -1,0 +1,100 @@
+2026-10-25 19:15:21,189 build_tensorrt_engine   Input 1: vl_embs (1, -1, 2048)
+2026-10-25 19:15:21,189 build_tensorrt_engine   Input 2: timestep (1,)
+2026-10-25 19:15:21,189 build_tensorrt_engine   Input 3: image_mask (1, -1)
+2026-10-25 19:15:21,189 build_tensorrt_engine   Input 4: backbone_attention_mask (1, -1)
+2026-10-25 19:15:21,189 build_tensorrt_engine Network outputs: 1
+2026-10-25 19:15:21,189 build_tensorrt_engine   Output 0: output (1, 41, 1024)
+2026-10-25 19:15:21,189 build_tensorrt_engine 
+[Step 3/5] Configuring builder...
+2026-10-25 19:15:21,189 build_tensorrt_engine Enabled DETAILED profiling verbosity for engine inspection
+2026-10-25 19:15:21,189 build_tensorrt_engine Precision 'bf16' enforced by STRONGLY_TYPED network (types from ONNX model)
+2026-10-25 19:15:21,189 build_tensorrt_engine 
+[Step 4/5] Setting optimization profiles...
+2026-10-25 19:15:21,189 build_tensorrt_engine   sa_embs:
+2026-10-25 19:15:21,190 build_tensorrt_engine     min: (1, 41, 1536)
+2026-10-25 19:15:21,190 build_tensorrt_engine     opt: (1, 41, 1536)
+2026-10-25 19:15:21,190 build_tensorrt_engine     max: (1, 41, 1536)
+2026-10-25 19:15:21,190 build_tensorrt_engine   vl_embs:
+2026-10-25 19:15:21,190 build_tensorrt_engine     min: (1, 1, 2048)
+2026-10-25 19:15:21,190 build_tensorrt_engine     opt: (1, 217, 2048)
+2026-10-25 19:15:21,190 build_tensorrt_engine     max: (1, 434, 2048)
+2026-10-25 19:15:21,190 build_tensorrt_engine   timestep:
+2026-10-25 19:15:21,190 build_tensorrt_engine     min: (1,)
+2026-10-25 19:15:21,190 build_tensorrt_engine     opt: (1,)
+2026-10-25 19:15:21,190 build_tensorrt_engine     max: (1,)
+2026-10-25 19:15:21,190 build_tensorrt_engine   image_mask:
+2026-10-25 19:15:21,190 build_tensorrt_engine     min: (1, 1)
+2026-10-25 19:15:21,190 build_tensorrt_engine     opt: (1, 217)
+2026-10-25 19:15:21,190 build_tensorrt_engine     max: (1, 434)
+2026-10-25 19:15:21,190 build_tensorrt_engine   backbone_attention_mask:
+2026-10-25 19:15:21,190 build_tensorrt_engine     min: (1, 1)
+2026-10-25 19:15:21,190 build_tensorrt_engine     opt: (1, 217)
+2026-10-25 19:15:21,190 build_tensorrt_engine     max: (1, 434)
+2026-10-25 19:15:21,190 build_tensorrt_engine 
+[Step 5/5] Building TensorRT engine...
+2026-10-25 19:16:00,505 build_tensorrt_engine Engine built in 39.3 seconds (0.7 minutes)
+2026-10-25 19:16:00,505 build_tensorrt_engine 
+Saving engine to artifacts/foldquant-smoothquant/engines/dit_bf16.engine...
+2026-10-25 19:16:01,326 build_tensorrt_engine Engine saved! Size: 1485.13 MB
+2026-10-25 19:16:01,326 build_tensorrt_engine 
+================================================================================
+2026-10-25 19:16:01,326 build_tensorrt_engine ENGINE BUILD COMPLETE!
+2026-10-25 19:16:01,326 build_tensorrt_engine ================================================================================
+2026-10-25 19:16:01,326 build_tensorrt_engine Engine file: artifacts/foldquant-smoothquant/engines/dit_bf16.engine
+2026-10-25 19:16:01,326 build_tensorrt_engine Size: 1485.13 MB
+2026-10-25 19:16:01,326 build_tensorrt_engine Build time: 39.3s
+2026-10-25 19:16:01,326 build_tensorrt_engine Precision: BF16
+2026-10-25 19:16:01,326 build_tensorrt_engine ================================================================================
+2026-10-25 19:16:01,952 foldquant.groot_n1_7.build dit: built from foldquant graph dit_bf16.onnx in 41s
+2026-10-25 19:16:01,956 foldquant.groot_n1_7.build   model_output: min=(1, 41, 1024) opt=(1, 41, 1024) max=(1, 41, 1024)
+2026-10-25 19:16:01,956 foldquant.groot_n1_7.build   embodiment_id: min=(1,) opt=(1,) max=(1,)
+2026-10-25 19:16:01,956 build_tensorrt_engine ================================================================================
+2026-10-25 19:16:01,956 build_tensorrt_engine TensorRT Engine Builder
+2026-10-25 19:16:01,956 build_tensorrt_engine ================================================================================
+2026-10-25 19:16:01,956 build_tensorrt_engine ONNX model: artifacts/foldquant-smoothquant/onnx/action_decoder.onnx
+2026-10-25 19:16:01,956 build_tensorrt_engine Engine output: artifacts/foldquant-smoothquant/engines/action_decoder.engine
+2026-10-25 19:16:01,956 build_tensorrt_engine Precision: BF16
+2026-10-25 19:16:01,957 build_tensorrt_engine Workspace: 4096 MB
+2026-10-25 19:16:01,957 build_tensorrt_engine ================================================================================
+2026-10-25 19:16:01,957 build_tensorrt_engine 
+[Step 1/5] Creating TensorRT builder...
+2026-10-25 19:16:01,957 build_tensorrt_engine Using STRONGLY_TYPED network (TRT 10.x+)
+2026-10-25 19:16:01,957 build_tensorrt_engine 
+[Step 2/5] Parsing ONNX model...
+[10/25/2026-19:16:01] [TRT] [W] ModelImporter.cpp:728: Make sure input embodiment_id has Int64 binding.
+2026-10-25 19:16:01,957 build_tensorrt_engine Network inputs: 2
+2026-10-25 19:16:01,958 build_tensorrt_engine   Input 0: model_output (1, 41, 1024)
+2026-10-25 19:16:01,958 build_tensorrt_engine   Input 1: embodiment_id (1,)
+2026-10-25 19:16:01,958 build_tensorrt_engine Network outputs: 1
+2026-10-25 19:16:01,958 build_tensorrt_engine   Output 0: output (1, 41, 132)
+2026-10-25 19:16:01,958 build_tensorrt_engine 
+[Step 3/5] Configuring builder...
+2026-10-25 19:16:01,958 build_tensorrt_engine Enabled DETAILED profiling verbosity for engine inspection
+2026-10-25 19:16:01,958 build_tensorrt_engine Precision 'bf16' enforced by STRONGLY_TYPED network (types from ONNX model)
+2026-10-25 19:16:01,958 build_tensorrt_engine 
+[Step 4/5] Setting optimization profiles...
+2026-10-25 19:16:01,958 build_tensorrt_engine   model_output:
+2026-10-25 19:16:01,958 build_tensorrt_engine     min: (1, 41, 1024)
+2026-10-25 19:16:01,958 build_tensorrt_engine     opt: (1, 41, 1024)
+2026-10-25 19:16:01,958 build_tensorrt_engine     max: (1, 41, 1024)
+2026-10-25 19:16:01,958 build_tensorrt_engine   embodiment_id:
+2026-10-25 19:16:01,958 build_tensorrt_engine     min: (1,)
+2026-10-25 19:16:01,958 build_tensorrt_engine     opt: (1,)
+2026-10-25 19:16:01,958 build_tensorrt_engine     max: (1,)
+2026-10-25 19:16:01,958 build_tensorrt_engine 
+[Step 5/5] Building TensorRT engine...
+2026-10-25 19:16:08,768 build_tensorrt_engine Engine built in 6.8 seconds (0.1 minutes)
+2026-10-25 19:16:08,769 build_tensorrt_engine 
+Saving engine to artifacts/foldquant-smoothquant/engines/action_decoder.engine...
+2026-10-25 19:16:08,810 build_tensorrt_engine Engine saved! Size: 72.49 MB
+2026-10-25 19:16:08,810 build_tensorrt_engine 
+================================================================================
+2026-10-25 19:16:08,810 build_tensorrt_engine ENGINE BUILD COMPLETE!
+2026-10-25 19:16:08,810 build_tensorrt_engine ================================================================================
+2026-10-25 19:16:08,810 build_tensorrt_engine Engine file: artifacts/foldquant-smoothquant/engines/action_decoder.engine
+2026-10-25 19:16:08,810 build_tensorrt_engine Size: 72.49 MB
+2026-10-25 19:16:08,810 build_tensorrt_engine Build time: 6.8s
+2026-10-25 19:16:08,810 build_tensorrt_engine Precision: BF16
+2026-10-25 19:16:08,810 build_tensorrt_engine ================================================================================
+2026-10-25 19:16:09,239 foldquant.groot_n1_7.build action_decoder: built from float graph action_decoder.onnx in 7s
+2026-10-25 19:16:09,245 foldquant.groot_n1_7.build engine directory complete: artifacts/foldquant-smoothquant/engines

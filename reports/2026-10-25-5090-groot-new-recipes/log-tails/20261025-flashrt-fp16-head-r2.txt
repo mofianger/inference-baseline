@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/inference-baseline/inference_baseline/cli.py", line 56, in <module>
+    main()
+  File "/data/inference-baseline/inference_baseline/cli.py", line 52, in main
+    run(config, args.dataset, args.output)
+  File "/data/inference-baseline/inference_baseline/runner.py", line 21, in run
+    return _run(config, dataset, out, torch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/inference-baseline/inference_baseline/runner.py", line 93, in _run
+    raise ValueError(f"Output ignored changed {field}; possible stale graph buffer")
+ValueError: Output ignored changed pixel_values; possible stale graph buffer

@@ -1,0 +1,100 @@
+2026-10-25 18:06:40,818 - INFO - 
+--- [4d] State Encoder ---
+2026-10-25 18:06:40,819 - INFO - 
+================================================================================
+2026-10-25 18:06:40,819 - INFO - Exporting State Encoder to ONNX
+2026-10-25 18:06:40,819 - INFO - ================================================================================
+2026-10-25 18:06:40,819 - INFO -   state: torch.Size([1, 1, 132]) (torch.bfloat16)
+2026-10-25 18:06:40,819 - INFO -   embodiment_id: torch.Size([1]) (torch.int64)
+2026-10-25 18:06:40,819 - INFO -   (max_state_dim=132, state_history_length=1)
+2026-10-25 18:06:40,819 - INFO -   Exporting to artifacts/groot-trt-optimized/onnx/state_encoder.onnx...
+2026-10-25 18:06:41,165 - INFO -   State Encoder exported successfully!
+2026-10-25 18:06:41,165 - INFO -   Verifying artifacts/groot-trt-optimized/onnx/state_encoder.onnx ...
+2026-10-25 18:06:42,667 - INFO -   ONNX model verified successfully.
+2026-10-25 18:06:42,668 - INFO - 
+--- [4e] Action Encoder ---
+W1025 18:06:43.923000 2987165 .venv-groot-trt/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'input' from (input, rois, spatial_scale: 'float', pooled_height: 'int', pooled_width: 'int', sampling_ratio: 'int' = -1, aligned: 'bool' = False). Treating as an Input.
+W1025 18:06:43.923000 2987165 .venv-groot-trt/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'rois' from (input, rois, spatial_scale: 'float', pooled_height: 'int', pooled_width: 'int', sampling_ratio: 'int' = -1, aligned: 'bool' = False). Treating as an Input.
+W1025 18:06:43.924000 2987165 .venv-groot-trt/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'input' from (input, boxes, output_size: 'Sequence[int]', spatial_scale: 'float' = 1.0). Treating as an Input.
+W1025 18:06:43.924000 2987165 .venv-groot-trt/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'boxes' from (input, boxes, output_size: 'Sequence[int]', spatial_scale: 'float' = 1.0). Treating as an Input.
+2026-10-25 18:06:45,097 - INFO - Removed 2 unused functions
+2026-10-25 18:06:45,099 - INFO - No unused functions to remove
+2026-10-25 18:06:45,107 - INFO - Skipping constant folding for node 'node_Max_1' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,108 - INFO - Skipping constant folding for node 'node_Identity_45' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,108 - INFO - Skipping constant folding for node 'node_Unsqueeze_5' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,109 - INFO - Skipping constant folding for node 'node_Max_9' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,109 - INFO - Skipping constant folding for node 'node_Identity_48' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,110 - INFO - Skipping constant folding for node 'node_Unsqueeze_12' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,110 - INFO - Skipping constant folding for node 'node_bmm' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,110 - INFO - Skipping constant folding for node 'node_cat' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,519 - INFO - Skipping constant folding for node 'node_Max_17' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,520 - INFO - Skipping constant folding for node 'node_Identity_51' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,520 - INFO - Skipping constant folding for node 'node_Unsqueeze_20' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,521 - INFO - Skipping constant folding for node 'node_Max_24' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,522 - INFO - Skipping constant folding for node 'node_Identity_54' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,522 - INFO - Skipping constant folding for node 'node_Unsqueeze_27' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,542 - INFO - Skipping constant folding for node 'node_Max_31' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,543 - INFO - Skipping constant folding for node 'node_Identity_57' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,543 - INFO - Skipping constant folding for node 'node_Unsqueeze_34' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,544 - INFO - Skipping constant folding for node 'node_Max_38' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,544 - INFO - Skipping constant folding for node 'node_Identity_60' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,544 - INFO - Skipping constant folding for node 'node_Unsqueeze_41' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,555 - INFO - Removed 24 unused nodes
+2026-10-25 18:06:45,555 - INFO - Applied 6 of general pattern rewrite rules.
+2026-10-25 18:06:45,555 - INFO - No unused functions to remove
+2026-10-25 18:06:45,555 - INFO - Skipping constant folding for node 'node_Unsqueeze_5' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,556 - INFO - Skipping constant folding for node 'node_Unsqueeze_12' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,556 - INFO - Skipping constant folding for node 'node_bmm' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,556 - INFO - Skipping constant folding for node 'node_cat' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,556 - INFO - Skipping constant folding for node 'node_Unsqueeze_20' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,557 - INFO - Skipping constant folding for node 'node_Unsqueeze_27' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,557 - INFO - Skipping constant folding for node 'node_Unsqueeze_34' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,558 - INFO - Skipping constant folding for node 'node_Unsqueeze_41' because it is graph input to preserve graph signature
+2026-10-25 18:06:45,562 - INFO - Removed 6 unused nodes
+2026-10-25 18:06:45,563 - INFO - No unused functions to remove
+2026-10-25 18:06:45,830 - INFO -   Verifying artifacts/groot-trt-optimized/onnx/action_encoder.onnx ...
+2026-10-25 18:06:45,831 - INFO -   ONNX model verified successfully.
+2026-10-25 18:06:45,831 - INFO - 
+--- [4f] DiT (precision=bf16) ---
+2026-10-25 18:06:45,852 - INFO -   Saved fixed timestep/AdaLN constants to artifacts/groot-trt-optimized/onnx/action_head_constants.pt
+2026-10-25 18:06:45,920 - INFO -   Optimized DiT PyTorch equivalence: cosine=1.00000000, max_abs=0.000000
+2026-10-25 18:06:46,835 - INFO -   Verifying artifacts/groot-trt-optimized/onnx/dit_cross_kv_bf16.onnx ...
+2026-10-25 18:06:49,607 - INFO -   ONNX model verified successfully.
+2026-10-25 18:06:49,607 - INFO -   Patched 32 DiT attn blocks: bool mask -> additive (enables TRT mha_v2 fusion on cross-attn)
+2026-10-25 18:06:58,911 - INFO -   Verifying artifacts/groot-trt-optimized/onnx/dit_bf16.onnx ...
+2026-10-25 18:07:23,253 - INFO -   ONNX model verified successfully.
+2026-10-25 18:07:23,254 - INFO - 
+--- [4g] Action Decoder ---
+2026-10-25 18:07:23,254 - INFO - 
+================================================================================
+2026-10-25 18:07:23,254 - INFO - Exporting Action Decoder to ONNX
+2026-10-25 18:07:23,254 - INFO - ================================================================================
+2026-10-25 18:07:23,262 - INFO -   model_output: torch.Size([1, 41, 1024]) (torch.bfloat16)
+2026-10-25 18:07:23,262 - INFO -   embodiment_id: torch.Size([1]) (torch.int64)
+2026-10-25 18:07:23,263 - INFO -   Exporting to artifacts/groot-trt-optimized/onnx/action_decoder.onnx...
+2026-10-25 18:07:23,458 - INFO -   Action Decoder exported successfully!
+2026-10-25 18:07:23,458 - INFO -   Verifying artifacts/groot-trt-optimized/onnx/action_decoder.onnx ...
+2026-10-25 18:07:24,487 - INFO -   ONNX model verified successfully.
+2026-10-25 18:07:24,487 - INFO - 
+================================================================================
+2026-10-25 18:07:24,487 - INFO - EXPORT COMPLETE!
+2026-10-25 18:07:24,487 - INFO - ================================================================================
+2026-10-25 18:07:24,487 - INFO - 
+Exported files in: artifacts/groot-trt-optimized/onnx
+2026-10-25 18:07:24,487 - INFO -   action_decoder.onnx: 72.32 MB
+2026-10-25 18:07:24,487 - INFO -   action_encoder.onnx: 0.02 MB
+2026-10-25 18:07:24,487 - INFO -   action_encoder.onnx.data: 444.69 MB
+2026-10-25 18:07:24,487 - INFO -   action_head_constants.pt: 1.71 MB
+2026-10-25 18:07:24,487 - INFO -   dit_bf16.onnx: 1588.41 MB
+2026-10-25 18:07:24,487 - INFO -   dit_cross_kv_bf16.onnx: 192.15 MB
+2026-10-25 18:07:24,487 - INFO -   export_metadata.json: 0.00 MB
+2026-10-25 18:07:24,488 - INFO -   llm_bf16.onnx: 1536.75 MB
+2026-10-25 18:07:24,488 - INFO -   state_encoder.onnx: 104.41 MB
+2026-10-25 18:07:24,488 - INFO -   vit_fp32.onnx: 1547.15 MB
+2026-10-25 18:07:24,488 - INFO -   vl_self_attention.onnx: 384.27 MB
+[torch.onnx] Obtain model graph for `ActionEncoderWithTimeEmbedding([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `ActionEncoderWithTimeEmbedding([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅

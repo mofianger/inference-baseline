@@ -1,0 +1,517 @@
+[
+  {
+    "id": "F01",
+    "name": "FlashRT FP8 混合路径",
+    "status": "skipped_existing_measurement",
+    "reason": "Existing successful Run retained; user requested no repeat."
+  },
+  {
+    "id": "F02",
+    "name": "FlashRT NVFP4 混合路径",
+    "status": "skipped_existing_measurement",
+    "reason": "Existing successful Run retained; user requested no repeat."
+  },
+  {
+    "id": "F03",
+    "name": "FlashRT FP8 backbone + FP16 action head",
+    "config": "configs/5090/flashrt-fp16-head.json",
+    "attempts": [
+      {
+        "run": "20261025-flashrt-fp16-head-r1",
+        "recipe": "flashrt-fp8-fp16-head",
+        "status": "failed",
+        "error": "FlashRT backbone/action graph was not captured",
+        "source": "runs/20261025-flashrt-fp16-head-r1/failure.json"
+      },
+      {
+        "run": "20261025-flashrt-fp16-head-r2",
+        "recipe": "flashrt-fp8-fp16-head",
+        "status": "failed",
+        "error": "Output ignored changed pixel_values; possible stale graph buffer",
+        "source": "runs/20261025-flashrt-fp16-head-r2/failure.json"
+      }
+    ],
+    "status": "failed"
+  },
+  {
+    "id": "E01",
+    "name": "EmbodiInfer BF16 原生优化路径",
+    "status": "skipped_existing_measurement",
+    "reason": "Existing successful Run retained; user requested no repeat."
+  },
+  {
+    "id": "E02",
+    "name": "EmbodiInfer FP8 W8A8 native 候选",
+    "status": "excluded_requires_engine_implementation",
+    "reason": "Existing generic quantization is not wired into this GR00T path."
+  },
+  {
+    "id": "E03",
+    "name": "EmbodiInfer FP8 W8A16 Triton 候选",
+    "status": "excluded_requires_engine_implementation",
+    "reason": "Existing generic quantization is not wired into this GR00T path."
+  },
+  {
+    "id": "E04",
+    "name": "EmbodiInfer NVFP4 W4A4 native 候选",
+    "status": "excluded_requires_engine_implementation",
+    "reason": "Existing generic quantization is not wired into this GR00T path."
+  },
+  {
+    "id": "E05",
+    "name": "EmbodiInfer INT8 W8A8 native 候选",
+    "status": "excluded_requires_engine_implementation",
+    "reason": "Existing generic quantization is not wired into this GR00T path."
+  },
+  {
+    "id": "P01",
+    "name": "PhyAI BF16 CUDA Graph 路径",
+    "status": "skipped_existing_measurement",
+    "reason": "Existing successful Run retained; user requested no repeat."
+  },
+  {
+    "id": "P02",
+    "name": "PhyAI FP8 W8A8 骨干路径",
+    "config": "configs/5090/phyai-llm-fp8-a8.json",
+    "attempts": [
+      {
+        "run": "20261025-new-phyai-fp8-a8-r1",
+        "recipe": "phyai-llm-fp8-a8",
+        "status": "failed",
+        "error": "Repeated input produced unstable output (A/B/A check)",
+        "source": "runs/20261025-new-phyai-fp8-a8-r1/failure.json"
+      },
+      {
+        "run": "20261025-phyai-new-recipes-r2/phyai-llm-fp8-a8",
+        "recipe": "phyai-llm-fp8-a8",
+        "status": "failed",
+        "error": "Repeated input produced unstable output (A/B/A check)",
+        "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-fp8-a8/failure.json"
+      }
+    ],
+    "status": "failed"
+  },
+  {
+    "id": "P03",
+    "name": "PhyAI FP8 block128 W8A8 骨干路径",
+    "config": "configs/5090/phyai-llm-fp8-block-a8.json",
+    "attempts": [
+      {
+        "run": "20261025-phyai-new-recipes-r2/phyai-llm-fp8-block-a8",
+        "recipe": "phyai-llm-fp8-block-a8",
+        "status": "failed",
+        "error": "Repeated input produced unstable output (A/B/A check)",
+        "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-fp8-block-a8/failure.json"
+      }
+    ],
+    "status": "failed"
+  },
+  {
+    "id": "P04",
+    "name": "PhyAI FP8 W8A16 骨干路径",
+    "config": "configs/5090/phyai-llm-fp8-a16.json",
+    "attempts": [
+      {
+        "run": "20261025-phyai-new-recipes-r2/phyai-llm-fp8-a16",
+        "recipe": "phyai-llm-fp8-a16",
+        "status": "measured",
+        "mean_ms": 26.990047770000004,
+        "p50_ms": 26.974508999999998,
+        "p95_ms": 27.2090062,
+        "max_abs": 0.7607421875,
+        "gate": "not_configured",
+        "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-fp8-a16/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "P05",
+    "name": "PhyAI NVFP4 W4A16 骨干路径",
+    "config": "configs/5090/phyai-llm-nvfp4-a16.json",
+    "attempts": [
+      {
+        "run": "20261025-phyai-new-recipes-r2/phyai-llm-nvfp4-a16",
+        "recipe": "phyai-llm-nvfp4-a16",
+        "status": "measured",
+        "mean_ms": 26.978805499999993,
+        "p50_ms": 26.9032275,
+        "p95_ms": 27.24615545,
+        "max_abs": 0.681640625,
+        "gate": "not_configured",
+        "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-nvfp4-a16/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "P06",
+    "name": "PhyAI INT8 W8A8 骨干路径",
+    "config": "configs/5090/phyai-llm-int8-a8.json",
+    "attempts": [
+      {
+        "run": "20261025-phyai-new-recipes-r2/phyai-llm-int8-a8",
+        "recipe": "phyai-llm-int8-a8",
+        "status": "failed",
+        "error": "Repeated input produced unstable output (A/B/A check)",
+        "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-int8-a8/failure.json"
+      }
+    ],
+    "status": "failed"
+  },
+  {
+    "id": "P07",
+    "name": "PhyAI INT4 W4A16 骨干路径",
+    "config": "configs/5090/phyai-llm-int4-a16.json",
+    "attempts": [
+      {
+        "run": "20261025-phyai-new-recipes-r2/phyai-llm-int4-a16",
+        "recipe": "phyai-llm-int4-a16",
+        "status": "measured",
+        "mean_ms": 26.9557456,
+        "p50_ms": 26.9508435,
+        "p95_ms": 27.13853365,
+        "max_abs": 1.1484375,
+        "gate": "not_configured",
+        "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-int4-a16/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "P08",
+    "name": "PhyAI INT4 / FP8 W4A8 骨干路径",
+    "config": "configs/5090/phyai-llm-int4-fp8-a8.json",
+    "attempts": [
+      {
+        "run": "20261025-phyai-new-recipes-r2/phyai-llm-int4-fp8-a8",
+        "recipe": "phyai-llm-int4-fp8-a8",
+        "status": "failed",
+        "error": "Repeated input produced unstable output (A/B/A check)",
+        "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-int4-fp8-a8/failure.json"
+      }
+    ],
+    "status": "failed"
+  },
+  {
+    "id": "N01",
+    "name": "官方 PyTorch BF16 eager",
+    "status": "skipped_existing_measurement",
+    "reason": "Existing successful Run retained; user requested no repeat."
+  },
+  {
+    "id": "N02",
+    "name": "官方 PyTorch torch.compile",
+    "config": "configs/5090/groot-trt-compile.json",
+    "attempts": [
+      {
+        "run": "20261025-groot-trt-compile-r1",
+        "recipe": "groot-trt-compile",
+        "status": "measured",
+        "mean_ms": 46.033602420000015,
+        "p50_ms": 45.961093000000005,
+        "p95_ms": 46.8974638,
+        "max_abs": 0.03125,
+        "gate": "not_configured",
+        "source": "runs/20261025-groot-trt-compile-r1/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "N03",
+    "name": "官方 TensorRT full-pipeline baseline",
+    "config": "configs/5090/groot-trt-baseline.json",
+    "attempts": [
+      {
+        "run": "20261025-groot-trt-baseline-r1/run",
+        "recipe": "groot-trt-baseline",
+        "status": "measured",
+        "mean_ms": 26.995218910000002,
+        "p50_ms": 26.939946,
+        "p95_ms": 27.403472800000003,
+        "max_abs": 0.12890625,
+        "gate": "not_configured",
+        "source": "runs/20261025-groot-trt-baseline-r1/run/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "N04",
+    "name": "官方 TensorRT optimized 未量化",
+    "config": "configs/5090/groot-trt-optimized.json",
+    "attempts": [
+      {
+        "run": "20261025-groot-trt-optimized-r1",
+        "recipe": "groot-trt-optimized",
+        "status": "measured",
+        "mean_ms": 22.40312587,
+        "p50_ms": 22.4073115,
+        "p95_ms": 22.5234896,
+        "max_abs": 0.072265625,
+        "gate": "not_configured",
+        "source": "runs/20261025-groot-trt-optimized-r1/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "N05",
+    "name": "官方 TensorRT optimized FP8",
+    "config": "configs/5090/groot-trt-fp8.json",
+    "attempts": [
+      {
+        "run": "20261025-groot-trt-fp8-r3/run",
+        "recipe": "groot-trt-fp8",
+        "status": "measured",
+        "mean_ms": 14.946182139999998,
+        "p50_ms": 14.937515,
+        "p95_ms": 14.98660995,
+        "max_abs": 0.3641357421875,
+        "gate": "not_configured",
+        "source": "runs/20261025-groot-trt-fp8-r3/run/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "N06",
+    "name": "官方 TensorRT optimized mixed-NVFP4",
+    "config": "configs/5090/groot-trt-nvfp4.json",
+    "attempts": [
+      {
+        "run": "20261025-groot-trt-nvfp4-r3/run",
+        "recipe": "groot-trt-nvfp4",
+        "status": "measured",
+        "mean_ms": 16.04833341,
+        "p50_ms": 16.034222,
+        "p95_ms": 16.158025199999997,
+        "max_abs": 0.32373046875,
+        "gate": "not_configured",
+        "source": "runs/20261025-groot-trt-nvfp4-r3/run/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "V01",
+    "name": "vla.cpp BF16 GGUF",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "V02",
+    "name": "vla.cpp Q8_0 weight-only",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "V03",
+    "name": "vla.cpp Q4_0 weight-only",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "V04",
+    "name": "vla.cpp FoldQuant W8A8",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "C01",
+    "name": "Embodied.cpp BF16 GGUF 路径",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "C02",
+    "name": "Embodied.cpp Q8_0 GGUF 路径",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "C03",
+    "name": "Embodied.cpp Q4_0 GGUF 路径",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "C04",
+    "name": "Embodied.cpp Q4_K GGUF 路径",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "C05",
+    "name": "Embodied.cpp Q6_K GGUF 路径",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "Q01",
+    "name": "FoldQuantVLA / TensorRT W8A8",
+    "config": "configs/5090/foldquant-w8a8.json",
+    "attempts": [
+      {
+        "run": "20261025-foldquant-w8a8-r2/run",
+        "recipe": "foldquant-w8a8",
+        "status": "measured",
+        "mean_ms": 29.941258480000005,
+        "p50_ms": 29.929241,
+        "p95_ms": 30.11102255,
+        "max_abs": 0.12890625,
+        "gate": "not_configured",
+        "source": "runs/20261025-foldquant-w8a8-r2/run/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "Q02",
+    "name": "FoldQuantVLA / TensorRT AWQ W4A16",
+    "config": "configs/5090/foldquant-awq.json",
+    "attempts": [
+      {
+        "run": "20261025-foldquant-awq-r3/run",
+        "recipe": "foldquant-awq",
+        "status": "measured",
+        "mean_ms": 57.52270595,
+        "p50_ms": 57.468653,
+        "p95_ms": 57.94985055,
+        "max_abs": 1.064453125,
+        "gate": "not_configured",
+        "source": "runs/20261025-foldquant-awq-r3/run/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "Q03",
+    "name": "FoldQuantVLA / TensorRT SmoothQuant W8A8",
+    "config": "configs/5090/foldquant-smoothquant.json",
+    "attempts": [
+      {
+        "run": "20261025-foldquant-smoothquant-r3",
+        "status": "stage_failed",
+        "stage": "export",
+        "exit_code": 1,
+        "source": "runs/20261025-foldquant-smoothquant-r3/stages.json"
+      },
+      {
+        "run": "20261025-foldquant-smoothquant-r4/run",
+        "recipe": "foldquant-smoothquant",
+        "status": "measured",
+        "mean_ms": 26.42751479,
+        "p50_ms": 26.4180165,
+        "p95_ms": 26.5497205,
+        "max_abs": 0.4326171875,
+        "gate": "not_configured",
+        "source": "runs/20261025-foldquant-smoothquant-r4/run/summary.json"
+      }
+    ],
+    "status": "measured"
+  },
+  {
+    "id": "F04",
+    "name": "FlashRT NVFP4 DiT + BF16 cross-K/V",
+    "status": "deferred_ablation",
+    "reason": "Execution ablation; new primary recipes prioritized in this campaign."
+  },
+  {
+    "id": "F05",
+    "name": "FlashRT FP8 unfused backbone",
+    "status": "deferred_ablation",
+    "reason": "Execution ablation; new primary recipes prioritized in this campaign."
+  },
+  {
+    "id": "F06",
+    "name": "FlashRT NVFP4 PDL-off",
+    "status": "deferred_ablation",
+    "reason": "Execution ablation; new primary recipes prioritized in this campaign."
+  },
+  {
+    "id": "F07",
+    "name": "FlashRT FP8 action graph-off",
+    "status": "deferred_ablation",
+    "reason": "Execution ablation; new primary recipes prioritized in this campaign."
+  },
+  {
+    "id": "E06",
+    "name": "EmbodiInfer BF16 无 Inductor 图路径",
+    "status": "deferred_ablation",
+    "reason": "Execution ablation; new primary recipes prioritized in this campaign."
+  },
+  {
+    "id": "E07",
+    "name": "EmbodiInfer BF16 原始执行路径",
+    "status": "deferred_ablation",
+    "reason": "Execution ablation; new primary recipes prioritized in this campaign."
+  },
+  {
+    "id": "P09",
+    "name": "PhyAI BF16 graph-off",
+    "status": "deferred_ablation",
+    "reason": "Execution ablation; new primary recipes prioritized in this campaign."
+  },
+  {
+    "id": "N07",
+    "name": "官方 TensorRT action-head-only",
+    "status": "deferred_ablation",
+    "reason": "Execution ablation; new primary recipes prioritized in this campaign."
+  },
+  {
+    "id": "N08",
+    "name": "官方 TensorRT DiT-only",
+    "status": "deferred_ablation",
+    "reason": "Execution ablation; new primary recipes prioritized in this campaign."
+  },
+  {
+    "id": "N09",
+    "name": "官方 TensorRT ViT+LLM-only",
+    "status": "deferred_ablation",
+    "reason": "Execution ablation; new primary recipes prioritized in this campaign."
+  },
+  {
+    "id": "F08",
+    "name": "FlashRT 实验性 NVFP4 backbone",
+    "status": "deferred_experimental",
+    "reason": "Separate experimental/hardware-preflight recipes; not part of this primary campaign."
+  },
+  {
+    "id": "F09",
+    "name": "FlashRT shadow-backbone + FP16 head",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "P10",
+    "name": "PhyAI 骨干量化 + DiT 量化扩展",
+    "status": "excluded_requires_engine_implementation",
+    "reason": "Existing generic quantization is not wired into this GR00T path."
+  },
+  {
+    "id": "V05",
+    "name": "vla.cpp FoldQuant W4A4",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "V06",
+    "name": "vla.cpp FoldQuant W4A4 + selective W8A8",
+    "status": "excluded_boundary",
+    "reason": "Existing API does not match fresh prepared GPU tensor to GPU action protocol without engine changes."
+  },
+  {
+    "id": "Q04",
+    "name": "FoldQuantVLA / TensorRT W4A4",
+    "status": "deferred_experimental",
+    "reason": "Separate experimental/hardware-preflight recipes; not part of this primary campaign."
+  },
+  {
+    "id": "Q05",
+    "name": "FoldQuantVLA / TensorRT W4A4 + selective W8A8",
+    "status": "deferred_experimental",
+    "reason": "Separate experimental/hardware-preflight recipes; not part of this primary campaign."
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "runner_at_pipeline_start": {
+    "commit": "75ebe96e015642e51d06375513826e84bcaaa797",
+    "dirty": ""
+  },
+  "engine_source": {
+    "commit": "944fe70c4fd54e3fcb80a7d7258a328f9c061176",
+    "dirty": ""
+  },
+  "config": {
+    "checkpoint": "/data/huggingface/hub/models--nvidia--GR00T-N1.7-3B/snapshots/2fc962b973bccdd5d8ce4f67cc63b264d6886495",
+    "cosmos": "/data/huggingface/hub/models--nvidia--Cosmos-Reason2-2B/snapshots/9ce19a195e423419c349abfc86fd07178b230561",
+    "device": "cuda:0",
+    "warmup": 10,
+    "iterations": 100,
+    "cpu_threads": 8,
+    "thresholds": null,
+    "environment": {
+      "HF_HOME": "/data/huggingface",
+      "HF_HUB_OFFLINE": "1",
+      "TOKENIZERS_PARALLELISM": "false"
+    },
+    "engine": "inference_baseline.adapters.groot_trt:GrootTRTAdapter",
+    "engine_source": "/data/inference-baseline/third_party/Isaac-GR00T-deployment",
+    "python_paths": [
+      "/data/inference-baseline/third_party/Isaac-GR00T-deployment"
+    ],
+    "options": {
+      "mode": "optimized",
+      "quantization": "fp8",
+      "engine_dir": "/data/inference-baseline/artifacts/groot-trt-fp8/engines",
+      "calibration_dataset": "datasets/groot-n17-calibration-v2"
+    },
+    "label": "groot-trt-fp8"
+  },
+  "dataset_manifest_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "python_executable": "/data/inference-baseline/.venv-groot-trt/bin/python",
+  "started_utc": "2026-10-25T10:58:01.377727+00:00"
+}

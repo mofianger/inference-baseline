@@ -1,0 +1,5 @@
+Submodule 'third_party/cutlass' (https://github.com/NVIDIA/cutlass.git) registered for path 'third_party/cutlass'
+Cloning into '/data/inference-baseline/third_party/FoldQuantVLA/third_party/cutlass'...
+From https://gh-proxy.org/https://github.com/NVIDIA/cutlass
+ * branch            bf9da7b76c766d7ee7d536afc77880a4ef1f1156 -> FETCH_HEAD
+Submodule path 'third_party/cutlass': checked out 'bf9da7b76c766d7ee7d536afc77880a4ef1f1156'

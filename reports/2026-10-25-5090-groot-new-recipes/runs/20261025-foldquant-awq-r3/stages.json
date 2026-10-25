@@ -1,0 +1,74 @@
+[
+  {
+    "stage": "quantize",
+    "command": [
+      "/data/inference-baseline/.venv-foldquant/bin/python",
+      "scripts/export_foldquant_fixture.py",
+      "--config",
+      "configs/5090/foldquant-awq.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/foldquant-awq",
+      "--stage",
+      "quantize"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-25T11:03:01.989075+00:00",
+    "finished_utc": "2026-10-25T11:05:14.056951+00:00"
+  },
+  {
+    "stage": "export",
+    "command": [
+      "/data/inference-baseline/.venv-foldquant/bin/python",
+      "scripts/export_foldquant_fixture.py",
+      "--config",
+      "configs/5090/foldquant-awq.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/foldquant-awq",
+      "--stage",
+      "export"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-25T11:05:14.057762+00:00",
+    "finished_utc": "2026-10-25T11:07:31.769686+00:00"
+  },
+  {
+    "stage": "build",
+    "command": [
+      "/data/inference-baseline/.venv-foldquant/bin/python",
+      "scripts/export_foldquant_fixture.py",
+      "--config",
+      "configs/5090/foldquant-awq.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/foldquant-awq",
+      "--stage",
+      "build"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-25T11:07:37.981112+00:00",
+    "finished_utc": "2026-10-25T11:09:05.514690+00:00"
+  },
+  {
+    "stage": "run",
+    "command": [
+      "/data/inference-baseline/.venv-foldquant/bin/python",
+      "-m",
+      "inference_baseline.cli",
+      "run",
+      "--config",
+      "configs/5090/foldquant-awq.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/20261025-foldquant-awq-r3/run"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-25T11:09:05.515568+00:00",
+    "finished_utc": "2026-10-25T11:09:40.035384+00:00"
+  }
+]

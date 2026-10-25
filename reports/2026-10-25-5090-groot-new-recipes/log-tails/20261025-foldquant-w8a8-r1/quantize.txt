@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/data/inference-baseline/scripts/export_foldquant_fixture.py", line 82, in <module>
+    main()
+  File "/data/inference-baseline/scripts/export_foldquant_fixture.py", line 63, in main
+    quantize(QuantizeConfig(model_path=config["checkpoint"], dataset_path=str(calibration_path),
+  File "/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/foldquant_integration/quantize.py", line 246, in main
+    policy = calibration.load_policy(args.model_path, args.embodiment_tag, args.device)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/inference-baseline/scripts/export_foldquant_fixture.py", line 47, in policy_factory
+    adapter = ReferenceAdapter(config, protocol, samples)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/inference-baseline/inference_baseline/adapters/reference.py", line 33, in __init__
+    import gr00t.model
+  File "/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/model/__init__.py", line 16, in <module>
+    from .gr00t_n1d7.setup import Gr00tN1d7Pipeline
+  File "/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/model/gr00t_n1d7/setup.py", line 26, in <module>
+    from gr00t.data.dataset.factory import DatasetFactory
+  File "/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/data/dataset/factory.py", line 22, in <module>
+    from gr00t.data.dataset.sharded_single_step_dataset import ShardedSingleStepDataset
+  File "/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/data/dataset/sharded_single_step_dataset.py", line 25, in <module>
+    from .lerobot_episode_loader import LeRobotEpisodeLoader
+  File "/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/data/dataset/lerobot_episode_loader.py", line 48, in <module>
+    from gr00t.utils.video_utils import get_frames_by_indices
+  File "/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/utils/video_utils.py", line 22, in <module>
+    import av
+ModuleNotFoundError: No module named 'av'

@@ -1,0 +1,97 @@
+2026-10-25 19:09:53,943 datasets PyTorch version 2.9.0+cu128 available.
+Loading extension modelopt_cuda_ext...
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/albumentations/check_version.py:49: UserWarning: Error fetching version info <urlopen error _ssl.c:993: The handshake operation timed out>
+  data = fetch_version_info()
+`torch_dtype` is deprecated! Use `dtype` instead!
+/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/model/modules/dit.py:255: FutureWarning: Accessing config attribute `compute_dtype` directly via 'AlternateVLDiT' object attribute is deprecated. Please access 'compute_dtype' over 'AlternateVLDiT's config object instead, e.g. 'unet.config.compute_dtype'.
+  embedding_dim=self.inner_dim, compute_dtype=self.compute_dtype
+/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/model/modules/dit.py:286: FutureWarning: Accessing config attribute `output_dim` directly via 'AlternateVLDiT' object attribute is deprecated. Please access 'output_dim' over 'AlternateVLDiT's config object instead, e.g. 'unet.config.output_dim'.
+  self.proj_out_2 = nn.Linear(self.inner_dim, self.output_dim)
+2026-10-25 19:09:58,959 gr00t.model.gr00t_n1d7.gr00t_n1d7 Using AlternateVLDiT for diffusion model
+Loaded extension modelopt_cuda_ext in 0.4 seconds
+Total number of DiT parameters:  1091722240
+Total number of SelfAttentionTransformer parameters:  201433088
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.13it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.23it/s]
+2026-10-25 19:10:09,544 foldquant.groot_n1_7.quantize policy + dataset (8 episodes) in 14s
+2026-10-25 19:10:15,356 foldquant.groot_n1_7.quantize captured shapes: {'vit_pixel_values_shape': [768, 1536], 'vit_grid_thw': [[1, 16, 16], [1, 16, 16], [1, 16, 16]], 'num_patches': 768, 'num_merged_patches': 192, 'llm_seq_len': 217, 'llm_hidden_size': 2048, 'batch_size': 1, 'num_deepstack': 3, 'num_vis_tokens': 192, 'vl_seq_len': 217, 'sa_seq_len': 41, 'action_horizon': 40}
+2026-10-25 19:11:02,227 foldquant.groot_n1_7.modelopt captured 8 llm calls
+2026-10-25 19:11:02,228 foldquant.groot_n1_7.modelopt captured 32 dit calls
+2026-10-25 19:11:02,228 foldquant.groot_n1_7.quantize ModelOpt calibration capture in 47s
+Registered <class 'transformers.models.qwen3_vl.modeling_qwen3_vl.Qwen3VLTextAttention'> to _QuantAttention for KV Cache quantization
+Inserted 384 quantizers
+Smoothed 112 modules
+2026-10-25 19:11:03,089 foldquant.modelopt_int8 modelopt_w8a8_smoothquant: 224 of 384 quantizers enabled (112 input, 112 weight, 112 with a SmoothQuant pre-quant scale), 0 sub-layers excluded
+2026-10-25 19:11:03,104 foldquant.groot_n1_7.quantize llm modelopt_w8a8_smoothquant quantized in 1s
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.0.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.1.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.2.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.3.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.4.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.5.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.6.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.7.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.8.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.9.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.10.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.11.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.12.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.13.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.14.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.15.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.16.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.17.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.18.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.19.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.20.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.21.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.22.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.23.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.24.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.25.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.26.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.27.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.28.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.29.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.30.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/model_calib.py:379: UserWarning: transformer_blocks.31.norm1.linear is not calibrated, skip smoothing
+  warnings.warn(f"{name} is not calibrated, skip smoothing")
+Inserted 844 quantizers
+Smoothed 196 modules
+2026-10-25 19:11:07,740 foldquant.modelopt_int8 modelopt_w8a8_smoothquant: 392 of 844 quantizers enabled (196 input, 196 weight, 196 with a SmoothQuant pre-quant scale), 32 sub-layers excluded
+2026-10-25 19:11:07,765 foldquant.groot_n1_7.quantize dit modelopt_w8a8_smoothquant quantized in 5s
+2026-10-25 19:11:17,054 foldquant.quantized_checkpoint wrote quantized checkpoint artifacts/foldquant-smoothquant/quantized: 0 quantized projections, llm modelopt_w8a8_smoothquant, dit modelopt_w8a8_smoothquant
+2026-10-25 19:11:17,081 foldquant.groot_n1_7.quantize quantized model: artifacts/foldquant-smoothquant/quantized

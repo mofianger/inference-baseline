@@ -1,0 +1,307 @@
+{
+  "schema": 1,
+  "protocol": {
+    "name": "groot-n17-b1-v3-model-only-v1",
+    "model": "GR00T N1.7",
+    "batch": 1,
+    "views": 3,
+    "denoising_steps": 4,
+    "action_horizon": 40,
+    "action_dim": 132,
+    "state_dim": 132,
+    "state_history": 1,
+    "image_size": [
+      256,
+      256
+    ],
+    "embodiment_id": 24,
+    "input_dtype": "bfloat16",
+    "boundary": "device_tensor_to_device_normalized_action",
+    "timer": "synchronized_wall"
+  },
+  "checkpoint": {
+    "config.json": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689",
+    "embodiment_id.json": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35",
+    "model-00001-of-00002.safetensors": "8a1a1d8a33c99103c7c80c136073c5bb8bfe9ca8f7a970c93c033ea89742906d",
+    "model-00002-of-00002.safetensors": "c3f61940deb2007ba1ad7743013b57f0f8462356151db9655175d7aca2d40661",
+    "model.safetensors.index.json": "407804ea5a62f4f8823f48811ae0edbb82fac101e9cf4d7273e6e2f692bb4d59",
+    "processor_config.json": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be",
+    "statistics.json": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+  },
+  "cosmos_assets": {
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "generation_config.json": "1e241830b48b397cb0900101421df5450baddc7adf01e5fc86b5615865f3bae4",
+    "tokenizer_config.json": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+    "config.json": "bec4b3d446efa05807365c9e1cec03ac590836879d02f3a6da879971154bdd3b",
+    "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+    "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+    "chat_template.json": "6f8a6a55027e3da5160105556cda5dd69f6423f1c32645f6730d32de7773d0c4",
+    "tokenizer.json": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7"
+  },
+  "data_kind": "synthetic_three_distinct_views",
+  "prompt": "Pick up the object and place it on the table.",
+  "embodiment_tag": "oxe_droid_relative_eef_relative_joint_3view",
+  "reference": {
+    "implementation": "official eager SDPA",
+    "precision": "BF16",
+    "noise_injection": "instance-local AST replacement of sole sampler randn; clone inside timing",
+    "source": {
+      "commit": "51d4c89f72fda44cbf77285c6a8114b52676b8a1",
+      "dirty": "M pyproject.toml\n M uv.lock"
+    },
+    "torch": "2.9.0+cu128",
+    "transformers": "4.57.3"
+  },
+  "samples": [
+    {
+      "id": "synthetic-0000",
+      "file": "synthetic-0000.pt",
+      "role": "calibration",
+      "sha256": "a0bbcd342a2d18f17ab19e98c10e6ff2463b454914780eca2615aef3b6fdd7b7",
+      "inputs": {
+        "input_ids": {
+          "shape": [
+            1,
+            217
+          ],
+          "dtype": "torch.int64"
+        },
+        "attention_mask": {
+          "shape": [
+            1,
+            217
+          ],
+          "dtype": "torch.int64"
+        },
+        "pixel_values": {
+          "shape": [
+            768,
+            1536
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "image_grid_thw": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "torch.int64"
+        },
+        "state": {
+          "shape": [
+            1,
+            1,
+            132
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "embodiment_id": {
+          "shape": [
+            1
+          ],
+          "dtype": "torch.int64"
+        }
+      }
+    },
+    {
+      "id": "synthetic-0001",
+      "file": "synthetic-0001.pt",
+      "role": "evaluation",
+      "sha256": "b5f48323e4e2c12cbaa674cdfced57b2ea91230b2486071f2d01f127f87cfa5a",
+      "inputs": {
+        "input_ids": {
+          "shape": [
+            1,
+            217
+          ],
+          "dtype": "torch.int64"
+        },
+        "attention_mask": {
+          "shape": [
+            1,
+            217
+          ],
+          "dtype": "torch.int64"
+        },
+        "pixel_values": {
+          "shape": [
+            768,
+            1536
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "image_grid_thw": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "torch.int64"
+        },
+        "state": {
+          "shape": [
+            1,
+            1,
+            132
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "embodiment_id": {
+          "shape": [
+            1
+          ],
+          "dtype": "torch.int64"
+        }
+      }
+    },
+    {
+      "id": "synthetic-0002",
+      "file": "synthetic-0002.pt",
+      "role": "evaluation",
+      "sha256": "6d71ae04071eb48bd76d41060e2794dccce6ec922cfbd44d2507a6aa0be29e0c",
+      "inputs": {
+        "input_ids": {
+          "shape": [
+            1,
+            217
+          ],
+          "dtype": "torch.int64"
+        },
+        "attention_mask": {
+          "shape": [
+            1,
+            217
+          ],
+          "dtype": "torch.int64"
+        },
+        "pixel_values": {
+          "shape": [
+            768,
+            1536
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "image_grid_thw": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "torch.int64"
+        },
+        "state": {
+          "shape": [
+            1,
+            1,
+            132
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "embodiment_id": {
+          "shape": [
+            1
+          ],
+          "dtype": "torch.int64"
+        }
+      }
+    },
+    {
+      "id": "synthetic-0003",
+      "file": "synthetic-0003.pt",
+      "role": "evaluation",
+      "sha256": "2f2d594217782e05aac3bff497413addda6ff31048d77b546366f1fff1f8b63e",
+      "inputs": {
+        "input_ids": {
+          "shape": [
+            1,
+            217
+          ],
+          "dtype": "torch.int64"
+        },
+        "attention_mask": {
+          "shape": [
+            1,
+            217
+          ],
+          "dtype": "torch.int64"
+        },
+        "pixel_values": {
+          "shape": [
+            768,
+            1536
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "image_grid_thw": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "torch.int64"
+        },
+        "state": {
+          "shape": [
+            1,
+            1,
+            132
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "embodiment_id": {
+          "shape": [
+            1
+          ],
+          "dtype": "torch.int64"
+        }
+      }
+    },
+    {
+      "id": "synthetic-0004",
+      "file": "synthetic-0004.pt",
+      "role": "evaluation",
+      "sha256": "69610932e57f4d5799f04a01c58a4d69ad06e0bf55f185631649c17aba83ac60",
+      "inputs": {
+        "input_ids": {
+          "shape": [
+            1,
+            217
+          ],
+          "dtype": "torch.int64"
+        },
+        "attention_mask": {
+          "shape": [
+            1,
+            217
+          ],
+          "dtype": "torch.int64"
+        },
+        "pixel_values": {
+          "shape": [
+            768,
+            1536
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "image_grid_thw": {
+          "shape": [
+            3,
+            3
+          ],
+          "dtype": "torch.int64"
+        },
+        "state": {
+          "shape": [
+            1,
+            1,
+            132
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "embodiment_id": {
+          "shape": [
+            1
+          ],
+          "dtype": "torch.int64"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+2026-10-25 18:10:43,602 INFO phyai.utils.env_setup: env setup applied 6 var(s): CUDA_DEVICE_MAX_CONNECTIONS=8, CUDA_MODULE_LOADING=LAZY, TRTLLM_ENABLE_PDL=1, CUTE_DSL_LOG_LEVEL=30, CUTE_DSL_LOG_TO_CONSOLE=1, OMP_NUM_THREADS=1
+2026-10-25 18:10:43,603 INFO phyai.utils.torch_setup: torch intra-op threads 8 -> 1 (device_type=cuda)
+2026-10-25 18:10:43,603 INFO phyai.engine: init stage=torch_setup elapsed=0.00s used=0.00 GiB free=30.84 GiB
+2026-10-25 18:10:43,845 INFO phyai.engine: init stage=cuda elapsed=0.24s used=0.11 GiB free=30.73 GiB
+2026-10-25 18:10:43,845 INFO phyai.engine: init stage=dist elapsed=0.00s used=0.00 GiB free=30.73 GiB
+2026-10-25 18:10:43,846 INFO phyai.engine: init stage=mesh elapsed=0.00s used=0.00 GiB free=30.73 GiB
+2026-10-25 18:10:43,867 INFO phyai.engine: init stage=kernel elapsed=0.02s used=0.00 GiB free=30.73 GiB
+2026-10-25 18:10:49,240 WARNING phyai.weights.loader: load_pretrained dtype cast at 'backbone.model.model.visual.blocks.0.norm1.bias': torch.bfloat16 -> torch.float32
+2026-10-25 18:10:49,240 WARNING phyai.weights.loader: load_pretrained dtype cast at 'backbone.model.model.visual.blocks.0.norm1.weight': torch.bfloat16 -> torch.float32
+2026-10-25 18:10:49,240 WARNING phyai.weights.loader: load_pretrained dtype cast at 'backbone.model.model.visual.blocks.0.norm2.bias': torch.bfloat16 -> torch.float32
+2026-10-25 18:10:49,240 WARNING phyai.weights.loader: load_pretrained dtype cast at 'backbone.model.model.visual.blocks.0.norm2.weight': torch.bfloat16 -> torch.float32
+2026-10-25 18:10:49,240 WARNING phyai.weights.loader: load_pretrained dtype cast at 'backbone.model.model.visual.blocks.1.norm1.bias': torch.bfloat16 -> torch.float32
+2026-10-25 18:10:49,240 WARNING phyai.weights.loader: load_pretrained dtype cast at 'backbone.model.model.visual.blocks.1.norm1.weight': torch.bfloat16 -> torch.float32
+2026-10-25 18:10:49,240 WARNING phyai.weights.loader: load_pretrained dtype cast at 'backbone.model.model.visual.blocks.1.norm2.bias': torch.bfloat16 -> torch.float32
+2026-10-25 18:10:49,240 WARNING phyai.weights.loader: load_pretrained dtype cast at 'backbone.model.model.visual.blocks.1.norm2.weight': torch.bfloat16 -> torch.float32
+2026-10-25 18:10:49,240 WARNING phyai.weights.loader: load_pretrained dtype cast at 'backbone.model.model.visual.blocks.10.norm1.bias': torch.bfloat16 -> torch.float32
+2026-10-25 18:10:49,240 WARNING phyai.weights.loader: load_pretrained dtype cast at 'backbone.model.model.visual.blocks.10.norm1.weight': torch.bfloat16 -> torch.float32
+2026-10-25 18:10:49,240 INFO phyai.weights.loader: load_pretrained(31521090d4e8269f): loaded=1030 | missing=0 | optional_missing=0 | unexpected=0 | casts=104
+2026-10-25 18:10:49,527 INFO phyai.models.gr00t_n17.scheduler_gr00t_n17: Deduplicated 5 GR00T-N1.7 capture profiles to 1 unique Graph structures.
+cudnn_handle created for device_id = 0
+
+2026-10-25 18:11:04,495 INFO phyai.engine: init stage=plugin_setup elapsed=20.63s used=5.35 GiB free=25.38 GiB
+2026-10-25 18:11:04,495 INFO phyai.engine: Engine ready (plugin=gr00t_n17). total=20.89s free=25.38 GiB
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/inference-baseline/inference_baseline/cli.py", line 56, in <module>
+    main()
+  File "/data/inference-baseline/inference_baseline/cli.py", line 52, in main
+    run(config, args.dataset, args.output)
+  File "/data/inference-baseline/inference_baseline/runner.py", line 21, in run
+    return _run(config, dataset, out, torch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/inference-baseline/inference_baseline/runner.py", line 73, in _run
+    raise ValueError("Repeated input produced unstable output (A/B/A check)")
+ValueError: Repeated input produced unstable output (A/B/A check)

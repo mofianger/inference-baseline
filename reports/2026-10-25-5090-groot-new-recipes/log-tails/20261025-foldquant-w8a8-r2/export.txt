@@ -1,0 +1,100 @@
+2026-10-25 18:31:53,331 - INFO - Skipping constant folding for node 'node_Identity_58' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,331 - INFO - Skipping constant folding for node 'node_Unsqueeze_17' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,332 - INFO - Skipping constant folding for node 'node_bmm' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,713 - INFO - Skipping constant folding for node 'node_Max_27' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,713 - INFO - Skipping constant folding for node 'node_Identity_61' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,713 - INFO - Skipping constant folding for node 'node_Unsqueeze_30' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,714 - INFO - Skipping constant folding for node 'node_Max_34' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,715 - INFO - Skipping constant folding for node 'node_Identity_64' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,715 - INFO - Skipping constant folding for node 'node_Unsqueeze_37' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,900 - INFO - Skipping constant folding for node 'node_Max_41' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,901 - INFO - Skipping constant folding for node 'node_Identity_67' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,902 - INFO - Skipping constant folding for node 'node_Unsqueeze_44' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,903 - INFO - Skipping constant folding for node 'node_Max_48' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,903 - INFO - Skipping constant folding for node 'node_Identity_70' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,903 - INFO - Skipping constant folding for node 'node_Unsqueeze_51' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,915 - INFO - Removed 29 unused nodes
+2026-10-25 18:31:53,915 - INFO - Applied 6 of general pattern rewrite rules.
+2026-10-25 18:31:53,916 - INFO - No unused functions to remove
+2026-10-25 18:31:53,916 - INFO - Skipping constant folding for node 'node_unsqueeze' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,916 - INFO - Skipping constant folding for node 'node_Unsqueeze_10' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,917 - INFO - Skipping constant folding for node 'node_Unsqueeze_17' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,917 - INFO - Skipping constant folding for node 'node_bmm' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,918 - INFO - Skipping constant folding for node 'node_Unsqueeze_30' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,918 - INFO - Skipping constant folding for node 'node_Unsqueeze_37' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,918 - INFO - Skipping constant folding for node 'node_Unsqueeze_44' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,919 - INFO - Skipping constant folding for node 'node_Unsqueeze_51' because it is graph input to preserve graph signature
+2026-10-25 18:31:53,925 - INFO - Removed 6 unused nodes
+2026-10-25 18:31:53,925 - INFO - No unused functions to remove
+2026-10-25 18:31:54,184 - INFO -   Action Encoder exported successfully!
+2026-10-25 18:31:54,184 - INFO -   Verifying artifacts/foldquant-w8a8/onnx/action_encoder.onnx ...
+2026-10-25 18:31:54,185 - INFO -   ONNX model verified successfully.
+2026-10-25 18:31:54,185 - INFO - 
+================================================================================
+2026-10-25 18:31:54,185 - INFO - Exporting Action Decoder to ONNX
+2026-10-25 18:31:54,185 - INFO - ================================================================================
+2026-10-25 18:31:54,185 - INFO -   model_output: torch.Size([1, 41, 1024]) (torch.bfloat16)
+2026-10-25 18:31:54,185 - INFO -   embodiment_id: torch.Size([1]) (torch.int64)
+2026-10-25 18:31:54,185 - INFO -   Exporting to artifacts/foldquant-w8a8/onnx/action_decoder.onnx...
+W1025 18:31:54.489000 2995252 .venv-foldquant/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'input' from (input, rois, spatial_scale: 'float', pooled_height: 'int', pooled_width: 'int', sampling_ratio: 'int' = -1, aligned: 'bool' = False). Treating as an Input.
+W1025 18:31:54.490000 2995252 .venv-foldquant/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'rois' from (input, rois, spatial_scale: 'float', pooled_height: 'int', pooled_width: 'int', sampling_ratio: 'int' = -1, aligned: 'bool' = False). Treating as an Input.
+W1025 18:31:54.490000 2995252 .venv-foldquant/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'input' from (input, boxes, output_size: 'Sequence[int]', spatial_scale: 'float' = 1.0). Treating as an Input.
+W1025 18:31:54.490000 2995252 .venv-foldquant/lib/python3.12/site-packages/torch/onnx/_internal/exporter/_schemas.py:455] Missing annotation for parameter 'boxes' from (input, boxes, output_size: 'Sequence[int]', spatial_scale: 'float' = 1.0). Treating as an Input.
+2026-10-25 18:31:54,706 - INFO - Removed 2 unused functions
+2026-10-25 18:31:54,707 - INFO - No unused functions to remove
+2026-10-25 18:31:54,791 - INFO - Skipping constant folding for node 'node_Max_1' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,792 - INFO - Skipping constant folding for node 'node_Identity_31' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,792 - INFO - Skipping constant folding for node 'node_Unsqueeze_5' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,793 - INFO - Skipping constant folding for node 'node_Max_9' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,793 - INFO - Skipping constant folding for node 'node_Identity_34' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,793 - INFO - Skipping constant folding for node 'node_Unsqueeze_12' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,793 - INFO - Skipping constant folding for node 'node_bmm' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,800 - INFO - Skipping constant folding for node 'node_Max_17' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,801 - INFO - Skipping constant folding for node 'node_Identity_37' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,801 - INFO - Skipping constant folding for node 'node_Unsqueeze_20' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,802 - INFO - Skipping constant folding for node 'node_Max_24' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,802 - INFO - Skipping constant folding for node 'node_Identity_40' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,802 - INFO - Skipping constant folding for node 'node_Unsqueeze_27' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,808 - INFO - Removed 16 unused nodes
+2026-10-25 18:31:54,808 - INFO - Applied 4 of general pattern rewrite rules.
+2026-10-25 18:31:54,809 - INFO - No unused functions to remove
+2026-10-25 18:31:54,809 - INFO - Skipping constant folding for node 'node_Unsqueeze_5' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,809 - INFO - Skipping constant folding for node 'node_Unsqueeze_12' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,810 - INFO - Skipping constant folding for node 'node_bmm' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,810 - INFO - Skipping constant folding for node 'node_Unsqueeze_20' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,810 - INFO - Skipping constant folding for node 'node_Unsqueeze_27' because it is graph input to preserve graph signature
+2026-10-25 18:31:54,814 - INFO - Removed 4 unused nodes
+2026-10-25 18:31:54,814 - INFO - No unused functions to remove
+2026-10-25 18:31:54,858 - INFO -   Action Decoder exported successfully!
+2026-10-25 18:31:54,858 - INFO -   Verifying artifacts/foldquant-w8a8/onnx/action_decoder.onnx ...
+2026-10-25 18:31:54,858 - INFO -   ONNX model verified successfully.
+[torch.onnx] Obtain model graph for `Qwen3VisionForExport([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `Qwen3VisionForExport([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Obtain model graph for `SelfAttentionTransformer([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `SelfAttentionTransformer([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Obtain model graph for `CategorySpecificMLP([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CategorySpecificMLP([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Obtain model graph for `MultiEmbodimentActionEncoder([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `MultiEmbodimentActionEncoder([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Obtain model graph for `CategorySpecificMLP([...]` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `CategorySpecificMLP([...]` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decomposition...
+[torch.onnx] Run decomposition... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅

@@ -1,0 +1,7 @@
+Using Python 3.12.14 environment at: .venv-foldquant
+Resolved 1 package in 3ms
+   Building foldquant @ file:///data/inference-baseline/third_party/FoldQuantVLA
+      Built foldquant @ file:///data/inference-baseline/third_party/FoldQuantVLA
+Prepared 1 package in 1.08s
+Installed 1 package in 0.63ms
+ + foldquant==0.1.0 (from file:///data/inference-baseline/third_party/FoldQuantVLA)

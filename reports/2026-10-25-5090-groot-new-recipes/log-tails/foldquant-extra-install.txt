@@ -1,0 +1,4 @@
+Using Python 3.12.14 environment at: .venv-foldquant
+error: No solution found when resolving dependencies
+  cause: Because nvidia-modelopt[onnx]==0.39.0 depends on onnx>=1.19.0,<1.20.dev0 and onnx==1.20.1, we can conclude that nvidia-modelopt[onnx]==0.39.0 cannot be used.
+         And because you require nvidia-modelopt[onnx]==0.39.0, we can conclude that your requirements are unsatisfiable.

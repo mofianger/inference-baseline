@@ -1,0 +1,100 @@
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   25, 0.0124928, 1.90625, 0.81810, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x64_stage3_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x2cd963f8b5f6e, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   36, 0.0124928, 1.90625, 0.99382, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x32_stage5_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x3ca3ce498109c, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   30, 0.0126976, 1.93750, 0.95291, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x64_stage3_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x3badbb221c35b, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   26, 0.0129024, 1.96875, 0.82409, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize64x64x64_stage4_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x3eb48a75d55dd, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   37, 0.0143360, 2.18750, 0.92460, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x32_stage5_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x49869b6e91ace, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   33, 0.0144704, 2.20801, 0.85045, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize64x32x64_stage5_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x46c0a1061ee72, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   29, 0.0144800, 2.20947, 0.81921, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x128x32_stage4_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x3cb00261ccb05, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   35, 0.0144832, 2.20996, 0.85610, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize64x128x32_stage5_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x4218756f0a974, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   41, 0.0144896, 2.21094, 0.99518, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x64_stage3_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x2e958974fcd10, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   31, 0.0145408, 2.21875, 0.83845, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize64x64x64_stage4_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x522a452051b5b, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   32, 0.0145408, 2.21875, 0.84281, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x64_stage3_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x3eb3e451ac2df, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   34, 0.0145408, 2.21875, 0.85211, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize256x64x32_stage3_warpsize4x1x1_tensor16x8x16_aligna4_alignc4, 0x44b371912fd9e, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   38, 0.0145408, 2.21875, 0.91647, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x128x64_stage3_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x3b29cf29049d8, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   39, 0.0145408, 2.21875, 0.97412, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize64x128x32_stage5_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x317a55faddbd3, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   40, 0.0145408, 2.21875, 0.98834, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x128x32_stage4_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x47093fe141f05, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   42, 0.0147456, 2.25000, 0.98371, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize256x64x32_stage3_warpsize4x1x1_tensor16x8x16_aligna4_alignc4, 0x3261879131543, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   47, 0.0163840, 2.50000, 1.00865, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize64x128x32_stage5_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x556db88cd30fa, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   45, 0.0165248, 2.52148, 0.97993, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x128x64_stage3_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x553c30c408ecb, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   44, 0.0165888, 2.53125, 0.97289, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize64x128x32_stage5_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x4f4e26e5c2327, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   46, 0.0165888, 2.53125, 0.98007, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x32_stage5_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x5c49687d8c74a, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   43, 0.0172032, 2.62500, 0.91774, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x64_stage3_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x66b806bb2fcb2, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   49, 0.0185696, 2.83350, 0.93499, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x32_stage5_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x5c0b6d0258d01, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   48, 0.0186368, 2.84375, 0.92903, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x64_stage3_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x5911c0df9fed1, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   50, 0.0186368, 2.84375, 0.96005, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize256x128x32_stage3_warpsize4x2x1_tensor16x8x16_aligna4_alignc4, 0x45f6e5cd7cd28, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   51, 0.0186368, 2.84375, 0.99653, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x256x32_stage3_warpsize2x4x1_tensor16x8x16_aligna4_alignc4, 0x398fe1753c06b, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   58, 0.0204800, 3.12500, 1.13525, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x128x32_stage4_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x5bf49c91e6710, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   52, 0.0206848, 3.15625, 0.94167, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x128x32_stage4_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x6177405a86000, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   53, 0.0216384, 3.30176, 0.92601, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize256x64x32_stage3_warpsize4x1x1_tensor16x8x16_aligna4_alignc4, 0x4864e38d4efc3, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   54, 0.0227328, 3.46875, 0.94247, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize64x128x32_stage5_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x383e09c48994c, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   56, 0.0227328, 3.46875, 1.00733, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize256x128x32_stage3_warpsize4x2x1_tensor16x8x16_aligna4_alignc4, 0x38855aef6219e, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   59, 0.0227328, 3.46875, 1.03718, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x256x32_stage3_warpsize2x4x1_tensor16x8x16_aligna4_alignc4, 0x395df328fbe0a, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   55, 0.0241664, 3.68750, 0.91313, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x128x64_stage3_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, 0x40cbf8a08bf2d, 
+[10/25/2026-18:56:06] [TRT] [V]  (foreignNode)   57, 0.0266240, 4.06250, 0.86768, sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize128x64x64_stage3_warpsize2x2x1_tensor16x8x16_aligna2_alignc2, 0x4aee477b8e66d, 
+[10/25/2026-18:56:06] [TRT] [V] Subgraph compilation completed in 6.601 seconds.
+[10/25/2026-18:56:06] [TRT] [V] Tactic: 0x0000000000000000 Time: 0
+[10/25/2026-18:56:06] [TRT] [V] {ForeignNode[ONNXTRT_castHelper_2.../layer2/Add]} (Myelin[0x80000023]) profiling completed in 6.60685 seconds. Fastest Tactic: 0x0000000000000000 Time: 0
+[10/25/2026-18:56:06] [TRT] [V] >>>>>>>>>>>>>>> Chose Runner Type: Myelin Tactic: 0x0000000000000000
+[10/25/2026-18:56:06] [TRT] [V] =============== Computing reformatting costs for available format set
+[10/25/2026-18:56:06] [TRT] [V] =============== Computing reformatting costs for available format set
+[10/25/2026-18:56:06] [TRT] [V] =============== Computing reformatting costs for available format set
+[10/25/2026-18:56:06] [TRT] [V] Formats and tactics selection completed in 6.60746 seconds.
+[10/25/2026-18:56:06] [TRT] [V] After reformat layers: 1 layers
+[10/25/2026-18:56:06] [TRT] [V] Total number of blocks in pre-optimized block assignment: 1
+[10/25/2026-18:56:06] [TRT] [I] Detected 2 inputs and 1 output network tensors.
+[10/25/2026-18:56:06] [TRT] [V] Layer: {ForeignNode[ONNXTRT_castHelper_2.../layer2/Add]} Host Persistent: 80 bytes Device Persistent: 0 bytes Scratch Memory: 2456064 bytes
+[10/25/2026-18:56:06] [TRT] [V] Skipped printing memory information for 0 layers with 0 memory size i.e. Host Persistent + Device Persistent + Scratch Memory == 0.
+[10/25/2026-18:56:06] [TRT] [I] Total Host Persistent Memory: 80 bytes
+[10/25/2026-18:56:06] [TRT] [I] Total Device Persistent Memory: 0 bytes
+[10/25/2026-18:56:06] [TRT] [I] Max Scratch Memory: 2456064 bytes
+[10/25/2026-18:56:06] [TRT] [I] [BlockAssignment] Started assigning block shifts. This will take 1 steps to complete.
+[10/25/2026-18:56:06] [TRT] [I] [BlockAssignment] Algorithm ShiftNTopDown took 0.005473ms to assign 1 blocks to 1 nodes requiring 2456064 bytes.
+[10/25/2026-18:56:06] [TRT] [V] Total number of blocks in optimized block assignment: 1
+[10/25/2026-18:56:06] [TRT] [I] Total Activation Memory: 2456064 bytes
+[10/25/2026-18:56:06] [TRT] [I] Total Weights Memory: 75833856 bytes
+[10/25/2026-18:56:06] [TRT] [V] Total number of generated kernels selected for the engine: 0
+[10/25/2026-18:56:06] [TRT] [I] Compiler backend is used during engine execution.
+[10/25/2026-18:56:06] [TRT] [V] Disabling unused tactic source: EDGE_MASK_CONVOLUTIONS
+[10/25/2026-18:56:06] [TRT] [V] Disabling unused tactic source: JIT_CONVOLUTIONS
+[10/25/2026-18:56:06] [TRT] [I] Engine generation completed in 6.62803 seconds.
+[10/25/2026-18:56:06] [TRT] [I] The following layers are used for L2 cache management and do not correspond to any layers in the INetworkDefinition: __mye1261_myl0_0, __mye1263_myl0_5
+[10/25/2026-18:56:06] [TRT] [V] Layers:
+Name: __mye1261_myl0_0, LayerType: custom_layer, Inputs: [ { Name: l2_cache_policy_inputs_0_myl0, Dimensions: [4], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_1_myl0, Dimensions: [2048], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_2_myl0, Dimensions: [8776], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_3_myl0, Dimensions: [270336], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_4_myl0, Dimensions: [2088376], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_5_myl0, Dimensions: [83968], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_6_myl0, Dimensions: [124], Format/Datatype: UInt8 }, { Name: l2_cache_management_device_0_myl0, Dimensions: [256], Format/Datatype: UInt64 }, { Name: l2_cache_management_host_0_myl0, Dimensions: [1], Format/Datatype: UInt64 }], Outputs: [], TacticName: , StreamId: 0, Metadata: 
+Name: __myl_CastGathGathReshGath_myl0_1, LayerType: kgen, Inputs: [ { Name: embodiment_id, Dimensions: [1], Format/Datatype: Int64 }], Outputs: [ { Name: __myln_k_arg__bb1_6_myl0, Dimensions: [1,1024,1024], Format/Datatype: BFloat16 }, { Name: __myln_k_arg__bb1_5_myl0, Dimensions: [1,1,1024], Format/Datatype: BFloat16 }, { Name: __myln_k_arg__bb1_4_myl0, Dimensions: [1,1024,132], Format/Datatype: BFloat16 }, { Name: __myln_k_arg__bb1_3_myl0, Dimensions: [1], Format/Datatype: Int32 }], TacticName: __myl_CastGathGathReshGath_0x641f1a8ec81412e5b2b5ae1be649bf4f, StreamId: 0, Metadata: [ONNX Layer: /layer2/Gather][ONNX Layer: /layer1/Unsqueeze][ONNX Layer: /layer1/Gather_1][ONNX Layer: /layer1/Gather]
+Name: __myl_FcAddRelu_myl0_2, LayerType: fusion, Inputs: [ { Name: __myln_k_arg__bb1_5_myl0, Dimensions: [1,1,1024], Format/Datatype: BFloat16 }, { Name: model_output, Dimensions: [1,41,1024], Format/Datatype: BFloat16 }, { Name: __myln_k_arg__bb1_6_myl0, Dimensions: [1,1024,1024], Format/Datatype: BFloat16 }], Outputs: [ { Name: /layer2/MatMul_output_0.1_7_myl0, Dimensions: [1,41,1024], Format/Datatype: BFloat16 }], TacticName: sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize32x32x64_stage6_warpsize2x2x1_tensor16x8x16_by_fusion_tactic, StreamId: 0, Metadata: [ONNX Layer: /layer1/MatMul][ONNX Layer: /layer1/Add][ONNX Layer: /Relu]
+Name: /layer2/MatMul_myl0_3, LayerType: gemm, Inputs: [ { Name: /layer2/MatMul_output_0.1_7_myl0, Dimensions: [1,41,1024], Format/Datatype: BFloat16 }, { Name: __myln_k_arg__bb1_4_myl0, Dimensions: [1,1024,132], Format/Datatype: BFloat16 }], Outputs: [ { Name: __myln_k_arg__bb1_8_myl0, Dimensions: [1,41,132], Format/Datatype: BFloat16 }], TacticName: sm80_xmma_gemm_bf16bf16_bf16f32_f32_nn_n_tilesize32x32x64_stage6_warpsize2x2x1_tensor16x8x16_aligna4_alignc4, StreamId: 0, Metadata: [ONNX Layer: /layer2/MatMul]
+Name: __myl_GathReshAdd_myl0_4, LayerType: kgen, Inputs: [ { Name: __myln_k_arg__bb1_8_myl0, Dimensions: [1,41,132], Format/Datatype: BFloat16 }, { Name: __myln_k_arg__bb1_3_myl0, Dimensions: [1], Format/Datatype: Int32 }], Outputs: [ { Name: output, Dimensions: [1,41,132], Format/Datatype: BFloat16 }], TacticName: __myl_GathReshAdd_0x78a15e8b0a65b537207787fe3445e40a, StreamId: 0, Metadata: [ONNX Layer: /layer2/Gather_1][ONNX Layer: /layer2/Unsqueeze][ONNX Layer: /layer2/Add]
+Name: __mye1263_myl0_5, LayerType: custom_layer, Inputs: [ { Name: l2_cache_policy_inputs_0_myl0, Dimensions: [4], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_1_myl0, Dimensions: [2048], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_2_myl0, Dimensions: [8776], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_3_myl0, Dimensions: [270336], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_4_myl0, Dimensions: [2088376], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_5_myl0, Dimensions: [83968], Format/Datatype: UInt8 }, { Name: l2_cache_policy_inputs_6_myl0, Dimensions: [124], Format/Datatype: UInt8 }, { Name: l2_cache_management_device_0_myl0, Dimensions: [256], Format/Datatype: UInt64 }, { Name: l2_cache_management_host_0_myl0, Dimensions: [1], Format/Datatype: UInt64 }], Outputs: [], TacticName: , StreamId: 0, Metadata: 
+
+Bindings:
+model_output
+embodiment_id
+output
+[10/25/2026-18:56:06] [TRT] [I] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 0 MiB, GPU 2082 MiB
+[10/25/2026-18:56:06] [TRT] [V] Adding 1 engine(s) to plan file.
+[10/25/2026-18:56:06] [TRT] [V] Adding 1 engine weights(s) to plan file.
+2026-10-25 18:56:06,336 - INFO - Engine built in 7.1 seconds (0.1 minutes)
+2026-10-25 18:56:06,336 - INFO - 
+Saving engine to artifacts/groot-trt-baseline/engines/action_decoder.engine...
+2026-10-25 18:56:06,385 - INFO - Engine saved! Size: 72.49 MB
+2026-10-25 18:56:06,385 - INFO - 
+================================================================================
+2026-10-25 18:56:06,385 - INFO - ENGINE BUILD COMPLETE!
+2026-10-25 18:56:06,385 - INFO - ================================================================================
+2026-10-25 18:56:06,385 - INFO - Engine file: artifacts/groot-trt-baseline/engines/action_decoder.engine
+2026-10-25 18:56:06,385 - INFO - Size: 72.49 MB
+2026-10-25 18:56:06,385 - INFO - Build time: 7.1s
+2026-10-25 18:56:06,385 - INFO - Precision: BF16
+2026-10-25 18:56:06,385 - INFO - ================================================================================
+2026-10-25 18:56:06,832 - INFO - 
+================================================================================
+2026-10-25 18:56:06,832 - INFO - FULL PIPELINE BUILD SUMMARY
+2026-10-25 18:56:06,832 - INFO - ================================================================================
+2026-10-25 18:56:06,833 - INFO -   ViT                  -> SUCCESS
+2026-10-25 18:56:06,833 - INFO -   LLM                  -> SUCCESS
+2026-10-25 18:56:06,833 - INFO -   VL Self-Attention    -> SUCCESS
+2026-10-25 18:56:06,833 - INFO -   State Encoder        -> SUCCESS
+2026-10-25 18:56:06,833 - INFO -   Action Encoder       -> SUCCESS
+2026-10-25 18:56:06,833 - INFO -   DiT                  -> SUCCESS
+2026-10-25 18:56:06,833 - INFO -   Action Decoder       -> SUCCESS
+2026-10-25 18:56:06,833 - INFO - ================================================================================

@@ -1,0 +1,4 @@
+{
+  "status": "interrupted_before_measurement",
+  "reason": "ModelOpt export must restore smoothed checkpoint weights; stopped old exporter and pipeline; retry uses corrected binding."
+}

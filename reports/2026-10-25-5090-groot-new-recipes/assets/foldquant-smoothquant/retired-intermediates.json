@@ -1,0 +1,202 @@
+[
+  {
+    "path": "quantized/README.md",
+    "bytes": 2306,
+    "sha256": "66136c9d1c29454cbb4d4cb9350aecd6932eafb89cb8626e2b65e2b56a6e7635"
+  },
+  {
+    "path": "quantized/config.json",
+    "bytes": 2071,
+    "sha256": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689"
+  },
+  {
+    "path": "quantized/embodiment_id.json",
+    "bytes": 2145,
+    "sha256": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35"
+  },
+  {
+    "path": "quantized/foldquant_modelopt_dit.pt",
+    "bytes": 2204877,
+    "sha256": "a276ab1506559b88712e2a2383fb54a9b331e90f01a73ceb92ab652b1ad1f468"
+  },
+  {
+    "path": "quantized/foldquant_modelopt_llm.pt",
+    "bytes": 1343305,
+    "sha256": "757f0cd4dcb126ca59d770aca36964cc4dba06da4b4c44f2a57016445cb2dae1"
+  },
+  {
+    "path": "quantized/foldquant_quant.json",
+    "bytes": 103742,
+    "sha256": "5cc3898cff0e34e133c9e922d17bdaf734eba0cf488063bfc77dc34304f48aaf"
+  },
+  {
+    "path": "quantized/hf_quant_config.json",
+    "bytes": 621,
+    "sha256": "46f1050e6d1d0907f50b9fd25e54bd60c87de39283d50d12e3342bc0cd1e1e9a"
+  },
+  {
+    "path": "quantized/model-00001-of-00002.safetensors",
+    "bytes": 5079428024,
+    "sha256": "077abf214cee11ef2c5f892d40370ec736aaac5b92e45e5c5cb919e76e80cb87"
+  },
+  {
+    "path": "quantized/model-00002-of-00002.safetensors",
+    "bytes": 1838554491,
+    "sha256": "c4217f7a584c89c45cc5620e5a57a4b5f3b639a5692207141a2d56288a781ccb"
+  },
+  {
+    "path": "quantized/model.safetensors.index.json",
+    "bytes": 217915,
+    "sha256": "f3c45a989811f29773a5369083786c049cd810307cce0ab1be9b0b1a18d087f1"
+  },
+  {
+    "path": "quantized/processor_config.json",
+    "bytes": 21137,
+    "sha256": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be"
+  },
+  {
+    "path": "quantized/statistics.json",
+    "bytes": 4293096,
+    "sha256": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+  },
+  {
+    "path": "quantized/README.md",
+    "bytes": 2306,
+    "sha256": "66136c9d1c29454cbb4d4cb9350aecd6932eafb89cb8626e2b65e2b56a6e7635"
+  },
+  {
+    "path": "quantized/config.json",
+    "bytes": 2071,
+    "sha256": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689"
+  },
+  {
+    "path": "quantized/embodiment_id.json",
+    "bytes": 2145,
+    "sha256": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35"
+  },
+  {
+    "path": "quantized/foldquant_modelopt_dit.pt",
+    "bytes": 2204877,
+    "sha256": "f6347c5edc9bba5d1cc8e6882d7f6e8762062db2976a3036a4c51fc46b2d7dde"
+  },
+  {
+    "path": "quantized/foldquant_modelopt_llm.pt",
+    "bytes": 1343305,
+    "sha256": "0bf2259553863e0fd29450929148f96fc8b4a0ac22ff51d5c115319ebf6933da"
+  },
+  {
+    "path": "quantized/foldquant_quant.json",
+    "bytes": 103742,
+    "sha256": "5cc3898cff0e34e133c9e922d17bdaf734eba0cf488063bfc77dc34304f48aaf"
+  },
+  {
+    "path": "quantized/hf_quant_config.json",
+    "bytes": 621,
+    "sha256": "46f1050e6d1d0907f50b9fd25e54bd60c87de39283d50d12e3342bc0cd1e1e9a"
+  },
+  {
+    "path": "quantized/model-00001-of-00002.safetensors",
+    "bytes": 5079428024,
+    "sha256": "077abf214cee11ef2c5f892d40370ec736aaac5b92e45e5c5cb919e76e80cb87"
+  },
+  {
+    "path": "quantized/model-00002-of-00002.safetensors",
+    "bytes": 1838554491,
+    "sha256": "c4217f7a584c89c45cc5620e5a57a4b5f3b639a5692207141a2d56288a781ccb"
+  },
+  {
+    "path": "quantized/model.safetensors.index.json",
+    "bytes": 217915,
+    "sha256": "f3c45a989811f29773a5369083786c049cd810307cce0ab1be9b0b1a18d087f1"
+  },
+  {
+    "path": "quantized/processor_config.json",
+    "bytes": 21137,
+    "sha256": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be"
+  },
+  {
+    "path": "quantized/statistics.json",
+    "bytes": 4293096,
+    "sha256": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+  },
+  {
+    "path": "onnx/action_decoder.onnx",
+    "bytes": 14524,
+    "sha256": "8bd87efceb90c9c29a3aff81f3dba685e961a62ef991972c16dbb1ce9f76f0d7"
+  },
+  {
+    "path": "onnx/action_decoder.onnx.data",
+    "bytes": 75890688,
+    "sha256": "14d3fa925b8a62a2be5ede30fcfacd9f86f0a073586347581d5acb935293e207"
+  },
+  {
+    "path": "onnx/action_encoder.onnx",
+    "bytes": 32032,
+    "sha256": "7d96af0f831f01e4a64f9b7b3265844bb504dac92c9ade497d58d187a9f1e813"
+  },
+  {
+    "path": "onnx/action_encoder.onnx.data",
+    "bytes": 466288640,
+    "sha256": "9b3e15c5f3e066b7db763006b11ec611ad5b9e463edaa08f1275eeeb2df29728"
+  },
+  {
+    "path": "onnx/dit_bf16.onnx",
+    "bytes": 4431208,
+    "sha256": "ce09a0640af22e927b07674431fde07ba31fc77b6b424b4d197f6aea9e18097b"
+  },
+  {
+    "path": "onnx/dit_bf16.onnx.data",
+    "bytes": 4368189952,
+    "sha256": "b7f42930a623d049b9ce609da4f41ac2b0fc2b6556cfde8d0d6fc34a24450503"
+  },
+  {
+    "path": "onnx/export_metadata.json",
+    "bytes": 588,
+    "sha256": "b54be28bcfad42b854c6937d26e40413f33b738cb1666c51104702cb38098b52"
+  },
+  {
+    "path": "onnx/foldquant_export.json",
+    "bytes": 4393,
+    "sha256": "73739ea34915964a5fd5bdef8375c024e1393a8039746da0f31c4884a5c2f066"
+  },
+  {
+    "path": "onnx/llm_bf16.onnx",
+    "bytes": 2695756,
+    "sha256": "20c058b3c76b55ae0a9b69ad5f2ef0b5a531b42c58760e0515d0d45272306de3"
+  },
+  {
+    "path": "onnx/llm_bf16.onnx.data",
+    "bytes": 3222020096,
+    "sha256": "b067d5741ab244dc43da36fdace66a629e27635381b9d48c746efdf1192f79a6"
+  },
+  {
+    "path": "onnx/state_encoder.onnx",
+    "bytes": 14509,
+    "sha256": "66ba75fa956db3bdfb160d8be2930200c43d5efe9c70018adfa553ca52f017b6"
+  },
+  {
+    "path": "onnx/state_encoder.onnx.data",
+    "bytes": 109510656,
+    "sha256": "2cc3f462fd5e234de2ca8025d36603d0bd21e58f41adf5f8afed93876b16a9ae"
+  },
+  {
+    "path": "onnx/vit_fp32.onnx",
+    "bytes": 2469570,
+    "sha256": "3a715f5d7a44fdb7bb6b5e02af88b729de2550f85e39c02c47b2698e211bd970"
+  },
+  {
+    "path": "onnx/vit_fp32.onnx.data",
+    "bytes": 1621950464,
+    "sha256": "fc3b8a601510e9ecb8020230f7f9ed083927330c829998edc57ad9af83341191"
+  },
+  {
+    "path": "onnx/vl_self_attention.onnx",
+    "bytes": 310665,
+    "sha256": "ffe848610e2eab7d0a504f1809f295e45e7cf952740d60e0b262bd1644b8db82"
+  },
+  {
+    "path": "onnx/vl_self_attention.onnx.data",
+    "bytes": 402915328,
+    "sha256": "61e92552537a8996acde9d2c693f243218eddf81a3cad9d2e7421cbe70213055"
+  }
+]

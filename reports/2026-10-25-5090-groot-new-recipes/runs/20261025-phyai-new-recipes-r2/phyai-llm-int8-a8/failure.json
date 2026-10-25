@@ -1,0 +1,27 @@
+{
+  "status": "failed",
+  "error_type": "ValueError",
+  "error": "Repeated input produced unstable output (A/B/A check)",
+  "config": {
+    "checkpoint": "/data/huggingface/hub/models--nvidia--GR00T-N1.7-3B/snapshots/2fc962b973bccdd5d8ce4f67cc63b264d6886495",
+    "cosmos": "/data/huggingface/hub/models--nvidia--Cosmos-Reason2-2B/snapshots/9ce19a195e423419c349abfc86fd07178b230561",
+    "device": "cuda:0",
+    "warmup": 10,
+    "iterations": 100,
+    "cpu_threads": 8,
+    "thresholds": null,
+    "environment": {
+      "HF_HOME": "/data/huggingface",
+      "HF_HUB_OFFLINE": "1",
+      "TOKENIZERS_PARALLELISM": "false",
+      "PHYAI_KERNEL_CONFIG": "recipes/phyai/groot-n17/int8-a8.yaml"
+    },
+    "engine": "phyai",
+    "engine_source": "/data/inference-baseline/third_party/phyai",
+    "python_paths": [],
+    "options": {
+      "cuda_graph": true
+    },
+    "label": "phyai-llm-int8-a8"
+  }
+}

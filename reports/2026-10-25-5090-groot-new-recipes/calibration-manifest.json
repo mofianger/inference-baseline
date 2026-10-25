@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "protocol": {
+    "name": "groot-n17-b1-v3-model-only-v1",
+    "model": "GR00T N1.7",
+    "batch": 1,
+    "views": 3,
+    "denoising_steps": 4,
+    "action_horizon": 40,
+    "action_dim": 132,
+    "state_dim": 132,
+    "state_history": 1,
+    "image_size": [
+      256,
+      256
+    ],
+    "embodiment_id": 24,
+    "input_dtype": "bfloat16",
+    "boundary": "device_tensor_to_device_normalized_action",
+    "timer": "synchronized_wall"
+  },
+  "checkpoint": {
+    "config.json": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689",
+    "embodiment_id.json": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35",
+    "model-00001-of-00002.safetensors": "8a1a1d8a33c99103c7c80c136073c5bb8bfe9ca8f7a970c93c033ea89742906d",
+    "model-00002-of-00002.safetensors": "c3f61940deb2007ba1ad7743013b57f0f8462356151db9655175d7aca2d40661",
+    "model.safetensors.index.json": "407804ea5a62f4f8823f48811ae0edbb82fac101e9cf4d7273e6e2f692bb4d59",
+    "processor_config.json": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be",
+    "statistics.json": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+  },
+  "cosmos_assets": {
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "generation_config.json": "1e241830b48b397cb0900101421df5450baddc7adf01e5fc86b5615865f3bae4",
+    "tokenizer_config.json": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+    "config.json": "bec4b3d446efa05807365c9e1cec03ac590836879d02f3a6da879971154bdd3b",
+    "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+    "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+    "chat_template.json": "6f8a6a55027e3da5160105556cda5dd69f6423f1c32645f6730d32de7773d0c4",
+    "tokenizer.json": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7"
+  },
+  "prompt": "Pick up the object and place it on the table.",
+  "embodiment_tag": "oxe_droid_relative_eef_relative_joint_3view",
+  "data_kind": "synthetic_calibration_only",
+  "evaluation_manifest_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+  "new_seeds": [
+    20261101,
+    20261102,
+    20261103,
+    20261104,
+    20261105,
+    20261106,
+    20261107
+  ],
+  "samples": [
+    {
+      "id": "synthetic-0000",
+      "role": "calibration",
+      "file": "synthetic-0000.pt",
+      "sha256": "a0bbcd342a2d18f17ab19e98c10e6ff2463b454914780eca2615aef3b6fdd7b7"
+    },
+    {
+      "id": "calibration-seed-20261101",
+      "role": "calibration",
+      "file": "calibration-seed-20261101.pt",
+      "sha256": "78f564cbe27eb03c8bc8d39c1c95d2525bcbe7a9eb263c52d75831e790ffd940"
+    },
+    {
+      "id": "calibration-seed-20261102",
+      "role": "calibration",
+      "file": "calibration-seed-20261102.pt",
+      "sha256": "0fc781de1fe7e15abab8f70d1b47da8263567f4553b9684bd8473e562b94bab4"
+    },
+    {
+      "id": "calibration-seed-20261103",
+      "role": "calibration",
+      "file": "calibration-seed-20261103.pt",
+      "sha256": "e5cbafb3ba1dc7e86e4f2e0ae0f94e1f049fd42c84dc0fb5b184c8c174bb1a3e"
+    },
+    {
+      "id": "calibration-seed-20261104",
+      "role": "calibration",
+      "file": "calibration-seed-20261104.pt",
+      "sha256": "1374efba7c08dbc8951f746eab9d760171fa4c07639e882f3cc511c1eb316a25"
+    },
+    {
+      "id": "calibration-seed-20261105",
+      "role": "calibration",
+      "file": "calibration-seed-20261105.pt",
+      "sha256": "f553592a3e62c03b27322999c9c14e211ba242c655d9f411c814b4dc407920af"
+    },
+    {
+      "id": "calibration-seed-20261106",
+      "role": "calibration",
+      "file": "calibration-seed-20261106.pt",
+      "sha256": "0db1687181be203ce1680089941f52db0648786d92c680cf187f9cdc5d6dbfc2"
+    },
+    {
+      "id": "calibration-seed-20261107",
+      "role": "calibration",
+      "file": "calibration-seed-20261107.pt",
+      "sha256": "5d2b30bbcbe4990ffdbac9048f2a5c7a3747bd3f81893b963e01ce72dabf28e7"
+    }
+  ]
+}

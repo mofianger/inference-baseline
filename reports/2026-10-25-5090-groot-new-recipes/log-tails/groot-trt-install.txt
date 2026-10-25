@@ -1,0 +1,23 @@
+Using Python 3.12.14 environment at: .venv-groot-trt
+   Building tensorrt-cu12-libs==10.15.1.29
+      Built tensorrt-cu12-libs==10.15.1.29
+Resolved 137 packages in 1m 22s
+Downloading torch (859.1MiB)
+Downloading triton (162.6MiB)
+Downloading torchcodec (2.0MiB)
+Downloading nvidia-nvshmem-cu12 (118.9MiB)
+ Downloaded torchcodec
+Downloading pillow (6.8MiB)
+Downloading networkx (1.6MiB)
+ Downloaded nvidia-nvshmem-cu12
+Downloading numpy (17.1MiB)
+ Downloaded triton
+Downloading pillow (6.8MiB)
+Downloading numpy (17.1MiB)
+Downloading networkx (1.6MiB)
+Downloading numpy (17.1MiB)
+Downloading pillow (6.8MiB)
+Downloading networkx (1.6MiB)
+Downloading pillow (6.8MiB)
+Downloading numpy (17.1MiB)
+Downloading networkx (1.6MiB)

@@ -1,0 +1,100 @@
+[W1025 18:20:48.962793672 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.964738046 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.964978626 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.979230803 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.979506017 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.983435420 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.983698234 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.985853354 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.986096011 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.988143117 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.988387679 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.002406622 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.002643645 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.006249677 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.006509323 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.008508004 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.008773757 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.010918338 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.011163098 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.026491238 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.026743529 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.030434446 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.030675143 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.032713056 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.032974048 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.035129634 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.035393007 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.050252197 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.050520329 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.054262098 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.054548739 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.056696101 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.056961046 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.058991761 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.059236831 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.073933978 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.074165312 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.078752807 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.078993822 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.081057466 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.081311389 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.083344464 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.083592797 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.098178858 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.098443757 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.102178155 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.102438276 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.104496543 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.104754465 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.106807554 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.107042572 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.122817500 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.123068040 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.126827115 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.127069234 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.129169851 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.129438654 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.131465689 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.131713336 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.146172077 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:20:48.146440741 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+2026-10-25 18:20:52,351 - INFO -   LLM exported successfully!
+2026-10-25 18:20:52,353 - INFO -   Consolidating 224 external data files into llm_nvfp4.onnx.data...
+2026-10-25 18:20:54,305 - INFO -   Converting NVFP4 QDQ ops to 2DQ format for TensorRT...
+
+layers.15.self_attn.o_proj.output_quantizer                                      TensorQuantizer(disabled)
+layers.15.self_attn.o_proj.weight_quantizer                                      TensorQuantizer((4, 3) bit fake per-tensor amax=0.8569 calibrator=MaxCalibrator quant)
+layers.15.mlp.down_proj.input_quantizer                                          TensorQuantizer((4, 3) bit fake per-tensor amax=24.4219 pre_quant_scale calibrator=MaxCalibrator quant)
+layers.15.mlp.down_proj.output_quantizer                                         TensorQuantizer(disabled)
+layers.15.mlp.down_proj.weight_quantizer                                         TensorQuantizer((4, 3) bit fake per-tensor amax=2.1738 calibrator=MaxCalibrator quant)
+layers.15.mlp.gateup_proj.input_quantizer                                        TensorQuantizer((2, 1) bit fake block_sizes={-1: 16, 'type': 'dynamic', 'scale_bits': (4, 3)}, amax=3.3887 pre_quant_scale calibrator=MaxCalibrator quant)
+layers.15.mlp.gateup_proj.output_quantizer                                       TensorQuantizer(disabled)
+layers.15.mlp.gateup_proj.weight_quantizer                                       TensorQuantizer((2, 1) bit fake block_sizes={-1: 16, 'type': 'dynamic', 'scale_bits': (4, 3)}, amax=1.4590 calibrator=MaxCalibrator quant)
+288 TensorQuantizers found in model
+Traceback (most recent call last):
+  File "/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/modelopt/onnx/__init__.py", line 23, in <module>
+    from . import quantization
+  File "/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/modelopt/onnx/quantization/__init__.py", line 19, in <module>
+    from .int4 import quantize as quantize_int4
+  File "/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/modelopt/onnx/quantization/int4.py", line 31, in <module>
+    from onnxruntime.quantization.calibrate import CalibrationDataReader
+ModuleNotFoundError: No module named 'onnxruntime'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/inference-baseline/scripts/export_groot_trt_fixture.py", line 105, in <module>
+    main()
+  File "/data/inference-baseline/scripts/export_groot_trt_fixture.py", line 101, in main
+    exporter.main(export_config)
+  File "/data/inference-baseline/third_party/Isaac-GR00T-deployment/scripts/deployment/trt/export_onnx_n1d7.py", line 2222, in main
+    export_llm_to_onnx(
+  File "/data/inference-baseline/third_party/Isaac-GR00T-deployment/scripts/deployment/trt/export_onnx_n1d7.py", line 1434, in export_llm_to_onnx
+    _consolidate_external_data(output_path, enable_nvfp4=is_nvfp4)
+  File "/data/inference-baseline/third_party/Isaac-GR00T-deployment/scripts/deployment/trt/export_onnx_n1d7.py", line 562, in _consolidate_external_data
+    from modelopt.onnx.quantization.qdq_utils import fp4qdq_to_2dq
+  File "/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/modelopt/onnx/__init__.py", line 26, in <module>
+    raise ImportError(f"{e}\nPlease install optional ``[onnx]`` dependencies.")
+ImportError: No module named 'onnxruntime'
+Please install optional ``[onnx]`` dependencies.

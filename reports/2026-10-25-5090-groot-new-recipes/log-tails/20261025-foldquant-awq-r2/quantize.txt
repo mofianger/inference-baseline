@@ -1,0 +1,35 @@
+2026-10-25 18:46:13,487 datasets PyTorch version 2.9.0+cu128 available.
+Loading extension modelopt_cuda_ext...
+/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/albumentations/__init__.py:13: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.18). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+`torch_dtype` is deprecated! Use `dtype` instead!
+/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/model/modules/dit.py:255: FutureWarning: Accessing config attribute `compute_dtype` directly via 'AlternateVLDiT' object attribute is deprecated. Please access 'compute_dtype' over 'AlternateVLDiT's config object instead, e.g. 'unet.config.compute_dtype'.
+  embedding_dim=self.inner_dim, compute_dtype=self.compute_dtype
+/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/gr00t/model/modules/dit.py:286: FutureWarning: Accessing config attribute `output_dim` directly via 'AlternateVLDiT' object attribute is deprecated. Please access 'output_dim' over 'AlternateVLDiT's config object instead, e.g. 'unet.config.output_dim'.
+  self.proj_out_2 = nn.Linear(self.inner_dim, self.output_dim)
+2026-10-25 18:47:02,547 gr00t.model.gr00t_n1d7.gr00t_n1d7 Using AlternateVLDiT for diffusion model
+Loaded extension modelopt_cuda_ext in 44.3 seconds
+Total number of DiT parameters:  1091722240
+Total number of SelfAttentionTransformer parameters:  201433088
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.09it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.15it/s]
+2026-10-25 18:47:12,597 foldquant.groot_n1_7.quantize policy + dataset (8 episodes) in 14s
+2026-10-25 18:47:17,501 foldquant.groot_n1_7.quantize captured shapes: {'vit_pixel_values_shape': [768, 1536], 'vit_grid_thw': [[1, 16, 16], [1, 16, 16], [1, 16, 16]], 'num_patches': 768, 'num_merged_patches': 192, 'llm_seq_len': 217, 'llm_hidden_size': 2048, 'batch_size': 1, 'num_deepstack': 3, 'num_vis_tokens': 192, 'vl_seq_len': 217, 'sa_seq_len': 41, 'action_horizon': 40}
+2026-10-25 18:47:54,883 foldquant.groot_n1_7.modelopt captured 8 llm calls
+2026-10-25 18:47:54,883 foldquant.groot_n1_7.modelopt captured 32 dit calls
+2026-10-25 18:47:54,883 foldquant.groot_n1_7.quantize ModelOpt calibration capture in 37s
+Registered <class 'transformers.models.qwen3_vl.modeling_qwen3_vl.Qwen3VLTextAttention'> to _QuantAttention for KV Cache quantization
+Inserted 384 quantizers
+awq_lite: Caching activation statistics...
+awq_lite: Searching parameters...
+2026-10-25 18:48:01,483 foldquant.modelopt_int8 modelopt_w4a16_awq: 112 of 384 quantizers enabled (0 input, 112 weight, 0 with a SmoothQuant pre-quant scale), 0 sub-layers excluded
+2026-10-25 18:48:01,494 foldquant.groot_n1_7.quantize llm modelopt_w4a16_awq quantized in 7s
+Inserted 844 quantizers
+awq_lite: Caching activation statistics...
+awq_lite: Searching parameters...
+2026-10-25 18:48:45,152 foldquant.modelopt_int8 modelopt_w4a16_awq: 196 of 844 quantizers enabled (0 input, 196 weight, 0 with a SmoothQuant pre-quant scale), 32 sub-layers excluded
+2026-10-25 18:48:45,174 foldquant.groot_n1_7.quantize dit modelopt_w4a16_awq quantized in 44s
+2026-10-25 18:48:53,741 foldquant.quantized_checkpoint wrote quantized checkpoint artifacts/foldquant-awq/quantized: 0 quantized projections, llm modelopt_w4a16_awq, dit modelopt_w4a16_awq
+2026-10-25 18:48:53,761 foldquant.groot_n1_7.quantize quantized model: artifacts/foldquant-awq/quantized

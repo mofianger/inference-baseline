@@ -1,0 +1,100 @@
+[W1025 18:42:44.538000142 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.538244734 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.548014348 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.548135569 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.549863112 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.550133920 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.563884711 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.564146443 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.565901378 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.566020816 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.575514535 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.575809676 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.577543279 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.577819280 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.590248084 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.590533417 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.592154027 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.592263427 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.601832855 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.602095190 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.603694624 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.603967757 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.616517185 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.616803486 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.618469152 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.618732947 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.628602468 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.628902389 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.630607705 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.630861941 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.644325012 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.644602102 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.646156207 shape_type_inference.cpp:1994] Warning: The shape inference of trt::DequantizeLinear type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+[W1025 18:42:44.646395763 shape_type_inference.cpp:1994] Warning: The shape inference of trt::TRT_FP4QDQ type is missing, so it may result in wrong shape inference for the exported graph. Please consider adding it in symbolic function. (function UpdateReliable)
+2026-10-25 18:42:56,774 - INFO -   Converting NVFP4 QDQ ops to 2DQ format for TensorRT...
+
+dit.transformer_blocks.31.attn1.to_k.input_quantizer                             TensorQuantizer((4, 3) bit fake per-tensor amax=10.8672 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_k.output_quantizer                            TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.to_k.weight_quantizer                            TensorQuantizer((4, 3) bit fake per-tensor amax=0.1167 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_v.input_quantizer                             TensorQuantizer((4, 3) bit fake per-tensor amax=10.8672 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_v.output_quantizer                            TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.to_v.weight_quantizer                            TensorQuantizer((4, 3) bit fake per-tensor amax=0.1357 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_out.0.input_quantizer                         TensorQuantizer((4, 3) bit fake per-tensor amax=3.5254 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_out.0.output_quantizer                        TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.to_out.0.weight_quantizer                        TensorQuantizer((4, 3) bit fake per-tensor amax=0.1963 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.q_bmm_quantizer                                  TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.k_bmm_quantizer                                  TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.v_bmm_quantizer                                  TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.softmax_quantizer                                TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.bmm2_output_quantizer                            TensorQuantizer(disabled)
+dit.transformer_blocks.31.ff.net.0.proj.input_quantizer                          TensorQuantizer((2, 1) bit fake block_sizes={-1: 16, 'type': 'dynamic', 'scale_bits': (4, 3)}, amax=12.2422 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.ff.net.0.proj.output_quantizer                         TensorQuantizer(disabled)
+dit.transformer_blocks.31.ff.net.0.proj.weight_quantizer                         TensorQuantizer((2, 1) bit fake block_sizes={-1: 16, 'type': 'dynamic', 'scale_bits': (4, 3)}, amax=0.3418 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.ff.net.2.input_quantizer                               TensorQuantizer((2, 1) bit fake block_sizes={-1: 16, 'type': 'dynamic', 'scale_bits': (4, 3)}, amax=39.2812 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.ff.net.2.output_quantizer                              TensorQuantizer(disabled)
+dit.transformer_blocks.31.ff.net.2.weight_quantizer                              TensorQuantizer((2, 1) bit fake block_sizes={-1: 16, 'type': 'dynamic', 'scale_bits': (4, 3)}, amax=0.5898 calibrator=MaxCalibrator quant)
+dit.proj_out_1.input_quantizer                                                   TensorQuantizer((4, 3) bit fake per-tensor amax=0.9580 calibrator=MaxCalibrator quant)
+dit.proj_out_1.output_quantizer                                                  TensorQuantizer(disabled)
+dit.proj_out_1.weight_quantizer                                                  TensorQuantizer((4, 3) bit fake per-tensor amax=0.1299 calibrator=MaxCalibrator quant)
+dit.proj_out_2.input_quantizer                                                   TensorQuantizer((4, 3) bit fake per-tensor amax=17.7969 calibrator=MaxCalibrator quant)
+dit.proj_out_2.output_quantizer                                                  TensorQuantizer(disabled)
+dit.proj_out_2.weight_quantizer                                                  TensorQuantizer((4, 3) bit fake per-tensor amax=0.0669 calibrator=MaxCalibrator quant)
+844 TensorQuantizers found in model
+[modelopt][onnx] - INFO - Converting model with FP4QDQ nodes to 2DQ only model
+[modelopt][onnx] - INFO - Post-processing TRT_FP4QDQ nodes for TRT deployment
+[modelopt][onnx] - INFO - Removed 64 initializers
+2026-10-25 18:43:07,661 - INFO -   Verifying artifacts/groot-trt-nvfp4/onnx/dit_nvfp4.onnx ...
+2026-10-25 18:43:07,664 - INFO -   ONNX model loaded (skip_check=True): 5523 nodes, 450 initializers.
+2026-10-25 18:43:07,665 - INFO - 
+--- [4g] Action Decoder ---
+2026-10-25 18:43:07,665 - INFO - 
+================================================================================
+2026-10-25 18:43:07,665 - INFO - Exporting Action Decoder to ONNX
+2026-10-25 18:43:07,665 - INFO - ================================================================================
+2026-10-25 18:43:07,666 - INFO -   model_output: torch.Size([1, 41, 1024]) (torch.float16)
+2026-10-25 18:43:07,666 - INFO -   embodiment_id: torch.Size([1]) (torch.int64)
+2026-10-25 18:43:07,666 - INFO -   Exporting to artifacts/groot-trt-nvfp4/onnx/action_decoder.onnx...
+2026-10-25 18:43:08,714 - INFO -   Action Decoder exported successfully!
+2026-10-25 18:43:08,715 - INFO -   Verifying artifacts/groot-trt-nvfp4/onnx/action_decoder.onnx ...
+2026-10-25 18:43:09,126 - INFO -   ONNX model verified successfully.
+2026-10-25 18:43:09,126 - INFO - 
+================================================================================
+2026-10-25 18:43:09,126 - INFO - EXPORT COMPLETE!
+2026-10-25 18:43:09,126 - INFO - ================================================================================
+2026-10-25 18:43:09,126 - INFO - 
+Exported files in: artifacts/groot-trt-nvfp4/onnx
+2026-10-25 18:43:09,126 - INFO -   action_decoder.onnx: 72.32 MB
+2026-10-25 18:43:09,126 - INFO -   action_encoder.onnx: 0.02 MB
+2026-10-25 18:43:09,126 - INFO -   action_encoder.onnx.data: 444.69 MB
+2026-10-25 18:43:09,126 - INFO -   action_head_constants.pt: 1.71 MB
+2026-10-25 18:43:09,126 - INFO -   dit_cross_kv_nvfp4.onnx: 384.23 MB
+2026-10-25 18:43:09,126 - INFO -   dit_nvfp4.onnx: 1.25 MB
+2026-10-25 18:43:09,126 - INFO -   dit_nvfp4.onnx.data: 1194.75 MB
+2026-10-25 18:43:09,126 - INFO -   export_metadata.json: 0.00 MB
+2026-10-25 18:43:09,126 - INFO -   llm_nvfp4.onnx: 1.07 MB
+2026-10-25 18:43:09,126 - INFO -   llm_nvfp4.onnx.data: 1312.63 MB
+2026-10-25 18:43:09,126 - INFO -   state_encoder.onnx: 104.41 MB
+2026-10-25 18:43:09,126 - INFO -   vit_fp8.onnx: 0.76 MB
+2026-10-25 18:43:09,127 - INFO -   vit_fp8.onnx.data: 1541.58 MB
+2026-10-25 18:43:09,127 - INFO -   vl_self_attention.onnx: 640.30 MB

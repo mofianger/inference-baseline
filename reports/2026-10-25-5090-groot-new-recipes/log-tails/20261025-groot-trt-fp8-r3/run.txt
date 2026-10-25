@@ -1,0 +1,100 @@
+Total number of SelfAttentionTransformer parameters:  201433088
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.10it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.17it/s]
+Quantization: fp8
+  vit=fp8, llm=fp8, dit=fp8, aux=fp16
+  Calibration: dataset=datasets/groot-n17-calibration-v2, embodiment=EmbodimentTag.OXE_DROID_RELATIVE_EEF_RELATIVE_JOINT, samples=8
+Loading ViT engine: /data/inference-baseline/artifacts/groot-trt-fp8/engines/vit_fp8.engine
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/groot-trt-fp8/engines/vit_fp8.engine
+Inputs: 1
+   0. pixel_values: 768x1536 [torch.float16]
+Outputs: 2
+   0. image_embeds: 192x2048 [torch.float16]
+   1. deepstack_features: 3x192x2048 [torch.float16]
+=============================================
+  Deleted PyTorch ViT (replaced by TRT engine)
+Loading LLM engine: /data/inference-baseline/artifacts/groot-trt-fp8/engines/llm_fp8.engine
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/groot-trt-fp8/engines/llm_fp8.engine
+Inputs: 7
+   0. inputs_embeds: 1x-1x2048 [torch.float16]
+   1. attention_mask: 1x-1 [torch.int64]
+   2. position_ids: 3x1x-1 [torch.int64]
+   3. visual_pos_masks: 1x-1 [torch.bool]
+   4. deepstack_0: 192x2048 [torch.float16]
+   5. deepstack_1: 192x2048 [torch.float16]
+   6. deepstack_2: 192x2048 [torch.float16]
+Outputs: 1
+   0. embeddings: 1x-1x2048 [torch.float16]
+=============================================
+  Deleted PyTorch LLM layers (replaced by TRT engine)
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/groot-trt-fp8/engines/vl_self_attention.engine
+Inputs: 1
+   0. hidden_states: 1x-1x2048 [torch.float16]
+Outputs: 1
+   0. output: 1x-1x2048 [torch.float16]
+=============================================
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/groot-trt-fp8/engines/state_encoder.engine
+Inputs: 2
+   0. state: 1x1x132 [torch.float16]
+   1. embodiment_id: 1 [torch.int64]
+Outputs: 1
+   0. output: 1x1x1536 [torch.float16]
+=============================================
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/groot-trt-fp8/engines/action_encoder.engine
+Inputs: 3
+   0. actions: 1x40x132 [torch.float16]
+   1. timestep_embedding: 1x40x1536 [torch.float16]
+   2. embodiment_id: 1 [torch.int64]
+Outputs: 1
+   0. output: 1x40x1536 [torch.float16]
+=============================================
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/groot-trt-fp8/engines/dit_cross_kv_fp8.engine
+Inputs: 1
+   0. vl_embs: 1x-1x2048 [torch.float16]
+Outputs: 2
+   0. cross_keys: 16x1x32x-1x48 [torch.float16]
+   1. cross_values: 16x1x32x-1x48 [torch.float16]
+=============================================
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/groot-trt-fp8/engines/dit_fp8.engine
+Inputs: 7
+   0. sa_embs: 1x41x1536 [torch.float16]
+   1. cross_keys: 16x1x32x-1x48 [torch.float16]
+   2. cross_values: 16x1x32x-1x48 [torch.float16]
+   3. adaln_modulations: 32x1x3072 [torch.float16]
+   4. output_modulation: 1x3072 [torch.float16]
+   5. image_mask: 1x-1 [torch.bool]
+   6. backbone_attention_mask: 1x-1 [torch.bool]
+Outputs: 1
+   0. output: 1x41x1024 [torch.float16]
+=============================================
+============= TRT Engine Detail =============
+Engine file: /data/inference-baseline/artifacts/groot-trt-fp8/engines/action_decoder.engine
+Inputs: 2
+   0. model_output: 1x41x1024 [torch.float16]
+   1. embodiment_id: 1 [torch.int64]
+Outputs: 1
+   0. output: 1x41x132 [torch.float16]
+=============================================
+N1.7 optimized full-pipeline TRT engines loaded.
+  ViT: TRT | LLM: TRT | Action Head: TRT CUDA graph
+{
+  "engine": "inference_baseline.adapters.groot_trt:GrootTRTAdapter",
+  "latency": {
+    "count": 100,
+    "mean_ms": 14.946182139999998,
+    "min_ms": 14.889611,
+    "p50_ms": 14.937515,
+    "p95_ms": 14.98660995,
+    "p99_ms": 15.179960770000001
+  },
+  "accuracy_gate": "not_configured"
+}

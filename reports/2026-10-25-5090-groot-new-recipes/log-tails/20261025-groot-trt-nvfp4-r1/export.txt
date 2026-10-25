@@ -1,0 +1,98 @@
+/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/torch/backends/__init__.py:46: UserWarning: Please use the new API settings to control TF32 behavior, such as torch.backends.cudnn.conv.fp32_precision = 'tf32' or torch.backends.cuda.matmul.fp32_precision = 'ieee'. Old settings, e.g, torch.backends.cuda.matmul.allow_tf32 = True, torch.backends.cudnn.allow_tf32 = True, allowTF32CuDNN() and allowTF32CuBLAS() will be deprecated after Pytorch 2.9. Please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:80.)
+  self.setter(val)
+/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/albumentations/__init__.py:13: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.18). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+2026-10-25 18:15:00,484 - INFO - ================================================================================
+2026-10-25 18:15:00,484 - INFO - GR00T N1.7 ONNX Export Script
+2026-10-25 18:15:00,484 - INFO - ================================================================================
+2026-10-25 18:15:00,485 - INFO - Model path: /data/huggingface/hub/models--nvidia--GR00T-N1.7-3B/snapshots/2fc962b973bccdd5d8ce4f67cc63b264d6886495
+2026-10-25 18:15:00,485 - INFO - Dataset path: datasets/groot-n17-v3
+2026-10-25 18:15:00,485 - INFO - Embodiment: EmbodimentTag.OXE_DROID_RELATIVE_EEF_RELATIVE_JOINT
+2026-10-25 18:15:00,485 - INFO - Export mode: full_pipeline
+2026-10-25 18:15:00,485 - INFO - Quantization: mixed_nvfp4
+2026-10-25 18:15:00,485 - INFO - Component precisions: vit=fp8, llm=nvfp4, dit=nvfp4, aux=fp16
+2026-10-25 18:15:00,485 - INFO - Execution profile: optimized
+2026-10-25 18:15:00,485 - INFO - Batch size: 1
+2026-10-25 18:15:00,485 - INFO - Output directory: artifacts/groot-trt-nvfp4/onnx
+2026-10-25 18:15:00,485 - INFO - ================================================================================
+2026-10-25 18:15:00,485 - INFO - 
+[Step 1] Loading policy...
+`torch_dtype` is deprecated! Use `dtype` instead!
+/data/inference-baseline/third_party/Isaac-GR00T-deployment/gr00t/model/modules/dit.py:255: FutureWarning: Accessing config attribute `compute_dtype` directly via 'AlternateVLDiT' object attribute is deprecated. Please access 'compute_dtype' over 'AlternateVLDiT's config object instead, e.g. 'unet.config.compute_dtype'.
+  embedding_dim=self.inner_dim, compute_dtype=self.compute_dtype
+/data/inference-baseline/third_party/Isaac-GR00T-deployment/gr00t/model/modules/dit.py:286: FutureWarning: Accessing config attribute `output_dim` directly via 'AlternateVLDiT' object attribute is deprecated. Please access 'output_dim' over 'AlternateVLDiT's config object instead, e.g. 'unet.config.output_dim'.
+  self.proj_out_2 = nn.Linear(self.inner_dim, self.output_dim)
+2026-10-25 18:15:00,609 - INFO - Using AlternateVLDiT for diffusion model
+Total number of DiT parameters:  1091722240
+Total number of SelfAttentionTransformer parameters:  201433088
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.15it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.27it/s]
+2026-10-25 18:15:10,765 - INFO -   Policy loaded
+2026-10-25 18:15:10,765 - INFO - 
+[Step 2] Loading dataset...
+2026-10-25 18:15:10,765 - INFO -   Dataset loaded (1 trajectories)
+2026-10-25 18:15:10,765 - INFO - 
+[Step 3] Capturing model inputs from actual inference...
+2026-10-25 18:15:10,766 - INFO -   Running inference to capture shapes...
+2026-10-25 18:15:11,098 - INFO -   Captured ViT inputs:
+2026-10-25 18:15:11,098 - INFO -     pixel_values: torch.Size([768, 1536])
+2026-10-25 18:15:11,098 - INFO -     grid_thw: [[1, 16, 16], [1, 16, 16], [1, 16, 16]]
+2026-10-25 18:15:11,099 - INFO -     output: torch.Size([192, 2048])
+2026-10-25 18:15:11,099 - INFO -     deepstack: 3 features
+2026-10-25 18:15:11,120 - INFO -   Captured LLM inputs:
+2026-10-25 18:15:11,120 - INFO -     inputs_embeds: torch.Size([1, 217, 2048])
+2026-10-25 18:15:11,120 - INFO -     position_ids: torch.Size([3, 1, 217])
+2026-10-25 18:15:11,120 - INFO -     attention_mask: torch.Size([1, 217])
+2026-10-25 18:15:11,120 - INFO -     visual_pos_masks: torch.Size([1, 217])
+2026-10-25 18:15:11,120 - INFO -     deepstack: 3 tensors, shapes: [torch.Size([192, 2048]), torch.Size([192, 2048]), torch.Size([192, 2048])]
+2026-10-25 18:15:11,243 - INFO -   Captured DiT inputs:
+2026-10-25 18:15:11,244 - INFO -     sa_embs: torch.Size([1, 41, 1536])
+2026-10-25 18:15:11,244 - INFO -     vl_embs: torch.Size([1, 217, 2048])
+2026-10-25 18:15:11,244 - INFO -     timestep: torch.Size([1])
+2026-10-25 18:15:11,244 - INFO -     image_mask: torch.Size([1, 217])
+2026-10-25 18:15:11,244 - INFO -     backbone_attention_mask: torch.Size([1, 217])
+2026-10-25 18:15:11,305 - INFO - 
+Quantization: mixed_nvfp4
+  vit=fp8, llm=nvfp4, dit=nvfp4, aux=fp16
+  Calibration: dataset=datasets/groot-n17-v3, embodiment=EmbodimentTag.OXE_DROID_RELATIVE_EEF_RELATIVE_JOINT, samples=1
+2026-10-25 18:15:11,306 - INFO -   Saved export metadata to artifacts/groot-trt-nvfp4/onnx/export_metadata.json
+2026-10-25 18:15:11,306 - INFO - 
+[Step 3.5] Capturing calibration data (before any quantization)...
+2026-10-25 18:15:11,306 - INFO - Capturing 1 calibration batches for ['dit', 'llm', 'vit', 'vl_sa'] from datasets/groot-n17-v3 ...
+2026-10-25 18:15:11,306 - INFO -   capturing calibration batch 0/1 ...
+2026-10-25 18:15:11,358 - INFO - Captured 1 calibration batches per component.
+2026-10-25 18:15:11,358 - INFO - 
+[Step 4] Exporting full pipeline to ONNX...
+2026-10-25 18:15:11,358 - INFO - 
+--- [4a] ViT (precision=fp8) ---
+2026-10-25 18:15:11,358 - INFO - 
+================================================================================
+2026-10-25 18:15:11,358 - INFO - Exporting ViT (Qwen3-VL Vision) to ONNX
+2026-10-25 18:15:11,358 - INFO - ================================================================================
+2026-10-25 18:15:11,370 - INFO -   grid_thw: [[1, 16, 16], [1, 16, 16], [1, 16, 16]], chunk_sizes: [256, 256, 256]
+2026-10-25 18:15:11,370 - INFO -   Patched 24 vision attention blocks for ONNX export (chunk_sizes=[256, 256, 256])
+2026-10-25 18:15:11,375 - INFO -   pixel_values: torch.Size([768, 1536]) (torch.float16)
+2026-10-25 18:15:12,489 - INFO - PyTorch version 2.9.0+cu128 available.
+2026-10-25 18:15:13,327 - INFO -   Running vit fp8 calibration on 1 cached batches...
+2026-10-25 18:15:13,447 - INFO -     vit fp8 calibrating batch 0...
+2026-10-25 18:15:13,681 - INFO -   vit fp8 calibration finished in 0.4s
+2026-10-25 18:15:13,681 - INFO -   vit fp8 calibration used 1/1 samples (skipped 0 shape-mismatched)
+Inserted 315 quantizers
+Traceback (most recent call last):
+  File "/data/inference-baseline/scripts/export_groot_trt_fixture.py", line 99, in <module>
+    main()
+  File "/data/inference-baseline/scripts/export_groot_trt_fixture.py", line 95, in main
+    exporter.main(export_config)
+  File "/data/inference-baseline/third_party/Isaac-GR00T-deployment/scripts/deployment/trt/export_onnx_n1d7.py", line 2211, in main
+    export_vit_to_onnx(
+  File "/data/inference-baseline/third_party/Isaac-GR00T-deployment/scripts/deployment/trt/export_onnx_n1d7.py", line 1085, in export_vit_to_onnx
+    pre_export_fn(wrapper)
+  File "/data/inference-baseline/third_party/Isaac-GR00T-deployment/scripts/deployment/trt/export_onnx_n1d7.py", line 2140, in fn
+    calibrate_component(
+  File "/data/inference-baseline/third_party/Isaac-GR00T-deployment/scripts/deployment/trt/n1d7_calibration.py", line 552, in calibrate_component
+    _check_effective_samples(used, skipped, len(batches), f"{component} {tag}")
+  File "/data/inference-baseline/third_party/Isaac-GR00T-deployment/scripts/deployment/trt/n1d7_calibration.py", line 447, in _check_effective_samples
+    raise RuntimeError(
+RuntimeError: vit fp8 calibration only used 1 samples (min 2); shape variance in dataset too high — increase --calib-size or filter the dataset.

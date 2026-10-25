@@ -1,0 +1,5 @@
+{
+  "source": "artifacts/foldquant-awq/quantized",
+  "loaded_model_tensors": 1031,
+  "floating_weights": "upstream quantized checkpoint (including smoothing)"
+}

@@ -1,0 +1,25 @@
+2026-10-25 18:21:37,485 datasets PyTorch version 2.9.0+cu128 available.
+Loading extension modelopt_cuda_ext...
+Traceback (most recent call last):
+  File "/data/inference-baseline/third_party/FoldQuantVLA/foldquant/modelopt_int8.py", line 103, in ensure_cuda_ext
+    get_cuda_ext(raise_if_failed=True)
+  File "/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/quantization/extensions.py", line 30, in get_cuda_ext
+    get_cuda_ext.extension = load_cpp_extension(  # type:ignore[attr-defined]
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/inference-baseline/.venv-foldquant/lib/python3.12/site-packages/modelopt/torch/utils/cpp_extension.py", line 86, in load_cpp_extension
+    raise RuntimeError(fail_msg)
+RuntimeError: Ninja is required to load C++ extensions (pip install ninja to get it)
+Unable to load extension modelopt_cuda_ext and falling back to CPU version.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/inference-baseline/scripts/export_foldquant_fixture.py", line 82, in <module>
+    main()
+  File "/data/inference-baseline/scripts/export_foldquant_fixture.py", line 63, in main
+    quantize(QuantizeConfig(model_path=config["checkpoint"], dataset_path=str(calibration_path),
+  File "/data/inference-baseline/third_party/FoldQuantVLA/models/groot_n1_7/foldquant_integration/quantize.py", line 240, in main
+    modelopt_int8.ensure_cuda_ext()
+  File "/data/inference-baseline/third_party/FoldQuantVLA/foldquant/modelopt_int8.py", line 105, in ensure_cuda_ext
+    raise RuntimeError(
+RuntimeError: ModelOpt's CUDA extension (modelopt_cuda_ext) could not be built: install ninja in this environment and point CUDA_HOME at the CUDA toolkit (e.g. /usr/local/cuda-12.6)

@@ -1,0 +1,20 @@
+[
+  {
+    "stage": "export",
+    "command": [
+      "/data/inference-baseline/.venv-foldquant/bin/python",
+      "scripts/export_foldquant_fixture.py",
+      "--config",
+      "configs/5090/foldquant-smoothquant.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/foldquant-smoothquant",
+      "--stage",
+      "export"
+    ],
+    "exit_code": 1,
+    "started_utc": "2026-10-25T11:02:28.590869+00:00",
+    "finished_utc": "2026-10-25T11:02:56.289636+00:00"
+  }
+]

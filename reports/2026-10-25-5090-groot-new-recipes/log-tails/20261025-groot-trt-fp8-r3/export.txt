@@ -1,0 +1,100 @@
+dit.transformer_blocks.30.attn1.to_q.input_quantizer                             TensorQuantizer((4, 3) bit fake per-tensor amax=12.9766 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.attn1.to_q.output_quantizer                            TensorQuantizer(disabled)
+dit.transformer_blocks.30.attn1.to_q.weight_quantizer                            TensorQuantizer((4, 3) bit fake per-tensor amax=0.1143 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.attn1.to_k.input_quantizer                             TensorQuantizer((4, 3) bit fake per-tensor amax=63.2500 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.attn1.to_k.output_quantizer                            TensorQuantizer(disabled)
+dit.transformer_blocks.30.attn1.to_k.weight_quantizer                            TensorQuantizer((4, 3) bit fake per-tensor amax=0.0884 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.attn1.to_v.input_quantizer                             TensorQuantizer((4, 3) bit fake per-tensor amax=63.2500 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.attn1.to_v.output_quantizer                            TensorQuantizer(disabled)2026-10-25 18:59:22,576 - INFO -   Saved fixed timestep/AdaLN constants to artifacts/groot-trt-fp8/onnx/action_head_constants.pt
+2026-10-25 18:59:22,766 - INFO -   Optimized DiT PyTorch equivalence: cosine=0.99999994, max_abs=0.000000
+/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/modelopt/torch/quantization/nn/modules/tensor_quantizer.py:867: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if inputs.numel() == 0:
+/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/modelopt/torch/quantization/nn/modules/tensor_quantizer.py:695: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  assert amax.numel() == 1, (
+2026-10-25 18:59:24,322 - INFO -   Verifying artifacts/groot-trt-fp8/onnx/dit_cross_kv_fp8.onnx ...
+2026-10-25 18:59:25,699 - INFO -   ONNX model verified successfully.
+2026-10-25 18:59:25,700 - INFO -   Patched 32 DiT attn blocks: bool mask -> additive (enables TRT mha_v2 fusion on cross-attn)
+2026-10-25 18:59:32,965 - INFO -   Consolidating 451 external data files into dit_fp8.onnx.data...
+2026-10-25 18:59:42,253 - INFO -   Consolidated and cleaned up 451 files.
+2026-10-25 18:59:42,340 - INFO -   Verifying artifacts/groot-trt-fp8/onnx/dit_fp8.onnx ...
+2026-10-25 18:59:42,359 - INFO -   ONNX model verified successfully.
+2026-10-25 18:59:42,360 - INFO - 
+--- [4g] Action Decoder ---
+2026-10-25 18:59:42,360 - INFO - 
+================================================================================
+2026-10-25 18:59:42,360 - INFO - Exporting Action Decoder to ONNX
+2026-10-25 18:59:42,360 - INFO - ================================================================================
+2026-10-25 18:59:42,361 - INFO -   model_output: torch.Size([1, 41, 1024]) (torch.float16)
+2026-10-25 18:59:42,361 - INFO -   embodiment_id: torch.Size([1]) (torch.int64)
+2026-10-25 18:59:42,361 - INFO -   Exporting to artifacts/groot-trt-fp8/onnx/action_decoder.onnx...
+2026-10-25 18:59:43,285 - INFO -   Action Decoder exported successfully!
+2026-10-25 18:59:43,285 - INFO -   Verifying artifacts/groot-trt-fp8/onnx/action_decoder.onnx ...
+2026-10-25 18:59:43,590 - INFO -   ONNX model verified successfully.
+2026-10-25 18:59:43,591 - INFO - 
+================================================================================
+2026-10-25 18:59:43,591 - INFO - EXPORT COMPLETE!
+2026-10-25 18:59:43,591 - INFO - ================================================================================
+2026-10-25 18:59:43,591 - INFO - 
+Exported files in: artifacts/groot-trt-fp8/onnx
+2026-10-25 18:59:43,591 - INFO -   action_decoder.onnx: 72.32 MB
+2026-10-25 18:59:43,591 - INFO -   action_encoder.onnx: 0.02 MB
+2026-10-25 18:59:43,591 - INFO -   action_encoder.onnx.data: 444.69 MB
+2026-10-25 18:59:43,591 - INFO -   action_head_constants.pt: 1.71 MB
+2026-10-25 18:59:43,591 - INFO -   dit_cross_kv_fp8.onnx: 384.23 MB
+2026-10-25 18:59:43,591 - INFO -   dit_fp8.onnx: 1.29 MB
+2026-10-25 18:59:43,591 - INFO -   dit_fp8.onnx.data: 3174.75 MB
+2026-10-25 18:59:43,591 - INFO -   export_metadata.json: 0.00 MB
+2026-10-25 18:59:43,591 - INFO -   llm_fp8.onnx: 1.05 MB
+2026-10-25 18:59:43,591 - INFO -   llm_fp8.onnx.data: 3072.13 MB
+2026-10-25 18:59:43,591 - INFO -   state_encoder.onnx: 104.41 MB
+2026-10-25 18:59:43,591 - INFO -   vit_fp8.onnx: 1542.32 MB
+2026-10-25 18:59:43,591 - INFO -   vl_self_attention.onnx: 640.30 MB
+
+dit.transformer_blocks.30.attn1.to_v.weight_quantizer                            TensorQuantizer((4, 3) bit fake per-tensor amax=0.0796 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.attn1.to_out.0.input_quantizer                         TensorQuantizer((4, 3) bit fake per-tensor amax=3.2129 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.attn1.to_out.0.output_quantizer                        TensorQuantizer(disabled)
+dit.transformer_blocks.30.attn1.to_out.0.weight_quantizer                        TensorQuantizer((4, 3) bit fake per-tensor amax=0.1602 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.attn1.q_bmm_quantizer                                  TensorQuantizer(disabled)
+dit.transformer_blocks.30.attn1.k_bmm_quantizer                                  TensorQuantizer(disabled)
+dit.transformer_blocks.30.attn1.v_bmm_quantizer                                  TensorQuantizer(disabled)
+dit.transformer_blocks.30.attn1.softmax_quantizer                                TensorQuantizer(disabled)
+dit.transformer_blocks.30.attn1.bmm2_output_quantizer                            TensorQuantizer(disabled)
+dit.transformer_blocks.30.ff.net.0.proj.input_quantizer                          TensorQuantizer((4, 3) bit fake per-tensor amax=12.2734 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.ff.net.0.proj.output_quantizer                         TensorQuantizer(disabled)
+dit.transformer_blocks.30.ff.net.0.proj.weight_quantizer                         TensorQuantizer((4, 3) bit fake per-tensor amax=0.2471 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.ff.net.2.input_quantizer                               TensorQuantizer((4, 3) bit fake per-tensor amax=9.7422 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.30.ff.net.2.output_quantizer                              TensorQuantizer(disabled)
+dit.transformer_blocks.30.ff.net.2.weight_quantizer                              TensorQuantizer((4, 3) bit fake per-tensor amax=0.5469 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.norm1.linear.input_quantizer                           TensorQuantizer((4, 3) bit fake per-tensor amax=0.9580 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.norm1.linear.output_quantizer                          TensorQuantizer(disabled)
+dit.transformer_blocks.31.norm1.linear.weight_quantizer                          TensorQuantizer((4, 3) bit fake per-tensor amax=0.2559 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_q.input_quantizer                             TensorQuantizer((4, 3) bit fake per-tensor amax=10.8672 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_q.output_quantizer                            TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.to_q.weight_quantizer                            TensorQuantizer((4, 3) bit fake per-tensor amax=0.1108 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_k.input_quantizer                             TensorQuantizer((4, 3) bit fake per-tensor amax=10.8672 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_k.output_quantizer                            TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.to_k.weight_quantizer                            TensorQuantizer((4, 3) bit fake per-tensor amax=0.1167 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_v.input_quantizer                             TensorQuantizer((4, 3) bit fake per-tensor amax=10.8672 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_v.output_quantizer                            TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.to_v.weight_quantizer                            TensorQuantizer((4, 3) bit fake per-tensor amax=0.1357 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_out.0.input_quantizer                         TensorQuantizer((4, 3) bit fake per-tensor amax=3.5254 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.to_out.0.output_quantizer                        TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.to_out.0.weight_quantizer                        TensorQuantizer((4, 3) bit fake per-tensor amax=0.1963 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.attn1.q_bmm_quantizer                                  TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.k_bmm_quantizer                                  TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.v_bmm_quantizer                                  TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.softmax_quantizer                                TensorQuantizer(disabled)
+dit.transformer_blocks.31.attn1.bmm2_output_quantizer                            TensorQuantizer(disabled)
+dit.transformer_blocks.31.ff.net.0.proj.input_quantizer                          TensorQuantizer((4, 3) bit fake per-tensor amax=12.2422 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.ff.net.0.proj.output_quantizer                         TensorQuantizer(disabled)
+dit.transformer_blocks.31.ff.net.0.proj.weight_quantizer                         TensorQuantizer((4, 3) bit fake per-tensor amax=0.3418 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.ff.net.2.input_quantizer                               TensorQuantizer((4, 3) bit fake per-tensor amax=39.2812 calibrator=MaxCalibrator quant)
+dit.transformer_blocks.31.ff.net.2.output_quantizer                              TensorQuantizer(disabled)
+dit.transformer_blocks.31.ff.net.2.weight_quantizer                              TensorQuantizer((4, 3) bit fake per-tensor amax=0.5898 calibrator=MaxCalibrator quant)
+dit.proj_out_1.input_quantizer                                                   TensorQuantizer((4, 3) bit fake per-tensor amax=0.9580 calibrator=MaxCalibrator quant)
+dit.proj_out_1.output_quantizer                                                  TensorQuantizer(disabled)
+dit.proj_out_1.weight_quantizer                                                  TensorQuantizer((4, 3) bit fake per-tensor amax=0.1299 calibrator=MaxCalibrator quant)
+dit.proj_out_2.input_quantizer                                                   TensorQuantizer((4, 3) bit fake per-tensor amax=17.7969 calibrator=MaxCalibrator quant)
+dit.proj_out_2.output_quantizer                                                  TensorQuantizer(disabled)
+dit.proj_out_2.weight_quantizer                                                  TensorQuantizer((4, 3) bit fake per-tensor amax=0.0669 calibrator=MaxCalibrator quant)
+844 TensorQuantizers found in model

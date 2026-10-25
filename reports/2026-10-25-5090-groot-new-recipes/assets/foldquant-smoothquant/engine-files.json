@@ -1,0 +1,47 @@
+[
+  {
+    "path": "artifacts/foldquant-smoothquant/engines/action_decoder.engine",
+    "bytes": 76014788,
+    "sha256": "e07b1c92aad4ddaba66780969b0627635de61cead23267efce490c9ab8097ef3"
+  },
+  {
+    "path": "artifacts/foldquant-smoothquant/engines/action_encoder.engine",
+    "bytes": 466575156,
+    "sha256": "b352ec326510fa5d6160a76c969a56af1a497e8fbb486791387d8d256a977189"
+  },
+  {
+    "path": "artifacts/foldquant-smoothquant/engines/dit_bf16.engine",
+    "bytes": 1557266492,
+    "sha256": "10806167df97480de0efe838226d2484e8a43df10b3c607c28710031af2e2adb"
+  },
+  {
+    "path": "artifacts/foldquant-smoothquant/engines/foldquant_engines.json",
+    "bytes": 1015,
+    "sha256": "123e2e08edc012c15bad8c861f64511b756093d0b60ee431e62de4b5194b7aa4"
+  },
+  {
+    "path": "artifacts/foldquant-smoothquant/engines/foldquant_export.json",
+    "bytes": 4393,
+    "sha256": "73739ea34915964a5fd5bdef8375c024e1393a8039746da0f31c4884a5c2f066"
+  },
+  {
+    "path": "artifacts/foldquant-smoothquant/engines/llm_bf16.engine",
+    "bytes": 816864388,
+    "sha256": "f8d03eed3bbdeaff342571c4b3f3c765b407683d43c933b82f48bfc898659c6b"
+  },
+  {
+    "path": "artifacts/foldquant-smoothquant/engines/state_encoder.engine",
+    "bytes": 109658852,
+    "sha256": "38f28362ddb1fa94910be88485721e5201bec0c3e402a3d047d8d7fa5657d021"
+  },
+  {
+    "path": "artifacts/foldquant-smoothquant/engines/vit_bf16.engine",
+    "bytes": 1627437860,
+    "sha256": "8752de29e70bfe57d79f092328a96550508b5ec3be39def5eb76870f221e0db9"
+  },
+  {
+    "path": "artifacts/foldquant-smoothquant/engines/vl_self_attention.engine",
+    "bytes": 404860948,
+    "sha256": "f3521fe43e872fc50735aa8dc814321b801d728c4fc3d7a1e99e3ab5f97567f9"
+  }
+]

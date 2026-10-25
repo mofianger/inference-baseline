@@ -1,0 +1,100 @@
+2026-10-25 18:53:22,374 - INFO -     deepstack_1: torch.Size([192, 2048]) (torch.bfloat16)
+2026-10-25 18:53:22,374 - INFO -     deepstack_2: torch.Size([192, 2048]) (torch.bfloat16)
+2026-10-25 18:53:22,374 - INFO -   Exporting to artifacts/groot-trt-baseline/onnx/llm_bf16.onnx...
+2026-10-25 18:53:32,035 - INFO -   LLM exported successfully!
+2026-10-25 18:53:32,035 - INFO -   Verifying artifacts/groot-trt-baseline/onnx/llm_bf16.onnx ...
+2026-10-25 18:53:37,428 - INFO -   ONNX model verified successfully.
+2026-10-25 18:53:37,430 - INFO - 
+--- [4c] VL Self-Attention ---
+2026-10-25 18:53:37,430 - INFO - 
+================================================================================
+2026-10-25 18:53:37,430 - INFO - Exporting VL Self-Attention to ONNX
+2026-10-25 18:53:37,430 - INFO - ================================================================================
+2026-10-25 18:53:37,516 - INFO -   hidden_states: torch.Size([1, 217, 2048]) (torch.bfloat16)
+2026-10-25 18:53:37,516 - INFO -   Exporting to artifacts/groot-trt-baseline/onnx/vl_self_attention.onnx...
+/data/inference-baseline/third_party/Isaac-GR00T-deployment/gr00t/model/modules/dit.py:480: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if return_all_hidden_states:
+2026-10-25 18:53:39,166 - INFO -   VL Self-Attention exported successfully!
+2026-10-25 18:53:39,167 - INFO -   Verifying artifacts/groot-trt-baseline/onnx/vl_self_attention.onnx ...
+2026-10-25 18:53:40,518 - INFO -   ONNX model verified successfully.
+2026-10-25 18:53:40,519 - INFO - 
+--- [4d] State Encoder ---
+2026-10-25 18:53:40,519 - INFO - 
+================================================================================
+2026-10-25 18:53:40,519 - INFO - Exporting State Encoder to ONNX
+2026-10-25 18:53:40,519 - INFO - ================================================================================
+2026-10-25 18:53:40,519 - INFO -   state: torch.Size([1, 1, 132]) (torch.bfloat16)
+2026-10-25 18:53:40,519 - INFO -   embodiment_id: torch.Size([1]) (torch.int64)
+2026-10-25 18:53:40,519 - INFO -   (max_state_dim=132, state_history_length=1)
+2026-10-25 18:53:40,519 - INFO -   Exporting to artifacts/groot-trt-baseline/onnx/state_encoder.onnx...
+2026-10-25 18:53:40,855 - INFO -   State Encoder exported successfully!
+2026-10-25 18:53:40,855 - INFO -   Verifying artifacts/groot-trt-baseline/onnx/state_encoder.onnx ...
+2026-10-25 18:53:41,133 - INFO -   ONNX model verified successfully.
+2026-10-25 18:53:41,133 - INFO - 
+--- [4e] Action Encoder ---
+2026-10-25 18:53:41,133 - INFO - 
+================================================================================
+2026-10-25 18:53:41,133 - INFO - Exporting Action Encoder to ONNX
+2026-10-25 18:53:41,133 - INFO - ================================================================================
+2026-10-25 18:53:41,133 - INFO -   actions: torch.Size([1, 40, 132]) (torch.bfloat16)
+2026-10-25 18:53:41,133 - INFO -   timesteps: torch.Size([1]) (torch.int64)
+2026-10-25 18:53:41,133 - INFO -   embodiment_id: torch.Size([1]) (torch.int64)
+2026-10-25 18:53:41,133 - INFO -   Exporting to artifacts/groot-trt-baseline/onnx/action_encoder.onnx...
+/data/inference-baseline/third_party/Isaac-GR00T-deployment/gr00t/model/modules/embodiment_conditioned_mlp.py:205: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if timesteps.dim() == 1 and timesteps.shape[0] == B:
+/data/inference-baseline/third_party/Isaac-GR00T-deployment/gr00t/model/modules/embodiment_conditioned_mlp.py:47: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  torch.log(torch.tensor(10000.0)) / half_dim
+2026-10-25 18:53:44,453 - INFO -   Action Encoder exported successfully!
+2026-10-25 18:53:44,453 - INFO -   Verifying artifacts/groot-trt-baseline/onnx/action_encoder.onnx ...
+2026-10-25 18:53:45,808 - INFO -   ONNX model verified successfully.
+2026-10-25 18:53:45,808 - INFO - 
+--- [4f] DiT (precision=bf16) ---
+2026-10-25 18:53:45,808 - INFO - 
+================================================================================
+2026-10-25 18:53:45,808 - INFO - Exporting DiT to ONNX
+2026-10-25 18:53:45,808 - INFO - ================================================================================
+2026-10-25 18:53:45,822 - INFO -   Export input shapes:
+2026-10-25 18:53:45,822 - INFO -     sa_embs: torch.Size([1, 41, 1536]) (torch.bfloat16)
+2026-10-25 18:53:45,822 - INFO -     vl_embs: torch.Size([1, 217, 2048]) (torch.bfloat16)
+2026-10-25 18:53:45,822 - INFO -     timestep: torch.Size([1]) (torch.int64)
+2026-10-25 18:53:45,822 - INFO -     image_mask: torch.Size([1, 217]) (torch.bool)
+2026-10-25 18:53:45,822 - INFO -     backbone_attention_mask: torch.Size([1, 217]) (torch.bool)
+2026-10-25 18:53:45,822 - INFO - Exporting to artifacts/groot-trt-baseline/onnx/dit_bf16.onnx with legacy ONNX exporter...
+2026-10-25 18:53:45,822 - INFO -   Exporting to artifacts/groot-trt-baseline/onnx/dit_bf16.onnx...
+2026-10-25 18:53:45,823 - INFO -   Patched 32 DiT attn blocks: bool mask -> additive (enables TRT mha_v2 fusion on cross-attn)
+/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/diffusers/models/attention_processor.py:728: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if current_length != target_length:
+/data/inference-baseline/.venv-groot-trt/lib/python3.12/site-packages/diffusers/models/attention_processor.py:743: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if attention_mask.shape[0] < batch_size * head_size:
+2026-10-25 18:53:53,462 - INFO -   DiT exported successfully!
+2026-10-25 18:53:53,464 - INFO -   Consolidating 585 external data files into dit_bf16.onnx.data...
+2026-10-25 18:53:56,030 - INFO -   Consolidated and cleaned up 585 files.
+2026-10-25 18:53:56,031 - INFO -   Verifying artifacts/groot-trt-baseline/onnx/dit_bf16.onnx ...
+2026-10-25 18:53:56,044 - INFO -   ONNX model verified successfully.
+2026-10-25 18:53:56,045 - INFO - 
+--- [4g] Action Decoder ---
+2026-10-25 18:53:56,045 - INFO - 
+================================================================================
+2026-10-25 18:53:56,046 - INFO - Exporting Action Decoder to ONNX
+2026-10-25 18:53:56,046 - INFO - ================================================================================
+2026-10-25 18:53:56,046 - INFO -   model_output: torch.Size([1, 41, 1024]) (torch.bfloat16)
+2026-10-25 18:53:56,046 - INFO -   embodiment_id: torch.Size([1]) (torch.int64)
+2026-10-25 18:53:56,046 - INFO -   Exporting to artifacts/groot-trt-baseline/onnx/action_decoder.onnx...
+2026-10-25 18:53:56,224 - INFO -   Action Decoder exported successfully!
+2026-10-25 18:53:56,224 - INFO -   Verifying artifacts/groot-trt-baseline/onnx/action_decoder.onnx ...
+2026-10-25 18:53:56,413 - INFO -   ONNX model verified successfully.
+2026-10-25 18:53:56,413 - INFO - 
+================================================================================
+2026-10-25 18:53:56,413 - INFO - EXPORT COMPLETE!
+2026-10-25 18:53:56,413 - INFO - ================================================================================
+2026-10-25 18:53:56,413 - INFO - 
+Exported files in: artifacts/groot-trt-baseline/onnx
+2026-10-25 18:53:56,413 - INFO -   action_decoder.onnx: 72.32 MB
+2026-10-25 18:53:56,413 - INFO -   action_encoder.onnx: 444.66 MB
+2026-10-25 18:53:56,413 - INFO -   dit_bf16.onnx: 1.18 MB
+2026-10-25 18:53:56,413 - INFO -   dit_bf16.onnx.data: 2082.29 MB
+2026-10-25 18:53:56,414 - INFO -   export_metadata.json: 0.00 MB
+2026-10-25 18:53:56,414 - INFO -   llm_bf16.onnx: 1536.75 MB
+2026-10-25 18:53:56,414 - INFO -   state_encoder.onnx: 104.41 MB
+2026-10-25 18:53:56,414 - INFO -   vit_fp32.onnx: 1547.15 MB
+2026-10-25 18:53:56,414 - INFO -   vl_self_attention.onnx: 384.27 MB

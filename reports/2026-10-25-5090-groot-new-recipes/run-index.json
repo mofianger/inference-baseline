@@ -1,0 +1,267 @@
+[
+  {
+    "run": "20261025-flashrt-fp16-head-r1",
+    "recipe": "flashrt-fp8-fp16-head",
+    "status": "failed",
+    "error": "FlashRT backbone/action graph was not captured",
+    "source": "runs/20261025-flashrt-fp16-head-r1/failure.json"
+  },
+  {
+    "run": "20261025-flashrt-fp16-head-r2",
+    "recipe": "flashrt-fp8-fp16-head",
+    "status": "failed",
+    "error": "Output ignored changed pixel_values; possible stale graph buffer",
+    "source": "runs/20261025-flashrt-fp16-head-r2/failure.json"
+  },
+  {
+    "run": "20261025-foldquant-awq-r1",
+    "status": "stage_failed",
+    "stage": "quantize",
+    "exit_code": 1,
+    "source": "runs/20261025-foldquant-awq-r1/stages.json"
+  },
+  {
+    "run": "20261025-foldquant-awq-r2",
+    "status": "stage_failed",
+    "stage": "export",
+    "exit_code": 1,
+    "source": "runs/20261025-foldquant-awq-r2/stages.json"
+  },
+  {
+    "run": "20261025-foldquant-awq-r3/run",
+    "recipe": "foldquant-awq",
+    "status": "measured",
+    "mean_ms": 57.52270595,
+    "p50_ms": 57.468653,
+    "p95_ms": 57.94985055,
+    "max_abs": 1.064453125,
+    "gate": "not_configured",
+    "source": "runs/20261025-foldquant-awq-r3/run/summary.json"
+  },
+  {
+    "run": "20261025-foldquant-smoothquant-r1",
+    "status": "stage_failed",
+    "stage": "quantize",
+    "exit_code": 1,
+    "source": "runs/20261025-foldquant-smoothquant-r1/stages.json"
+  },
+  {
+    "run": "20261025-foldquant-smoothquant-r3",
+    "status": "stage_failed",
+    "stage": "export",
+    "exit_code": 1,
+    "source": "runs/20261025-foldquant-smoothquant-r3/stages.json"
+  },
+  {
+    "run": "20261025-foldquant-smoothquant-r4/run",
+    "recipe": "foldquant-smoothquant",
+    "status": "measured",
+    "mean_ms": 26.42751479,
+    "p50_ms": 26.4180165,
+    "p95_ms": 26.5497205,
+    "max_abs": 0.4326171875,
+    "gate": "not_configured",
+    "source": "runs/20261025-foldquant-smoothquant-r4/run/summary.json"
+  },
+  {
+    "run": "20261025-foldquant-w8a8-r1",
+    "status": "stage_failed",
+    "stage": "quantize",
+    "exit_code": 1,
+    "source": "runs/20261025-foldquant-w8a8-r1/stages.json"
+  },
+  {
+    "run": "20261025-foldquant-w8a8-r2/run",
+    "recipe": "foldquant-w8a8",
+    "status": "measured",
+    "mean_ms": 29.941258480000005,
+    "p50_ms": 29.929241,
+    "p95_ms": 30.11102255,
+    "max_abs": 0.12890625,
+    "gate": "not_configured",
+    "source": "runs/20261025-foldquant-w8a8-r2/run/summary.json"
+  },
+  {
+    "run": "20261025-groot-trt-baseline-r1/run",
+    "recipe": "groot-trt-baseline",
+    "status": "measured",
+    "mean_ms": 26.995218910000002,
+    "p50_ms": 26.939946,
+    "p95_ms": 27.403472800000003,
+    "max_abs": 0.12890625,
+    "gate": "not_configured",
+    "source": "runs/20261025-groot-trt-baseline-r1/run/summary.json"
+  },
+  {
+    "run": "20261025-groot-trt-compile-r1",
+    "recipe": "groot-trt-compile",
+    "status": "measured",
+    "mean_ms": 46.033602420000015,
+    "p50_ms": 45.961093000000005,
+    "p95_ms": 46.8974638,
+    "max_abs": 0.03125,
+    "gate": "not_configured",
+    "source": "runs/20261025-groot-trt-compile-r1/summary.json"
+  },
+  {
+    "run": "20261025-groot-trt-fp8-r1",
+    "status": "stage_failed",
+    "stage": "export",
+    "exit_code": 1,
+    "source": "runs/20261025-groot-trt-fp8-r1/stages.json"
+  },
+  {
+    "run": "20261025-groot-trt-fp8-r2",
+    "status": "stage_failed",
+    "stage": "export",
+    "exit_code": 1,
+    "source": "runs/20261025-groot-trt-fp8-r2/stages.json"
+  },
+  {
+    "run": "20261025-groot-trt-fp8-r3/run",
+    "recipe": "groot-trt-fp8",
+    "status": "measured",
+    "mean_ms": 14.946182139999998,
+    "p50_ms": 14.937515,
+    "p95_ms": 14.98660995,
+    "max_abs": 0.3641357421875,
+    "gate": "not_configured",
+    "source": "runs/20261025-groot-trt-fp8-r3/run/summary.json"
+  },
+  {
+    "run": "20261025-groot-trt-nvfp4-r1",
+    "status": "stage_failed",
+    "stage": "export",
+    "exit_code": 1,
+    "source": "runs/20261025-groot-trt-nvfp4-r1/stages.json"
+  },
+  {
+    "run": "20261025-groot-trt-nvfp4-r2",
+    "status": "stage_failed",
+    "stage": "export",
+    "exit_code": 1,
+    "source": "runs/20261025-groot-trt-nvfp4-r2/stages.json"
+  },
+  {
+    "run": "20261025-groot-trt-nvfp4-r3/run",
+    "recipe": "groot-trt-nvfp4",
+    "status": "measured",
+    "mean_ms": 16.04833341,
+    "p50_ms": 16.034222,
+    "p95_ms": 16.158025199999997,
+    "max_abs": 0.32373046875,
+    "gate": "not_configured",
+    "source": "runs/20261025-groot-trt-nvfp4-r3/run/summary.json"
+  },
+  {
+    "run": "20261025-groot-trt-optimized-r1",
+    "recipe": "groot-trt-optimized",
+    "status": "measured",
+    "mean_ms": 22.40312587,
+    "p50_ms": 22.4073115,
+    "p95_ms": 22.5234896,
+    "max_abs": 0.072265625,
+    "gate": "not_configured",
+    "source": "runs/20261025-groot-trt-optimized-r1/summary.json"
+  },
+  {
+    "run": "20261025-new-phyai-fp8-a8-r1",
+    "recipe": "phyai-llm-fp8-a8",
+    "status": "failed",
+    "error": "Repeated input produced unstable output (A/B/A check)",
+    "source": "runs/20261025-new-phyai-fp8-a8-r1/failure.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-eager-r1/phyai-llm-fp8-a8-eager",
+    "recipe": "phyai-llm-fp8-a8-eager",
+    "status": "measured",
+    "mean_ms": 334.57382113,
+    "p50_ms": 330.772946,
+    "p95_ms": 347.13941925,
+    "max_abs": 0.8681640625,
+    "gate": "not_configured",
+    "source": "runs/20261025-phyai-new-recipes-eager-r1/phyai-llm-fp8-a8-eager/summary.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-eager-r1/phyai-llm-fp8-block-a8-eager",
+    "recipe": "phyai-llm-fp8-block-a8-eager",
+    "status": "failed",
+    "error": "Repeated input produced unstable output (A/B/A check)",
+    "source": "runs/20261025-phyai-new-recipes-eager-r1/phyai-llm-fp8-block-a8-eager/failure.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-eager-r1/phyai-llm-int4-fp8-a8-eager",
+    "recipe": "phyai-llm-int4-fp8-a8-eager",
+    "status": "failed",
+    "error": "Repeated input produced unstable output (A/B/A check)",
+    "source": "runs/20261025-phyai-new-recipes-eager-r1/phyai-llm-int4-fp8-a8-eager/failure.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-eager-r1/phyai-llm-int8-a8-eager",
+    "recipe": "phyai-llm-int8-a8-eager",
+    "status": "failed",
+    "error": "Repeated input produced unstable output (A/B/A check)",
+    "source": "runs/20261025-phyai-new-recipes-eager-r1/phyai-llm-int8-a8-eager/failure.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-r2/phyai-llm-fp8-a16",
+    "recipe": "phyai-llm-fp8-a16",
+    "status": "measured",
+    "mean_ms": 26.990047770000004,
+    "p50_ms": 26.974508999999998,
+    "p95_ms": 27.2090062,
+    "max_abs": 0.7607421875,
+    "gate": "not_configured",
+    "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-fp8-a16/summary.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-r2/phyai-llm-fp8-a8",
+    "recipe": "phyai-llm-fp8-a8",
+    "status": "failed",
+    "error": "Repeated input produced unstable output (A/B/A check)",
+    "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-fp8-a8/failure.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-r2/phyai-llm-fp8-block-a8",
+    "recipe": "phyai-llm-fp8-block-a8",
+    "status": "failed",
+    "error": "Repeated input produced unstable output (A/B/A check)",
+    "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-fp8-block-a8/failure.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-r2/phyai-llm-int4-a16",
+    "recipe": "phyai-llm-int4-a16",
+    "status": "measured",
+    "mean_ms": 26.9557456,
+    "p50_ms": 26.9508435,
+    "p95_ms": 27.13853365,
+    "max_abs": 1.1484375,
+    "gate": "not_configured",
+    "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-int4-a16/summary.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-r2/phyai-llm-int4-fp8-a8",
+    "recipe": "phyai-llm-int4-fp8-a8",
+    "status": "failed",
+    "error": "Repeated input produced unstable output (A/B/A check)",
+    "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-int4-fp8-a8/failure.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-r2/phyai-llm-int8-a8",
+    "recipe": "phyai-llm-int8-a8",
+    "status": "failed",
+    "error": "Repeated input produced unstable output (A/B/A check)",
+    "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-int8-a8/failure.json"
+  },
+  {
+    "run": "20261025-phyai-new-recipes-r2/phyai-llm-nvfp4-a16",
+    "recipe": "phyai-llm-nvfp4-a16",
+    "status": "measured",
+    "mean_ms": 26.978805499999993,
+    "p50_ms": 26.9032275,
+    "p95_ms": 27.24615545,
+    "max_abs": 0.681640625,
+    "gate": "not_configured",
+    "source": "runs/20261025-phyai-new-recipes-r2/phyai-llm-nvfp4-a16/summary.json"
+  }
+]

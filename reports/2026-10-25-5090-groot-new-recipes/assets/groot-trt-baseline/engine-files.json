@@ -1,0 +1,42 @@
+[
+  {
+    "path": "artifacts/groot-trt-baseline/engines/action_decoder.engine",
+    "bytes": 76014900,
+    "sha256": "26c0d9a077f6ddf8a9b7de48dc16d84729e4af1e7c2a999e09fb2355b9e5960f"
+  },
+  {
+    "path": "artifacts/groot-trt-baseline/engines/action_encoder.engine",
+    "bytes": 466575036,
+    "sha256": "5f6204112c72180535bff45675daf78779e4e040157c116557ec496f04fead11"
+  },
+  {
+    "path": "artifacts/groot-trt-baseline/engines/dit_bf16.engine",
+    "bytes": 2196812436,
+    "sha256": "b29df3d1456e1ad6d6f269e8edf638a49cc6e62016a4649495c4d8820209178a"
+  },
+  {
+    "path": "artifacts/groot-trt-baseline/engines/export_metadata.json",
+    "bytes": 1033,
+    "sha256": "99adc262382691cf8ee17a9e5d939d1c94954735ae52afbc73a810e0c0a824b6"
+  },
+  {
+    "path": "artifacts/groot-trt-baseline/engines/llm_bf16.engine",
+    "bytes": 1617974164,
+    "sha256": "dcc7cdbb8b732b28eec84eb4d6869b61fb8c8d5837157fd0bc36d31711be01d6"
+  },
+  {
+    "path": "artifacts/groot-trt-baseline/engines/state_encoder.engine",
+    "bytes": 109658908,
+    "sha256": "05125538e3b7011b22625b1648cb639bf6cf4453b1ecfde5a1f65901c3e46a9c"
+  },
+  {
+    "path": "artifacts/groot-trt-baseline/engines/vit.engine",
+    "bytes": 1627527492,
+    "sha256": "c6bcf95589d5dd9bc6c0129f4fb8a43b633169b88b1fdf0ed8fd85d710509dbf"
+  },
+  {
+    "path": "artifacts/groot-trt-baseline/engines/vl_self_attention.engine",
+    "bytes": 404827196,
+    "sha256": "3de1f05fe6d759697d687d45693688d9adc5b948bf28022cd42627222609bd2a"
+  }
+]

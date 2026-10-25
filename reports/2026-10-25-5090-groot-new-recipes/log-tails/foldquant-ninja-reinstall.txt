@@ -1,0 +1,7 @@
+Using Python 3.12.14 environment at: .venv-foldquant
+Resolved 1 package in 110ms
+Prepared 1 package in 11ms
+Uninstalled 1 package in 1ms
+Installed 1 package in 7ms
+ - ninja==1.13.0
+ + ninja==1.13.2

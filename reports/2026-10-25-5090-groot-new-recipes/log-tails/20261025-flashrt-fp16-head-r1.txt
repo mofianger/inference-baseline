@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/inference-baseline/inference_baseline/cli.py", line 56, in <module>
+    main()
+  File "/data/inference-baseline/inference_baseline/cli.py", line 52, in main
+    run(config, args.dataset, args.output)
+  File "/data/inference-baseline/inference_baseline/runner.py", line 21, in run
+    return _run(config, dataset, out, torch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/inference-baseline/inference_baseline/runner.py", line 56, in _run
+    runtime_before = adapter.runtime_stats() if hasattr(adapter, "runtime_stats") else None
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/inference-baseline/inference_baseline/adapters/flashrt.py", line 71, in runtime_stats
+    raise RuntimeError("FlashRT backbone/action graph was not captured")
+RuntimeError: FlashRT backbone/action graph was not captured

@@ -1,0 +1,7 @@
+Using Python 3.12.14 environment at: .venv-groot-trt
+Resolved 1 package in 298ms
+Prepared 1 package in 28ms
+Uninstalled 1 package in 0.88ms
+Installed 1 package in 5ms
+ - ninja==1.13.0
+ + ninja==1.13.2

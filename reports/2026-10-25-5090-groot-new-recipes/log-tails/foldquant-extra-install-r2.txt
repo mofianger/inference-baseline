@@ -1,0 +1,29 @@
+Using Python 3.12.14 environment at: .venv-foldquant
+Resolved 65 packages in 17.69s
+   Building cppimport==26.4.17
+Downloading cupy-cuda12x (107.7MiB)
+Downloading av (39.3MiB)
+Downloading onnxruntime-gpu (270.1MiB)
+Downloading onnx (17.4MiB)
+      Built cppimport==26.4.17
+ Downloaded onnx
+ Downloaded av
+ Downloaded cupy-cuda12x
+ Downloaded onnxruntime-gpu
+Prepared 12 packages in 2m 55s
+Uninstalled 1 package in 519ms
+Installed 13 packages in 143ms
+ + av==16.1.0
+ + coloredlogs==15.0.1
+ + cppimport==26.4.17
+ + cupy-cuda12x==13.6.0
+ + fastrlock==0.8.4
+ + flatbuffers==25.12.19
+ + humanfriendly==10.0
+ + mako==1.4.3
+ - onnx==1.20.1
+ + onnx==1.19.1
+ + onnxconverter-common==1.16.0
+ + onnxruntime-gpu==1.22.0
+ + polygraphy==0.53.6
+ + pybind11==3.1.0

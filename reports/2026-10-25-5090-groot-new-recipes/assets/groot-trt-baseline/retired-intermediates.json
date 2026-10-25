@@ -1,0 +1,47 @@
+[
+  {
+    "path": "onnx/action_decoder.onnx",
+    "bytes": 75835017,
+    "sha256": "9539d81c29cd6fb8113b481a6f7ed488bee9d1b52942e9a9085a950637ac6e31"
+  },
+  {
+    "path": "onnx/action_encoder.onnx",
+    "bytes": 466262660,
+    "sha256": "e669f9bfaa443dfa301a9170cc6d71c102b30e6e7b1fa00bfa943f26c12fa7eb"
+  },
+  {
+    "path": "onnx/dit_bf16.onnx",
+    "bytes": 1232573,
+    "sha256": "597c7d5e5aa8ad920ec4bd98bf7f1ec05b4c5ca7a992105c9a0c00229224c111"
+  },
+  {
+    "path": "onnx/dit_bf16.onnx.data",
+    "bytes": 2183444480,
+    "sha256": "87ee88d9f0b1dd9b7f5b110a000568ecf4e71d5504505410a190b91d45657abd"
+  },
+  {
+    "path": "onnx/export_metadata.json",
+    "bytes": 1033,
+    "sha256": "99adc262382691cf8ee17a9e5d939d1c94954735ae52afbc73a810e0c0a824b6"
+  },
+  {
+    "path": "onnx/llm_bf16.onnx",
+    "bytes": 1611399059,
+    "sha256": "9194b557b0b0f3f064c7c9c3d9e7c8e9e8e2e27f237fb0ba4d2def954257ca8c"
+  },
+  {
+    "path": "onnx/state_encoder.onnx",
+    "bytes": 109479293,
+    "sha256": "f18f4e97f252e12e83c00baaae9897ee76d04f0f8b1f67c693ad7fbb928d6ed4"
+  },
+  {
+    "path": "onnx/vit_fp32.onnx",
+    "bytes": 1622303647,
+    "sha256": "08d07117a85cb0c92301efc4a39701f26e0f31357df058cf4bfd3c490591704f"
+  },
+  {
+    "path": "onnx/vl_self_attention.onnx",
+    "bytes": 402931830,
+    "sha256": "651ddf42d8b95dc41b7372608dc376f4a53610c2f6052f5060267b66c4e2e1f5"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "reason": "Disk space recovery during build; these components already serialized; generated export only",
+  "files": [
+    {
+      "path": "/data/inference-baseline/artifacts/groot-trt-fp8/onnx/llm_fp8.onnx",
+      "bytes": 1100031,
+      "sha256": "45604e4377612fb8f83aa9b6b61844690933c9ee3a1e99b3a80bea747b2fda27",
+      "compiled_engine": "/data/inference-baseline/artifacts/groot-trt-fp8/engines/llm_fp8.engine"
+    },
+    {
+      "path": "/data/inference-baseline/artifacts/groot-trt-fp8/onnx/llm_fp8.onnx.data",
+      "bytes": 3221364736,
+      "sha256": "6518ec563f232369062623bc0f4f97498a97dac7a2faa3cb773e0add3c346ce9",
+      "compiled_engine": "/data/inference-baseline/artifacts/groot-trt-fp8/engines/llm_fp8.engine"
+    },
+    {
+      "path": "/data/inference-baseline/artifacts/groot-trt-fp8/onnx/vit_fp8.onnx",
+      "bytes": 1617242034,
+      "sha256": "7e20d2151e4b974e41cede4f5688229d3da93f1901007f9efc6c250fc34c3794",
+      "compiled_engine": "/data/inference-baseline/artifacts/groot-trt-fp8/engines/vit_fp8.engine"
+    }
+  ]
+}

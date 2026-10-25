@@ -1,0 +1,64 @@
+[
+  {
+    "stage": "export",
+    "command": [
+      "/data/inference-baseline/.venv-groot-trt/bin/python",
+      "scripts/export_groot_trt_fixture.py",
+      "--config",
+      "configs/5090/groot-trt-nvfp4.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/groot-trt-nvfp4",
+      "--stage",
+      "export",
+      "--profile",
+      "optimized",
+      "--quantization",
+      "mixed_nvfp4"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-25T10:40:15.209039+00:00",
+    "finished_utc": "2026-10-25T10:43:10.977128+00:00"
+  },
+  {
+    "stage": "build",
+    "command": [
+      "/data/inference-baseline/.venv-groot-trt/bin/python",
+      "scripts/export_groot_trt_fixture.py",
+      "--config",
+      "configs/5090/groot-trt-nvfp4.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/groot-trt-nvfp4",
+      "--stage",
+      "build",
+      "--profile",
+      "optimized",
+      "--quantization",
+      "mixed_nvfp4"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-25T10:43:10.978318+00:00",
+    "finished_utc": "2026-10-25T10:45:30.343018+00:00"
+  },
+  {
+    "stage": "run",
+    "command": [
+      "/data/inference-baseline/.venv-groot-trt/bin/python",
+      "-m",
+      "inference_baseline.cli",
+      "run",
+      "--config",
+      "configs/5090/groot-trt-nvfp4.json",
+      "--dataset",
+      "datasets/groot-n17-v3",
+      "--output",
+      "artifacts/20261025-groot-trt-nvfp4-r3/run"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-25T10:45:30.343890+00:00",
+    "finished_utc": "2026-10-25T10:45:55.786700+00:00"
+  }
+]

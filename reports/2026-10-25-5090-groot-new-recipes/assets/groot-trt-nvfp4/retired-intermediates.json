@@ -1,0 +1,72 @@
+[
+  {
+    "path": "onnx/action_decoder.onnx",
+    "bytes": 75835017,
+    "sha256": "0402a6c8385bb02c65bdde61cc51a480e2e09d789a43d542a15e6738a666b030"
+  },
+  {
+    "path": "onnx/action_encoder.onnx",
+    "bytes": 24763,
+    "sha256": "34e41fc46aa0e625e4f29d3e0a2640ea165ddea7fb636740f9fbb4051244a183"
+  },
+  {
+    "path": "onnx/action_encoder.onnx.data",
+    "bytes": 466288640,
+    "sha256": "1d72e7646db7c442946a43347db1a4e484aca76647ae04d4c82cf08486a28d1d"
+  },
+  {
+    "path": "onnx/action_head_constants.pt",
+    "bytes": 1796713,
+    "sha256": "67c4685ae1b300143bb1c82912dee98d6e3d1fafa0b59be5a32f1c0c10224cc3"
+  },
+  {
+    "path": "onnx/dit_cross_kv_nvfp4.onnx",
+    "bytes": 402890903,
+    "sha256": "07a1e3c600dff7f11322def03c8593867b4041cf3781d29ac44b1eacb0e230fc"
+  },
+  {
+    "path": "onnx/dit_nvfp4.onnx",
+    "bytes": 1309456,
+    "sha256": "bbf8de0a7cf2b456d9f296f70aab36123ac33894430dc922d2fb32c35d0927fb"
+  },
+  {
+    "path": "onnx/dit_nvfp4.onnx.data",
+    "bytes": 1252788480,
+    "sha256": "7f633d726aceacbaf2c1254e263c74354505b998ca9c4cf9d18ea829879d3692"
+  },
+  {
+    "path": "onnx/export_metadata.json",
+    "bytes": 1204,
+    "sha256": "93afe5824b9001cb7d27e603959d32aab6314234f179799e7b314540ec9a433f"
+  },
+  {
+    "path": "onnx/llm_nvfp4.onnx",
+    "bytes": 1123007,
+    "sha256": "fefc3f2408df9d756fdc1bccb56dfa0c63cc93eeed3f3f9d59c9dbaf51c08324"
+  },
+  {
+    "path": "onnx/llm_nvfp4.onnx.data",
+    "bytes": 1376395520,
+    "sha256": "c7a6b106a512b0c78c459b1708c47f9e80f477b4ad2b83785ca0e98720a1654d"
+  },
+  {
+    "path": "onnx/state_encoder.onnx",
+    "bytes": 109479293,
+    "sha256": "c3ac9ec1c0ca0e78e7914bd5c904f3f3bb4df9691d6448b0fde8b4f4efd7cc4e"
+  },
+  {
+    "path": "onnx/vit_fp8.onnx",
+    "bytes": 794559,
+    "sha256": "8c183ecf8704d6689e667efe69de120aecaea5efd3744bbe5ec0f79dc0c35838"
+  },
+  {
+    "path": "onnx/vit_fp8.onnx.data",
+    "bytes": 1616467968,
+    "sha256": "38696a1531c87fb3b9bd3b6c4dbc10f6ee3d054de6bac85caebe4d2caa75cc77"
+  },
+  {
+    "path": "onnx/vl_self_attention.onnx",
+    "bytes": 671398567,
+    "sha256": "f37ca0ca33a858ba345162e08215b5fec77ddf178f0852957d5571b285625c56"
+  }
+]
