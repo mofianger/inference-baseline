@@ -16,6 +16,11 @@ class FlashRTAdapter:
         torch.manual_seed(calibration_seed)
         calibrator.CACHE_DIR = Path(opts["calibration_cache"]).resolve()
         frontend_class = GrootN17TorchFrontendRtxFP8
+        if opts.get("fp16_action_head", False):
+            if opts.get("use_fp4", False):
+                raise ValueError("FP16 action head and NVFP4 are mutually exclusive")
+            from flash_rt.frontends.torch.groot_n17_rtx_fp8 import GrootN17TorchFrontendRtxFP8FP16DiT
+            frontend_class = GrootN17TorchFrontendRtxFP8FP16DiT
         if opts.get("use_fp4", False):
             from flash_rt.frontends.torch.groot_n17_rtx_fp4 import GrootN17TorchFrontendRtxFP4
             frontend_class = GrootN17TorchFrontendRtxFP4
@@ -50,6 +55,8 @@ class FlashRTAdapter:
             use_fp4=opts.get("use_fp4", False))
         if opts.get("use_fp4", False):
             self.metadata["precision"] = "FP8 backbone / NVFP4 DiT and cross-KV / mixed BF16 remaining ops"
+        if opts.get("fp16_action_head", False):
+            self.metadata["precision"] = "FP8 backbone / FP16 action head; upstream FP8-loaded then dequantized DiT weights"
         # SM120 GR00T NVFP4 lives in flash_rt_kernels. The separate
         # flash_rt_fp4 add-on is built for SM100/110, not this target.
         from flash_rt import flash_rt_kernels, flash_rt_fa2
