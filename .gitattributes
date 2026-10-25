@@ -3,3 +3,5 @@
 *.sh text eol=lf
 *.json text eol=lf
 *.md text eol=lf
+# Preserve the collaborator source bytes for the archived SHA256.
+AI高速推理框架性能总表_V3.html -text
