@@ -39,6 +39,9 @@ for stage in stages[stages.index(args.start):]:
     (out / "stages.json").write_text(json.dumps(records, indent=2) + "\n")
     print(json.dumps(records[-1]), flush=True)
     if code:
+        if args.retire_intermediates and any(s["stage"] != "run" for s in records):
+            subprocess.run([sys.executable, "scripts/retire_deployment_intermediates.py",
+                            "--assets", args.assets, "--failed-stages", str(out / "stages.json")], check=True)
         sys.exit(code)
 if args.retire_intermediates:
     subprocess.run([sys.executable, "scripts/retire_deployment_intermediates.py",
