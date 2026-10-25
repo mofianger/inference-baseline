@@ -11,7 +11,7 @@ root = Path("artifacts")
 out = Path("reports/2026-10-25-5090-groot-new-recipes")
 out.mkdir(parents=True, exist_ok=True)
 rows = []
-prefixes = ("20261025-phyai-", "20261025-flashrt-fp16-", "20261025-groot-trt-", "20261025-foldquant-")
+prefixes = ("20261025-phyai-", "20261025-new-phyai-", "20261025-flashrt-fp16-", "20261025-groot-trt-", "20261025-foldquant-")
 campaign = [p for p in root.iterdir() if p.is_dir() and p.name.startswith(prefixes)]
 for directory in sorted(campaign):
     for path in sorted(directory.rglob("*.json")):
