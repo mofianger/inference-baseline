@@ -80,9 +80,12 @@ def main():
         policy = policy_factory()
         if any("modelopt_state" in ms.config for ms in state.modules.values()):
             from safetensors import safe_open
-            parameters = dict(policy.model.named_parameters())
+            # HF checkpoints may store both names of tied embedding/head
+            # weights; named_parameters defaults to dropping the alias.
+            parameters = dict(policy.model.named_parameters(remove_duplicate=False))
             buffers = dict(policy.model.named_buffers())
             loaded = set()
+            loaded_ids = set()
             with torch.no_grad():
                 for shard in sorted((out / "quantized").glob("*.safetensors")):
                     with safe_open(str(shard), framework="pt", device="cpu") as f:
@@ -92,11 +95,14 @@ def main():
                                 value = f.get_tensor(name)
                                 if value.shape != target.shape:
                                     raise ValueError(f"Quantized checkpoint shape mismatch: {name}")
+                                if id(target) in loaded_ids and not torch.equal(target.detach().cpu(), value.to(target.dtype)):
+                                    raise ValueError(f"Conflicting tied checkpoint tensors: {name}")
                                 target.copy_(value)
                                 loaded.add(name)
+                                loaded_ids.add(id(target))
                             elif not name.startswith("foldquant."):
                                 raise ValueError(f"Unexpected quantized checkpoint tensor: {name}")
-            missing = set(parameters) - loaded
+            missing = {name for name, parameter in parameters.items() if id(parameter) not in loaded_ids}
             if missing:
                 raise ValueError(f"Missing ModelOpt checkpoint parameters: {sorted(missing)[:10]}")
             write_json(out / "checkpoint_replay.json", {
