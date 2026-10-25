@@ -67,11 +67,35 @@ def main():
             base_model_id="nvidia/GR00T-N1.7-3B@2fc962b973bccdd5d8ce4f67cc63b264d6886495"))
     else:
         from foldquant.quantized import export_onnx
-        # Public replay API checks the quantization state against the frozen
-        # base checkpoint. Quantized weights come from that recorded state;
-        # the unquantized components are loaded from the same frozen base.
+        # Native FoldQuant packs are replayed from QuantState. ModelOpt also
+        # modifies floating-point weights during calibration; those live in
+        # the quantized checkpoint, not in its quantizer state.
         state = quantized.load_state_for(out / "quantized", config["checkpoint"])
         policy = policy_factory()
+        if any("modelopt_state" in ms.config for ms in state.modules.values()):
+            from safetensors import safe_open
+            parameters = dict(policy.model.named_parameters())
+            buffers = dict(policy.model.named_buffers())
+            loaded = set()
+            with torch.no_grad():
+                for shard in sorted((out / "quantized").glob("*.safetensors")):
+                    with safe_open(str(shard), framework="pt", device="cpu") as f:
+                        for name in f.keys():
+                            target = parameters.get(name, buffers.get(name))
+                            if target is not None:
+                                value = f.get_tensor(name)
+                                if value.shape != target.shape:
+                                    raise ValueError(f"Quantized checkpoint shape mismatch: {name}")
+                                target.copy_(value)
+                                loaded.add(name)
+                            elif not name.startswith("foldquant."):
+                                raise ValueError(f"Unexpected quantized checkpoint tensor: {name}")
+            missing = set(parameters) - loaded
+            if missing:
+                raise ValueError(f"Missing ModelOpt checkpoint parameters: {sorted(missing)[:10]}")
+            write_json(out / "checkpoint_replay.json", {
+                "source": str(out / "quantized"), "loaded_model_tensors": len(loaded),
+                "floating_weights": "upstream quantized checkpoint (including smoothing)"})
         with torch.inference_mode():
             export_onnx(state, quantized.module_paths(policy), out / "onnx",
                         source=out / "quantized", adapter=quantized, policy=policy)
