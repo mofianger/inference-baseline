@@ -44,7 +44,11 @@ def main():
     manifest, protocol, samples = load_dataset(args.dataset)
     if checkpoint_manifest(config["checkpoint"]) != manifest["checkpoint"]:
         raise ValueError("Checkpoint mismatch")
-    calibration = [move_sample(s, config["device"]) for s in samples if s["role"] == "calibration"]
+    calibration_path = config.get("options", {}).get("calibration_dataset", args.dataset)
+    cm, cp, calibration_samples = load_dataset(calibration_path)
+    if cm["checkpoint"] != manifest["checkpoint"] or cp != protocol:
+        raise ValueError("Calibration checkpoint/protocol mismatch")
+    calibration = [move_sample(s, config["device"]) for s in calibration_samples if s["role"] == "calibration"]
     if not calibration:
         raise ValueError("No calibration-only fixtures")
     from scripts.deployment.trt import export_onnx_n1d7 as exporter
@@ -88,6 +92,7 @@ def main():
         quantization=args.quantization, calib_size=len(calibration), batch_size=1)
     write_json(output / "fixture_binding.json", {
         "dataset_manifest_sha256": sha256(Path(args.dataset) / "manifest.json"),
+        "calibration_manifest_sha256": sha256(Path(calibration_path) / "manifest.json"),
         "calibration_sample_ids": [s["id"] for s in calibration],
         "quantization": args.quantization, "profile": args.profile,
         "seed": 20261025, "checkpoint": manifest["checkpoint"]})

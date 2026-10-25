@@ -67,6 +67,11 @@ class FlashRTAdapter:
 
     def runtime_stats(self):
         f = self.frontend
+        if self.metadata["implementation"].startswith("GrootN17TorchFrontendRtxFP8FP16DiT"):
+            graphs = getattr(f, "_dit_graphs", [])
+            if not hasattr(f, "_kbb_graph") or len(graphs) != self.protocol.denoising_steps:
+                raise RuntimeError("FP16 action head did not capture all step graphs")
+            return {"backbone_graph": True, "action_step_graphs": len(graphs), "dit_quant": "FP16"}
         if not hasattr(f, "_kbb_graph") or not hasattr(f, "_k_dit_graph"):
             raise RuntimeError("FlashRT backbone/action graph was not captured")
         if f._k_nsteps != self.protocol.denoising_steps:

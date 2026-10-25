@@ -22,7 +22,8 @@
   "options": {
     "llm_scheme": "modelopt_w4a16_awq",
     "dit_scheme": "modelopt_w4a16_awq",
-    "engine_dir": "/data/inference-baseline/artifacts/foldquant-awq/engines"
+    "engine_dir": "/data/inference-baseline/artifacts/foldquant-awq/engines",
+    "calibration_dataset": "datasets/groot-n17-calibration-v2"
   },
   "label": "foldquant-awq"
 }

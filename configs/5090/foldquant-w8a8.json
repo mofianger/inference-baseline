@@ -22,7 +22,8 @@
   "options": {
     "llm_scheme": "w8a8_sr",
     "dit_scheme": "w8a8_sh",
-    "engine_dir": "/data/inference-baseline/artifacts/foldquant-w8a8/engines"
+    "engine_dir": "/data/inference-baseline/artifacts/foldquant-w8a8/engines",
+    "calibration_dataset": "datasets/groot-n17-calibration-v2"
   },
   "label": "foldquant-w8a8"
 }

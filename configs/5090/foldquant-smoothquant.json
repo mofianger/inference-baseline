@@ -22,7 +22,8 @@
   "options": {
     "llm_scheme": "modelopt_w8a8_smoothquant",
     "dit_scheme": "modelopt_w8a8_smoothquant",
-    "engine_dir": "/data/inference-baseline/artifacts/foldquant-smoothquant/engines"
+    "engine_dir": "/data/inference-baseline/artifacts/foldquant-smoothquant/engines",
+    "calibration_dataset": "datasets/groot-n17-calibration-v2"
   },
   "label": "foldquant-smoothquant"
 }

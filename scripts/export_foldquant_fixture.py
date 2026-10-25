@@ -33,7 +33,11 @@ def main():
     manifest, protocol, samples = load_dataset(args.dataset)
     if checkpoint_manifest(config["checkpoint"]) != manifest["checkpoint"]:
         raise ValueError("Checkpoint mismatch")
-    samples = [move_sample(s, config["device"]) for s in samples if s["role"] == "calibration"]
+    calibration_path = config["options"].get("calibration_dataset", args.dataset)
+    cm, cp, calibration_samples = load_dataset(calibration_path)
+    if cm["checkpoint"] != manifest["checkpoint"] or cp != protocol:
+        raise ValueError("Calibration checkpoint/protocol mismatch")
+    samples = [move_sample(s, config["device"]) for s in calibration_samples if s["role"] == "calibration"]
     if not samples:
         raise ValueError("No calibration partition")
     from foldquant_integration import calibration, quantized
@@ -53,6 +57,7 @@ def main():
         out.mkdir(parents=True, exist_ok=True)
         write_json(out / "fixture_binding.json", {
             "dataset_manifest_sha256": sha256(Path(args.dataset) / "manifest.json"),
+            "calibration_manifest_sha256": sha256(Path(calibration_path) / "manifest.json"),
             "calibration_sample_ids": [s["id"] for s in samples],
             "checkpoint": manifest["checkpoint"], "seed": 20261025})
         quantize(QuantizeConfig(model_path=config["checkpoint"], dataset_path=args.dataset,

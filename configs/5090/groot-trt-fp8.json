@@ -19,7 +19,8 @@
   "options": {
     "mode": "optimized",
     "quantization": "fp8",
-    "engine_dir": "/data/inference-baseline/artifacts/groot-trt-fp8/engines"
+    "engine_dir": "/data/inference-baseline/artifacts/groot-trt-fp8/engines",
+    "calibration_dataset": "datasets/groot-n17-calibration-v2"
   },
   "label": "groot-trt-fp8"
 }
