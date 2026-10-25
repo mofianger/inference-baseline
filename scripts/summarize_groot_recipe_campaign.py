@@ -6,7 +6,7 @@ root = Path("reports/2026-10-25-5090-groot-new-recipes")
 index = json.loads((root / "run-index.json").read_text())
 catalog = json.loads(Path("recipes/groot-n17-5090-candidates.json").read_text(encoding="utf-8"))
 labels = {
-    "F03": "flashrt-fp16-head",
+    "F03": "flashrt-fp8-fp16-head",
     "P02": "phyai-llm-fp8-a8", "P03": "phyai-llm-fp8-block-a8",
     "P04": "phyai-llm-fp8-a16", "P05": "phyai-llm-nvfp4-a16",
     "P06": "phyai-llm-int8-a8", "P07": "phyai-llm-int4-a16", "P08": "phyai-llm-int4-fp8-a8",
@@ -29,7 +29,8 @@ for recipe in catalog["recipes"]:
             if p.exists() and json.loads(p.read_text())["config"]["label"] == label:
                 runs.append(r)
         runs.sort(key=lambda r: r["run"])
-        row.update(config=f"configs/5090/{label}.json", attempts=runs,
+        config_name = "flashrt-fp16-head" if rid == "F03" else label
+        row.update(config=f"configs/5090/{config_name}.json", attempts=runs,
                    status=runs[-1]["status"] if runs else "pending")
     elif rid in {"F01", "F02", "E01", "P01", "N01"}:
         row.update(status="skipped_existing_measurement", reason="Existing successful Run retained; user requested no repeat.")
