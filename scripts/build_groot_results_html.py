@@ -26,6 +26,8 @@ for key, filename, history in [('phyai-bf16','phyai',False),('reference','refere
 assert len(rows)==len(NOTES)==17
 payload = json.dumps(rows,ensure_ascii=False).replace('</','<\/')
 template=(ROOT/'scripts/templates/groot_results.html').read_text(encoding='utf-8')
+for token, filename in [('__APPENDIX__','groot_model_appendix.html'),('__MODEL_JS__','groot_model_explorer.js'),('__CONTROLS__','groot_result_controls.html'),('__FILTER_JS__','groot_result_filters.js'),('__EXTRA_CSS__','groot_results_extra.css')]:
+    template = template.replace(token, (ROOT/'scripts/templates'/filename).read_text(encoding='utf-8-sig'))
 target=ROOT/'groot_n17_5090_results.html'
 target.write_text(template.replace('__DATA__',payload),encoding='utf-8')
 print(f'Built {target.name}: {len(rows)} measured recipes')

@@ -66,7 +66,7 @@ bash scripts/run_5090.sh embodiinfer artifacts/UNIQUE_RUN_ID
 
 ## 已有结果
 
-面向阅读与分享的单文件页面：[5090 × GR00T N1.7 实测结果与 Recipe 解释](groot_n17_5090_results.html)。下载后直接用浏览器打开，无需联网；包括测试设置、模型结构、17 条实测结果，以及各 Recipe 的精度分配和加速方法。更新数据后运行 `python scripts/build_groot_results_html.py` 重新生成。
+面向阅读与分享的单文件页面：[5090 × GR00T N1.7 实测结果与 Recipe 解释](groot_n17_5090_results.html)。下载后直接用浏览器打开，无需联网；包括按框架与量化精度筛选的延迟图表、17 条实测结果、Recipe 说明，以及可逐层查看计算与张量维度的模型结构附录。更新数据后运行 `python scripts/build_groot_results_html.py` 重新生成。
 
 GR00T 同协议优化复测 mean：EmbodiInfer **28.482 ms**、FlashRT FP8 **14.418 ms**、FlashRT NVFP4 **8.974 ms**。最大绝对误差分别为 **0.1602、1.3008、1.3438**；所有精度 gate 均为 `not_configured`。详情、原始记录与历史比较见 [报告](reports/2026-10-23-5090-optimized/README.md)。π0.5 独立记录在 [π0.5 报告](reports/2026-10-23-5090-pi05/README.md)。
 
