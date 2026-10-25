@@ -8,6 +8,6 @@ extern "C" __device__ __noinline__ void stamp(int guard,uint64_t id,uint64_t evp
  unsigned cta=blockIdx.x+gridDim.x*(blockIdx.y+gridDim.y*blockIdx.z);
  if(id>=LAUNCHES||cta>=STRIDE){atomicAdd((unsigned long long*)cp,1ULL);return;}
  Event* e=(Event*)evp+id*STRIDE+cta;
- if(!end){atomicCAS(&e->start,0ULL,t);atomicMin(&e->start,t);e->sm=sm;atomicAdd(&e->entries,1U);}
- else{atomicMax(&e->end,t);atomicAdd(&e->exits,1U);}
+ if(!end){atomicCAS(&e->start,0ULL,t);atomicMin(&e->start,t);e->sm=sm;atomicAdd(&e->entries,(unsigned)__popc(mask));}
+ else{atomicMax(&e->end,t);atomicAdd(&e->exits,(unsigned)__popc(mask));}
 }
