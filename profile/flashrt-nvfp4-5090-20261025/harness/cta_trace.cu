@@ -7,8 +7,8 @@
 #include <mutex>
 #include "nvbit_tool.h"
 #include "nvbit.h"
-struct Event {uint64_t t; uint32_t launch,cta,sm,warp,exit,pad;};
-constexpr unsigned CAP=8000000;
+struct Event {unsigned long long start,end; uint32_t sm,entries,exits,pad;};
+constexpr unsigned STRIDE=12288, LAUNCHES=2048, CAP=STRIDE*LAUNCHES;
 __managed__ Event* events=nullptr;
 __managed__ unsigned long long count=0;
 __managed__ int enabled=0;
@@ -31,5 +31,5 @@ void nvbit_at_cuda_event(CUcontext ctx,int is_exit,nvbit_api_cuda_t cbid,const c
  if(cbid==API_CUDA_cuLaunchKernelEx||cbid==API_CUDA_cuLaunchKernelEx_ptsz){auto p=(cuLaunchKernelEx_params*)params;f=p->f;stream=p->config->hStream;}
  if(f){cudaStreamCaptureStatus status;cudaStreamIsCapturing(stream,&status);if(status==cudaStreamCaptureStatusActive||enabled){instrument(ctx,f);nvbit_set_at_launch(ctx,f,tag(ctx,f));}}
 }
-extern "C" void cta_start(const char* path){cudaDeviceSynchronize();count=0;serial=0;names=fopen((std::string(path)+".names.tsv").c_str(),"w");enabled=1;}
-extern "C" void cta_stop(const char* path){cudaDeviceSynchronize();enabled=0;if(names){fclose(names);names=nullptr;}FILE* f=fopen((std::string(path)+".bin").c_str(),"wb");fwrite(events,sizeof(Event),std::min((unsigned long long)CAP,count),f);fclose(f);fprintf(stderr,"CTA_EVENTS=%llu CAP=%u\n",count,CAP);}
+extern "C" void cta_start(const char* path){cudaDeviceSynchronize();count=0;serial=0;cudaMemset(events,0,CAP*sizeof(Event));cudaDeviceSynchronize();names=fopen((std::string(path)+".names.tsv").c_str(),"w");enabled=1;}
+extern "C" void cta_stop(const char* path){cudaDeviceSynchronize();enabled=0;if(names){fclose(names);names=nullptr;}FILE* f=fopen((std::string(path)+".bin").c_str(),"wb");unsigned long long total=0;for(unsigned l=0;l<std::min(serial,LAUNCHES);l++)for(unsigned c=0;c<STRIDE;c++){Event& e=events[l*STRIDE+c];if(e.start){fwrite(&l,4,1,f);fwrite(&c,4,1,f);fwrite(&e,sizeof(Event),1,f);total++;}}fprintf(stderr,"CTA_RECORDS=%llu LAUNCHES=%u OVERFLOW=%llu\n",total,serial,count);fclose(f);fprintf(stderr,"CTA_EVENTS=%llu CAP=%u\n",count,CAP);}
