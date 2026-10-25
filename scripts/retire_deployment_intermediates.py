@@ -14,6 +14,7 @@ p.add_argument("--assets", required=True)
 proof = p.add_mutually_exclusive_group(required=True)
 proof.add_argument("--summary")
 proof.add_argument("--failed-stages")
+proof.add_argument("--successful-export")
 args = p.parse_args()
 root = Path(args.assets).resolve()
 allowed = (Path(__file__).resolve().parents[1] / "artifacts").resolve()
@@ -23,6 +24,16 @@ if args.summary:
     summary = json.loads(Path(args.summary).read_text())
     if summary.get("status") != "measured" or Path(summary["config"]["options"]["engine_dir"]).resolve() != root / "engines":
         raise ValueError("Need a measured run of these exact engines")
+elif args.successful_export:
+    stages = json.loads(Path(args.successful_export).read_text())
+    exports = [s for s in stages if s["stage"] == "export"]
+    if len(exports) != 1 or exports[0]["exit_code"] != 0:
+        raise ValueError("Need one successfully completed export")
+    command = exports[0]["command"]
+    if Path(command[command.index("--output") + 1]).resolve() != root:
+        raise ValueError("Export does not belong to these assets")
+    if not (root / "onnx" / "foldquant_export.json").is_file():
+        raise ValueError("Need the complete FoldQuant export manifest")
 else:
     stages = json.loads(Path(args.failed_stages).read_text())
     if not stages or not stages[-1]["exit_code"]:
@@ -30,7 +41,8 @@ else:
     asset_commands = [s["command"] for s in stages if s["stage"] != "run"]
     if not asset_commands or any(Path(c[c.index("--output") + 1]).resolve() != root for c in asset_commands):
         raise ValueError("Failed stages do not belong to these assets")
-targets = [root / n for n in ("onnx", "quantized") if (root / n).exists()]
+names = ("quantized",) if args.successful_export else ("onnx", "quantized")
+targets = [root / n for n in names if (root / n).exists()]
 records = []
 for target in targets:
     if target.is_symlink() or target.resolve().parent != root:

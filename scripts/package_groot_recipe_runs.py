@@ -53,7 +53,7 @@ for path in sorted(logs):
 for directory in root.iterdir():
     if not directory.is_dir() or not directory.name.startswith(("groot-trt-", "foldquant-")):
         continue
-    for filename in ("fixture_binding.json", "retired-intermediates.json", "checkpoint_replay.json"):
+    for filename in ("fixture_binding.json", "retired-intermediates.json", "retired-built-onnx.json", "checkpoint_replay.json"):
         path = directory / filename
         if path.is_file():
             target = out / "assets" / directory.name / filename

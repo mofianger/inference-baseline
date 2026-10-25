@@ -52,6 +52,9 @@ for stage in stages[stages.index(args.start):]:
             subprocess.run([sys.executable, "scripts/retire_deployment_intermediates.py",
                             "--assets", args.assets, "--failed-stages", str(out / "stages.json")], check=True)
         sys.exit(code)
+    if fold and stage == "export" and args.retire_intermediates:
+        subprocess.run([sys.executable, "scripts/retire_deployment_intermediates.py",
+                        "--assets", args.assets, "--successful-export", str(out / "stages.json")], check=True)
 if args.retire_intermediates:
     subprocess.run([sys.executable, "scripts/retire_deployment_intermediates.py",
                     "--assets", args.assets, "--summary", str(out / "run" / "summary.json")], check=True)
