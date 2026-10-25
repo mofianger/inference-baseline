@@ -1,5 +1,7 @@
 # 文档导航
 
+新增 NVIDIA TensorRT、FoldQuant 及 PhyAI 量化配方的操作入口：[GR00T 部署配方手册](guides/groot-deployment-recipes.md)；[本轮执行记录](../reports/2026-10-25-5090-groot-new-recipes/README.md)。
+
 当前任务入口为 [5090 × GR00T N1.7 待测 Recipe 汇总](../recipes/groot-n17-5090-candidates.md)，包括精度、执行路径与接入缺口；[V3 历史性能资料](../reports/2026-10-25-v3-baseline/README.md) 保留供追溯。
 
 π0.5 的协议、环境与复现命令见 [π0.5 / 5090 指引](guides/pi05-5090.md)，实测及数值误差见 [结果报告](../reports/2026-10-23-5090-pi05/README.md)。

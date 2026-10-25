@@ -12,6 +12,8 @@
 
 下一轮复测以 [RTX 5090 × GR00T N1.7 待测 Recipe 清单](recipes/groot-n17-5090-candidates.md) 为入口：列出各引擎精度/执行配方、源码证据与接入缺口，不要求已有延迟结果。协作者 V3 的 [历史性能资料归档](reports/2026-10-25-v3-baseline/README.md) 保留供追溯。
 
+该清单中已实现路径的执行记录见 [新增 Recipe 测试报告](reports/2026-10-25-5090-groot-new-recipes/README.md)：保留有效延迟、失败诊断和协议不兼容项，已测路径没有重跑。新框架的构建入口见 [部署配方操作手册](docs/guides/groot-deployment-recipes.md)。
+
 | 目标 | 入口 |
 |---|---|
 | 理解职责与当前实现边界 | [架构](docs/architecture.md)、[协议与可比性](docs/protocols.md) |

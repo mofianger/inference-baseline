@@ -10,7 +10,7 @@ Recipe = 引擎 × 模型 × 适用硬件的一套精度/执行/校准配置。�
 |---|---|---|---|
 | FlashRT | `flashrt-groot-n17-sm120-fp8-v1` | measured | 融合 FP8 backbone、混合 FP8/BF16 action head |
 | FlashRT | `flashrt-groot-n17-sm120-nvfp4-v1` | measured | FP8 backbone、NVFP4 DiT/cross-KV |
-| FlashRT | `flashrt-groot-n17-sm120-fp16-candidate` | proposed | 待核实完整精度范围和入口，未接入/未测 |
+| FlashRT | `flashrt-groot-n17-sm120-fp16-candidate` | protocol_failed | 已适配 FP8 backbone + FP16 head；图像响应检查失败，未计入有效延迟 |
 | EmbodiInfer | `embodiinfer-groot-n17-bf16-graphs-v1` | measured | 前缀图、Inductor、完整 4 步去噪图 |
 | PhyAI | `phyai-groot-n17-bf16-graphs-v1` | measured | 首轮已测，本轮没有重跑 |
 | 官方 reference | `reference-groot-n17-eager-bf16-v1` | measured | 精确版本作为数值参考 |
@@ -22,6 +22,8 @@ Recipe = 引擎 × 模型 × 适用硬件的一套精度/执行/校准配置。�
 | OpenPI reference | `reference-pi05-eager-v1` | measured | 官方 PyTorch eager 混合 BF16/FP32 |
 
 细节：[FlashRT](flashrt/gr00t-n17.md)、[EmbodiInfer](embodiinfer/gr00t-n17.md)、[PhyAI](phyai/gr00t-n17.md)、[reference](reference/gr00t-n17.md)。
+
+2026-10-25 新增 NVIDIA TensorRT、FoldQuant 和 PhyAI 量化路径的配置、有效测量与失败分别见 [执行报告](../reports/2026-10-25-5090-groot-new-recipes/README.md) 和 [构建手册](../docs/guides/groot-deployment-recipes.md)。候选 JSON 是调研快照，不能代替本轮实际运行状态。
 
 π0.5 细节：[FlashRT](flashrt/pi05.md)、[EmbodiInfer](embodiinfer/pi05.md)、[PhyAI](phyai/pi05.md)、[OpenPI](reference/pi05.md)。measured 仅表示已测量，不代表数值验收通过。
 

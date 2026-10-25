@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 import shutil
+import subprocess
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from inference_baseline.io import sha256, write_json
@@ -14,7 +15,7 @@ prefixes = ("20261025-phyai-", "20261025-flashrt-fp16-", "20261025-groot-trt-", 
 campaign = [p for p in root.iterdir() if p.is_dir() and p.name.startswith(prefixes)]
 for directory in sorted(campaign):
     for path in sorted(directory.rglob("*.json")):
-        if path.name not in ("summary.json", "failure.json", "correctness.json", "stages.json", "batch.json", "provenance.json"):
+        if path.name not in ("summary.json", "failure.json", "correctness.json", "stages.json", "batch.json", "provenance.json", "adapter-invalidated.json"):
             continue
         relative = path.relative_to(root)
         target = out / "runs" / relative
@@ -42,7 +43,7 @@ logs += [p for d in campaign for p in d.rglob("*.log")]
 log_manifest = []
 for path in sorted(logs):
     relative = path.relative_to(root)
-    target = out / "log-tails" / relative
+    target = (out / "log-tails" / relative).with_suffix(".txt")
     target.parent.mkdir(parents=True, exist_ok=True)
     # The full server log remains the authoritative artifact. Tails are for
     # reviewing diagnostics without committing large TensorRT compiler dumps.
@@ -52,7 +53,7 @@ for path in sorted(logs):
 for directory in root.iterdir():
     if not directory.is_dir() or not directory.name.startswith(("groot-trt-", "foldquant-")):
         continue
-    for filename in ("fixture_binding.json", "retired-intermediates.json"):
+    for filename in ("fixture_binding.json", "retired-intermediates.json", "checkpoint_replay.json"):
         path = directory / filename
         if path.is_file():
             target = out / "assets" / directory.name / filename
@@ -68,4 +69,16 @@ if calibration.exists():
 shutil.copy2("datasets/groot-n17-v3/manifest.json", out / "evaluation-manifest.json")
 write_json(out / "run-index.json", rows)
 write_json(out / "server-log-manifest.json", log_manifest)
+environment = out / "environments"
+environment.mkdir(exist_ok=True)
+for name, python in {
+    "nvidia-trt": ".venv-groot-trt/bin/python",
+    "foldquant": ".venv-foldquant/bin/python",
+    "phyai": "third_party/phyai/.venv/bin/python",
+    "flashrt": "third_party/FlashRT/.venv/bin/python",
+}.items():
+    result = subprocess.run(["uv", "pip", "freeze", "--python", python], capture_output=True, text=True, check=True)
+    (environment / f"{name}-freeze.txt").write_text(result.stdout)
+result = subprocess.run(["nvidia-smi", "-q"], capture_output=True, text=True, check=True)
+(environment / "gpu.txt").write_text(result.stdout)
 print(json.dumps(rows, indent=2))
