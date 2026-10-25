@@ -29,26 +29,26 @@ with torch.inference_mode():
  meta={'scope':'FlashRT frontend, prepared embeddings excluded; internal copies, sync, output cast included','sample':sample['id'],'baseline_ms':ms,'median_ms':statistics.median(ms),'engine':revision(config['engine_source']),'runtime':adapter.runtime_stats(),'torch':torch.__version__,'gpu':torch.cuda.get_device_name(),'sm_count':torch.cuda.get_device_properties(0).multi_processor_count,'dataset_sha256':sha256(root/'datasets/groot-n17-v3/manifest.json')}
  if a.mode=='mapping':
   import inspect
-  active={}
+  active=[None]
   def hook(frame,event,arg):
-   file=frame.f_code.co_filename
-   if '/flash_rt/' not in file:return
-   if event=='c_call':
+   if '/flash_rt/' not in frame.f_code.co_filename:return None
+   if event=='line':
+    if active[0]:active[0].__exit__(None,None,None)
     labels=[];f=frame
     while f:
      if '/flash_rt/' in f.f_code.co_filename:
       loc=f.f_locals
       labels.append(f.f_code.co_name+':'+','.join(str(k)+'='+str(loc[k]) for k in ('li','j','step','name') if k in loc and isinstance(loc[k],(int,str))))
      f=f.f_back
-    ctx=torch.profiler.record_function('MAP|'+getattr(arg,'__name__','?')+'|'+'|'.join(labels));ctx.__enter__();active[id(frame)]=ctx
-   elif event in ('c_return','c_exception'):
-    ctx=active.pop(id(frame),None)
-    if ctx:ctx.__exit__(None,None,None)
+    ctx=torch.profiler.record_function('MAP|line='+str(frame.f_lineno)+'|'+'|'.join(labels));ctx.__enter__();active[0]=ctx
+   return hook
   with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU,torch.profiler.ProfilerActivity.CUDA]) as prof:
-   sys.setprofile(hook)
+   sys.settrace(hook)
    f=adapter.frontend;f._kbb_forward(0);f._cross_kv_fwd(0);state,step=f._kdit_fwd;state(0)
    for i in range(4):step(i,0)
-   sys.setprofile(None);torch.cuda.synchronize()
+   sys.settrace(None)
+   if active[0]:active[0].__exit__(None,None,None)
+   torch.cuda.synchronize()
   prof.export_chrome_trace(str(out/'mapping.json'))
  if a.mode=='cta':
   import ctypes
