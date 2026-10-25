@@ -1,4 +1,4 @@
-﻿#include <cstdio>
+#include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <unordered_set>
@@ -13,13 +13,6 @@ __managed__ Event* events=nullptr;
 __managed__ unsigned long long count=0;
 __managed__ int enabled=0;
 static bool ready=false;static uint32_t serial=0;static std::unordered_set<CUfunction> seen;static FILE* names=nullptr;
-extern "C" __device__ __noinline__ void stamp(int guard,uint64_t id,uint64_t evp,uint64_t cp,uint64_t ep,int end){
- if(!guard || !*(int*)ep)return;
- unsigned lane;asm("mov.u32 %0, %%laneid;":"=r"(lane));unsigned mask=__activemask();if(lane!=(unsigned)(__ffs(mask)-1))return;
- unsigned sm;unsigned long long t;asm volatile("mov.u32 %0, %%smid;":"=r"(sm));asm volatile("mov.u64 %0, %%globaltimer;":"=l"(t));
- unsigned tid=threadIdx.x+blockDim.x*(threadIdx.y+blockDim.y*threadIdx.z);
- auto idx=atomicAdd((unsigned long long*)cp,1ULL);if(idx<CAP)((Event*)evp)[idx]={t,(uint32_t)id,blockIdx.x+gridDim.x*(blockIdx.y+gridDim.y*blockIdx.z),sm,tid/32,(unsigned)end,0};
-}
 void nvbit_at_init(){setenv("CUDA_MANAGED_FORCE_DEVICE_ALLOC","1",1);}
 void nvbit_tool_init(CUcontext ctx){if(!ready){cudaMallocManaged(&events,CAP*sizeof(Event));ready=true;}}
 void instrument(CUcontext ctx,CUfunction f){
