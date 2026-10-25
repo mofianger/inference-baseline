@@ -1,6 +1,6 @@
 # 文档导航
 
-协作者资料整理见 [V3 Baseline 总表](../reports/2026-10-25-v3-baseline/README.md)；当前重点为 [5090 / GR00T N1.7 / FP8 与 NVFP4](../reports/2026-10-25-v3-baseline/5090-groot-n17.md)。
+当前任务入口为 [5090 × GR00T N1.7 待测 Recipe 汇总](../recipes/groot-n17-5090-candidates.md)，包括精度、执行路径与接入缺口；[V3 历史性能资料](../reports/2026-10-25-v3-baseline/README.md) 保留供追溯。
 
 π0.5 的协议、环境与复现命令见 [π0.5 / 5090 指引](guides/pi05-5090.md)，实测及数值误差见 [结果报告](../reports/2026-10-23-5090-pi05/README.md)。
 

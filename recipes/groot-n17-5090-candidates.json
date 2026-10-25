@@ -1,0 +1,1381 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "purpose": "待测 Baseline 候选目录，不是性能结果表",
+  "research_date": "2026-10-25",
+  "setting": {
+    "platform": "RTX 5090",
+    "model": "GR00T N1.7",
+    "checkpoint_revision": "2fc962b973bccdd5d8ce4f67cc63b264d6886495",
+    "protocol": "groot-n17-b1-v3-model-only-v1",
+    "batch": 1,
+    "views": 3,
+    "image_size": [
+      256,
+      256
+    ],
+    "denoising_steps": 4,
+    "action_horizon": 40,
+    "action_dim": 132
+  },
+  "versions": {
+    "flashrt": {
+      "repository": "https://github.com/flashrt-project/FlashRT",
+      "commit": "cd1f511f5188842fddb57425f0600b649c13ec8a",
+      "audited_directory": "FlashRT"
+    },
+    "embodiinfer": {
+      "repository": "https://github.com/BUAA-CI-LAB/EmbodiInfer",
+      "commit": "bd47f507a83657ccd3da809044ce04d34ca16e25",
+      "audited_directory": "EmbodiInfer"
+    },
+    "phyai": {
+      "repository": "https://github.com/mingti-org/phyai",
+      "commit": "f983a8f84684aa7db4dfac7184b7b5c787635978",
+      "audited_directory": "phyai"
+    },
+    "nvidia": {
+      "repository": "https://github.com/NVIDIA/Isaac-GR00T",
+      "commit": "944fe70c4fd54e3fcb80a7d7258a328f9c061176",
+      "audited_directory": "Isaac-GR00T"
+    },
+    "vlacpp": {
+      "repository": "https://github.com/VinRobotics/vla.cpp",
+      "commit": "5499b777c613d69e4209687e63cc079202a18ed7",
+      "audited_directory": "vla.cpp"
+    },
+    "embodiedcpp": {
+      "repository": "https://github.com/SEU-PAISys/Embodied.cpp",
+      "commit": "156bed151826780e2ce0132f8d0e3540889ae8cd",
+      "audited_directory": "Embodied.cpp"
+    },
+    "foldquant": {
+      "repository": "https://github.com/cair-vinuni/FoldQuantVLA",
+      "commit": "7d98edd705c33ef994b3caf8c2c93d28da78413a",
+      "audited_directory": "FoldQuantVLA"
+    }
+  },
+  "sources": {
+    "F-doc": {
+      "engine": "flashrt",
+      "path": "docs/groot_n17_rtx_nvfp4.md",
+      "sha256": "6ff54402b4200df3e6ffd8ce238a0f93e33965c0ea64e0c6c4fef4e45c5bcb1d",
+      "url": "https://github.com/flashrt-project/FlashRT/blob/cd1f511f5188842fddb57425f0600b649c13ec8a/docs/groot_n17_rtx_nvfp4.md"
+    },
+    "F-fp8": {
+      "engine": "flashrt",
+      "path": "flash_rt/frontends/torch/groot_n17_rtx_fp8.py",
+      "sha256": "ae6a703f4ccddec501eab9012a40dd6dbb2bfebaf0580d03d975c4a51e2af08b",
+      "url": "https://github.com/flashrt-project/FlashRT/blob/cd1f511f5188842fddb57425f0600b649c13ec8a/flash_rt/frontends/torch/groot_n17_rtx_fp8.py"
+    },
+    "F-fp4": {
+      "engine": "flashrt",
+      "path": "flash_rt/frontends/torch/groot_n17_rtx_fp4.py",
+      "sha256": "6b896180a61a98339ea59598cf75148b1f2d86aaf11067880dcca9e895a5ba2b",
+      "url": "https://github.com/flashrt-project/FlashRT/blob/cd1f511f5188842fddb57425f0600b649c13ec8a/flash_rt/frontends/torch/groot_n17_rtx_fp4.py"
+    },
+    "F-fp16": {
+      "engine": "flashrt",
+      "path": "flash_rt/frontends/torch/groot_n17_rtx_fp16.py",
+      "sha256": "85fb39627b01cd50873e032eea3b483f89e7084482b2c0394fe2daca02607fd6",
+      "url": "https://github.com/flashrt-project/FlashRT/blob/cd1f511f5188842fddb57425f0600b649c13ec8a/flash_rt/frontends/torch/groot_n17_rtx_fp16.py"
+    },
+    "E-builder": {
+      "engine": "embodiinfer",
+      "path": "embodiinfer/policies/gr00t/modeling_gr00t.py",
+      "sha256": "ee034c864a9346babbe55a5128f31599c943af19b81401dc5ece66299cdc08c4",
+      "url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/bd47f507a83657ccd3da809044ce04d34ca16e25/embodiinfer/policies/gr00t/modeling_gr00t.py"
+    },
+    "E-runtime": {
+      "engine": "embodiinfer",
+      "path": "embodiinfer/policies/gr00t/runtime.py",
+      "sha256": "964eb12c529e2adfd406872c1b1bb0cf4e6cb3f3af2ed7794d534b979db6e770",
+      "url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/bd47f507a83657ccd3da809044ce04d34ca16e25/embodiinfer/policies/gr00t/runtime.py"
+    },
+    "E-linear": {
+      "engine": "embodiinfer",
+      "path": "embodiinfer/models/linear.py",
+      "sha256": "20c51798fd0807c148ec28cd1fc8bada19cbca4dd46f68a60cfe672619185163",
+      "url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/bd47f507a83657ccd3da809044ce04d34ca16e25/embodiinfer/models/linear.py"
+    },
+    "E-dispatch": {
+      "engine": "embodiinfer",
+      "path": "embodiinfer/layers/linear.py",
+      "sha256": "2256c4164d63e9f6b96e42ba88b1e6f3271026a291380c5c0288b02275740afe",
+      "url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/bd47f507a83657ccd3da809044ce04d34ca16e25/embodiinfer/layers/linear.py"
+    },
+    "E-fp8": {
+      "engine": "embodiinfer",
+      "path": "embodiinfer/backend/torch/fp8.py",
+      "sha256": "7cdb0425b65cecc2687a88f665c33f9f59ab5d595adbb8598483315f72e49a6b",
+      "url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/bd47f507a83657ccd3da809044ce04d34ca16e25/embodiinfer/backend/torch/fp8.py"
+    },
+    "E-nvfp4": {
+      "engine": "embodiinfer",
+      "path": "embodiinfer/backend/torch/nvfp4.py",
+      "sha256": "573c06b2b63c29d3ba9c74004eea91aced747832d24772c9b6603f358d20b6d7",
+      "url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/bd47f507a83657ccd3da809044ce04d34ca16e25/embodiinfer/backend/torch/nvfp4.py"
+    },
+    "E-int8": {
+      "engine": "embodiinfer",
+      "path": "embodiinfer/backend/torch/int8.py",
+      "sha256": "9e6a8c5d7993f4e8f99e9cc47eb5acff28ac2368737fed58f72abadb84cd94f4",
+      "url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/bd47f507a83657ccd3da809044ce04d34ca16e25/embodiinfer/backend/torch/int8.py"
+    },
+    "P-doc": {
+      "engine": "phyai",
+      "path": "docs/quantization/overview.mdx",
+      "sha256": "2c228cb0d11d9127d5f879bc6ea3dd95068fc5261f44c09c7717a49012da9ce1",
+      "url": "https://github.com/mingti-org/phyai/blob/f983a8f84684aa7db4dfac7184b7b5c787635978/docs/quantization/overview.mdx"
+    },
+    "P-head": {
+      "engine": "phyai",
+      "path": "phyai/src/phyai/models/gr00t_n17/modeling_gr00t_n17.py",
+      "sha256": "b29d26a7c410fc27b2989f6cb8c5c4dfce22a01422be9389d7a0a6e5929eb242",
+      "url": "https://github.com/mingti-org/phyai/blob/f983a8f84684aa7db4dfac7184b7b5c787635978/phyai/src/phyai/models/gr00t_n17/modeling_gr00t_n17.py"
+    },
+    "P-adapter": {
+      "engine": "phyai",
+      "path": "phyai/src/phyai/models/gr00t_n17/qwen3_vl_adapter.py",
+      "sha256": "2964c647e2d52567bdbe1b455568ce4e3a33e723283b103cf43e703234f98bd0",
+      "url": "https://github.com/mingti-org/phyai/blob/f983a8f84684aa7db4dfac7184b7b5c787635978/phyai/src/phyai/models/gr00t_n17/qwen3_vl_adapter.py"
+    },
+    "P-backbone": {
+      "engine": "phyai",
+      "path": "phyai/src/phyai/layers/backbones/qwen3_vl/modeling.py",
+      "sha256": "1989724e8ee18ffd6e9c1bfea5c509ab7c0a363e01fa60e7aa6bacfe46139700",
+      "url": "https://github.com/mingti-org/phyai/blob/f983a8f84684aa7db4dfac7184b7b5c787635978/phyai/src/phyai/layers/backbones/qwen3_vl/modeling.py"
+    },
+    "P-linear": {
+      "engine": "phyai",
+      "path": "phyai/src/phyai/layers/linear/layers.py",
+      "sha256": "6e502c1ebbd9584ae263c0d9da88ab764e00f5b1f8e7fc0978685d43ae6d89c2",
+      "url": "https://github.com/mingti-org/phyai/blob/f983a8f84684aa7db4dfac7184b7b5c787635978/phyai/src/phyai/layers/linear/layers.py"
+    },
+    "P-nvfp4": {
+      "engine": "phyai",
+      "path": "examples/pi05/kernel_policies/humming_nvfp4_a16.yaml",
+      "sha256": "c17e3e74dce1dee4085bd553b86948becc952e93fb82f4c8df16c3ba18a3e82a",
+      "url": "https://github.com/mingti-org/phyai/blob/f983a8f84684aa7db4dfac7184b7b5c787635978/examples/pi05/kernel_policies/humming_nvfp4_a16.yaml"
+    },
+    "N-doc": {
+      "engine": "nvidia",
+      "path": "scripts/deployment/README.md",
+      "sha256": "38b8ac68512b0e4c21ad821fd6fe6bddca6e55d056ef18650029c56a80dbc0a9",
+      "url": "https://github.com/NVIDIA/Isaac-GR00T/blob/944fe70c4fd54e3fcb80a7d7258a328f9c061176/scripts/deployment/README.md"
+    },
+    "N-build": {
+      "engine": "nvidia",
+      "path": "scripts/deployment/build_trt_pipeline.py",
+      "sha256": "52bfc9f9dde48f55dbea0a80e66ac122dbdf0b5b5cf213f46bace350dee61a6d",
+      "url": "https://github.com/NVIDIA/Isaac-GR00T/blob/944fe70c4fd54e3fcb80a7d7258a328f9c061176/scripts/deployment/build_trt_pipeline.py"
+    },
+    "N-config": {
+      "engine": "nvidia",
+      "path": "scripts/deployment/trt/n1d7_optimization_config.py",
+      "sha256": "4e0a8b2f949ddb519d37ea46047fda59962afc46120d79941bbea1acd33de14d",
+      "url": "https://github.com/NVIDIA/Isaac-GR00T/blob/944fe70c4fd54e3fcb80a7d7258a328f9c061176/scripts/deployment/trt/n1d7_optimization_config.py"
+    },
+    "N-calib": {
+      "engine": "nvidia",
+      "path": "scripts/deployment/trt/n1d7_calibration.py",
+      "sha256": "77641fb082dd73cccf814355e7dc486d10fb2f42d03f69fea53f7fbf30ceed97",
+      "url": "https://github.com/NVIDIA/Isaac-GR00T/blob/944fe70c4fd54e3fcb80a7d7258a328f9c061176/scripts/deployment/trt/n1d7_calibration.py"
+    },
+    "N-bench": {
+      "engine": "nvidia",
+      "path": "scripts/deployment/benchmark_inference.py",
+      "sha256": "284032ad6d4ee1e343d0f21de6e4e6cfe9fceb97da2ffbe22d5cf982c2408924",
+      "url": "https://github.com/NVIDIA/Isaac-GR00T/blob/944fe70c4fd54e3fcb80a7d7258a328f9c061176/scripts/deployment/benchmark_inference.py"
+    },
+    "V-quant": {
+      "engine": "vlacpp",
+      "path": "docs/QUANTIZATION.md",
+      "sha256": "a1b352f6ce68ccfe38f2be0906c17e15c6e0feae70f3308a19e3e523952babfd",
+      "url": "https://github.com/VinRobotics/vla.cpp/blob/5499b777c613d69e4209687e63cc079202a18ed7/docs/QUANTIZATION.md"
+    },
+    "V-repack": {
+      "engine": "vlacpp",
+      "path": "scripts/quantize_gguf.py",
+      "sha256": "6bfb859d6997f4435aff6a57498a0ee2102d49386ee71d0478c7cd3129afacdd",
+      "url": "https://github.com/VinRobotics/vla.cpp/blob/5499b777c613d69e4209687e63cc079202a18ed7/scripts/quantize_gguf.py"
+    },
+    "V-kernel": {
+      "engine": "vlacpp",
+      "path": "src/kernels/foldquant/fq_gemm_mma.cu",
+      "sha256": "64bc9cac14f0c7a2ed3db1294232c605fb27d4c17edc4a674507092c09a2de7d",
+      "url": "https://github.com/VinRobotics/vla.cpp/blob/5499b777c613d69e4209687e63cc079202a18ed7/src/kernels/foldquant/fq_gemm_mma.cu"
+    },
+    "C-doc": {
+      "engine": "embodiedcpp",
+      "path": "scripts/README.md",
+      "sha256": "1ad23a91aae43c3b75b1a6a4f4d1480e8edcdb890683e2751210b3439ce49386",
+      "url": "https://github.com/SEU-PAISys/Embodied.cpp/blob/156bed151826780e2ce0132f8d0e3540889ae8cd/scripts/README.md"
+    },
+    "C-convert": {
+      "engine": "embodiedcpp",
+      "path": "scripts/prepare_groot_n1_backbone.py",
+      "sha256": "973af958d3689c04ef7477634813d18c7b29c6acda5bfc828df8536cbb963a98",
+      "url": "https://github.com/SEU-PAISys/Embodied.cpp/blob/156bed151826780e2ce0132f8d0e3540889ae8cd/scripts/prepare_groot_n1_backbone.py"
+    },
+    "C-quant": {
+      "engine": "embodiedcpp",
+      "path": "scripts/gguf_quantize.py",
+      "sha256": "09fe7eb211dcc112f9baa1e66b09c30718aeb66f08e230cb2e2216585cab0fb7",
+      "url": "https://github.com/SEU-PAISys/Embodied.cpp/blob/156bed151826780e2ce0132f8d0e3540889ae8cd/scripts/gguf_quantize.py"
+    },
+    "C-model": {
+      "engine": "embodiedcpp",
+      "path": "models/groot_n1.cpp",
+      "sha256": "a4bba2654f6de8efba45f5dd4898adb94651f58a28f1645e6c2ff36a318983bb",
+      "url": "https://github.com/SEU-PAISys/Embodied.cpp/blob/156bed151826780e2ce0132f8d0e3540889ae8cd/models/groot_n1.cpp"
+    },
+    "Q-doc": {
+      "engine": "foldquant",
+      "path": "README.md",
+      "sha256": "063ca9ff292ddc55b8b95b6c93eadb8ca16f4f515ce18e456625ec6637833353",
+      "url": "https://github.com/cair-vinuni/FoldQuantVLA/blob/7d98edd705c33ef994b3caf8c2c93d28da78413a/README.md"
+    },
+    "Q-groot": {
+      "engine": "foldquant",
+      "path": "models/groot_n1_7/foldquant_integration/README.md",
+      "sha256": "59b49b48ac13a4240ed9aa39785841d66feadfccb6badc1db83a0b9a0316ff69",
+      "url": "https://github.com/cair-vinuni/FoldQuantVLA/blob/7d98edd705c33ef994b3caf8c2c93d28da78413a/models/groot_n1_7/foldquant_integration/README.md"
+    },
+    "Q-kernel": {
+      "engine": "foldquant",
+      "path": "foldquant/kernels/registry.py",
+      "sha256": "9dad7ae251062374965d6f66e480cda4b557f8c3f82ae67f480bb468faa9a8f6",
+      "url": "https://github.com/cair-vinuni/FoldQuantVLA/blob/7d98edd705c33ef994b3caf8c2c93d28da78413a/foldquant/kernels/registry.py"
+    }
+  },
+  "recipes": [
+    {
+      "id": "F01",
+      "engine": "flashrt",
+      "name": "FlashRT FP8 混合路径",
+      "description": "融合 FP8 backbone；action head 的部分 QKV/FFN 为 FP8，其余 BF16；backbone/action CUDA Graph。",
+      "entry": "use_fp4=false; FLASHRT_GROOT_N17_BB_FUSED=1",
+      "status": "已接入·复测",
+      "priority": "P0",
+      "group": "main",
+      "remaining_work": "沿用共享三视角输入，重新记录当前构建和量化校准。",
+      "evidence": [
+        "F-doc",
+        "F-fp8"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": "configs/5090/flashrt.json",
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "F02",
+      "engine": "flashrt",
+      "name": "FlashRT NVFP4 混合路径",
+      "description": "FP8 backbone；NVFP4 W4A4 DiT 与 cross-K/V；attention 等保留混合精度；双阶段 CUDA Graph。",
+      "entry": "use_fp4=true; CK_NVFP4=1",
+      "status": "已接入·复测",
+      "priority": "P0",
+      "group": "main",
+      "remaining_work": "核验 nvfp4_skinny 和 cross-K/V 实际开关。",
+      "evidence": [
+        "F-doc",
+        "F-fp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": "configs/5090/flashrt_nvfp4.json",
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "F03",
+      "engine": "flashrt",
+      "name": "FlashRT FP8 backbone + FP16 action head",
+      "description": "FP8 骨干加全 FP16 action-head 执行，作为混合精度对照；部分 DiT 权重经过 FP8 装载再反量化，不是原权重纯 FP16 真值。",
+      "entry": "GrootN17TorchFrontendRtxFP8FP16DiT",
+      "status": "上游实现·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "需要独立 frontend 选择和 dtype/图检查；GPU embeddings 仍计时。",
+      "evidence": [
+        "F-fp8",
+        "F-fp16"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "E01",
+      "engine": "embodiinfer",
+      "name": "EmbodiInfer BF16 原生优化路径",
+      "description": "BF16/原生 FP32 保留项；SDPA、native prefix、Inductor denoise_step、prefix 图和完整 4 步 LoopGraph；请求内复用 cross-K/V。",
+      "entry": "native_inference=true; prefix_cuda_graph=true; full_loop=true",
+      "status": "已接入·复测",
+      "priority": "P0",
+      "group": "main",
+      "remaining_work": "固定既有配置后复测新版本，不沿用旧版本数字。",
+      "evidence": [
+        "E-builder",
+        "E-runtime"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": "configs/5090/embodiinfer.json",
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "E02",
+      "engine": "embodiinfer",
+      "name": "EmbodiInfer FP8 W8A8 native 候选",
+      "description": "拟对 LLM 与 DiT 的普通投影 Linear 使用 E4M3 FP8 权重及动态 FP8 激活；其他模块保留原精度。",
+      "entry": "FP8Config(backend=native); quantize_linear",
+      "status": "通用算子·需接线",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "GR00T builder 未接 quantization；须新增明确层白名单，先关闭 Inductor 验证量化算子，再捕获 prefix/loop 图。不得以 auto 静默回退冒充 native。",
+      "evidence": [
+        "E-linear",
+        "E-dispatch",
+        "E-fp8",
+        "E-builder"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "E03",
+      "engine": "embodiinfer",
+      "name": "EmbodiInfer FP8 W8A16 Triton 候选",
+      "description": "相同投影范围，FP8 存储权重，BF16 激活；Triton weight-only 路径，单独对照 W8A8。",
+      "entry": "FP8Config(backend=triton); quantize_linear",
+      "status": "通用算子·需接线",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "GR00T builder 未接 quantization；须新增明确层白名单，先关闭 Inductor 验证量化算子，再捕获 prefix/loop 图。不得以 auto 静默回退冒充 native。",
+      "evidence": [
+        "E-linear",
+        "E-dispatch",
+        "E-fp8",
+        "E-builder"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "E04",
+      "engine": "embodiinfer",
+      "name": "EmbodiInfer NVFP4 W4A4 native 候选",
+      "description": "拟将同一投影范围换为 E2M1 权重/激活、block16 scale 的原生 NVFP4 GEMM；vision、state/category、norm、输出等保留原精度。",
+      "entry": "NVFP4Config(backend=native); quantize_linear",
+      "status": "通用算子·需接线",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "GR00T builder 未接 quantization；须新增明确层白名单，先关闭 Inductor 验证量化算子，再捕获 prefix/loop 图。不得以 auto 静默回退冒充 native。",
+      "evidence": [
+        "E-linear",
+        "E-dispatch",
+        "E-nvfp4",
+        "E-builder"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "E05",
+      "engine": "embodiinfer",
+      "name": "EmbodiInfer INT8 W8A8 native 候选",
+      "description": "普通投影按输出通道量化权重、按 token 动态量化激活，torch._int_mm 执行，输出还原为输入浮点 dtype。",
+      "entry": "INT8Config(backend=native); quantize_linear",
+      "status": "通用算子·需接线",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "GR00T builder 未接 quantization；须新增明确层白名单，先关闭 Inductor 验证量化算子，再捕获 prefix/loop 图。不得以 auto 静默回退冒充 native。",
+      "evidence": [
+        "E-linear",
+        "E-dispatch",
+        "E-int8",
+        "E-builder"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "P01",
+      "engine": "phyai",
+      "name": "PhyAI BF16 CUDA Graph 路径",
+      "description": "原生 BF16 参数及 FP32 norms；backbone/action 图，完整 4 步去噪。",
+      "entry": "Engine(plugin=gr00t_n17); use_cuda_graph=true",
+      "status": "已接入·复测",
+      "priority": "P0",
+      "group": "main",
+      "remaining_work": "记录新旧 kernel policy、实际选核和图状态。",
+      "evidence": [
+        "P-head",
+        "P-adapter"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": "configs/5090/phyai.json",
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "P02",
+      "engine": "phyai",
+      "name": "PhyAI FP8 W8A8 骨干路径",
+      "description": "LLM 投影 E4M3 权重按通道、激活动态按 token FP8；Humming GEMM；vision/action head 保留 BF16。",
+      "entry": "weight=fp8_e4m3 per_channel; input=fp8_e4m3 dynamic",
+      "status": "policy 可表达·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "新建 GR00T 专属 PHYAI_KERNEL_CONFIG：仅匹配实际非空 LLM prefix，排除其他层；fallback=error；加载后统计量化命中层并核验 SM120/Humming。",
+      "evidence": [
+        "P-doc",
+        "P-adapter",
+        "P-backbone",
+        "P-linear",
+        "P-nvfp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "P03",
+      "engine": "phyai",
+      "name": "PhyAI FP8 block128 W8A8 骨干路径",
+      "description": "LLM 投影 FP8 权重按 128×128 分块、动态 FP8 激活；与 per-channel 配方分开测试。",
+      "entry": "weight=fp8_e4m3 block_shape=[128,128]; input=fp8_e4m3",
+      "status": "policy 可表达·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "新建 GR00T 专属 PHYAI_KERNEL_CONFIG：仅匹配实际非空 LLM prefix，排除其他层；fallback=error；加载后统计量化命中层并核验 SM120/Humming。",
+      "evidence": [
+        "P-doc",
+        "P-adapter",
+        "P-backbone",
+        "P-linear",
+        "P-nvfp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "P04",
+      "engine": "phyai",
+      "name": "PhyAI FP8 W8A16 骨干路径",
+      "description": "LLM FP8 权重量化，BF16 激活；其余模型保持 BF16，作为 weight-only 对照。",
+      "entry": "weight=fp8_e4m3 per_channel; input=null",
+      "status": "policy 可表达·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "新建 GR00T 专属 PHYAI_KERNEL_CONFIG：仅匹配实际非空 LLM prefix，排除其他层；fallback=error；加载后统计量化命中层并核验 SM120/Humming。",
+      "evidence": [
+        "P-doc",
+        "P-adapter",
+        "P-backbone",
+        "P-linear",
+        "P-nvfp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "P05",
+      "engine": "phyai",
+      "name": "PhyAI NVFP4 W4A16 骨干路径",
+      "description": "LLM NVFP4 权重按 [1,16] 分块，激活保持 BF16；是 W4A16，不是 FlashRT 的 W4A4。",
+      "entry": "weight=nvfp4 block_shape=[1,16]; input=null",
+      "status": "policy 可表达·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "新建 GR00T 专属 PHYAI_KERNEL_CONFIG：仅匹配实际非空 LLM prefix，排除其他层；fallback=error；加载后统计量化命中层并核验 SM120/Humming。",
+      "evidence": [
+        "P-doc",
+        "P-adapter",
+        "P-backbone",
+        "P-linear",
+        "P-nvfp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "P06",
+      "engine": "phyai",
+      "name": "PhyAI INT8 W8A8 骨干路径",
+      "description": "LLM group128 INT8 权重和动态 INT8 激活；其他模块 BF16。",
+      "entry": "weight=int8 block_shape=[1,128]; input=int8 dynamic",
+      "status": "policy 可表达·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "新建 GR00T 专属 PHYAI_KERNEL_CONFIG：仅匹配实际非空 LLM prefix，排除其他层；fallback=error；加载后统计量化命中层并核验 SM120/Humming。",
+      "evidence": [
+        "P-doc",
+        "P-adapter",
+        "P-backbone",
+        "P-linear",
+        "P-nvfp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "P07",
+      "engine": "phyai",
+      "name": "PhyAI INT4 W4A16 骨干路径",
+      "description": "LLM group128 INT4 权重、BF16 激活，Humming weight-only GEMM。",
+      "entry": "weight=int4 block_shape=[1,128]; input=null",
+      "status": "policy 可表达·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "新建 GR00T 专属 PHYAI_KERNEL_CONFIG：仅匹配实际非空 LLM prefix，排除其他层；fallback=error；加载后统计量化命中层并核验 SM120/Humming。",
+      "evidence": [
+        "P-doc",
+        "P-adapter",
+        "P-backbone",
+        "P-linear",
+        "P-nvfp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "P08",
+      "engine": "phyai",
+      "name": "PhyAI INT4 / FP8 W4A8 骨干路径",
+      "description": "LLM group128 INT4 权重与动态 E4M3 FP8 激活；不同于 NVFP4。",
+      "entry": "weight=int4 block_shape=[1,128]; input=fp8_e4m3 dynamic",
+      "status": "policy 可表达·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "新建 GR00T 专属 PHYAI_KERNEL_CONFIG：仅匹配实际非空 LLM prefix，排除其他层；fallback=error；加载后统计量化命中层并核验 SM120/Humming。",
+      "evidence": [
+        "P-doc",
+        "P-adapter",
+        "P-backbone",
+        "P-linear",
+        "P-nvfp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "N01",
+      "engine": "nvidia",
+      "name": "官方 PyTorch BF16 eager",
+      "description": "官方未量化 eager 完整推理，作为共同数值参考及执行基线。",
+      "entry": "reference adapter",
+      "status": "已接入·复测",
+      "priority": "P0",
+      "group": "main",
+      "remaining_work": "固定旧 checkpoint/config，不使用新版模型默认值覆盖层数或动作长度。",
+      "evidence": [
+        "N-bench"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": "configs/5090/reference.json",
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "N02",
+      "engine": "nvidia",
+      "name": "官方 PyTorch torch.compile",
+      "description": "骨干保持 eager，action head 使用 max-autotune 编译；BF16/官方混合精度不变。",
+      "entry": "benchmark_inference.py: torch.compile action head",
+      "status": "上游实现·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "接 prepared tensor 和公共噪声；预热后检查编译稳定。",
+      "evidence": [
+        "N-bench"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "N03",
+      "engine": "nvidia",
+      "name": "官方 TensorRT full-pipeline baseline",
+      "description": "ViT FP32、LLM/DiT/辅助模块 BF16；导出全组件 TRT；embedding、scatter、RoPE 等 glue 仍由 PyTorch 执行。",
+      "entry": "export-mode=full_pipeline; execution-profile=baseline; quantization=none",
+      "status": "上游实现·待适配",
+      "priority": "P0",
+      "group": "main",
+      "remaining_work": "在 5090 重新构建三视角/固定 B1 引擎；glue 和完整去噪全部计时。",
+      "evidence": [
+        "N-doc",
+        "N-config",
+        "N-build"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "N04",
+      "engine": "nvidia",
+      "name": "官方 TensorRT optimized 未量化",
+      "description": "保持 FP32 ViT/BF16 其余模块，启用 cross-K/V 缓存、投影融合、固定时间调制预计算与 action graph。",
+      "entry": "full_pipeline; execution-profile=optimized; quantization=none",
+      "status": "上游实现·待适配",
+      "priority": "P0",
+      "group": "main",
+      "remaining_work": "与 N03 比较执行优化，检查导出的常量不含观测相关特征。",
+      "evidence": [
+        "N-doc",
+        "N-config",
+        "N-build"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "N05",
+      "engine": "nvidia",
+      "name": "官方 TensorRT optimized FP8",
+      "description": "ViT/LLM/DiT 的选定 Linear FP8 Q/DQ；ViT 卷积排除，VLSA 仅 FFN FP8；辅助和引擎边界 FP16。",
+      "entry": "full_pipeline; optimized; quantization=fp8",
+      "status": "上游实现·5090待验证",
+      "priority": "P0",
+      "group": "main",
+      "remaining_work": "ModelOpt 校准与 SM120 engine build；已有公开量化示例偏 Thor，不能视为 5090 已通过。",
+      "evidence": [
+        "N-config",
+        "N-calib",
+        "N-build"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "N06",
+      "engine": "nvidia",
+      "name": "官方 TensorRT optimized mixed-NVFP4",
+      "description": "ViT FP8；LLM 主投影 NVFP4，o_proj/down_proj 回保 FP8；DiT FFN NVFP4、attention 投影 FP8；辅助 FP16。",
+      "entry": "full_pipeline; optimized; quantization=mixed_nvfp4",
+      "status": "上游实现·5090待验证",
+      "priority": "P0",
+      "group": "main",
+      "remaining_work": "是不同于 FlashRT 的 NVFP4 分配策略；需 ModelOpt/AWQ 校准及实际 TRT layer dtype 审计。",
+      "evidence": [
+        "N-config",
+        "N-calib",
+        "N-build"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "V01",
+      "engine": "vlacpp",
+      "name": "vla.cpp BF16 GGUF",
+      "description": "同源 checkpoint 转 BF16 GGUF；C++/GGML CUDA 完整模型；GR00T 激活路径为浮点，不能称全 BF16 算术。",
+      "entry": "GR00T converter + CUDA backend",
+      "status": "上游实现·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "从同一 base 权重转换；需 C++ GPU tensor 输入/输出桥接和显式噪声，不能直接使用 CPU API 耗时。原生整数 kernel 另做 SM120 编译预检。",
+      "evidence": [
+        "V-quant",
+        "V-repack"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "V02",
+      "engine": "vlacpp",
+      "name": "vla.cpp Q8_0 weight-only",
+      "description": "GGUF Q8_0 分块权重，浮点激活；GGML 量化 matmul，未选中模块保留源精度。",
+      "entry": "quantize_gguf.py --type Q8_0",
+      "status": "上游实现·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "从同一 base 权重转换；需 C++ GPU tensor 输入/输出桥接和显式噪声，不能直接使用 CPU API 耗时。原生整数 kernel 另做 SM120 编译预检。",
+      "evidence": [
+        "V-quant",
+        "V-repack"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "V03",
+      "engine": "vlacpp",
+      "name": "vla.cpp Q4_0 weight-only",
+      "description": "GGUF Q4_0 分块权重，浮点激活；独立于 FP4/NVFP4。",
+      "entry": "quantize_gguf.py --type Q4_0",
+      "status": "上游实现·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "从同一 base 权重转换；需 C++ GPU tensor 输入/输出桥接和显式噪声，不能直接使用 CPU API 耗时。原生整数 kernel 另做 SM120 编译预检。",
+      "evidence": [
+        "V-quant",
+        "V-repack"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "V04",
+      "engine": "vlacpp",
+      "name": "vla.cpp FoldQuant W8A8",
+      "description": "校准后 LLM/DiT 投影 INT8，SmoothQuant/旋转与动态 per-token INT8；vision、VLSA、AdaLN、state/action 编解码保留浮点。",
+      "entry": "convert_quantized_model_to_gguf.py + integer CUDA backend",
+      "status": "上游实现·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "从同一 base 权重转换；需 C++ GPU tensor 输入/输出桥接和显式噪声，不能直接使用 CPU API 耗时。原生整数 kernel 另做 SM120 编译预检。",
+      "evidence": [
+        "V-quant",
+        "V-kernel"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "C01",
+      "engine": "embodiedcpp",
+      "name": "Embodied.cpp BF16 GGUF 路径",
+      "description": "三文件部署：Qwen3-VL text、vision mmproj、action head；BF16 存储与原生浮点运算。",
+      "entry": "prepare_groot_n1_backbone.py --outtype bf16",
+      "status": "上游实现·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "需 prepared GPU/normalized GPU action 边界、公共噪声及 tensor dtype 清单；检查 VLA_GROOT_WEIGHT_DTYPE 默认 BF16 与实际 resident tensor，不能只看文件名。",
+      "evidence": [
+        "C-doc",
+        "C-convert",
+        "C-quant",
+        "C-model"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "C02",
+      "engine": "embodiedcpp",
+      "name": "Embodied.cpp Q8_0 GGUF 路径",
+      "description": "三文件部署：Qwen3-VL text、vision mmproj、action head；Q8_0 量化合格矩阵，其余浮点；action loader 保留可用量化 tensor，未对齐可回退 BF16；不是 FP8/NVFP4。",
+      "entry": "prepare_groot_n1_backbone.py --outtype q8_0",
+      "status": "上游实现·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "需 prepared GPU/normalized GPU action 边界、公共噪声及 tensor dtype 清单；检查 VLA_GROOT_WEIGHT_DTYPE 默认 BF16 与实际 resident tensor，不能只看文件名。",
+      "evidence": [
+        "C-doc",
+        "C-convert",
+        "C-quant",
+        "C-model"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "C03",
+      "engine": "embodiedcpp",
+      "name": "Embodied.cpp Q4_0 GGUF 路径",
+      "description": "三文件部署：Qwen3-VL text、vision mmproj、action head；Q4_0 量化合格矩阵，其余浮点；action loader 保留可用量化 tensor，未对齐可回退 BF16；不是 FP8/NVFP4。",
+      "entry": "prepare_groot_n1_backbone.py --outtype q4_0",
+      "status": "上游实现·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "需 prepared GPU/normalized GPU action 边界、公共噪声及 tensor dtype 清单；检查 VLA_GROOT_WEIGHT_DTYPE 默认 BF16 与实际 resident tensor，不能只看文件名。",
+      "evidence": [
+        "C-doc",
+        "C-convert",
+        "C-quant",
+        "C-model"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "C04",
+      "engine": "embodiedcpp",
+      "name": "Embodied.cpp Q4_K GGUF 路径",
+      "description": "三文件部署：Qwen3-VL text、vision mmproj、action head；Q4_K 量化合格矩阵，其余浮点；action loader 保留可用量化 tensor，未对齐可回退 BF16；不是 FP8/NVFP4。",
+      "entry": "prepare_groot_n1_backbone.py --outtype q4_k",
+      "status": "上游实现·待适配",
+      "priority": "P2",
+      "group": "main",
+      "remaining_work": "需 prepared GPU/normalized GPU action 边界、公共噪声及 tensor dtype 清单；检查 VLA_GROOT_WEIGHT_DTYPE 默认 BF16 与实际 resident tensor，不能只看文件名。",
+      "evidence": [
+        "C-doc",
+        "C-convert",
+        "C-quant",
+        "C-model"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "C05",
+      "engine": "embodiedcpp",
+      "name": "Embodied.cpp Q6_K GGUF 路径",
+      "description": "三文件部署：Qwen3-VL text、vision mmproj、action head；Q6_K 量化合格矩阵，其余浮点；action loader 保留可用量化 tensor，未对齐可回退 BF16；不是 FP8/NVFP4。",
+      "entry": "prepare_groot_n1_backbone.py --outtype q6_k",
+      "status": "上游实现·待适配",
+      "priority": "P2",
+      "group": "main",
+      "remaining_work": "需 prepared GPU/normalized GPU action 边界、公共噪声及 tensor dtype 清单；检查 VLA_GROOT_WEIGHT_DTYPE 默认 BF16 与实际 resident tensor，不能只看文件名。",
+      "evidence": [
+        "C-doc",
+        "C-convert",
+        "C-quant",
+        "C-model"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "Q01",
+      "engine": "foldquant",
+      "name": "FoldQuantVLA / TensorRT W8A8",
+      "description": "LLM w8a8_sr + DiT w8a8_sh：缩放/旋转与原生 INT8 plugin；其余浮点组件，保持 4 步。",
+      "entry": "--llm-scheme w8a8_sr --dit-scheme w8a8_sh",
+      "status": "上游实现·硬件待验证",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "与 vla.cpp 使用同源量化资产但不同 runtime；插件在 SM120 编译和执行后才能计时。",
+      "evidence": [
+        "Q-doc",
+        "Q-groot",
+        "Q-kernel"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "Q02",
+      "engine": "foldquant",
+      "name": "FoldQuantVLA / TensorRT AWQ W4A16",
+      "description": "LLM/DiT 使用 ModelOpt group128 AWQ INT4 权重，BF16 激活，Int4GroupwiseGemmPlugin；不依赖 W4A4 的 s4 路径。",
+      "entry": "llm/dit-scheme=modelopt_w4a16_awq",
+      "status": "上游实现·硬件待验证",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "需要校准、插件构建与 SM120 预检；不标作 NVFP4。",
+      "evidence": [
+        "Q-groot",
+        "Q-kernel"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "Q03",
+      "engine": "foldquant",
+      "name": "FoldQuantVLA / TensorRT SmoothQuant W8A8",
+      "description": "LLM/DiT 使用 ModelOpt INT8 SmoothQuant Q/DQ，与 FoldQuant 的旋转配方分开比较。",
+      "entry": "llm/dit-scheme=modelopt_w8a8_smoothquant",
+      "status": "上游实现·待适配",
+      "priority": "P1",
+      "group": "main",
+      "remaining_work": "记录 ModelOpt 与 TensorRT 版本，统一校准集与计时边界。",
+      "evidence": [
+        "Q-groot"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "F04",
+      "engine": "flashrt",
+      "name": "FlashRT NVFP4 DiT + BF16 cross-K/V",
+      "description": "保留 FP8 backbone 和 NVFP4 DiT，仅 cross-K/V 从 NVFP4 切回 BF16。",
+      "entry": "FLASHRT_GROOT_N17_CK_NVFP4=0",
+      "status": "消融·待接入或复测",
+      "priority": "P2",
+      "group": "ablation",
+      "remaining_work": "用于分离 cross-K/V 量化的延迟/误差贡献。",
+      "evidence": [
+        "F-doc",
+        "F-fp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "F05",
+      "engine": "flashrt",
+      "name": "FlashRT FP8 unfused backbone",
+      "description": "保留 FP8 精度，关闭融合 backbone 序列。",
+      "entry": "FLASHRT_GROOT_N17_BB_FUSED=0",
+      "status": "消融·待接入或复测",
+      "priority": "P2",
+      "group": "ablation",
+      "remaining_work": "可能改变执行 ViT block 数，需记录实际工作量，不能称纯融合开关实验。",
+      "evidence": [
+        "F-doc",
+        "F-fp8"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "F06",
+      "engine": "flashrt",
+      "name": "FlashRT NVFP4 PDL-off",
+      "description": "保持 F02 精度与图，禁用 DiT programmatic dependent launch。",
+      "entry": "FLASHRT_GROOT_N17_DIT_PDL=0",
+      "status": "消融·待接入或复测",
+      "priority": "P2",
+      "group": "ablation",
+      "remaining_work": "内核调度消融。",
+      "evidence": [
+        "F-doc",
+        "F-fp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "F07",
+      "engine": "flashrt",
+      "name": "FlashRT FP8 action graph-off",
+      "description": "保留 FP8 backbone；关闭 action/DiT graph 重放，不能称整个模型无图。",
+      "entry": "infer(use_dit_graph=false)",
+      "status": "消融·待接入或复测",
+      "priority": "P2",
+      "group": "ablation",
+      "remaining_work": "Adapter 加参数；backbone graph 独立记录。",
+      "evidence": [
+        "F-fp8"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "E06",
+      "engine": "embodiinfer",
+      "name": "EmbodiInfer BF16 无 Inductor 图路径",
+      "description": "保持 native prefix 与完整去噪图，去掉 denoise_step Inductor。",
+      "entry": "与 E01 相同但不调用 torch.compile",
+      "status": "消融·待接入或复测",
+      "priority": "P2",
+      "group": "ablation",
+      "remaining_work": "隔离编译融合收益。",
+      "evidence": [
+        "E-builder",
+        "E-runtime"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "E07",
+      "engine": "embodiinfer",
+      "name": "EmbodiInfer BF16 原始执行路径",
+      "description": "native_inference=false、prefix_cuda_graph=false，关闭去噪图和编译作为 eager 对照。",
+      "entry": "policy flags + runner graph/compiler off",
+      "status": "消融·待接入或复测",
+      "priority": "P2",
+      "group": "ablation",
+      "remaining_work": "是执行方式消融，不新增量化精度。",
+      "evidence": [
+        "E-builder"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "P09",
+      "engine": "phyai",
+      "name": "PhyAI BF16 graph-off",
+      "description": "同一 BF16 参数和 kernel policy，禁用模型 CUDA Graph。",
+      "entry": "RuntimeConfig(use_cuda_graph=false)",
+      "status": "消融·待接入或复测",
+      "priority": "P2",
+      "group": "ablation",
+      "remaining_work": "检查实际无图，保留正常 autotune 预热。",
+      "evidence": [
+        "P-head",
+        "P-adapter"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "N07",
+      "engine": "nvidia",
+      "name": "官方 TensorRT action-head-only",
+      "description": "骨干 PyTorch；state/action encoder、DiT、decoder TRT；完整模型仍计时。",
+      "entry": "export-mode=action_head; quantization=none",
+      "status": "消融·待接入或复测",
+      "priority": "P2",
+      "group": "ablation",
+      "remaining_work": "主表不能只报 action-head latency。",
+      "evidence": [
+        "N-doc",
+        "N-build"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "N08",
+      "engine": "nvidia",
+      "name": "官方 TensorRT DiT-only",
+      "description": "仅 DiT 为 TRT，骨干与其余辅助计算为 PyTorch。",
+      "entry": "export-mode=dit_only; baseline; quantization=none",
+      "status": "消融·待接入或复测",
+      "priority": "P2",
+      "group": "ablation",
+      "remaining_work": "optimized 不接受 dit_only；完整前向仍纳入计时。",
+      "evidence": [
+        "N-doc",
+        "N-build"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "N09",
+      "engine": "nvidia",
+      "name": "官方 TensorRT ViT+LLM-only",
+      "description": "ViT/LLM TRT，action head PyTorch；公开入口偏 Spark，但可列 5090 迁移候选。",
+      "entry": "benchmark trt_mode=vit_llm_only",
+      "status": "消融·待接入或复测",
+      "priority": "P2",
+      "group": "ablation",
+      "remaining_work": "需要独立绑定与完整模型边界验证。",
+      "evidence": [
+        "N-bench"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "F08",
+      "engine": "flashrt",
+      "name": "FlashRT 实验性 NVFP4 backbone",
+      "description": "F02 基础上将选定 vit/llm/vlsa 骨干阶段也改 NVFP4。",
+      "entry": "FLASHRT_GROOT_N17_BB_NVFP4=vit,llm,vlsa",
+      "status": "实验/需改造/硬件预检",
+      "priority": "P2",
+      "group": "preflight",
+      "remaining_work": "上游标为数值敏感实验；与生产混合精度分开，必须记录误差。",
+      "evidence": [
+        "F-doc",
+        "F-fp4"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "F09",
+      "engine": "flashrt",
+      "name": "FlashRT shadow-backbone + FP16 head",
+      "description": "直接 FP16 frontend 的 backbone 在 set_prompt 计算；action head FP16，部分权重先 FP8 再反量化。",
+      "entry": "GrootN17TorchFrontendRtxFP16",
+      "status": "实验/需改造/硬件预检",
+      "priority": "P2",
+      "group": "preflight",
+      "remaining_work": "当前 infer 不覆盖 fresh backbone；必须把 set_prompt 中观测计算纳入计时/拆出 GPU 边界后才可测，不能作为纯 FP16 全模型基线。",
+      "evidence": [
+        "F-fp16"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "P10",
+      "engine": "phyai",
+      "name": "PhyAI 骨干量化 + DiT 量化扩展",
+      "description": "在 P02/P05 等基础上增加 action head 投影的量化；具体 W/A 必须复用已验证 backend，不预设为 W4A4。",
+      "entry": "给 GR00TN17Linear 传递稳定非空 prefix，再写白名单",
+      "status": "实验/需改造/硬件预检",
+      "priority": "P2",
+      "group": "preflight",
+      "remaining_work": "当前 action head prefix 为空会跳过 quant plan；这是模型代码扩展，不是现成 YAML。还要排除非对齐 category/output 层。",
+      "evidence": [
+        "P-head",
+        "P-linear"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "V05",
+      "engine": "vlacpp",
+      "name": "vla.cpp FoldQuant W4A4",
+      "description": "LLM/DiT 整数 INT4 权重与 INT4 激活；其余浮点。",
+      "entry": "FoldQuant GGUF + CUDA integer backend",
+      "status": "实验/需改造/硬件预检",
+      "priority": "P2",
+      "group": "preflight",
+      "remaining_work": "上游存在 s4 MMA kernel；SM120 编译/实际指令兼容先查清，不能按 Ada 结果推定 5090 原生 INT4。",
+      "evidence": [
+        "V-quant",
+        "V-kernel"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "V06",
+      "engine": "vlacpp",
+      "name": "vla.cpp FoldQuant W4A4 + selective W8A8",
+      "description": "LLM o/down 回保 INT8，其余指定投影 INT4。",
+      "entry": "FoldQuant site_bits={o:8,down:8} 导出 GGUF",
+      "status": "实验/需改造/硬件预检",
+      "priority": "P2",
+      "group": "preflight",
+      "remaining_work": "同 V05 的硬件前置条件；转换后逐 site bits 审计。",
+      "evidence": [
+        "V-quant",
+        "V-kernel"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "Q04",
+      "engine": "foldquant",
+      "name": "FoldQuantVLA / TensorRT W4A4",
+      "description": "LLM w4a4_srg + DiT w4a4_shg，SmoothQuant/旋转/GPTQ，原生 INT4 plugin。",
+      "entry": "--llm-scheme w4a4_srg --dit-scheme w4a4_shg",
+      "status": "实验/需改造/硬件预检",
+      "priority": "P2",
+      "group": "preflight",
+      "remaining_work": "上游 s4 支持表仅列 SM75/80/86/87/89，未列 SM120，并提示其他架构可能慢速回退。先确认 5090 编译和执行。",
+      "evidence": [
+        "Q-doc",
+        "Q-groot",
+        "Q-kernel"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    },
+    {
+      "id": "Q05",
+      "engine": "foldquant",
+      "name": "FoldQuantVLA / TensorRT W4A4 + selective W8A8",
+      "description": "Q04 基础上 LLM o_proj/down_proj 保留 W8A8。",
+      "entry": "--llm-params site_bits={o:8,down:8}",
+      "status": "实验/需改造/硬件预检",
+      "priority": "P2",
+      "group": "preflight",
+      "remaining_work": "与 Q04 相同硬件门槛，不能把 INT4 标成 NVFP4。",
+      "evidence": [
+        "Q-doc",
+        "Q-kernel"
+      ],
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "protocol": "groot-n17-b1-v3-model-only-v1",
+      "existing_config": null,
+      "run_status": "pending",
+      "latency": null
+    }
+  ],
+  "excluded": [
+    {
+      "name": "Realtime-VLA / APXInf",
+      "reason": "本次未找到完整 GR00T N1.7 路径的充分证据；π0.5 路径不迁移当作支持。"
+    },
+    {
+      "name": "llama.cpp / vLLM / TensorRT-LLM / SGLang standalone",
+      "reason": "LLM 或 backbone 能力不等于完整 GR00T；经具身集成的 C++/官方 TRT 路径已单列。"
+    },
+    {
+      "name": "OpenVINO GR00T",
+      "reason": "检索到 Intel 平台实现，不用于 RTX 5090 CUDA Setting。"
+    },
+    {
+      "name": "one-step / distillation / token pruning / cache across observations",
+      "reason": "改变 checkpoint、步数或观测计算；当前协议排除。"
+    }
+  ]
+}

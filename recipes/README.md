@@ -2,7 +2,9 @@
 
 Recipe = 引擎 × 模型 × 适用硬件的一套精度/执行/校准配置。下面的 ID 是研究目录标识，当前 CLI 使用对应的 config，尚不接受 recipe ID 自动解析。
 
-外部 Recipe 调研范围见 [V3 总表](../reports/2026-10-25-v3-baseline/README.md)。其中 reported 变体尚未全部形成可运行配置，不混入本页 measured 清单。当前重点 [5090 × GR00T 的 FP8/NVFP4 Baseline](../reports/2026-10-25-v3-baseline/5090-groot-n17.md) 已映射现有 Recipe ID 与 Run。
+**下一轮复测入口：[5090 × GR00T N1.7 待测 Baseline Recipe 汇总](groot-n17-5090-candidates.md)**，结构化目录为 [JSON](groot-n17-5090-candidates.json)。覆盖现有三引擎的其他精度/执行路径，以及官方 TensorRT、vla.cpp、Embodied.cpp、FoldQuantVLA 候选；有延迟结果不是入表前提。待适配、需模型改造与需硬件预检均明确标记，不混入下方 measured 清单。
+
+协作者的外部性能记录见 [V3 历史资料](../reports/2026-10-25-v3-baseline/README.md)，只作来源线索，不限制待测范围。
 
 | 引擎 | Recipe | 状态 | 说明 |
 |---|---|---|---|

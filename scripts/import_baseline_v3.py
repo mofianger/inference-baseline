@@ -112,6 +112,7 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / 'baseline-data.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     lines = ['# V3 推理引擎 Baseline 总表', '',
+        '本页是历史性能资料归档。下一轮任务以 [5090 × GR00T N1.7 待测 Recipe 清单](../../recipes/groot-n17-5090-candidates.md) 为准，包含没有延迟结果的新候选。', '',
         '整理日期：2026-10-25；原 HTML 自述核查日期：2026-10-23。本次是资料整理和现有结果归档，没有启动新的 GPU 测试。', '',
         '**优先入口：[RTX 5090 × GR00T N1.7：FP8 / NVFP4 Baseline](5090-groot-n17.md)。**', '',
         '来源：[协作者 HTML](../../'+args.source.name+')；结构化数据：[baseline-data.json](baseline-data.json)。保留全部原始记录 ID、指标、条件和链接；源文件 SHA256：`'+data['source']['sha256']+'`。', '',
