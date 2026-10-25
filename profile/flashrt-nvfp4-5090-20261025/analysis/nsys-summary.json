@@ -1,0 +1,20 @@
+[
+  {
+    "range": "FLASHRT_REQUEST_0",
+    "kernels": 1578,
+    "gpu_span_ms": 10.199153,
+    "cpu_range_ms": 10.830248
+  },
+  {
+    "range": "FLASHRT_REQUEST_1",
+    "kernels": 1578,
+    "gpu_span_ms": 9.459021,
+    "cpu_range_ms": 9.587051
+  },
+  {
+    "range": "FLASHRT_REQUEST_2",
+    "kernels": 1578,
+    "gpu_span_ms": 9.113547,
+    "cpu_range_ms": 9.211559
+  }
+]

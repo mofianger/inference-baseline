@@ -1,0 +1,226 @@
+{
+  "selected_replay": 2,
+  "gpu_spans_us": [
+    10262.131103515625,
+    9245.14404296875,
+    9083.9931640625,
+    9113.72119140625,
+    9062.072265625,
+    9063.928955078125,
+    9110.328125,
+    9030.55322265625,
+    9024.921142578125,
+    8988.408935546875
+  ],
+  "gpu_span_median_us": 9073.961059570312,
+  "kernel_count": 1586,
+  "cta_count": 586187,
+  "cta_kernel_count": 1575,
+  "sm_count": 170,
+  "validation": "compute names/order and block dimensions matched; all recorded CTA thread entry/exit counts matched; see coverage exceptions",
+  "coverage_exceptions": [
+    {
+      "node": 449,
+      "expected": 192,
+      "recorded": 170
+    },
+    {
+      "node": 451,
+      "expected": 384,
+      "recorded": 170
+    }
+  ],
+  "stages": [
+    {
+      "stage": "Bridge",
+      "nodes": 6,
+      "sum_us": 15.825
+    },
+    {
+      "stage": "ViT",
+      "nodes": 183,
+      "sum_us": 1693.4464999999987
+    },
+    {
+      "stage": "DeepStack",
+      "nodes": 15,
+      "sum_us": 152.35200000000003
+    },
+    {
+      "stage": "LLM",
+      "nodes": 192,
+      "sum_us": 1707.7535000000012
+    },
+    {
+      "stage": "VL",
+      "nodes": 50,
+      "sum_us": 468.5765
+    },
+    {
+      "stage": "CrossKV",
+      "nodes": 7,
+      "sum_us": 80.89750000000001
+    },
+    {
+      "stage": "State",
+      "nodes": 5,
+      "sum_us": 11.616
+    },
+    {
+      "stage": "Step 1",
+      "nodes": 282,
+      "sum_us": 4114.188999999999
+    },
+    {
+      "stage": "Step 2",
+      "nodes": 282,
+      "sum_us": 4061.0515
+    },
+    {
+      "stage": "Step 3",
+      "nodes": 282,
+      "sum_us": 4071.1829999999995
+    },
+    {
+      "stage": "Step 4",
+      "nodes": 282,
+      "sum_us": 4082.657
+    }
+  ],
+  "baseline": {
+    "scope": "FlashRT frontend, prepared embeddings excluded; internal copies, sync, output cast included",
+    "sample": "synthetic-0001",
+    "baseline_ms": [
+      8.373907301574945,
+      8.349288254976273,
+      8.374137803912163,
+      8.335859049111605,
+      8.341100066900253,
+      8.34135478362441,
+      8.338204119354486,
+      8.354320656508207,
+      8.358633145689964,
+      8.328509982675314,
+      8.34885984659195,
+      8.3447122015059,
+      8.339528925716877,
+      8.346776943653822,
+      8.359570987522602,
+      8.36561108008027,
+      8.357952814549208,
+      8.346488233655691,
+      8.355366997420788,
+      8.327382151037455,
+      8.333133067935705,
+      8.337825071066618,
+      8.352139964699745,
+      8.362135384231806,
+      8.352847304195166,
+      8.342350367456675,
+      8.328583091497421,
+      8.357818238437176,
+      8.346857968717813,
+      8.332511875778437
+    ],
+    "median_ms": 8.346817456185818,
+    "engine": {
+      "commit": "1fbe995089af4148bacd10ead61764d0aeb80f7a",
+      "dirty": ""
+    },
+    "runtime": {
+      "backbone_graph": true,
+      "action_graph": true,
+      "steps": 4,
+      "dit_quant": "nvfp4_skinny",
+      "dit_use_fp8": true,
+      "nvfp4_cross_kv": true
+    },
+    "torch": "2.11.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "sm_count": 170,
+    "dataset_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+    "repeat_max_abs": 0.0
+  },
+  "instrumented": {
+    "scope": "FlashRT frontend, prepared embeddings excluded; internal copies, sync, output cast included",
+    "sample": "synthetic-0001",
+    "baseline_ms": [
+      54.47338800877333,
+      54.24015782773495,
+      66.24041683971882,
+      54.49375091120601,
+      54.1907730512321,
+      57.94017715379596,
+      79.94793495163321,
+      69.61184414103627,
+      56.5902148373425,
+      73.62991571426392,
+      58.68607014417648,
+      68.10475094243884,
+      63.128708861768246,
+      60.22224202752113,
+      54.88473176956177,
+      54.25186501815915,
+      58.48589492961764,
+      55.27520086616278,
+      66.93127565085888,
+      66.24811887741089,
+      57.022072840482,
+      66.03229185566306,
+      71.67312782257795,
+      56.576233357191086,
+      67.1969847753644,
+      64.91927383467555,
+      57.09190806373954,
+      66.43015425652266,
+      62.94975569471717,
+      54.60458528250456
+    ],
+    "median_ms": 59.45415608584881,
+    "engine": {
+      "commit": "1fbe995089af4148bacd10ead61764d0aeb80f7a",
+      "dirty": ""
+    },
+    "runtime": {
+      "backbone_graph": true,
+      "action_graph": true,
+      "steps": 4,
+      "dit_quant": "nvfp4_skinny",
+      "dit_use_fp8": true,
+      "nvfp4_cross_kv": true
+    },
+    "torch": "2.11.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "sm_count": 170,
+    "dataset_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+    "instrumented_ms": 66.87465589493513,
+    "repeat_max_abs": 0.0
+  },
+  "nsys": [
+    {
+      "range": "FLASHRT_REQUEST_0",
+      "kernels": 1578,
+      "gpu_span_ms": 10.199153,
+      "cpu_range_ms": 10.830248
+    },
+    {
+      "range": "FLASHRT_REQUEST_1",
+      "kernels": 1578,
+      "gpu_span_ms": 9.459021,
+      "cpu_range_ms": 9.587051
+    },
+    {
+      "range": "FLASHRT_REQUEST_2",
+      "kernels": 1578,
+      "gpu_span_ms": 9.113547,
+      "cpu_range_ms": 9.211559
+    }
+  ],
+  "sources": {
+    "trace.json": "5b7a7b9de4e0b7daa097571d90af4bcfd7ca06476bc1a978b6cdd9802c05480e",
+    "mapping.json": "143f7ac6614523d03cdc174e7a305731111d2289250a0b3bf5ca4af9c7b1c4d0",
+    "cta.bin": "226a0de52757b8fb5c2c4d1dc95f890683ca9c8d3ecb66fbe66c5465cad7cefc",
+    "cta.names.tsv": "690b2e74b398af62767d9c351df119aac4060660deaef76cf6b98409edb9b4cb",
+    "cta.capture.tsv": "b873c552c2850307cb8a9138b85c0efc7909b190b6cc1a76b23bb37a6502b3ab"
+  }
+}
