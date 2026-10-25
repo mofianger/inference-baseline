@@ -80,7 +80,10 @@ def main():
     calibrator._collate_inputs = lambda policy, sample: dict(sample["inputs"])
     export_config = exporter.ExportConfig(
         model_path=config["checkpoint"], dataset_path=args.dataset,
-        embodiment_tag=manifest["embodiment_tag"], output_dir=str(output / "onnx"),
+        # _3view is our fixture label, not an upstream embodiment enum. All
+        # tensors (including three camera grids and embodiment_id=24) remain
+        # unchanged; upstream uses this enum only as export provenance here.
+        embodiment_tag=manifest["embodiment_tag"].removesuffix("_3view"), output_dir=str(output / "onnx"),
         export_mode="full_pipeline", execution_profile=args.profile,
         quantization=args.quantization, calib_size=len(calibration), batch_size=1)
     write_json(output / "fixture_binding.json", {
