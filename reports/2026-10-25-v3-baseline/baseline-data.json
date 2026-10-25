@@ -1,0 +1,2214 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "organized_date": "2026-10-25",
+  "source": {
+    "path": "AI高速推理框架性能总表_V3.html",
+    "sha256": "c4ca3f054e0b19159e74ceeae5f1352ae8a29e2e0ae828880b306137f32ba117",
+    "declared_check_date": "2026-10-23"
+  },
+  "scope": {
+    "platforms_with_records": [
+      "RTX 4090",
+      "RTX 5090"
+    ],
+    "models_with_records": [
+      "GR00T N1.7",
+      "Qwen3-8B",
+      "pi0.5"
+    ],
+    "mentioned_without_records": [
+      "Llama"
+    ],
+    "historical_requested_platform_without_v3_records": [
+      "Thor"
+    ]
+  },
+  "engines": {
+    "llama": {
+      "name": "llama.cpp",
+      "repository": "https://github.com/ggml-org/llama.cpp",
+      "description": "GGML/GGUF 驱动的本地 LLM 推理框架。",
+      "evidence_status": "collaborator_reported_capabilities",
+      "methods": [
+        {
+          "name": "CUDA Graph／连续批处理：",
+          "description": "重放固定 GPU 执行序列；新请求持续填入空闲批次。",
+          "source": "https://github.com/ggml-org/llama.cpp/blob/master/ggml/CMakeLists.txt#L115-L120"
+        },
+        {
+          "name": "Speculative Decoding（可选）：",
+          "description": "草稿模型先提议多个 token，目标模型批量验证并接受。",
+          "source": "https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md#L17-L22"
+        },
+        {
+          "name": "量化 GEMM：",
+          "description": "以专用矩阵核读取压缩权重，减少权重搬运。",
+          "source": "https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md#L330-L335"
+        },
+        {
+          "name": "FlashAttention：",
+          "description": "分块完成注意力，避免完整注意力矩阵落入显存。",
+          "source": "https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md#L54-L59"
+        },
+        {
+          "name": "Prefix Cache：",
+          "description": "比较新旧 prompt 的公共前缀，仅计算新增后缀。",
+          "source": "https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md#L594-L599"
+        },
+        {
+          "name": "KV Cache Quantization：",
+          "description": "K、V 分别选择缓存类型，减少长上下文的显存占用。",
+          "source": "https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md#L69-L74"
+        },
+        {
+          "name": "GGUF 分块量化：",
+          "description": "以分块低位编码和缩放因子存权重，Q4_K_M 等配置组合不同量化类型。",
+          "source": "https://github.com/ggml-org/llama.cpp/blob/master/README.md#L67-L72"
+        },
+        {
+          "name": "MMQ／cuBLAS 选路：",
+          "description": "按设备与批量选择定制量化矩阵核或 FP16 cuBLAS，可强制切换以权衡速度和显存。",
+          "source": "https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md#L330-L335"
+        },
+        {
+          "name": "Layer Offload：",
+          "description": "通过 GPU 层数控制部分层驻留 GPU，其余层在 CPU 执行，以容纳超显存模型。",
+          "source": "https://github.com/ggml-org/llama.cpp/blob/master/README.md#L70-L75"
+        },
+        {
+          "name": "GGML 多后端执行：",
+          "description": "同一 GGUF 由 CPU、CUDA、Metal 等后端加载；按后端实现执行相同模型图。",
+          "source": "https://github.com/ggml-org/llama.cpp/blob/master/README.md#L74-L79"
+        }
+      ],
+      "models_with_records": [
+        "Qwen3-8B"
+      ],
+      "platforms_with_records": [
+        "RTX 5090"
+      ],
+      "precision_labels_with_records": [
+        "GGUF BF16",
+        "GGUF Q8_0"
+      ]
+    },
+    "vllm": {
+      "name": "vLLM",
+      "repository": "https://github.com/vllm-project/vllm",
+      "description": "以请求调度和 KV 管理为核心的 LLM 服务引擎。",
+      "evidence_status": "collaborator_reported_capabilities",
+      "methods": [
+        {
+          "name": "CUDA Graph／torch.compile：",
+          "description": "编译模型计算，并重放分段或完整 CUDA Graph。",
+          "source": "https://github.com/vllm-project/vllm/blob/main/README.md#L31-L36"
+        },
+        {
+          "name": "分块 Prefill／推测解码：",
+          "description": "长输入拆块与 decode 混排；可用草稿 token 批量验证。",
+          "source": "https://github.com/vllm-project/vllm/blob/main/README.md#L30-L35"
+        },
+        {
+          "name": "优化 GEMM／Attention：",
+          "description": "按配置选 FlashAttention、FlashInfer、CUTLASS 等核。",
+          "source": "https://github.com/vllm-project/vllm/blob/main/README.md#L33-L38"
+        },
+        {
+          "name": "多格式低精度：",
+          "description": "FP8、INT8、AWQ/GPTQ 等分别匹配权重与执行后端。",
+          "source": "https://github.com/vllm-project/vllm/blob/main/README.md#L32-L37"
+        },
+        {
+          "name": "Paged KV Cache：",
+          "description": "按 token 块分配 KV，避免每条序列预留大连续空间。",
+          "source": "https://github.com/vllm-project/vllm/blob/main/README.md#L29-L34"
+        },
+        {
+          "name": "Automatic Prefix Caching：",
+          "description": "复用跨请求命中的完整前缀块，跳过重复 prefill。",
+          "source": "https://github.com/vllm-project/vllm/blob/main/docs/design/prefix_caching.md#L3-L8"
+        },
+        {
+          "name": "V1 Token Budget Scheduler：",
+          "description": "以“待计算 token 数”统一分配每轮预算，将输入分块、生成和推测 token 纳入同一调度。",
+          "source": "https://github.com/vllm-project/vllm/blob/main/vllm/v1/core/sched/scheduler.py#L693-L698"
+        },
+        {
+          "name": "PagedAttention 块表寻址：",
+          "description": "把逻辑 token 块映射到非连续物理 KV 块；注意力按块表取数，序列增长时再追加块。",
+          "source": "https://github.com/vllm-project/vllm/blob/main/docs/design/paged_attention.md#L174-L179"
+        },
+        {
+          "name": "链式 Block Hash：",
+          "description": "以父块哈希、本块 token 和 LoRA／多模态等附加键确定缓存身份，匹配完整前缀。",
+          "source": "https://github.com/vllm-project/vllm/blob/main/docs/design/prefix_caching.md#L15-L20"
+        },
+        {
+          "name": "引用计数＋LRU 淘汰：",
+          "description": "计数保护仍被请求使用的共享块；无引用块进入空闲队列，按 LRU 回收以复用存储。",
+          "source": "https://github.com/vllm-project/vllm/blob/main/docs/design/prefix_caching.md#L196-L201"
+        }
+      ],
+      "models_with_records": [
+        "Qwen3-8B"
+      ],
+      "platforms_with_records": [
+        "RTX 4090",
+        "RTX 5090"
+      ],
+      "precision_labels_with_records": [
+        "AWQ W4A16（FP16 激活）",
+        "BF16",
+        "FP8（block128）"
+      ]
+    },
+    "trtllm": {
+      "name": "TensorRT-LLM",
+      "repository": "https://github.com/NVIDIA/TensorRT-LLM",
+      "description": "NVIDIA GPU 上的 LLM 优化与部署引擎。",
+      "evidence_status": "collaborator_reported_capabilities",
+      "methods": [
+        {
+          "name": "CUDA Graph／In-flight Batching：",
+          "description": "重放已捕获执行；同批接纳 context 与生成阶段请求。",
+          "source": "https://github.com/NVIDIA/TensorRT-LLM/blob/main/README.md#L333-L338"
+        },
+        {
+          "name": "Chunked Context／推测解码：",
+          "description": "长输入分块处理；可用草稿候选减少逐 token 前向轮次。",
+          "source": "https://github.com/NVIDIA/TensorRT-LLM/blob/main/docs/source/features/paged-attention-ifb-scheduler.md#L68-L73"
+        },
+        {
+          "name": "Fused Attention／RoPE：",
+          "description": "融合 QKV 输入处理与旋转编码，减少中间读写。",
+          "source": "https://github.com/NVIDIA/TensorRT-LLM/blob/main/docs/source/features/attention.md#L32-L37"
+        },
+        {
+          "name": "FP8／NVFP4 等量化：",
+          "description": "按模型与 GPU 支持，选择对应低精度矩阵核。",
+          "source": "https://github.com/NVIDIA/TensorRT-LLM/blob/main/README.md#L367-L372"
+        },
+        {
+          "name": "Paged KV／Prefix Reuse：",
+          "description": "块池管理 KV；匹配的前缀块供后续请求复用。",
+          "source": "https://github.com/NVIDIA/TensorRT-LLM/blob/main/docs/source/features/kvcache.md#L1-L6"
+        },
+        {
+          "name": "KV 量化／Host Offload：",
+          "description": "压缩 KV 类型；可选将 GPU 淘汰块保存到主机缓存。",
+          "source": "https://github.com/NVIDIA/TensorRT-LLM/blob/main/docs/source/features/attention.md#L264-L269"
+        },
+        {
+          "name": "XQA Decode Kernel：",
+          "description": "用 Tensor Core 加速 MQA/GQA 解码，减少数据载入及类型转换；按启发式与 masked MHA 核选路。",
+          "source": "https://github.com/NVIDIA/TensorRT-LLM/blob/main/docs/source/blogs/XQA-kernel.md#L3-L4"
+        },
+        {
+          "name": "Multi-block Attention：",
+          "description": "低 batch／少头时将单个头的注意力分给多个线程块，增加 GPU 并行度；启发式决定启用。",
+          "source": "https://github.com/NVIDIA/TensorRT-LLM/blob/main/docs/source/features/attention.md#L163-L184"
+        },
+        {
+          "name": "Priority-based KV Retention：",
+          "description": "对指定 token 区间设置块保留优先级及持续时间，优先淘汰低优先级块。",
+          "source": "https://github.com/NVIDIA/TensorRT-LLM/blob/main/docs/source/features/kvcache.md#L21-L26"
+        },
+        {
+          "name": "Radix Tree／Partial Reuse：",
+          "description": "用 radix 树搜索匹配前缀；部分块命中时可复制已匹配 token，供新请求继续追加。",
+          "source": "https://github.com/NVIDIA/TensorRT-LLM/blob/main/docs/source/features/kvcache.md#L13-L18"
+        }
+      ],
+      "models_with_records": [
+        "Qwen3-8B"
+      ],
+      "platforms_with_records": [
+        "RTX 5090"
+      ],
+      "precision_labels_with_records": [
+        "BF16；KV：BF16",
+        "FP8（per-tensor）；KV：FP8",
+        "NVFP4 W4A4 + BF16 保留模块；KV：FP8"
+      ]
+    },
+    "flashrt": {
+      "name": "FlashRT",
+      "repository": "https://github.com/flashrt-project/FlashRT",
+      "description": "面向固定模型和硬件，以融合低精度 kernel 和 CUDA Graph 执行推理。",
+      "evidence_status": "collaborator_reported_capabilities",
+      "methods": [
+        {
+          "name": "CUDA Graph Replay：",
+          "description": "捕获固定前向序列，后续用一次图重放提交推理。",
+          "source": "https://github.com/flashrt-project/FlashRT/blob/main/docs/architecture.md#L14-L19"
+        },
+        {
+          "name": "Tactic-stable Autotune（可选）：",
+          "description": "按后端多次捕获候选图，计时后保留更快的执行序列。",
+          "source": "https://github.com/flashrt-project/FlashRT/blob/main/docs/architecture.md#L205-L210"
+        },
+        {
+          "name": "Norm／RoPE／Quant Fusion：",
+          "description": "将残差、归一化、量化等相邻操作融合，减少访存与启动。",
+          "source": "https://github.com/flashrt-project/FlashRT/blob/main/docs/kernel_fusion.md#L48-L53"
+        },
+        {
+          "name": "FP8／NVFP4 GEMM：",
+          "description": "将低精度矩阵核与保留高精度的注意力等模块组合。",
+          "source": "https://github.com/flashrt-project/FlashRT/blob/main/docs/architecture.md#L218-L223"
+        },
+        {
+          "name": "Static KV／Workspace：",
+          "description": "按固定形状预分配每层 KV 和工作区，重放时原位更新。",
+          "source": "https://github.com/flashrt-project/FlashRT/blob/main/docs/architecture.md#L260-L265"
+        },
+        {
+          "name": "两阶段 FP8 校准：",
+          "description": "先采集输入 amax，再合并权重／激活缩放系数固化入图。",
+          "source": "https://github.com/flashrt-project/FlashRT/blob/main/docs/architecture.md#L194-L198"
+        },
+        {
+          "name": "Pointer-only Pipeline：",
+          "description": "手工组合 CUDA 核；捕获的 forward 仅接收设备指针，避免重放路径临时分配张量。",
+          "source": "https://github.com/flashrt-project/FlashRT/blob/main/docs/architecture.md#L204-L210"
+        },
+        {
+          "name": "Skinny NVFP4 GEMM＋PDL：",
+          "description": "RTX 5090 将小矩阵按 K 维拆分；后继核在等待依赖前预取权重，重叠数据准备与前核计算。",
+          "source": "https://github.com/flashrt-project/FlashRT/blob/main/docs/groot_n17_rtx_nvfp4.md#L30-L34"
+        },
+        {
+          "name": "GR00T Cross-K/V 合并投影：",
+          "description": "文本、图像各拼接 8 组 K/V 权重；每帧共两次 GEMM，后续动作块按列切片读取。",
+          "source": "https://github.com/flashrt-project/FlashRT/blob/main/docs/groot_n17_rtx_nvfp4.md#L30-L33"
+        },
+        {
+          "name": "分模块混合精度：",
+          "description": "Pi0.5 前缀／decoder 独立设精度；GR00T 为 NVFP4 DiT／cross-K/V＋FP8 VLM，部分 attention 保留 BF16。",
+          "source": "https://github.com/flashrt-project/FlashRT/blob/main/docs/pi05_prefix_nvfp4.md#L28-L36"
+        }
+      ],
+      "models_with_records": [
+        "GR00T N1.7",
+        "Qwen3-8B",
+        "pi0.5"
+      ],
+      "platforms_with_records": [
+        "RTX 4090",
+        "RTX 5090"
+      ],
+      "precision_labels_with_records": [
+        "Decode：NVFP4 W4A4；Prefill：W4A16；BF16 head",
+        "FP8 + BF16 attention",
+        "FP8 prefix + FP8 decoder",
+        "NVFP4 DiT／cross K/V + FP8 VLM；部分 attention 为 BF16",
+        "NVFP4 prefix + FP8 decoder",
+        "NVFP4 prefix／decoder + FP8 attention"
+      ]
+    },
+    "rtvla": {
+      "name": "Realtime-VLA（含 V2）",
+      "repository": "https://github.com/dexmal/realtime-vla",
+      "description": "以固定形状 Triton 算子和 CUDA Graph 加速 VLA。",
+      "evidence_status": "collaborator_reported_capabilities",
+      "methods": [
+        {
+          "name": "CUDA Graph Replay：",
+          "description": "初始化时捕获推理序列，forward 绑定输入后重放。",
+          "source": "https://github.com/dexmal/realtime-vla/blob/main/pi05_infer.py#L926-L931"
+        },
+        {
+          "name": "Static-shape Execution：",
+          "description": "按视角、prefix 与动作长度确定缓冲及图拓扑。",
+          "source": "https://github.com/dexmal/realtime-vla/blob/main/pi05_infer.py#L914-L919"
+        },
+        {
+          "name": "Triton Tiled GEMM：",
+          "description": "按固定矩阵形状设置 tile、warp 数与执行参数。",
+          "source": "https://github.com/dexmal/realtime-vla/blob/main/README.md#L161-L166"
+        },
+        {
+          "name": "QKV／RoPE Fusion：",
+          "description": "把投影、QKV 拆分与旋转编码并入专用核。",
+          "source": "https://github.com/dexmal/realtime-vla/blob/main/pi05_infer.py#L138-L143"
+        },
+        {
+          "name": "Prefix K/V Reuse：",
+          "description": "前缀 K/V 计算一次，供各动作去噪步读取。",
+          "source": "https://github.com/dexmal/realtime-vla/blob/main/pi05_infer.py#L443-L448"
+        },
+        {
+          "name": "Time Modulation Table：",
+          "description": "预计算固定时间表对应的 embedding 与 AdaRMS 调制。",
+          "source": "https://github.com/dexmal/realtime-vla/blob/main/pi05_infer.py#L853-L858"
+        },
+        {
+          "name": "24 类 GEMM 分解：",
+          "description": "将视觉、语言和动作专家归约为约 24 类 GEMM 操作及标量算子，逐类手写 Triton 优化。",
+          "source": "https://github.com/dexmal/realtime-vla/blob/main/README.md#L161-L166"
+        },
+        {
+          "name": "Packed Gate/Up（优化路径）：",
+          "description": "将 FFN 的 gate/up 权重交错打包，由融合矩阵核产生两分支并完成门控激活。",
+          "source": "https://github.com/dexmal/realtime-vla/blob/main/pi05_infer.py#L916-L924"
+        },
+        {
+          "name": "Prefix 尾层裁剪（Pi0.5）：",
+          "description": "优化路径的前缀末层只投影 K/V，跳过动作专家不再消费的 Q 和后续前缀 FFN。",
+          "source": "https://github.com/dexmal/realtime-vla/blob/main/pi05_infer.py#L438-L452"
+        },
+        {
+          "name": "Small-M GEMM 融合：",
+          "description": "动作专家小矩阵乘在同一 Triton 核内完成 gate 乘法及 residual 加法，直接写回结果。",
+          "source": "https://github.com/dexmal/realtime-vla/blob/main/pi05_infer.py#L59-L71"
+        }
+      ],
+      "models_with_records": [
+        "pi0.5"
+      ],
+      "platforms_with_records": [
+        "RTX 4090",
+        "RTX 5090"
+      ],
+      "precision_labels_with_records": [
+        "BF16"
+      ]
+    },
+    "vlacpp": {
+      "name": "vla.cpp",
+      "repository": "https://github.com/VinRobotics/vla.cpp",
+      "description": "将 VLA 封装为 GGUF 并通过 C++/GGML 执行。",
+      "evidence_status": "collaborator_reported_capabilities",
+      "methods": [
+        {
+          "name": "C++ 原生执行：",
+          "description": "以原生模型代码承接视觉、语言与动作前向。",
+          "source": "https://github.com/VinRobotics/vla.cpp/blob/main/docs/ARCHITECTURE.md#L13-L18"
+        },
+        {
+          "name": "GGML Graph Execution：",
+          "description": "显式构建模块计算图，交给选定后端调度算子。",
+          "source": "https://github.com/VinRobotics/vla.cpp/blob/main/docs/ARCHITECTURE.md#L22-L27"
+        },
+        {
+          "name": "GGML CUDA Operators：",
+          "description": "用 CUDA 后端执行投影、注意力和激活算子。",
+          "source": "https://github.com/VinRobotics/vla.cpp/blob/main/docs/ARCHITECTURE.md#L83-L88"
+        },
+        {
+          "name": "GGUF Q8／Q4 存储量化：",
+          "description": "压缩标准 GGUF 权重；与 FoldQuant 整数计算路径区分。",
+          "source": "https://github.com/VinRobotics/vla.cpp/blob/main/docs/ARCHITECTURE.md#L70-L75"
+        },
+        {
+          "name": "Scratch／Graph Cache：",
+          "description": "复用计算上下文与分形状图缓存，减少重复构图和分配。",
+          "source": "https://github.com/VinRobotics/vla.cpp/blob/main/docs/ARCHITECTURE.md#L22-L27"
+        },
+        {
+          "name": "AdaRMS 预计算（Pi0.5）：",
+          "description": "将固定去噪步的条件投影存表，执行时按步读取。",
+          "source": "https://github.com/VinRobotics/vla.cpp/blob/main/src/models/pi05.cpp#L257-L262"
+        },
+        {
+          "name": "Single-GGUF Packaging：",
+          "description": "将视觉塔、语言骨干与动作头封装进同一 GGUF，加载时识别架构并统一构建推理路径。",
+          "source": "https://github.com/VinRobotics/vla.cpp/blob/main/docs/ARCHITECTURE.md#L62-L67"
+        },
+        {
+          "name": "FoldQuant Integer Nodes：",
+          "description": "以激活变换和整数 GEMM 两类自定义 GGML 节点接入 CUDA，W8A8 路径采用 INT32 累加。",
+          "source": "https://github.com/VinRobotics/vla.cpp/blob/main/docs/QUANTIZATION.md#L136-L156"
+        },
+        {
+          "name": "Hadamard＋SmoothQuant：",
+          "description": "离线折叠缩放并旋转权重；运行时对激活做块旋转和逐 token 动态量化后进入整数 GEMM。",
+          "source": "https://github.com/VinRobotics/vla.cpp/blob/main/docs/QUANTIZATION.md#L91-L117"
+        },
+        {
+          "name": "Attention-layout Epilogue：",
+          "description": "支持的 GEMM 尾处理直接写入 Q/K/V 所需布局，并可合并 residual，省去额外转置与复制。",
+          "source": "https://github.com/VinRobotics/vla.cpp/blob/main/docs/QUANTIZATION.md#L143-L154"
+        }
+      ],
+      "models_with_records": [
+        "GR00T N1.7",
+        "pi0.5"
+      ],
+      "platforms_with_records": [
+        "RTX 4090"
+      ],
+      "precision_labels_with_records": [
+        "BF16 GGUF + FP32 激活",
+        "BF16／FP32 权重 + FP32 激活"
+      ]
+    },
+    "embodied": {
+      "name": "Embodied.cpp",
+      "repository": "https://github.com/SEU-PAISys/Embodied.cpp",
+      "description": "以 C++/GGML 执行具身模型，并桥接 llama.cpp 骨干。",
+      "evidence_status": "collaborator_reported_capabilities",
+      "methods": [
+        {
+          "name": "C++ 原生执行：",
+          "description": "将具身模型前向移入 C++，减少 Python 层调度。",
+          "source": "https://github.com/SEU-PAISys/Embodied.cpp/blob/main/README.md#L560-L565"
+        },
+        {
+          "name": "GGML Graph Execution：",
+          "description": "显式构造 prefix、动作专家与 DiT 图，由后端执行。",
+          "source": "https://github.com/SEU-PAISys/Embodied.cpp/blob/main/models/pi05.cpp#L907-L912"
+        },
+        {
+          "name": "GGML CUDA／FlashAttention：",
+          "description": "矩阵运算交给 GGML CUDA；视觉模块可选融合注意力。",
+          "source": "https://github.com/SEU-PAISys/Embodied.cpp/blob/main/models/pi05.cpp#L597-L602"
+        },
+        {
+          "name": "GGUF Quantized Weights：",
+          "description": "保留加载的量化矩阵类型；非线性算子按自身实现计算。",
+          "source": "https://github.com/SEU-PAISys/Embodied.cpp/blob/main/models/pi05.cpp#L571-L576"
+        },
+        {
+          "name": "Prefix K/V Reuse（Pi0.5）：",
+          "description": "前缀图产生逐层 K/V，供动作专家各去噪步复用。",
+          "source": "https://github.com/SEU-PAISys/Embodied.cpp/blob/main/models/pi05.cpp#L830-L835"
+        },
+        {
+          "name": "Persistent Workspace（Pi0.5）：",
+          "description": "保留计算图与 allocator，重复推理复用已分配内存。",
+          "source": "https://github.com/SEU-PAISys/Embodied.cpp/blob/main/models/pi05.cpp#L214-L219"
+        },
+        {
+          "name": "分组件 GGUF 装配：",
+          "description": "Pi0.5 分策略与视觉投影器文件；GR00T 再拆分 Qwen3-VL 骨干、视觉投影器及动作头。",
+          "source": "https://github.com/SEU-PAISys/Embodied.cpp/blob/main/README.md#L210-L216"
+        },
+        {
+          "name": "形状驱动图复用（Pi0.5）：",
+          "description": "以图像 token 数和文本长度判定计算图是否可复用；形状变化才重建图及工作区。",
+          "source": "https://github.com/SEU-PAISys/Embodied.cpp/blob/main/models/pi05.cpp#L795-L808"
+        },
+        {
+          "name": "llama.cpp 特征桥接（GR00T）：",
+          "description": "由 llama.cpp／mtmd 执行截断到 16 层的 Qwen3-VL 骨干，将隐藏特征交给独立动作图。",
+          "source": "https://github.com/SEU-PAISys/Embodied.cpp/blob/main/models/groot_n1.cpp#L882-L898"
+        },
+        {
+          "name": "GGML Action Expert／DiT：",
+          "description": "把 Pi0.5 动作专家和 GR00T 自／交叉注意力、调制与动作投影显式实现为 C++ GGML 图。",
+          "source": "https://github.com/SEU-PAISys/Embodied.cpp/blob/main/models/pi05.cpp#L371-L392"
+        }
+      ],
+      "models_with_records": [
+        "GR00T N1.7",
+        "pi0.5"
+      ],
+      "platforms_with_records": [
+        "RTX 4090"
+      ],
+      "precision_labels_with_records": [
+        "BF16／FP32 原生混合",
+        "BF16／FP32 权重 + FP32 激活"
+      ]
+    },
+    "phyai": {
+      "name": "PhyAI",
+      "repository": "https://github.com/mingti-org/phyai",
+      "description": "通过模型 Runner、图捕获和 kernel policy 提供低延迟具身推理。",
+      "evidence_status": "collaborator_reported_capabilities",
+      "methods": [
+        {
+          "name": "分模块 CUDA Graph：",
+          "description": "视觉、语言和动作 Runner 分别准备固定形状执行。",
+          "source": "https://github.com/mingti-org/phyai/blob/main/phyai/src/phyai/models/pi05/model_runner_pi05.py#L425-L430"
+        },
+        {
+          "name": "Shape Bucketing：",
+          "description": "按 batch／prefix 长度分桶，复用相应图和元数据。",
+          "source": "https://github.com/mingti-org/phyai/blob/main/phyai/src/phyai/models/pi05/scheduler_pi05.py#L204-L209"
+        },
+        {
+          "name": "FlashInfer Attention：",
+          "description": "通过统一后端接口调用高性能注意力实现。",
+          "source": "https://github.com/mingti-org/phyai/blob/main/README.md#L45-L50"
+        },
+        {
+          "name": "Policy-driven Low Precision：",
+          "description": "按策略文件匹配层，选择 W/A 精度及低精度 GEMM 核。",
+          "source": "https://github.com/mingti-org/phyai/blob/main/README.md#L114-L119"
+        },
+        {
+          "name": "Paged KV Pool：",
+          "description": "LLM Runner 写入共享 KV 池，动作专家读取前缀缓存。",
+          "source": "https://github.com/mingti-org/phyai/blob/main/phyai/src/phyai/models/pi05/model_runner_pi05.py#L171-L176"
+        },
+        {
+          "name": "Static Attention Buffers：",
+          "description": "缓存后端持有定形缓冲，每次推理原位更新索引元数据。",
+          "source": "https://github.com/mingti-org/phyai/blob/main/phyai/src/phyai/models/pi05/model_runner_pi05.py#L174-L183"
+        },
+        {
+          "name": "Kernel Policy YAML：",
+          "description": "用同一规则同时约束量化范围、W/A 位宽和执行核；Pi0.5 W4A16 预设保留视觉及输入输出头。",
+          "source": "https://github.com/mingti-org/phyai/blob/main/README.md#L113-L134"
+        },
+        {
+          "name": "Layer／Kernel Catalog：",
+          "description": "模型层经统一目录匹配 FlashInfer、Humming 等实现，避免在模型 forward 中写死某个低精度核。",
+          "source": "https://github.com/mingti-org/phyai/blob/main/README.md#L45-L50"
+        },
+        {
+          "name": "Full-loop Euler Graph（Pi0.5）：",
+          "description": "将 N 步“专家前向＋Euler 状态更新”展开进一张 CUDA Graph，以一次 replay 完成整段动作去噪。",
+          "source": "https://github.com/mingti-org/phyai/blob/main/phyai/src/phyai/models/pi05/model_runner_pi05.py#L428-L441"
+        },
+        {
+          "name": "AdaRMS Modulation Tables：",
+          "description": "固定 schedule 的时间 MLP 与各层调制提前投影存表；图内按步索引，移除重复调制 GEMM。",
+          "source": "https://github.com/mingti-org/phyai/blob/main/phyai/src/phyai/models/pi05/model_runner_pi05.py#L564-L576"
+        }
+      ],
+      "models_with_records": [
+        "GR00T N1.7",
+        "pi0.5"
+      ],
+      "platforms_with_records": [
+        "RTX 4090",
+        "RTX 5090"
+      ],
+      "precision_labels_with_records": [
+        "BF16"
+      ]
+    },
+    "apx": {
+      "name": "APXInf／APXinf-robo",
+      "repository": "https://github.com/infinigence/ApxInf",
+      "description": "将准备阶段与执行阶段分离的推理栈；APXinf-robo 为相关封装。",
+      "evidence_status": "collaborator_reported_capabilities",
+      "methods": [
+        {
+          "name": "CUDA Graph Replay：",
+          "description": "Runner 准备 graph／eager 计划，执行时绑定新输入。",
+          "source": "https://github.com/infinigence/ApxInf/blob/main/crates/apxinf-model/src/pi05/model_runner/runner.rs#L205-L210"
+        },
+        {
+          "name": "GEMM／Attention Autotune：",
+          "description": "准备期可按设备调优并缓存方案；默认复用已有配方。",
+          "source": "https://github.com/infinigence/ApxInf/blob/main/doc/model-layer-architecture.md#L346-L351"
+        },
+        {
+          "name": "CUDA／CUTLASS 融合算子：",
+          "description": "以模型无关 CUDA API 组合定制核与库函数。",
+          "source": "https://github.com/infinigence/ApxInf/blob/main/doc/model-layer-architecture.md#L287-L292"
+        },
+        {
+          "name": "BF16／FP8／INT8 路径：",
+          "description": "按设备分别启用静态 FP8 或动态 INT8 等模型变体。",
+          "source": "https://github.com/infinigence/ApxInf/blob/main/README.md#L465-L470"
+        },
+        {
+          "name": "Bounded Plan Cache（Pi0.5）：",
+          "description": "形状改变时替换旧计划，避免多个大工作区同时驻留。",
+          "source": "https://github.com/infinigence/ApxInf/blob/main/crates/apxinf-model/src/pi05/model_runner/runner.rs#L1-L4"
+        },
+        {
+          "name": "固定时间嵌入（Pi0.5）：",
+          "description": "加载时准备时间表资产，重复推理直接使用。",
+          "source": "https://github.com/infinigence/ApxInf/blob/main/doc/run_warmstart_with_onestep.md#L50-L55"
+        },
+        {
+          "name": "PreparedInference（Pi0.5）：",
+          "description": "准备阶段完成分配、预热、调优及图捕获；相容请求热路径只绑定输入并执行准备好的计划。",
+          "source": "https://github.com/infinigence/ApxInf/blob/main/doc/model-layer-architecture.md#L88-L95"
+        },
+        {
+          "name": "Precision-specific Blocks：",
+          "description": "Pi0.5 共用模型运算顺序，由 BF16／FP8／INT8 Blocks 各自封装物理布局与精度专用融合。",
+          "source": "https://github.com/infinigence/ApxInf/blob/main/doc/model-layer-architecture.md#L91-L98"
+        },
+        {
+          "name": "Shifted Action Warm-start（可选）：",
+          "description": "平移上一个动作块并重复末端补尾，再与新高斯噪声混合，作为下一次去噪的初态。",
+          "source": "https://github.com/infinigence/ApxInf/blob/main/doc/run_warmstart_with_onestep.md#L19-L24"
+        },
+        {
+          "name": "Partial Flow／One-step（可选）：",
+          "description": "从较低噪声时刻开始积分，并可只走一步；改变原始采样过程，须单独比较质量。",
+          "source": "https://github.com/infinigence/ApxInf/blob/main/doc/run_warmstart_with_onestep.md#L28-L33"
+        }
+      ],
+      "models_with_records": [
+        "pi0.5"
+      ],
+      "platforms_with_records": [
+        "RTX 4090"
+      ],
+      "precision_labels_with_records": [
+        "BF16",
+        "INT8 W8A8"
+      ]
+    },
+    "embodiinfer": {
+      "name": "EmbodiInfer",
+      "repository": "https://github.com/BUAA-CI-LAB/EmbodiInfer",
+      "description": "结合原生模型、编译、CUDA Graph 与去噪状态管理的具身引擎。",
+      "evidence_status": "collaborator_reported_capabilities",
+      "methods": [
+        {
+          "name": "torch.compile／Inductor：",
+          "description": "对受支持的原生模型编译生成核；并非所有量化配置并用。",
+          "source": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/docs/en/models.md#L53-L58"
+        },
+        {
+          "name": "CUDA Graph Capture：",
+          "description": "按 batch 桶与步数缓存单步或整段去噪图。",
+          "source": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/docs/en/architecture.md#L95-L100"
+        },
+        {
+          "name": "Triton Attention／Fusion：",
+          "description": "融合归一化、RoPE 与门控激活等相邻操作。",
+          "source": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/docs/en/models.md#L55-L60"
+        },
+        {
+          "name": "GPU-aware Quant Profiles：",
+          "description": "按卡选 FP8／INT8／NVFP4；4090 Pi0.5 FP8 为仅权重路径。",
+          "source": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/docs/en/models.md#L68-L73"
+        },
+        {
+          "name": "Prefix K/V Reuse：",
+          "description": "同一观测仅编码一次，所有去噪步共享前缀 K/V。",
+          "source": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/docs/en/architecture.md#L33-L38"
+        },
+        {
+          "name": "Static Buffers／Pointers：",
+          "description": "重放复用固定输入与参数地址，保留图和工作区。",
+          "source": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/docs/en/architecture.md#L93-L98"
+        },
+        {
+          "name": "LoopGraph／SdeLoopGraph：",
+          "description": "把完整积分捕获成一次重放；SDE 图还包含逐步噪声注入及 RL 所需轨迹记录。",
+          "source": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/docs/en/architecture.md#L97-L114"
+        },
+        {
+          "name": "Refit＋Version Commit：",
+          "description": "原位更新权重而保持参数地址；提交新版本前刷新派生状态，使已捕获图继续使用。",
+          "source": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/docs/en/architecture.md#L147-L156"
+        },
+        {
+          "name": "Prefill／Denoise 双流（可选）：",
+          "description": "异步负载下重叠下一批编码与当前批去噪；用独立内存池协调分配，默认关闭。",
+          "source": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/docs/en/architecture.md#L173-L184"
+        },
+        {
+          "name": "expand_prefix 多候选复用：",
+          "description": "将一次编码的 PrefixState 广播给同一观测的多个动作候选，避免 best-of-N 重跑骨干。",
+          "source": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/docs/en/architecture.md#L132-L143"
+        }
+      ],
+      "models_with_records": [
+        "GR00T N1.7",
+        "pi0.5"
+      ],
+      "platforms_with_records": [
+        "RTX 4090"
+      ],
+      "precision_labels_with_records": [
+        "BF16",
+        "BF16（原生优化）",
+        "BF16／FP32 原生混合",
+        "FP8（Triton）"
+      ]
+    }
+  },
+  "reported_records": [
+    {
+      "id": "M001",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "Qwen3-8B",
+      "engine": "vllm",
+      "precision_label": "BF16",
+      "source_profile": "q_bf16",
+      "recipe_candidate_id": "v3-vllm-rtx-4090-m001",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "输出总吞吐 494.18 token/s；TTFT 580.38 ms",
+      "conditions_original": "并发 16；I/O=1024/256；均值",
+      "source_url": "https://github.com/cybbbbbbb/qwen3-vllm-inference/blob/main/README.md",
+      "source_html_record": "M001",
+      "source_html_classification": "external",
+      "publisher": "cybbbbbbb/qwen3-vllm-inference",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M002",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "Qwen3-8B",
+      "engine": "vllm",
+      "precision_label": "FP8（block128）",
+      "source_profile": "q_fp8_block",
+      "recipe_candidate_id": "v3-vllm-rtx-4090-m002",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "输出总吞吐 627.53 token/s；TTFT 451.48 ms",
+      "conditions_original": "并发 16；I/O=1024/256；均值",
+      "source_url": "https://github.com/cybbbbbbb/qwen3-vllm-inference/blob/main/README.md",
+      "source_html_record": "M002",
+      "source_html_classification": "external",
+      "publisher": "cybbbbbbb/qwen3-vllm-inference",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M003",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "Qwen3-8B",
+      "engine": "vllm",
+      "precision_label": "AWQ W4A16（FP16 激活）",
+      "source_profile": "q_awq",
+      "recipe_candidate_id": "v3-vllm-rtx-4090-m003",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "输出总吞吐 835.97 token/s；TTFT 656.70 ms",
+      "conditions_original": "并发 16；I/O=1024/256；均值",
+      "source_url": "https://github.com/cybbbbbbb/qwen3-vllm-inference/blob/main/README.md",
+      "source_html_record": "M003",
+      "source_html_classification": "external",
+      "publisher": "cybbbbbbb/qwen3-vllm-inference",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B037",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "rtvla",
+      "precision_label": "BF16",
+      "source_profile": "p_bf16",
+      "recipe_candidate_id": "v3-rtvla-rtx-4090-b037",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "模型／图执行中位数 38.90 ms",
+      "conditions_original": "三视角；224×224；B=1",
+      "source_url": "https://github.com/Dexmal/realtime-vla",
+      "source_html_record": "B037",
+      "source_html_classification": "official",
+      "publisher": "dexmal/realtime-vla",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "r030",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "rtvla",
+      "precision_label": "BF16",
+      "source_profile": "p_bf16",
+      "recipe_candidate_id": "v3-rtvla-rtx-4090-r030",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "模型推理 29.2 ms",
+      "conditions_original": "双视角；B=1",
+      "source_url": "https://github.com/dexmal/realtime-vla",
+      "source_html_record": "r030",
+      "source_html_classification": "official",
+      "publisher": "dexmal/realtime-vla",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B015",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "phyai",
+      "precision_label": "BF16",
+      "source_profile": "p_bf16",
+      "recipe_candidate_id": "v3-phyai-rtx-4090-b015",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整本地调用均值 41.31 ms",
+      "conditions_original": "双视角；10 步；B=1；数值核验 9/10",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/pi05-benchmark/README.md",
+      "source_html_record": "B015",
+      "source_html_classification": "external",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "r022",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "apx",
+      "precision_label": "BF16",
+      "source_profile": "p_bf16",
+      "recipe_candidate_id": "v3-apx-rtx-4090-r022",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Graph replay P50 31.38 ms",
+      "conditions_original": "双视角；10 步；H=10；B=1",
+      "source_url": "https://github.com/infinigence/ApxInf",
+      "source_html_record": "r022",
+      "source_html_classification": "official",
+      "publisher": "infinigence/apxinf",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B012",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "embodiinfer",
+      "precision_label": "BF16（原生优化）",
+      "source_profile": "p_bf16",
+      "recipe_candidate_id": "v3-embodiinfer-rtx-4090-b012",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整本地调用均值 38.89 ms",
+      "conditions_original": "双视角；10 步；B=1",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/pi05-benchmark/README.md",
+      "source_html_record": "B012",
+      "source_html_classification": "official",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B022",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "embodiinfer",
+      "precision_label": "BF16",
+      "source_profile": "p_bf16",
+      "recipe_candidate_id": "v3-embodiinfer-rtx-4090-b022",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整本地调用均值 39.77 ms",
+      "conditions_original": "双视角；10 步；H=50；量化专项参照",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/pi05-quant-benchmark/README.md",
+      "source_html_record": "B022",
+      "source_html_classification": "official",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B013",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "vlacpp",
+      "precision_label": "BF16／FP32 权重 + FP32 激活",
+      "source_profile": "p_mix",
+      "recipe_candidate_id": "v3-vlacpp-rtx-4090-b013",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整本地调用均值 79.36 ms",
+      "conditions_original": "双视角；10 步；B=1",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/pi05-benchmark/README.md",
+      "source_html_record": "B013",
+      "source_html_classification": "external",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B014",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "embodied",
+      "precision_label": "BF16／FP32 权重 + FP32 激活",
+      "source_profile": "p_mix",
+      "recipe_candidate_id": "v3-embodied-rtx-4090-b014",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整本地调用均值 89.99 ms",
+      "conditions_original": "双视角；10 步；B=1；已应用 correctness patch",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/pi05-benchmark/README.md",
+      "source_html_record": "B014",
+      "source_html_classification": "external",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M012",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "embodiinfer",
+      "precision_label": "BF16／FP32 原生混合",
+      "source_profile": "p_mix",
+      "recipe_candidate_id": "v3-embodiinfer-rtx-4090-m012",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整请求 P50 74.622／74.638 ms（两轮）",
+      "conditions_original": "三视角；10 步；B=1；RobotWin checkpoint",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/pi05-benchmark/README.md",
+      "source_html_record": "M012",
+      "source_html_classification": "official",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B023",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "embodiinfer",
+      "precision_label": "FP8（Triton）",
+      "source_profile": "p_fp8",
+      "recipe_candidate_id": "v3-embodiinfer-rtx-4090-b023",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整本地调用均值 121.76 ms",
+      "conditions_original": "双视角；10 步；H=50；关闭 Inductor",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/pi05-quant-benchmark/README.md",
+      "source_html_record": "B023",
+      "source_html_classification": "official",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B067",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "apx",
+      "precision_label": "INT8 W8A8",
+      "source_profile": "p_int8",
+      "recipe_candidate_id": "v3-apx-rtx-4090-b067",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "模型／图执行 P50 25.99 ms",
+      "conditions_original": "双视角；10 步；H=10；服务封装公布值",
+      "source_url": "https://github.com/RLinf/APXinf-robo",
+      "source_html_record": "B067",
+      "source_html_classification": "official",
+      "publisher": "rlinf/apxinf-robo",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "r023",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "pi0.5",
+      "engine": "apx",
+      "precision_label": "INT8 W8A8",
+      "source_profile": "p_int8",
+      "recipe_candidate_id": "v3-apx-rtx-4090-r023",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Graph replay P50 21.92 ms",
+      "conditions_original": "双视角；10 步；H=10；B=1",
+      "source_url": "https://github.com/infinigence/ApxInf",
+      "source_html_record": "r023",
+      "source_html_classification": "official",
+      "publisher": "infinigence/apxinf",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "N029",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "GR00T N1.7",
+      "engine": "phyai",
+      "precision_label": "BF16",
+      "source_profile": "g_bf16",
+      "recipe_candidate_id": "v3-phyai-rtx-4090-n029",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整本地调用均值 33.97 ms",
+      "conditions_original": "双视角；4 步；B=1；数值核验 9/10",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/gr00t-benchmark/README.md",
+      "source_html_record": "N029",
+      "source_html_classification": "external",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B016",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "GR00T N1.7",
+      "engine": "embodiinfer",
+      "precision_label": "BF16（原生优化）",
+      "source_profile": "g_bf16",
+      "recipe_candidate_id": "v3-embodiinfer-rtx-4090-b016",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整本地调用均值 31.30 ms",
+      "conditions_original": "双视角；4 步；B=1",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/gr00t-benchmark/README.md",
+      "source_html_record": "B016",
+      "source_html_classification": "official",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B017",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "GR00T N1.7",
+      "engine": "vlacpp",
+      "precision_label": "BF16 GGUF + FP32 激活",
+      "source_profile": "g_mix",
+      "recipe_candidate_id": "v3-vlacpp-rtx-4090-b017",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整本地调用均值 38.70 ms",
+      "conditions_original": "双视角；4 步；B=1",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/gr00t-benchmark/README.md",
+      "source_html_record": "B017",
+      "source_html_classification": "external",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B018",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "GR00T N1.7",
+      "engine": "embodied",
+      "precision_label": "BF16／FP32 原生混合",
+      "source_profile": "g_mix",
+      "recipe_candidate_id": "v3-embodied-rtx-4090-b018",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "完整本地调用均值 73.17 ms",
+      "conditions_original": "双视角；4 步；B=1",
+      "source_url": "https://github.com/BUAA-CI-LAB/EmbodiInfer/blob/main/benchmarks/gr00t-benchmark/README.md",
+      "source_html_record": "B018",
+      "source_html_classification": "external",
+      "publisher": "buaa-ci-lab/embodiinfer",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B009",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "GR00T N1.7",
+      "engine": "flashrt",
+      "precision_label": "FP8 + BF16 attention",
+      "source_profile": "g_fp8",
+      "recipe_candidate_id": "v3-flashrt-rtx-4090-b009",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "模型／图执行 P50 32.60 ms",
+      "conditions_original": "双视角；B=1；eager；不含完整前后处理",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/benchmark_comparison.md",
+      "source_html_record": "B009",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B010",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "GR00T N1.7",
+      "engine": "flashrt",
+      "precision_label": "FP8 + BF16 attention",
+      "source_profile": "g_fp8",
+      "recipe_candidate_id": "v3-flashrt-rtx-4090-b010",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Graph replay 均值 9.98 ms",
+      "conditions_original": "双视角；B=1；热态 Graph；仅 2 次采样",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/benchmark_comparison.md",
+      "source_html_record": "B010",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B011",
+      "status": "reported",
+      "platform": "RTX 4090",
+      "model": "GR00T N1.7",
+      "engine": "flashrt",
+      "precision_label": "FP8 + BF16 attention",
+      "source_profile": "g_fp8",
+      "recipe_candidate_id": "v3-flashrt-rtx-4090-b011",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Graph replay 均值 9.69 ms",
+      "conditions_original": "双视角；B=1；FFN 融合；仅 4 次采样",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/benchmark_comparison.md",
+      "source_html_record": "B011",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M008",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "Qwen3-8B",
+      "engine": "llama",
+      "precision_label": "GGUF BF16",
+      "source_profile": "q_bf16",
+      "recipe_candidate_id": "v3-llama-rtx-5090-m008",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Decode 92.2 token/s；TTFT 44.0 ms",
+      "conditions_original": "单请求；I/O≈496/256；3 次均值",
+      "source_url": "https://arxiv.org/html/2605.00519v1#S4.T4",
+      "source_html_record": "M008",
+      "source_html_classification": "external",
+      "publisher": "arxiv.org",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M011",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "Qwen3-8B",
+      "engine": "vllm",
+      "precision_label": "BF16",
+      "source_profile": "q_bf16",
+      "recipe_candidate_id": "v3-vllm-rtx-5090-m011",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "输出总吞吐 125.0 token/s；TTFT P50 97.4 ms",
+      "conditions_original": "1 QPS；I/O=1024/128；开启前缀缓存",
+      "source_url": "https://github.com/pegainfer-project/pegainfer/blob/main/docs/models/qwen3/serving-performance.md",
+      "source_html_record": "M011",
+      "source_html_classification": "external",
+      "publisher": "pegainfer-project/pegainfer",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M004",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "Qwen3-8B",
+      "engine": "trtllm",
+      "precision_label": "BF16；KV：BF16",
+      "source_profile": "q_bf16",
+      "recipe_candidate_id": "v3-trtllm-rtx-5090-m004",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Decode 99.8 token/s",
+      "conditions_original": "单请求；I/O=472/256；流式测试",
+      "source_url": "https://computingforgeeks.com/nvfp4-quantization-tensorrt-llm/",
+      "source_html_record": "M004",
+      "source_html_classification": "external",
+      "publisher": "computingforgeeks.com",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M005",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "Qwen3-8B",
+      "engine": "trtllm",
+      "precision_label": "FP8（per-tensor）；KV：FP8",
+      "source_profile": "q_fp8_tensor",
+      "recipe_candidate_id": "v3-trtllm-rtx-5090-m005",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Decode 170.0 token/s",
+      "conditions_original": "单请求；I/O=472/256；流式测试",
+      "source_url": "https://computingforgeeks.com/nvfp4-quantization-tensorrt-llm/",
+      "source_html_record": "M005",
+      "source_html_classification": "external",
+      "publisher": "computingforgeeks.com",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M009",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "Qwen3-8B",
+      "engine": "llama",
+      "precision_label": "GGUF Q8_0",
+      "source_profile": "q_q8",
+      "recipe_candidate_id": "v3-llama-rtx-5090-m009",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Decode 152.74 token/s",
+      "conditions_original": "合成基准；10 次重复；I/O 未公开",
+      "source_url": "https://github.com/kekzl/imp/blob/main/docs/BENCHMARKS.md",
+      "source_html_record": "M009",
+      "source_html_classification": "external",
+      "publisher": "kekzl/imp",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M010",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "Qwen3-8B",
+      "engine": "llama",
+      "precision_label": "GGUF Q8_0",
+      "source_profile": "q_q8",
+      "recipe_candidate_id": "v3-llama-rtx-5090-m010",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Prefill 14,258 token/s［13,644–14,286］",
+      "conditions_original": "pp512 独立测试；3 次中位数［范围］",
+      "source_url": "https://github.com/kekzl/imp/blob/main/docs/BENCHMARKS.md",
+      "source_html_record": "M010",
+      "source_html_classification": "external",
+      "publisher": "kekzl/imp",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M007",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "Qwen3-8B",
+      "engine": "flashrt",
+      "precision_label": "Decode：NVFP4 W4A4；Prefill：W4A16；BF16 head",
+      "source_profile": "q_nv4",
+      "recipe_candidate_id": "v3-flashrt-rtx-5090-m007",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Decode 150 token/s；Graph TTFT 24.8 ms（P1024）",
+      "conditions_original": "B=1；Graph 热态；独立 SFT checkpoint",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/qwen3_8b_nvfp4.md",
+      "source_html_record": "M007",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M006",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "Qwen3-8B",
+      "engine": "trtllm",
+      "precision_label": "NVFP4 W4A4 + BF16 保留模块；KV：FP8",
+      "source_profile": "q_nv4",
+      "recipe_candidate_id": "v3-trtllm-rtx-5090-m006",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "Decode 222.7 token/s",
+      "conditions_original": "单请求；I/O=472/256；原生 FP4 路径",
+      "source_url": "https://computingforgeeks.com/nvfp4-quantization-tensorrt-llm/",
+      "source_html_record": "M006",
+      "source_html_classification": "external",
+      "publisher": "computingforgeeks.com",
+      "publisher_is_engine_repository": false,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B042",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "engine": "rtvla",
+      "precision_label": "BF16",
+      "source_profile": "p_bf16",
+      "recipe_candidate_id": "v3-rtvla-rtx-5090-b042",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "模型／图执行中位数 27.40 ms",
+      "conditions_original": "三视角；224×224；B=1",
+      "source_url": "https://github.com/Dexmal/realtime-vla",
+      "source_html_record": "B042",
+      "source_html_classification": "official",
+      "publisher": "dexmal/realtime-vla",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B041",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "engine": "rtvla",
+      "precision_label": "BF16",
+      "source_profile": "p_bf16",
+      "recipe_candidate_id": "v3-rtvla-rtx-5090-b041",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "模型／图执行中位数 21.30 ms",
+      "conditions_original": "双视角；224×224；B=1",
+      "source_url": "https://github.com/Dexmal/realtime-vla",
+      "source_html_record": "B041",
+      "source_html_classification": "official",
+      "publisher": "dexmal/realtime-vla",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B032",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "engine": "phyai",
+      "precision_label": "BF16",
+      "source_profile": "p_bf16",
+      "recipe_candidate_id": "v3-phyai-rtx-5090-b032",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "单请求 28.60 ms",
+      "conditions_original": "视角、步数、计时范围与统计量未公开",
+      "source_url": "https://github.com/mingti-org/phyai/blob/main/assets/performance-comparison.svg",
+      "source_html_record": "B032",
+      "source_html_classification": "official",
+      "publisher": "mingti-org/phyai",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M013",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "engine": "flashrt",
+      "precision_label": "FP8 prefix + FP8 decoder",
+      "source_profile": "p_fp8",
+      "recipe_candidate_id": "v3-flashrt-rtx-5090-m013",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "同步 E2E P50 15.08 ms；P95 15.28 ms",
+      "conditions_original": "双视角；B=1；state 写入 prompt",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/pi05_prefix_nvfp4.md",
+      "source_html_record": "M013",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "r036",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "engine": "flashrt",
+      "precision_label": "FP8 prefix + FP8 decoder",
+      "source_profile": "p_fp8",
+      "recipe_candidate_id": "v3-flashrt-rtx-5090-r036",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "动作推理 P50 13.10 ms；P95 13.18 ms",
+      "conditions_original": "双视角；10 步；H=10；无 state token",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/pi05_prefix_nvfp4.md",
+      "source_html_record": "r036",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M015",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "engine": "flashrt",
+      "precision_label": "NVFP4 prefix／decoder + FP8 attention",
+      "source_profile": "p_nv_full",
+      "recipe_candidate_id": "v3-flashrt-rtx-5090-m015",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "同步 E2E P50 10.39 ms；P95 10.60 ms",
+      "conditions_original": "双视角；B=1；state 写入 prompt",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/pi05_prefix_nvfp4.md",
+      "source_html_record": "M015",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "r037",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "engine": "flashrt",
+      "precision_label": "NVFP4 prefix／decoder + FP8 attention",
+      "source_profile": "p_nv_full",
+      "recipe_candidate_id": "v3-flashrt-rtx-5090-r037",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "动作推理 P50 8.75 ms；P95 8.78 ms",
+      "conditions_original": "双视角；10 步；H=10；无 state token",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/pi05_prefix_nvfp4.md",
+      "source_html_record": "r037",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "M014",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "engine": "flashrt",
+      "precision_label": "NVFP4 prefix + FP8 decoder",
+      "source_profile": "p_nv_prefix",
+      "recipe_candidate_id": "v3-flashrt-rtx-5090-m014",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "同步 E2E P50 11.18 ms；P95 11.41 ms",
+      "conditions_original": "双视角；B=1；state 写入 prompt",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/pi05_prefix_nvfp4.md",
+      "source_html_record": "M014",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B034",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "engine": "phyai",
+      "precision_label": "BF16",
+      "source_profile": "g_bf16",
+      "recipe_candidate_id": "v3-phyai-rtx-5090-b034",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "单请求 20.60 ms",
+      "conditions_original": "视角、步数、计时范围与统计量未公开",
+      "source_url": "https://github.com/mingti-org/phyai/blob/main/assets/performance-comparison.svg",
+      "source_html_record": "B034",
+      "source_html_classification": "official",
+      "publisher": "mingti-org/phyai",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B007",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "engine": "flashrt",
+      "precision_label": "FP8 + BF16 attention",
+      "source_profile": "g_fp8",
+      "recipe_candidate_id": "v3-flashrt-rtx-5090-b007",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "模型／图执行中位数 14.01 ms",
+      "conditions_original": "双视角；4 步；B=1；GPU event 计时",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/groot_n17_rtx_nvfp4.md",
+      "source_html_record": "B007",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    },
+    {
+      "id": "B008",
+      "status": "reported",
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "engine": "flashrt",
+      "precision_label": "NVFP4 DiT／cross K/V + FP8 VLM；部分 attention 为 BF16",
+      "source_profile": "g_nv_fp8",
+      "recipe_candidate_id": "v3-flashrt-rtx-5090-b008",
+      "recipe_status": "reported_variant_requires_protocol_and_config",
+      "metric_original": "模型／图执行中位数 8.64 ms",
+      "conditions_original": "双视角；4 步；B=1；GPU event 计时",
+      "source_url": "https://github.com/flashrt-project/FlashRT/blob/main/docs/groot_n17_rtx_nvfp4.md",
+      "source_html_record": "B008",
+      "source_html_classification": "official",
+      "publisher": "flashrt-project/flashrt",
+      "publisher_is_engine_repository": true,
+      "executable_config": null,
+      "checkpoint_revision": null,
+      "protocol_id": null,
+      "dataset_manifest_sha256": null,
+      "comparable_to_repository_protocol": false
+    }
+  ],
+  "repository_measurements": [
+    {
+      "id": "reports/2026-10-23-5090-optimized/flashrt_fp8.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "label": "flashrt_fp8",
+      "engine": "flashrt",
+      "protocol": {
+        "name": "groot-n17-b1-v3-model-only-v1",
+        "model": "GR00T N1.7",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 4,
+        "action_horizon": 40,
+        "action_dim": 132,
+        "state_dim": 132,
+        "state_history": 1,
+        "image_size": [
+          256,
+          256
+        ],
+        "embodiment_id": 24,
+        "input_dtype": "bfloat16",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 14.41817638,
+        "min_ms": 14.271307,
+        "p50_ms": 14.420766,
+        "p95_ms": 14.4423999,
+        "p99_ms": 14.44892296
+      },
+      "mean_mae": 0.027798002958297728,
+      "max_abs": 1.30078125,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+      "checkpoint": {
+        "config.json": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689",
+        "embodiment_id.json": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35",
+        "model-00001-of-00002.safetensors": "8a1a1d8a33c99103c7c80c136073c5bb8bfe9ca8f7a970c93c033ea89742906d",
+        "model-00002-of-00002.safetensors": "c3f61940deb2007ba1ad7743013b57f0f8462356151db9655175d7aca2d40661",
+        "model.safetensors.index.json": "407804ea5a62f4f8823f48811ae0edbb82fac101e9cf4d7273e6e2f692bb4d59",
+        "processor_config.json": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be",
+        "statistics.json": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+      },
+      "engine_source": {
+        "commit": "1fbe995089af4148bacd10ead61764d0aeb80f7a",
+        "dirty": ""
+      }
+    },
+    {
+      "id": "reports/2026-10-23-5090-optimized/flashrt_nvfp4.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "label": "flashrt_nvfp4",
+      "engine": "flashrt",
+      "protocol": {
+        "name": "groot-n17-b1-v3-model-only-v1",
+        "model": "GR00T N1.7",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 4,
+        "action_horizon": 40,
+        "action_dim": 132,
+        "state_dim": 132,
+        "state_history": 1,
+        "image_size": [
+          256,
+          256
+        ],
+        "embodiment_id": 24,
+        "input_dtype": "bfloat16",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 8.974277559999997,
+        "min_ms": 8.822234,
+        "p50_ms": 8.9757055,
+        "p95_ms": 9.0136108,
+        "p99_ms": 9.03895163
+      },
+      "mean_mae": 0.028181866533828506,
+      "max_abs": 1.34375,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+      "checkpoint": {
+        "config.json": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689",
+        "embodiment_id.json": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35",
+        "model-00001-of-00002.safetensors": "8a1a1d8a33c99103c7c80c136073c5bb8bfe9ca8f7a970c93c033ea89742906d",
+        "model-00002-of-00002.safetensors": "c3f61940deb2007ba1ad7743013b57f0f8462356151db9655175d7aca2d40661",
+        "model.safetensors.index.json": "407804ea5a62f4f8823f48811ae0edbb82fac101e9cf4d7273e6e2f692bb4d59",
+        "processor_config.json": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be",
+        "statistics.json": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+      },
+      "engine_source": {
+        "commit": "1fbe995089af4148bacd10ead61764d0aeb80f7a",
+        "dirty": ""
+      }
+    },
+    {
+      "id": "reports/2026-10-23-5090-optimized/embodiinfer_optimized.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "label": "embodiinfer_optimized",
+      "engine": "embodiinfer",
+      "protocol": {
+        "name": "groot-n17-b1-v3-model-only-v1",
+        "model": "GR00T N1.7",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 4,
+        "action_horizon": 40,
+        "action_dim": 132,
+        "state_dim": 132,
+        "state_history": 1,
+        "image_size": [
+          256,
+          256
+        ],
+        "embodiment_id": 24,
+        "input_dtype": "bfloat16",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 28.482020580000004,
+        "min_ms": 28.432398,
+        "p50_ms": 28.485287,
+        "p95_ms": 28.52008045,
+        "p99_ms": 28.53538216
+      },
+      "mean_mae": 0.0027309470104448725,
+      "max_abs": 0.16015625,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+      "checkpoint": {
+        "config.json": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689",
+        "embodiment_id.json": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35",
+        "model-00001-of-00002.safetensors": "8a1a1d8a33c99103c7c80c136073c5bb8bfe9ca8f7a970c93c033ea89742906d",
+        "model-00002-of-00002.safetensors": "c3f61940deb2007ba1ad7743013b57f0f8462356151db9655175d7aca2d40661",
+        "model.safetensors.index.json": "407804ea5a62f4f8823f48811ae0edbb82fac101e9cf4d7273e6e2f692bb4d59",
+        "processor_config.json": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be",
+        "statistics.json": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+      },
+      "engine_source": {
+        "commit": "2cd9a37a0f6f555c2a65991f1cf4ccb578caf23b",
+        "dirty": ""
+      }
+    },
+    {
+      "id": "reports/2026-10-23-5090-smoke/phyai.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "label": "phyai",
+      "engine": "phyai",
+      "protocol": {
+        "name": "groot-n17-b1-v3-model-only-v1",
+        "model": "GR00T N1.7",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 4,
+        "action_horizon": 40,
+        "action_dim": 132,
+        "state_dim": 132,
+        "state_history": 1,
+        "image_size": [
+          256,
+          256
+        ],
+        "embodiment_id": 24,
+        "input_dtype": "bfloat16",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 26.77343924,
+        "min_ms": 26.698901,
+        "p50_ms": 26.753410000000002,
+        "p95_ms": 26.93364585,
+        "p99_ms": 27.06798399
+      },
+      "mean_mae": 0.003726347106875795,
+      "max_abs": 0.56640625,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+      "checkpoint": {
+        "config.json": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689",
+        "embodiment_id.json": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35",
+        "model-00001-of-00002.safetensors": "8a1a1d8a33c99103c7c80c136073c5bb8bfe9ca8f7a970c93c033ea89742906d",
+        "model-00002-of-00002.safetensors": "c3f61940deb2007ba1ad7743013b57f0f8462356151db9655175d7aca2d40661",
+        "model.safetensors.index.json": "407804ea5a62f4f8823f48811ae0edbb82fac101e9cf4d7273e6e2f692bb4d59",
+        "processor_config.json": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be",
+        "statistics.json": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+      },
+      "engine_source": {
+        "commit": "f983a8f84684aa7db4dfac7184b7b5c787635978",
+        "dirty": ""
+      }
+    },
+    {
+      "id": "reports/2026-10-23-5090-smoke/reference.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "GR00T N1.7",
+      "label": "reference",
+      "engine": "reference",
+      "protocol": {
+        "name": "groot-n17-b1-v3-model-only-v1",
+        "model": "GR00T N1.7",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 4,
+        "action_horizon": 40,
+        "action_dim": 132,
+        "state_dim": 132,
+        "state_history": 1,
+        "image_size": [
+          256,
+          256
+        ],
+        "embodiment_id": 24,
+        "input_dtype": "bfloat16",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 83.06772332999999,
+        "min_ms": 79.684322,
+        "p50_ms": 82.963759,
+        "p95_ms": 85.44925155,
+        "p99_ms": 86.54956607000001
+      },
+      "mean_mae": 0.0,
+      "max_abs": 0.0,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+      "checkpoint": {
+        "config.json": "54c0367060cd310d0b3343fe72a589860a8b6e8173810164a4ffd6253f52e689",
+        "embodiment_id.json": "abc4a749389837416a102d9455a8c089336f2e417afb18565703b9944974bc35",
+        "model-00001-of-00002.safetensors": "8a1a1d8a33c99103c7c80c136073c5bb8bfe9ca8f7a970c93c033ea89742906d",
+        "model-00002-of-00002.safetensors": "c3f61940deb2007ba1ad7743013b57f0f8462356151db9655175d7aca2d40661",
+        "model.safetensors.index.json": "407804ea5a62f4f8823f48811ae0edbb82fac101e9cf4d7273e6e2f692bb4d59",
+        "processor_config.json": "85c1b4690ae090559e79a45193e598b65d6146eedf14750884da65e6d31032be",
+        "statistics.json": "c97b1b07a82a8a8858771d56d278732d97dd8eae506032c146c77eb53828afc9"
+      },
+      "engine_source": {
+        "commit": "51d4c89f72fda44cbf77285c6a8114b52676b8a1",
+        "dirty": "M pyproject.toml\n M uv.lock"
+      }
+    },
+    {
+      "id": "reports/2026-10-23-5090-pi05/embodiinfer/summary.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "label": "EmbodiInfer pi05 full request graph",
+      "engine": "embodiinfer",
+      "protocol": {
+        "name": "pi05-base-b1-v3-model-only-v1",
+        "model": "pi0.5",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 10,
+        "action_horizon": 50,
+        "action_dim": 32,
+        "state_dim": 32,
+        "image_size": [
+          224,
+          224
+        ],
+        "max_token_len": 200,
+        "input_dtype": "float32",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 91.25526772,
+        "min_ms": 91.099578,
+        "p50_ms": 91.245203,
+        "p95_ms": 91.3278357,
+        "p99_ms": 91.35515695000001
+      },
+      "mean_mae": 0.0036615921408156282,
+      "max_abs": 0.09799262881278992,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "8a99501ae6895c1809d79ba66dca224bbb5a843061b2fd3a364917dfd723c704",
+      "checkpoint": {
+        "config.json": "3673272c04c1d5eb6bc187d087104b4912a3a33624eb6e02c2250904d593b836",
+        "conversion-provenance.json": "c87babe550952706f0f3123da77f78a6c14c4bd0a029d90d822858ebb8397732",
+        "model.safetensors": "c6c51ef9904b0bc6ef7cf9b458755a9164130a3b97ebccf34a2ac9523c29aad7"
+      },
+      "engine_source": {
+        "commit": "2cd9a37a0f6f555c2a65991f1cf4ccb578caf23b",
+        "dirty": ""
+      }
+    },
+    {
+      "id": "reports/2026-10-23-5090-pi05/flashrt-bf16/summary.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "label": "FlashRT pi05 BF16 full graph",
+      "engine": "flashrt",
+      "protocol": {
+        "name": "pi05-base-b1-v3-model-only-v1",
+        "model": "pi0.5",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 10,
+        "action_horizon": 50,
+        "action_dim": 32,
+        "state_dim": 32,
+        "image_size": [
+          224,
+          224
+        ],
+        "max_token_len": 200,
+        "input_dtype": "float32",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 38.104159710000005,
+        "min_ms": 38.01928,
+        "p50_ms": 38.095760999999996,
+        "p95_ms": 38.1988754,
+        "p99_ms": 38.27416763
+      },
+      "mean_mae": 0.004638717145535338,
+      "max_abs": 0.09727776050567627,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "8a99501ae6895c1809d79ba66dca224bbb5a843061b2fd3a364917dfd723c704",
+      "checkpoint": {
+        "config.json": "3673272c04c1d5eb6bc187d087104b4912a3a33624eb6e02c2250904d593b836",
+        "conversion-provenance.json": "c87babe550952706f0f3123da77f78a6c14c4bd0a029d90d822858ebb8397732",
+        "model.safetensors": "c6c51ef9904b0bc6ef7cf9b458755a9164130a3b97ebccf34a2ac9523c29aad7"
+      },
+      "engine_source": {
+        "commit": "1fbe995089af4148bacd10ead61764d0aeb80f7a",
+        "dirty": ""
+      }
+    },
+    {
+      "id": "reports/2026-10-23-5090-pi05/flashrt-fp8/summary.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "label": "FlashRT pi05 FP8 prefix and decoder",
+      "engine": "flashrt",
+      "protocol": {
+        "name": "pi05-base-b1-v3-model-only-v1",
+        "model": "pi0.5",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 10,
+        "action_horizon": 50,
+        "action_dim": 32,
+        "state_dim": 32,
+        "image_size": [
+          224,
+          224
+        ],
+        "max_token_len": 200,
+        "input_dtype": "float32",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 22.516569880000002,
+        "min_ms": 22.476298,
+        "p50_ms": 22.514553,
+        "p95_ms": 22.54827245,
+        "p99_ms": 22.58526023
+      },
+      "mean_mae": 0.02554096271884191,
+      "max_abs": 0.46150580048561096,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "8a99501ae6895c1809d79ba66dca224bbb5a843061b2fd3a364917dfd723c704",
+      "checkpoint": {
+        "config.json": "3673272c04c1d5eb6bc187d087104b4912a3a33624eb6e02c2250904d593b836",
+        "conversion-provenance.json": "c87babe550952706f0f3123da77f78a6c14c4bd0a029d90d822858ebb8397732",
+        "model.safetensors": "c6c51ef9904b0bc6ef7cf9b458755a9164130a3b97ebccf34a2ac9523c29aad7"
+      },
+      "engine_source": {
+        "commit": "1fbe995089af4148bacd10ead61764d0aeb80f7a",
+        "dirty": ""
+      }
+    },
+    {
+      "id": "reports/2026-10-23-5090-pi05/flashrt-nvfp4/summary.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "label": "FlashRT pi05 NVFP4 prefix and decoder",
+      "engine": "flashrt",
+      "protocol": {
+        "name": "pi05-base-b1-v3-model-only-v1",
+        "model": "pi0.5",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 10,
+        "action_horizon": 50,
+        "action_dim": 32,
+        "state_dim": 32,
+        "image_size": [
+          224,
+          224
+        ],
+        "max_token_len": 200,
+        "input_dtype": "float32",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 14.228791299999997,
+        "min_ms": 14.186859,
+        "p50_ms": 14.2227905,
+        "p95_ms": 14.2702066,
+        "p99_ms": 14.29302411
+      },
+      "mean_mae": 0.11192573756812635,
+      "max_abs": 1.0953853130340576,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "8a99501ae6895c1809d79ba66dca224bbb5a843061b2fd3a364917dfd723c704",
+      "checkpoint": {
+        "config.json": "3673272c04c1d5eb6bc187d087104b4912a3a33624eb6e02c2250904d593b836",
+        "conversion-provenance.json": "c87babe550952706f0f3123da77f78a6c14c4bd0a029d90d822858ebb8397732",
+        "model.safetensors": "c6c51ef9904b0bc6ef7cf9b458755a9164130a3b97ebccf34a2ac9523c29aad7"
+      },
+      "engine_source": {
+        "commit": "1fbe995089af4148bacd10ead61764d0aeb80f7a",
+        "dirty": ""
+      }
+    },
+    {
+      "id": "reports/2026-10-23-5090-pi05/phyai/summary.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "label": "PhyAI pi05 BF16 graphs",
+      "engine": "phyai",
+      "protocol": {
+        "name": "pi05-base-b1-v3-model-only-v1",
+        "model": "pi0.5",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 10,
+        "action_horizon": 50,
+        "action_dim": 32,
+        "state_dim": 32,
+        "image_size": [
+          224,
+          224
+        ],
+        "max_token_len": 200,
+        "input_dtype": "float32",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 41.77345482,
+        "min_ms": 41.470884,
+        "p50_ms": 41.8510105,
+        "p95_ms": 41.90635435,
+        "p99_ms": 41.96628041
+      },
+      "mean_mae": 0.004542264529118257,
+      "max_abs": 0.05752906948328018,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "8a99501ae6895c1809d79ba66dca224bbb5a843061b2fd3a364917dfd723c704",
+      "checkpoint": {
+        "config.json": "3673272c04c1d5eb6bc187d087104b4912a3a33624eb6e02c2250904d593b836",
+        "conversion-provenance.json": "c87babe550952706f0f3123da77f78a6c14c4bd0a029d90d822858ebb8397732",
+        "model.safetensors": "c6c51ef9904b0bc6ef7cf9b458755a9164130a3b97ebccf34a2ac9523c29aad7"
+      },
+      "engine_source": {
+        "commit": "f983a8f84684aa7db4dfac7184b7b5c787635978",
+        "dirty": ""
+      }
+    },
+    {
+      "id": "reports/2026-10-23-5090-pi05/reference/summary.json",
+      "status": "measured",
+      "platform": "RTX 5090",
+      "model": "pi0.5",
+      "label": "OpenPI pi05 eager BF16/FP32",
+      "engine": "reference",
+      "protocol": {
+        "name": "pi05-base-b1-v3-model-only-v1",
+        "model": "pi0.5",
+        "batch": 1,
+        "views": 3,
+        "denoising_steps": 10,
+        "action_horizon": 50,
+        "action_dim": 32,
+        "state_dim": 32,
+        "image_size": [
+          224,
+          224
+        ],
+        "max_token_len": 200,
+        "input_dtype": "float32",
+        "boundary": "device_tensor_to_device_normalized_action",
+        "timer": "synchronized_wall"
+      },
+      "latency": {
+        "count": 100,
+        "mean_ms": 174.25606425,
+        "min_ms": 170.522236,
+        "p50_ms": 173.601807,
+        "p95_ms": 180.33962005,
+        "p99_ms": 183.0074691
+      },
+      "mean_mae": 0.0,
+      "max_abs": 0.0,
+      "accuracy_gate": "not_configured",
+      "dataset_manifest_sha256": "8a99501ae6895c1809d79ba66dca224bbb5a843061b2fd3a364917dfd723c704",
+      "checkpoint": {
+        "config.json": "3673272c04c1d5eb6bc187d087104b4912a3a33624eb6e02c2250904d593b836",
+        "conversion-provenance.json": "c87babe550952706f0f3123da77f78a6c14c4bd0a029d90d822858ebb8397732",
+        "model.safetensors": "c6c51ef9904b0bc6ef7cf9b458755a9164130a3b97ebccf34a2ac9523c29aad7"
+      },
+      "engine_source": {
+        "commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+        "dirty": "M uv.lock"
+      }
+    }
+  ]
+}

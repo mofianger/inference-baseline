@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "document_only": true,
+  "id": "rtx5090-groot-n17-fp8-nvfp4-baseline-20261025",
+  "organized_date": "2026-10-25",
+  "measurement_date": "2026-10-23",
+  "new_gpu_runs": false,
+  "platform": "RTX 5090",
+  "model_spec": "gr00t-n17-3b-base-v1",
+  "protocol": "groot-n17-b1-v3-model-only-v1",
+  "dataset_manifest_sha256": "562a86fc238ca10adcc2b623be09bf796b74f1403fbdd5ab6f6d1785335c2297",
+  "accuracy_thresholds": null,
+  "baselines": [
+    {
+      "recipe_id": "flashrt-groot-n17-sm120-fp8-v1",
+      "status": "measured",
+      "precision_family": "FP8",
+      "precision_scope": "FP8 fused backbone; partial FP8 action FFN/QKV; other operations mixed BF16",
+      "config": "configs/5090/flashrt.json",
+      "summary": "reports/2026-10-23-5090-optimized/flashrt_fp8.json",
+      "latency_jsonl": "reports/2026-10-23-5090-optimized/flashrt_fp8-latency.jsonl"
+    },
+    {
+      "recipe_id": "flashrt-groot-n17-sm120-nvfp4-v1",
+      "status": "measured",
+      "precision_family": "NVFP4",
+      "precision_scope": "FP8 fused backbone; NVFP4 DiT and cross-K/V; other operations mixed BF16",
+      "config": "configs/5090/flashrt_nvfp4.json",
+      "summary": "reports/2026-10-23-5090-optimized/flashrt_nvfp4.json",
+      "latency_jsonl": "reports/2026-10-23-5090-optimized/flashrt_nvfp4-latency.jsonl"
+    }
+  ],
+  "external_reference_records": ["B007", "B008"],
+  "external_reference_comparable": false,
+  "external_difference": ["two views versus three", "GPU median versus synchronized wall", "real DROID observations versus synthetic fixtures", "asset identity not established"],
+  "proposed_integration": [
+    {"engine": "embodiinfer", "precision_families": ["FP8", "NVFP4"], "status": "proposed", "executable_configs": [], "support_on_this_setting": "unverified"},
+    {"engine": "phyai", "precision_families": ["FP8", "NVFP4"], "status": "proposed", "executable_configs": [], "support_on_this_setting": "unverified"}
+  ],
+  "path_base": "repository_root"
+}

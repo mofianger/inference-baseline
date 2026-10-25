@@ -4,6 +4,7 @@ Run 是一次实际执行，固定模型、协议、数据集/reference、Recipe
 
 | 轮次 | 实测组合 | 记录 |
 |---|---|---|
+| 2026-10-25 V3 资料整理 | 41 条外部记录 + 11 条已有 Run；单列 5090 / GR00T FP8、NVFP4；没有新增测量 | [总表](../reports/2026-10-25-v3-baseline/README.md)、[重点 Setting](../reports/2026-10-25-v3-baseline/5090-groot-n17.md) |
 | 2026-10-23 π0.5 首轮 | 官方 pi05_base / 三视角 / 5090：OpenPI、EmbodiInfer、PhyAI、FlashRT BF16/FP8/NVFP4 | [π0.5 报告](../reports/2026-10-23-5090-pi05/README.md) |
 | 2026-10-23 首轮接入 | GR00T N1.7 / 三视角 / 5090：reference、旧 FlashRT、无完整图 EmbodiInfer、PhyAI | [首轮报告](../reports/2026-10-23-5090-smoke/README.md) |
 | 2026-10-23 优化复测 | 同一数据集/协议：EmbodiInfer 完整图、新构建 FlashRT FP8/NVFP4 | [复测报告](../reports/2026-10-23-5090-optimized/README.md) |

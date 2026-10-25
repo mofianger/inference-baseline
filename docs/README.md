@@ -1,5 +1,7 @@
 # 文档导航
 
+协作者资料整理见 [V3 Baseline 总表](../reports/2026-10-25-v3-baseline/README.md)；当前重点为 [5090 / GR00T N1.7 / FP8 与 NVFP4](../reports/2026-10-25-v3-baseline/5090-groot-n17.md)。
+
 π0.5 的协议、环境与复现命令见 [π0.5 / 5090 指引](guides/pi05-5090.md)，实测及数值误差见 [结果报告](../reports/2026-10-23-5090-pi05/README.md)。
 
 仓库用于研究不同引擎、模型、Recipe 和硬件组合；目前实际支持 GR00T N1.7 与 π0.5 三视角 model-only 协议。

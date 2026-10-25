@@ -10,6 +10,8 @@
 
 ## 从哪里开始
 
+协作者 V3 已按仓库约定整理为 [平台 / 模型 / 引擎 / Recipe Baseline 总表](reports/2026-10-25-v3-baseline/README.md)。当前重点：[RTX 5090 × GR00T N1.7 的 FP8 / NVFP4 Baseline](reports/2026-10-25-v3-baseline/5090-groot-n17.md)，区分上游公开数字与本仓库同协议实测。
+
 | 目标 | 入口 |
 |---|---|
 | 理解职责与当前实现边界 | [架构](docs/architecture.md)、[协议与可比性](docs/protocols.md) |

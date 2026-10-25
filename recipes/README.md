@@ -2,6 +2,8 @@
 
 Recipe = 引擎 × 模型 × 适用硬件的一套精度/执行/校准配置。下面的 ID 是研究目录标识，当前 CLI 使用对应的 config，尚不接受 recipe ID 自动解析。
 
+外部 Recipe 调研范围见 [V3 总表](../reports/2026-10-25-v3-baseline/README.md)。其中 reported 变体尚未全部形成可运行配置，不混入本页 measured 清单。当前重点 [5090 × GR00T 的 FP8/NVFP4 Baseline](../reports/2026-10-25-v3-baseline/5090-groot-n17.md) 已映射现有 Recipe ID 与 Run。
+
 | 引擎 | Recipe | 状态 | 说明 |
 |---|---|---|---|
 | FlashRT | `flashrt-groot-n17-sm120-fp8-v1` | measured | 融合 FP8 backbone、混合 FP8/BF16 action head |
