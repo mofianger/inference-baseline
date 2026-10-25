@@ -67,6 +67,12 @@ def main():
             base_model_id="nvidia/GR00T-N1.7-3B@2fc962b973bccdd5d8ce4f67cc63b264d6886495"))
     else:
         from foldquant.quantized import export_onnx
+        # ModelOpt 0.39 imports this public type from the old package location
+        # under torch 2.9. Bind the same upstream type; no symbolic/math changes.
+        import torch.onnx._internal.torchscript_exporter as legacy_exporter
+        if not hasattr(legacy_exporter, "JitScalarType"):
+            from torch.onnx._internal.torchscript_exporter._type_utils import JitScalarType
+            legacy_exporter.JitScalarType = JitScalarType
         # Native FoldQuant packs are replayed from QuantState. ModelOpt also
         # modifies floating-point weights during calibration; those live in
         # the quantized checkpoint, not in its quantizer state.
