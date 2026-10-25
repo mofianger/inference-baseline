@@ -1,5 +1,7 @@
 # RTX 5090 × GR00T N1.7：新增已实现 Recipe 测试
 
+合并历史 FlashRT、EmbodiInfer BF16 和 PhyAI BF16 的可视化页面：[单文件 HTML](../../groot_n17_5090_results.html)，包含通俗 Recipe 解释、图表和完整误差表。
+
 本轮遵循用户限定：沿用 FlashRT 已测的三视角实验；已有有效结果不重跑；优先新框架；只适配上游已实现的路径，不补写引擎量化、CUDA kernel 或模型计算。有效 Run 表示完成协议检查和计时，**不表示通过任务精度或数值验收门槛**。
 
 本轮已完成：16 个主比较配方加 4 个 eager 诊断配方，共 20 个配置，得到 **12 条有效测量、8 条协议检查失败记录**。新增 NVIDIA TensorRT 与 FoldQuant 两个实现家族；历史成功路径未重跑。完整延迟、p95、误差与原始记录见 [实测表](measured.md)。
