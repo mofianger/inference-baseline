@@ -1,4 +1,4 @@
-﻿"""Profile the existing FlashRT frontend; adapter embeddings are prepared outside ranges."""
+"""Profile the existing FlashRT frontend; adapter embeddings are prepared outside ranges."""
 import argparse,json,os,time,statistics
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--mode',default='torch');a=p.parse_args()
@@ -14,8 +14,8 @@ from inference_baseline.io import revision,sha256
 out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
 torch.set_num_threads(8);torch.set_num_interop_threads(1)
 manifest,protocol,cpu=load_dataset(root/'datasets/groot-n17-v3')
+samples=[move_sample(s,torch.device('cuda:0')) for s in cpu]
 with torch.inference_mode():
- samples=[move_sample(s,torch.device('cuda:0')) for s in cpu]
  adapter=create('flashrt',config,protocol,samples)
  torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
  sample=next(s for s in samples if s['role']=='evaluation')
