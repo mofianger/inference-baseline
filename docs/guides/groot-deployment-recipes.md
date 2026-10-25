@@ -41,7 +41,7 @@ flock artifacts/gpu-0.lock .venv-foldquant/bin/python scripts/run_deployment_rec
 
 `--assets` 必须与 config 的 `engine_dir` 对应。复用 asset 目录会重新生成构建文件，已有有效 engine 应先归档或改用新目录/config。`--output` 必须是不存在的新目录。`--start export/build/run` 只适用于前序资产仍存在且绑定正确的情况。
 
-脚本保存每个阶段的命令、退出码、日志与源码/配置来源；失败就停止该配方。`--retire-intermediates` 在测量完成或记录阶段失败后，为生成的 ONNX/quantized 文件计算哈希并删除，保留 engines、源权重、数据集和诊断；重做导出需要重新校准。它不会清理其他项目的数据。
+脚本保存每个阶段的命令、退出码、日志与源码/配置来源；失败就停止该配方。`--retire-intermediates` 在 FoldQuant 完成导出后先为生成的 quantized 检查点计算哈希并删除，测量完成或记录阶段失败后再回收其余 ONNX/quantized 文件，保留 engines、源权重、数据集和诊断；重做导出需要重新校准。它不会清理其他项目的数据。
 
 ## Adapter 的范围
 

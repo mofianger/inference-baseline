@@ -49,7 +49,7 @@ C++ 接口核查对应 [固定版本源码证据及完整候选清单](../../rec
 | `foldquant-awq` | 上游 ModelOpt AWQ W4A16 的 LLM/DiT 路径，其他组件保持上游浮点策略 |
 | `foldquant-smoothquant` | 上游 ModelOpt SmoothQuant W8A8 的 LLM/DiT 路径，其他组件保持上游浮点策略 |
 
-AWQ/SmoothQuant 导出需要同时重放量化检查点中的平滑权重和 quantizer 状态。早期 AWQ r2 导出因 ModelOpt/Torch 导入不兼容失败；SmoothQuant r2 在测量前中止以修正权重绑定。这两次不构成有效结果。r3 使用修正后的数据装载，以及同一 `JitScalarType` 的兼容导入别名；未改量化算法或引擎计算。该类型的新导入位置可在 [ModelOpt 上游实现](https://github.com/NVIDIA/Model-Optimizer/blob/main/modelopt/torch/quantization/export_onnx.py) 核对。
+AWQ/SmoothQuant 导出需要同时重放量化检查点中的平滑权重和 quantizer 状态。早期 AWQ r2 导出因 ModelOpt/Torch 导入不兼容失败；SmoothQuant r2 在测量前中止以修正权重绑定，r3 又发现 Hugging Face 共享权重别名未被枚举。这些尝试不构成有效结果。后续使用包括共享别名的完整权重装载，以及同一 `JitScalarType` 的兼容导入别名；未改量化算法或引擎计算。该类型的新导入位置可在 [ModelOpt 上游实现](https://github.com/NVIDIA/Model-Optimizer/blob/main/modelopt/torch/quantization/export_onnx.py) 核对。
 
 ### 未形成有效延迟的配方
 
