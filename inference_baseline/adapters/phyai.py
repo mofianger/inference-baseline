@@ -30,6 +30,20 @@ class PhyAIAdapter:
                 device=DeviceConfig(target=config["device"], params_dtype=torch.bfloat16),
                 runtime=RuntimeConfig(use_cuda_graph=graph))))
         self.metadata = {"precision": "BF16 with native FP32 normalization parameters", "cuda_graph": graph, "implementation": "GR00TN17 Engine"}
+        policy_path = config.get("environment", {}).get("PHYAI_KERNEL_CONFIG")
+        if policy_path:
+            from inference_baseline.io import sha256
+            quantized = []
+            for name, module in self.engine.entry.model.named_modules():
+                spec = getattr(module, "spec", None)
+                if spec is not None and type(spec).__name__ != "Bf16Spec":
+                    quantized.append({"module": name, "prefix": getattr(module, "prefix", ""),
+                                      "spec": type(spec).__name__, "details": str(spec)})
+            if not quantized:
+                raise RuntimeError("Requested quantization policy matched no quantized layers")
+            self.metadata.update(precision=config["label"], kernel_policy_sha256=sha256(policy_path),
+                                 quantized_layers=quantized,
+                                 quantization_scope="LLM projections; vision/action head retain native precision")
 
     def request(self, sample):
         return self.request_type(tensors=sample["inputs"], noise=sample["noise"])

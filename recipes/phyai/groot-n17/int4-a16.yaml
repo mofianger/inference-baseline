@@ -1,0 +1,20 @@
+schema: phyai.kernel/v1
+profile: static
+defaults: {fallback: error}
+quantization:
+  method: rtn
+  stage: load
+  default: null
+  rules:
+    - match:
+        glob: "backbone.model.model.language_model.layers.*"
+      weight:
+        dtype: int4
+        block_shape: [1, 128]
+      input: null
+rules:
+  - id: humming-linear
+    match:
+      op: gemm
+      quant.layout: humming
+    restrict_to: "humming.gemm.*"
