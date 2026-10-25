@@ -52,7 +52,7 @@ with torch.inference_mode():
   prof.export_chrome_trace(str(out/'mapping.json'))
  if a.mode=='cta':
   import ctypes
-  lib=ctypes.CDLL(os.environ['LD_PRELOAD']);path=str(out/'cta').encode()
+  lib=ctypes.CDLL(None);path=str(out/'cta').encode()
   lib.cta_start(path);t=time.perf_counter();y=invoke();torch.cuda.synchronize();meta['instrumented_ms']=(time.perf_counter()-t)*1000;lib.cta_stop(path)
  if a.mode=='torch':
   with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU,torch.profiler.ProfilerActivity.CUDA]) as prof:
