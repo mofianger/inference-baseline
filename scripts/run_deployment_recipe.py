@@ -12,6 +12,7 @@ p.add_argument("--dataset", default="datasets/groot-n17-v3")
 p.add_argument("--assets", required=True)
 p.add_argument("--output", required=True)
 p.add_argument("--start", choices=["quantize", "export", "build", "run"], default="export")
+p.add_argument("--retire-intermediates", action="store_true")
 args = p.parse_args()
 config = json.loads(Path(args.config).read_text())
 out = Path(args.output)
@@ -39,3 +40,6 @@ for stage in stages[stages.index(args.start):]:
     print(json.dumps(records[-1]), flush=True)
     if code:
         sys.exit(code)
+if args.retire_intermediates:
+    subprocess.run([sys.executable, "scripts/retire_deployment_intermediates.py",
+                    "--assets", args.assets, "--summary", str(out / "run" / "summary.json")], check=True)

@@ -60,7 +60,7 @@ def main():
             "calibration_manifest_sha256": sha256(Path(calibration_path) / "manifest.json"),
             "calibration_sample_ids": [s["id"] for s in samples],
             "checkpoint": manifest["checkpoint"], "seed": 20261025})
-        quantize(QuantizeConfig(model_path=config["checkpoint"], dataset_path=args.dataset,
+        quantize(QuantizeConfig(model_path=config["checkpoint"], dataset_path=str(calibration_path),
             output_dir=str(out / "quantized"), num_calib=len(samples), seed=20261025,
             embodiment_tag=manifest["embodiment_tag"].removesuffix("_3view"),
             llm_scheme=config["options"]["llm_scheme"], dit_scheme=config["options"]["dit_scheme"],

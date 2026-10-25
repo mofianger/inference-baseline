@@ -89,7 +89,8 @@ def main():
         # unchanged; upstream uses this enum only as export provenance here.
         embodiment_tag=manifest["embodiment_tag"].removesuffix("_3view"), output_dir=str(output / "onnx"),
         export_mode="full_pipeline", execution_profile=args.profile,
-        quantization=args.quantization, calib_size=len(calibration), batch_size=1)
+        quantization=args.quantization, calib_dataset_path=str(calibration_path),
+        calib_size=len(calibration), batch_size=1)
     write_json(output / "fixture_binding.json", {
         "dataset_manifest_sha256": sha256(Path(args.dataset) / "manifest.json"),
         "calibration_manifest_sha256": sha256(Path(calibration_path) / "manifest.json"),
