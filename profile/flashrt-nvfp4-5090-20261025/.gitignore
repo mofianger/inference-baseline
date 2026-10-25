@@ -3,3 +3,4 @@ harness/build/
 harness/nvbit_release/
 *.so
 *.tar.bz2
+harness/nvbit_release_x86_64/

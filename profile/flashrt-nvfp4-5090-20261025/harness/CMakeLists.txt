@@ -1,0 +1,5 @@
+﻿cmake_minimum_required(VERSION 3.29)
+project(cta_trace LANGUAGES CXX CUDA)
+find_package(CUDAToolkit REQUIRED)
+include("${CMAKE_CURRENT_SOURCE_DIR}/nvbit_release_x86_64/tools/cmake/NVBitTool.cmake")
+add_nvbit_tool(cta_trace)

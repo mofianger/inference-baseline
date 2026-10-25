@@ -27,6 +27,10 @@ with torch.inference_mode():
  for _ in range(30):
   torch.cuda.synchronize();t=time.perf_counter();y=invoke();torch.cuda.synchronize();ms.append((time.perf_counter()-t)*1000)
  meta={'scope':'FlashRT frontend, prepared embeddings excluded; internal copies, sync, output cast included','sample':sample['id'],'baseline_ms':ms,'median_ms':statistics.median(ms),'engine':revision(config['engine_source']),'runtime':adapter.runtime_stats(),'torch':torch.__version__,'gpu':torch.cuda.get_device_name(),'sm_count':torch.cuda.get_device_properties(0).multi_processor_count,'dataset_sha256':sha256(root/'datasets/groot-n17-v3/manifest.json')}
+ if a.mode=='cta':
+  import ctypes
+  lib=ctypes.CDLL(os.environ['LD_PRELOAD']);path=str(out/'cta').encode()
+  lib.cta_start(path);t=time.perf_counter();y=invoke();torch.cuda.synchronize();meta['instrumented_ms']=(time.perf_counter()-t)*1000;lib.cta_stop(path)
  if a.mode=='torch':
   with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU,torch.profiler.ProfilerActivity.CUDA]) as prof:
    for i in range(10):
