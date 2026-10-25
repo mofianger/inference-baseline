@@ -14,7 +14,7 @@ prefixes = ("20261025-phyai-", "20261025-flashrt-fp16-", "20261025-groot-trt-", 
 campaign = [p for p in root.iterdir() if p.is_dir() and p.name.startswith(prefixes)]
 for directory in sorted(campaign):
     for path in sorted(directory.rglob("*.json")):
-        if path.name not in ("summary.json", "failure.json", "correctness.json", "stages.json", "batch.json"):
+        if path.name not in ("summary.json", "failure.json", "correctness.json", "stages.json", "batch.json", "provenance.json"):
             continue
         relative = path.relative_to(root)
         target = out / "runs" / relative
@@ -65,6 +65,7 @@ for directory in root.iterdir():
 calibration = Path("datasets/groot-n17-calibration-v2/manifest.json")
 if calibration.exists():
     shutil.copy2(calibration, out / "calibration-manifest.json")
+shutil.copy2("datasets/groot-n17-v3/manifest.json", out / "evaluation-manifest.json")
 write_json(out / "run-index.json", rows)
 write_json(out / "server-log-manifest.json", log_manifest)
 print(json.dumps(rows, indent=2))

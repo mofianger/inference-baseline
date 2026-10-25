@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from inference_baseline.io import revision, sha256, write_json
 
 p = argparse.ArgumentParser()
 p.add_argument("--config", required=True)
@@ -17,6 +19,13 @@ args = p.parse_args()
 config = json.loads(Path(args.config).read_text())
 out = Path(args.output)
 out.mkdir(parents=True, exist_ok=False)
+write_json(out / "provenance.json", {
+    "runner_at_pipeline_start": revision(Path(__file__).resolve().parents[1]),
+    "engine_source": revision(config["engine_source"]), "config": config,
+    "dataset_manifest_sha256": sha256(Path(args.dataset) / "manifest.json"),
+    "python": sys.version, "python_executable": sys.executable,
+    "started_utc": datetime.now(timezone.utc).isoformat(),
+})
 fold = config["label"].startswith("foldquant")
 stages = (["quantize"] if fold else []) + ["export", "build", "run"]
 if args.start not in stages:

@@ -11,6 +11,8 @@
 - 8 个 CPU threads，10 次预热、100 次计时，GPU lock 串行执行；沿用 A/B/A、输入敏感性、输入未修改、输出 shape/finite 检查。
 - 不接模拟器，阈值仍为 null；小型合成 fixture 结果不能解释成任务成功率。
 
+实际 prepared layout 为 `pixel_values=[768,1536]`、`image_grid_thw=[3,3]`、`input_ids/attention_mask=[1,217]`、`state=[1,1,132]`、`noise=[1,40,132]`，embodiment ID 为 24。PyTorch TF32 按 Runner 关闭；TensorRT 保留上游构建器策略，不额外改写其精度标志。FP32 网络/输入类型不应自行解释成所有底层乘法都强制 IEEE FP32。
+
 新量化路径要求多条校准样本，因此新增独立的 `datasets/groot-n17-calibration-v2`：原 calibration 样本加 7 条独立 seed 的同格式样本，共 8 条；不使用原 evaluation 样本。manifest SHA256 为 `73de684de0eaeaf679ac840f9c2379738526d65718216d7f906de371cb708db3`。原评估集未变。历史 FlashRT 的校准条件与本轮新 PTQ 路径不同，应保留这项区别。
 
 ## 范围与排除理由
