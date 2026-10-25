@@ -71,13 +71,14 @@ write_json(out / "run-index.json", rows)
 write_json(out / "server-log-manifest.json", log_manifest)
 environment = out / "environments"
 environment.mkdir(exist_ok=True)
+uv = shutil.which("uv") or str(Path.home() / ".local/bin/uv")
 for name, python in {
     "nvidia-trt": ".venv-groot-trt/bin/python",
     "foldquant": ".venv-foldquant/bin/python",
     "phyai": "third_party/phyai/.venv/bin/python",
     "flashrt": "third_party/FlashRT/.venv/bin/python",
 }.items():
-    result = subprocess.run(["uv", "pip", "freeze", "--python", python], capture_output=True, text=True, check=True)
+    result = subprocess.run([uv, "pip", "freeze", "--python", python], capture_output=True, text=True, check=True)
     (environment / f"{name}-freeze.txt").write_text(result.stdout)
 result = subprocess.run(["nvidia-smi", "-q"], capture_output=True, text=True, check=True)
 (environment / "gpu.txt").write_text(result.stdout)
