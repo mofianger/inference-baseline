@@ -90,3 +90,5 @@ FlashRT NVFP4 的细粒度分析见 [Kernel 与 SM–CTA 交互报告](profile/f
 前版 [PyTorch Profiler 静态网站](profile/flashrt-nvfp4-5090-20261030/flashrt_nvfp4_profile.html) 保留作对照，包含官方视觉 embedding 准备范围与 aux-only 范围；请按相同计时边界比较。
 
 FlashRT 优化收益实验：[PDL / Kernel Fusion / NVFP4 实测结果](profile/flashrt-ablation-5090-20261030/ablation_results.html) · [实验方法与复现](profile/flashrt-ablation-5090-20261030/REPORT.md)。
+
+FlashRT FP8 → NVFP4 收益拆解：[离线结果页](flashrt_gain_breakdown.html) · [测量方法与复现](profile/flashrt-gain-breakdown-5090-20261031/REPORT.md)。包括 PDL、DiT 分段替换、融合、Attention 分块结果读取与 Cross-KV 分组投影对照。
