@@ -15,17 +15,24 @@ stream=lambda:torch.cuda.current_stream().cuda_stream
 class Linear:
  def __init__(self,f,ctl,x,w,b,cross=None):
   self.f,self.ctl,self.x,self.w,self.b,self.cross=f,ctl,x,w,b,cross
-  self.m,self.k=x.shape;self.n=w.shape[0];self.y=torch.empty(self.m,self.n,device='cuda',dtype=torch.bfloat16)
-  self.a8=torch.empty_like(x,dtype=torch.float8_e4m3fn)
+  self.m,self.k=x.shape;self.n=w.shape[0];self.mp=(self.m+15)//16*16
+  self.y_pad=torch.empty(self.mp,self.n,device='cuda',dtype=torch.bfloat16);self.y=self.y_pad[:self.m]
+  self.a8_pad=torch.zeros(self.mp,self.k,device='cuda',dtype=torch.float8_e4m3fn);self.a8=self.a8_pad[:self.m]
   self.as8=(x.float().abs().amax()/448).clamp_min(1e-12).reshape(1)
   self.ws8=(w.float().abs().amax()/448).clamp_min(1e-12).reshape(1)
-  self.w8=(w.float()/self.ws8).to(torch.float8_e4m3fn).t().contiguous()
+  self.w8col=(w.float()/self.ws8).to(torch.float8_e4m3fn).t();self.w8=self.w8col.contiguous()
   self.alpha=float((self.as8*self.ws8).item())
   self.gemm=f._gemm
   self.fp8_bias=True
   f._fvk.quantize_fp8_static(ptr(x),ptr(self.a8),ptr(self.as8),x.numel(),stream())
   try:self.gemm.fp8_nn_bias_bf16(ptr(self.a8),ptr(self.w8),ptr(self.y),ptr(b),self.m,self.n,self.k,self.alpha,stream())
   except RuntimeError:self.fp8_bias=False
+  self.scaled_mm=False
+  try:
+   torch.ops.aten._scaled_mm.out(self.a8_pad,self.w8col,self.as8,self.ws8,bias=b,out_dtype=torch.bfloat16,out=self.y_pad)
+   self.scaled_mm=True
+  except RuntimeError:pass
+  self.fp8_backend='torch_scaled_mm_padded' if self.scaled_mm else 'cublasLt_bias' if self.fp8_bias else 'cublasLt_bf16_plus_bias'
   self.half=torch.empty_like(self.y,dtype=torch.float16)
   self.w4,self.sf4,self.wgs,self.bias4=f._quantize_nvfp4_site(w,b)
   self.one=torch.ones(1,device='cuda');self.a4=torch.empty(self.m,self.k//2,device='cuda',dtype=torch.uint8);self.as4=torch.empty(self.m,self.k//16,device='cuda',dtype=torch.uint8)
@@ -52,10 +59,13 @@ class Linear:
    else:torch.mm(x,self.w.t(),out=self.y);self.y.add_(self.b)
   elif precision=='FP8':
    self.f._fvk.quantize_fp8_static(ptr(x),ptr(self.a8),ptr(self.as8),x.numel(),stream())
-   if fused and self.fp8_bias:self.gemm.fp8_nn_bias_bf16(ptr(self.a8),ptr(self.w8),ptr(self.y),ptr(self.b),self.m,self.n,self.k,self.alpha,stream())
+   if self.scaled_mm:
+    torch.ops.aten._scaled_mm.out(self.a8_pad,self.w8col,self.as8,self.ws8,bias=self.b if fused else None,out_dtype=torch.bfloat16,out=self.y_pad)
+    if not fused:self.y.add_(self.b)
+   elif fused and self.fp8_bias:self.gemm.fp8_nn_bias_bf16(ptr(self.a8),ptr(self.w8),ptr(self.y),ptr(self.b),self.m,self.n,self.k,self.alpha,stream())
    else:
-    self.gemm.fp8_descale_fp16(ptr(self.a8),ptr(self.w8),ptr(self.half),self.m,self.n,self.k,ptr(self.as8),ptr(self.ws8),stream())
-    self.y.copy_(self.half);self.y.add_(self.b)
+    self.f._fvk.fp8_gemm_descale_bf16out(ptr(self.a8),ptr(self.w8),ptr(self.y),self.m,self.n,self.k,ptr(self.as8),ptr(self.ws8),stream())
+    self.y.add_(self.b)
   else:
    self.nv_gemm(fused,x)
    if self.cross is None:self.ctl.run(3,[ptr(self.part),self.splits,ptr(self.one),self.wgs,self.bias4,ptr(self.y)],self.m,self.n,stream=stream())
@@ -97,7 +107,7 @@ with torch.inference_mode():
    y=funcs[key]();torch.cuda.synchronize();errors[key]=error(y,ref)
    assert torch.isfinite(y).all(),(label,key)
   timing=paired_graphs(funcs)
-  results.append(dict(task=label,shape=[L.m,L.n,L.k],boundary='BF16 activation -> BF16 complete linear+bias; runtime activation quantization included',errors=errors,timing=timing,fp8_bias_supported=L.fp8_bias))
+  results.append(dict(task=label,shape=[L.m,L.n,L.k],boundary='BF16 activation -> BF16 complete linear+bias; runtime activation quantization included',errors=errors,timing=timing,fp8_bias_supported=L.fp8_bias,fp8_backend=L.fp8_backend,fp8_rows=L.mp if L.scaled_mm else L.m))
   trace_tasks[label]=funcs
   print('LINEAR',label,json.dumps({k:v['median_us'] for k,v in timing['warm'].items()}),flush=True)
  # Q8: complete two-linear FFN, with real FlashRT fused NVFP4 GELU+quant consumer.
