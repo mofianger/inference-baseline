@@ -1,5 +1,7 @@
 # Inference Baseline
 
+最新专项：[FlashRT 四组受控 Recipe 基线与 FP8 执行图](profile/flashrt-recipes-controlled-5090-20261030/flashrt_recipe_execution.html) · [实验报告](profile/flashrt-recipes-controlled-5090-20261030/REPORT.md)。
+
 测试不同推理引擎在不同模型、Recipe 和硬件上的延迟与数值误差，并支持通过 Git/GitHub 协作执行和审查实验。
 
 核心抽象：**模型规格、测试协议、冻结测试集、引擎 Recipe、硬件后端和运行记录（Run）**。Adapter 实现约定边界之间的模型计算，通用 Runner 负责预热、校验、同步计时和记录；ReferenceSpec 固定数值比较的依据。
