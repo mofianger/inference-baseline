@@ -1,5 +1,17 @@
 # FlashRT 优化收益实验
 
+## 默认调频复测（补充）
+
+恢复默认核心/显存调频，原样执行此前 aux-only 脚本（预热 10 次、同步 wall 计时 50 次，PDL/Fusion/Graph 开启），独立运行三轮。外部 nvidia-smi 每 50 ms 查询一次，按计时起止时间筛选，每轮获得 8 条状态记录。
+
+| 轮次 | 延迟中位数 | 计时期间采样到的 SM 频率 | 显存频率 |
+|---|---:|---|---:|
+| 1 | 8.3195 ms | 2565、2820 MHz | 13801 MHz |
+| 2 | 8.3194 ms | 2587、2850 MHz | 13801 MHz |
+| 3 | 8.3575 ms | 2550、2812 MHz | 13801 MHz |
+
+复现了此前 8.3253 ms 的量级。默认条件下观察到的核心频率高于锁频实验的 2317 MHz，显存同为 13801 MHz。频率为驱动状态采样，有刷新周期；这些值是采样读数，不代表逐 Kernel 的实际频率或整段固定频率。功率上限 575 W，采样温度 32–40°C，P1。原始状态与计时样本见 [默认调频复测数据](analysis/default-clocks-results.json)，执行脚本为 `harness/default_clocks.sh`。本轮未采集 Nsys。
+
 结果入口：[静态结果页](ablation_results.html)、[完整结构化结果](analysis/results.json)、[Nsys 实际 Kernel 调用](analysis/kernel-dispatch.json)。
 
 ## 实验设置
