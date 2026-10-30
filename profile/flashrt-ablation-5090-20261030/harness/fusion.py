@@ -27,8 +27,8 @@ with torch.inference_mode():
   args=rec['args'];name=rec['name'];copies={i:rec['buffers'][i].clone() for i in rec['mutations']}
   def reset():
    for i,x in copies.items():rec['buffers'][i].copy_(x)
-  def fused():getattr(original,name)(*args)
-  def unfused():ctl.split(name,args)
+  def fused():getattr(original,name)(*args[:-1],torch.cuda.current_stream().cuda_stream)
+  def unfused():ctl.split(name,[*args[:-1],torch.cuda.current_stream().cuda_stream])
   reset();fused();ref={i:rec['buffers'][i].clone() for i in rec['outputs']}
   reset();unfused();torch.cuda.synchronize()
   err={str(i):dict(**error(rec['buffers'][i],v),exact_fraction=(rec['buffers'][i]==v).float().mean().item(),dtype=str(v.dtype)) for i,v in ref.items()}
