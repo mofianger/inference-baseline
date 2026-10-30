@@ -32,7 +32,8 @@ class Controls:
  def split(self,name,a):
   if name=='fp8_residual_norm_quant':
    h,de,db,de2,copy,w,b,mode,eps,out,gs,bout,r,n,st=a
-   self.orig.fp8_residual_norm_quant(h,de,db,de2,copy,w,b,mode,eps,0,gs,0,r,n,st)
+   if de or db or de2 or copy:
+    self.orig.fp8_residual_norm_quant(h,de,db,de2,copy,w,b,mode,eps,0,gs,0,r,n,st)
    if out or bout:
     tmp=self.buf('half_norm',[r,n]);self.run(10,[h,w,b,mode,tmp,bout],r,n,eps,st)
     if out:self.run(7,[tmp,out,gs],r,n,eps,st)

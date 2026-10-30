@@ -112,18 +112,29 @@ with torch.inference_mode():
   print('LINEAR',label,json.dumps({k:v['median_us'] for k,v in timing['warm'].items()}),flush=True)
  # Q8: complete two-linear FFN, with real FlashRT fused NVFP4 GELU+quant consumer.
  U,D=tasks['Q4-FFup'],tasks['Q5-FFdown'];act=torch.empty_like(U.y);tmp=ctl.buf('ffn_float',[41,6144]);buf4=torch.empty_like(U.y,dtype=torch.uint8)[:,:3072].contiguous();sf4=torch.empty(41,384,device='cuda',dtype=torch.uint8)
+ bf16_gelu_fusion=True
+ try:torch.ops.aten._addmm_activation.out(U.b,U.x,U.w.t(),use_gelu=True,out=act)
+ except RuntimeError:bf16_gelu_fusion=False
  def ffn(p,z):
   if p=='NVFP4' and z:
    U.nv_gemm(True)
    K.nvfp4_skinny_sum_bias_gelu(ptr(U.part),U.splits,ptr(U.one),U.wgs,U.bias4,ptr(buf4),ptr(sf4),ptr(U.one),41,6144,False,stream())
    K.nvfp4_skinny_gemm(ptr(buf4),ptr(sf4),D.w4,D.sf4,ptr(D.part),41,1536,6144,D.cfg,False,stream())
    ctl.run(3,[ptr(D.part),D.splits,ptr(D.one),D.wgs,D.bias4,ptr(D.y)],41,1536,stream=stream())
+  elif p=='BF16' and z and bf16_gelu_fusion:
+   torch.ops.aten._addmm_activation.out(U.b,U.x,U.w.t(),use_gelu=True,out=act);D.call(p,z,act)
+  elif p=='FP8' and z:
+   U.call(p,z);ctl.run(13,[ptr(U.y),ptr(D.a8),ptr(D.as8)],41,6144,stream=stream())
+   if D.scaled_mm:torch.ops.aten._scaled_mm.out(D.a8_pad,D.w8col,D.as8,D.ws8,bias=D.b,out_dtype=torch.bfloat16,out=D.y_pad)
+   elif D.fp8_bias:D.gemm.fp8_nn_bias_bf16(ptr(D.a8),ptr(D.w8),ptr(D.y),ptr(D.b),D.m,D.n,D.k,D.alpha,stream())
+   else:
+    K.fp8_gemm_descale_bf16out(ptr(D.a8),ptr(D.w8),ptr(D.y),D.m,D.n,D.k,ptr(D.as8),ptr(D.ws8),stream());D.y.add_(D.b)
   else:
    U.call(p,z);ctl.run(5,[ptr(U.y),tmp],41,6144,stream=stream());ctl.run(11,[tmp,ptr(act)],41,6144,stream=stream());D.call(p,z,act)
   return D.y
  funcs={p+('/fused' if z else '/split'):(lambda p=p,z=z:ffn(p,z)) for p in ['BF16','FP8','NVFP4'] for z in [False,True]}
  ref=ffn('BF16',True).clone();errs={k:error(fun(),ref) for k,fun in funcs.items()};timing=paired_graphs(funcs)
- results.append(dict(task='Q8-complete-FFN',shape=[41,1536,6144],boundary='BF16 input -> BF16 FFN output; GELU intermediate precision follows each implementation',errors=errs,timing=timing))
+ results.append(dict(task='Q8-complete-FFN',shape=[41,1536,6144],boundary='BF16 input -> BF16 FFN output; GELU intermediate precision follows each implementation',errors=errs,timing=timing,bf16_gelu_fusion=bf16_gelu_fusion,fp8_gelu_quant_fusion=True))
  trace_tasks['Q8-complete-FFN']=funcs
  # Q9: O projection + BF16 residual + LayerNorm, common BF16 output.
  _,rb=restore('F5-residual-LN');res=rb[5].clone();h=torch.empty_like(res);yn=torch.empty_like(res);normtmp=ctl.buf('q9norm',[41,1536]);L=tasks['Q3-O']

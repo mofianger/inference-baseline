@@ -33,6 +33,7 @@ __global__ void quant8(const float*x,__nv_fp8_e4m3*y,const float*s,int total){in
 // F7 preserves FP32 projection values until attention's original Q scaling/BF16 rounding.
 __global__ void materialize(const float*p,int splits,const float*ag,const float*wg,const bf*b,float*y,int total,int n){int i=blockIdx.x*blockDim.x+threadIdx.x;if(i<total){float v=0;for(int s=0;s<splits;s++)v+=p[s*total+i];y[i]=v*((*ag)*(*wg))+(b?__bfloat162float(b[i%n]):0);}}
 __global__ void castbf(const float*x,bf*y,int total){int i=blockIdx.x*blockDim.x+threadIdx.x;if(i<total)y[i]=__float2bfloat16(x[i]);}
+__global__ void gelu_quant8(const bf*x,__nv_fp8_e4m3*y,const float*scale,int total){int i=blockIdx.x*blockDim.x+threadIdx.x;if(i<total)y[i]=__nv_fp8_e4m3(fminf(fmaxf(tanh_gelu(__bfloat162float(x[i]))/(*scale),-448.f),448.f));}
 
 // Generated exact FP16 normalization helper follows, without fused quantization.
 // __NORM_HALF__
@@ -53,6 +54,7 @@ void run_split(int op,std::vector<int64_t>a,int rows,int n,double eps,int64_t st
  case 9:quant4<true><<<(total/16+127)/128,128,0,st>>>(P(void,0),P(unsigned char,1),P(unsigned char,2),P(float,3),total);break;
  case 10:half_control::norm_half<<<rows,n/8,0,st>>>(P(__half,0),nullptr,nullptr,nullptr,nullptr,P(__half,1),P(__half,2),a[3],eps,P(float,4),nullptr,P(__half,5),n);break;
  case 11:castbf<<<blocks,256,0,st>>>(P(float,0),P(bf,1),total);break;
+ case 13:gelu_quant8<<<blocks,256,0,st>>>(P(bf,0),P(__nv_fp8_e4m3,1),P(float,2),total);break;
  }
  #undef P
  auto e=cudaGetLastError();if(e!=cudaSuccess)throw std::runtime_error(cudaGetErrorString(e));
