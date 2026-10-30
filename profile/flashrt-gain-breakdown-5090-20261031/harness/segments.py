@@ -39,12 +39,13 @@ with torch.inference_mode():
   for mode in modes:
    for i in range(5):torch.cuda.nvtx.range_push('HYBRID|'+mode+'|'+str(i));run(mode);torch.cuda.synchronize();torch.cuda.nvtx.range_pop()
   torch.cuda.cudart().cudaProfilerStop();timing={}
+ elif (out/'full.json').exists():timing=json.loads((out/'full.json').read_text())['timing']
  else:timing=wall_pairs({mode:lambda mode=mode:run(mode) for mode in modes})
  (out/'full.json').write_text(json.dumps(dict(metadata=meta,timing=timing,errors=errors,scope='same aux->action boundary; replacement retains bridge norms/quantization; all PDL off'),indent=2))
  if args.trace:raise SystemExit(0)
  h.active=set();h.set_kv(False);h.cross('native',0)
  local=[]
- for step in [0,1,2,3]:
+ for step in ([] if (out/'local.json').exists() else [0,1,2,3]):
   for li in [0,1,2,31]:
    for part in ['attention','o','ffn']:
     rec=h.snapshots[(step,li,part)]
@@ -57,11 +58,13 @@ with torch.inference_mode():
     reset();reference=funcs['FP8']().clone();reset();y=funcs['NVFP4']();torch.cuda.synchronize();err=error(y,reference);assert torch.isfinite(y).all()
     result=paired_graphs(funcs,reset);local.append(dict(step=step,layer=li,part=part,error=err,timing=result))
     print('LOCAL',step,li,part,{k:v['median_us'] for k,v in result['warm'].items()},flush=True)
- (out/'local.json').write_text(json.dumps(local,indent=2))
+ if local:(out/'local.json').write_text(json.dumps(local,indent=2))
  # Native KV collection boundary, each implementation can retain its own layout.
  kvgraphs={};kvoutputs={}
  for mode in ['native','cross-fp8','cross-split']:
   h.set_kv(mode!='native');h.cross(mode,0);torch.cuda.synchronize();kvoutputs[mode]=torch.cat([t.flatten() for pair in zip(f._dit_cross_K,f._dit_cross_V) for t in pair]).clone()
   kvgraphs[mode]=graph(lambda mode=mode:h.cross(mode,torch.cuda.current_stream().cuda_stream))
- kvtiming=paired_graphs({m:g.replay for m,g in kvgraphs.items()});kverrors={m:error(t,kvoutputs['native']) for m,t in kvoutputs.items()}
+ def cross_call(mode):
+  h.set_kv(mode!='native');h.cross(mode,torch.cuda.current_stream().cuda_stream)
+ kvtiming=paired_graphs({m:lambda m=m:cross_call(m) for m in kvgraphs});kverrors={m:error(t,kvoutputs['native']) for m,t in kvoutputs.items()}
  (out/'cross.json').write_text(json.dumps(dict(timing=kvtiming,errors=kverrors,scope='backbone features -> all KV; physical output layout native to variant'),indent=2))
