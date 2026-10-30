@@ -82,3 +82,5 @@ python -m compileall -q inference_baseline
 早期公开资料保留原位置以兼容既有链接：[引擎清单](01_engine_inventory.md)、[平台与模型调研](02_pi05_gr00t_n17_benchmarks.md)、[研究数据](research_data.json)、[离线网站](inference_survey.html)。它们是公开资料汇编，不等于本仓库实测。
 
 FlashRT NVFP4 的细粒度分析见 [Kernel 与 SM–CTA 交互报告](profile/flashrt-nvfp4-5090-20261025/flashrt_nvfp4_profile.html) 和 [采集说明](profile/flashrt-nvfp4-5090-20261025/REPORT.md)。
+
+最新 FlashRT NVFP4 3 views Kernel 执行图与时间线：[2026-10-30 静态网站](profile/flashrt-nvfp4-5090-20261030/flashrt_nvfp4_profile.html)。该独立采集已补齐官方最终视觉 embedding；请以其中的计时边界和数值误差说明为准。

@@ -1,5 +1,7 @@
 # FlashRT NVFP4：Kernel 与 SM–CTA Profile
 
+> 更正（2026-10-30）：此旧采集的 aux 缺少最终视觉 embedding，不能作为完整模型的有效 Baseline。补齐输入后的 Kernel 时间线见 [新版报告](../flashrt-nvfp4-5090-20261030/flashrt_nvfp4_profile.html)。旧 SM–CTA 仅作为历史插桩观察保留。
+
 [打开交互报告](flashrt_nvfp4_profile.html)。单文件内嵌全部绘图数据，可离线打开。
 
 ## 范围与结果
