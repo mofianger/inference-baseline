@@ -45,8 +45,9 @@ class FlashRTAdapter:
             raise ValueError("This pinned FlashRT frontend requires H40/A132; no silent override")
         self.frontend.set_prompt(aux=self.aux(samples[0]))
         from flash_rt.frontends.torch.groot_n17_rtx_fp8 import _fused_backbone_available
-        if not _fused_backbone_available(self.frontend._fvk):
-            raise RuntimeError("Requested fused FP8 backbone is unavailable; refusing silent fallback")
+        actual_fused = _fused_backbone_available(self.frontend._fvk)
+        if actual_fused != opts.get("fused_backbone", True):
+            raise RuntimeError("Requested FlashRT backbone fusion mode does not match selected path")
         self.metadata = {"precision": "FP8 backbone / mixed FP8-BF16 action head", "cuda_graph": True,
             "implementation": "GrootN17TorchFrontendRtxFP8 + timed BF16 patch/token embedding",
             "calibration_sample": samples[0]["id"], "constant_cache": "position/RoPE only; no cached observation features"}
@@ -62,7 +63,7 @@ class FlashRTAdapter:
         from flash_rt import flash_rt_kernels, flash_rt_fa2
         self.metadata["binaries"] = {m.__name__: {"path": m.__file__, "sha256": sha256(m.__file__)}
             for m in (flash_rt_kernels, flash_rt_fa2)}
-        self.metadata["fused_backbone"] = True
+        self.metadata["fused_backbone"] = actual_fused
         self.metadata["calibration_files"] = {p.name: sha256(p) for p in calibrator.CACHE_DIR.glob("*.json")}
 
     def runtime_stats(self):
