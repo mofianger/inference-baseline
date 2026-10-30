@@ -1,7 +1,7 @@
 """Nsight Systems collection: GPU-ready aux to action, three views.
 
-The official BF16 visual model prepares aux. It is measured separately and in
-the integrated call; no FlashRT kernel or upstream source is modified.
+The official BF16 visual model prepares aux before any measurement begins.
+No FlashRT kernel or upstream source is modified.
 """
 import argparse, json, os, sys, time, statistics, inspect, linecache
 from pathlib import Path
@@ -44,8 +44,7 @@ visual.load_state_dict(state,strict=True); del state
 class CompleteAdapter(FlashRTAdapter):
  def aux(self,sample):
   aux=super().aux(sample)
-  if True:
-   image_tokens,_=visual(sample['inputs']['pixel_values'],grid_thw=sample['inputs']['image_grid_thw'])
+  image_tokens,_=visual(sample['inputs']['pixel_values'],grid_thw=sample['inputs']['image_grid_thw'])
   mask=aux['visual_pos_masks'].unsqueeze(-1).expand_as(aux['llm_input_embeds'])
   assert int(mask.sum())==image_tokens.numel()
   aux['llm_input_embeds']=aux['llm_input_embeds'].masked_scatter(mask,image_tokens.to(aux['llm_input_embeds'].dtype))
@@ -60,7 +59,6 @@ with torch.inference_mode():
  sample=next(s for s in samples if s['role']=='evaluation')
  aux=adapter.aux(sample)
  def frontend():return adapter.frontend.infer(sample['inputs']['state'],aux=aux,initial_noise=sample['noise'],num_inference_timesteps=4,action_horizon=40,use_dit_graph=True)
- def integrated():return adapter.infer(sample)
  for _ in range(10):frontend()
  metadata=dict(engine=revision(cfg['engine_source']),torch=torch.__version__,transformers=__import__('transformers').__version__,gpu=torch.cuda.get_device_name(),protocol=protocol.to_dict(),sample=sample['id'],dataset_sha256=sha256(ROOT/'datasets/groot-n17-v3/manifest.json'),runtime=adapter.runtime_stats(),input_shapes={k:list(v.shape) for k,v in sample['inputs'].items()},scope='frontend with complete aux; integrated scope additionally runs official BF16 visual preparation',visual_support='Qwen3VLVisionModel SDPA, all 24 blocks + merger, strict checkpoint load; unmodified FlashRT recalculates DeepStack taps',binaries=adapter.metadata['binaries'])
  metadata['scope']='GPU-ready complete aux + GPU state/noise -> GPU action; visual preparation excluded'

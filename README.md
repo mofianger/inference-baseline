@@ -83,4 +83,6 @@ python -m compileall -q inference_baseline
 
 FlashRT NVFP4 的细粒度分析见 [Kernel 与 SM–CTA 交互报告](profile/flashrt-nvfp4-5090-20261025/flashrt_nvfp4_profile.html) 和 [采集说明](profile/flashrt-nvfp4-5090-20261025/REPORT.md)。
 
-最新 FlashRT NVFP4 3 views Kernel 执行图与时间线：[2026-10-30 静态网站](profile/flashrt-nvfp4-5090-20261030/flashrt_nvfp4_profile.html)。该独立采集已补齐官方最终视觉 embedding；请以其中的计时边界和数值误差说明为准。
+最新 FlashRT NVFP4 3 views Kernel 执行图与时间线：[Nsys aux → action 静态网站](profile/flashrt-nvfp4-nsys-5090-20261030/flashrt_nvfp4_nsys.html)。只测 GPU aux 就绪后的 FlashRT 路径，附常规追踪与 cuda-hw 的时间边界对照。
+
+前版 [PyTorch Profiler 静态网站](profile/flashrt-nvfp4-5090-20261030/flashrt_nvfp4_profile.html) 保留作对照，包含官方视觉 embedding 准备范围与 aux-only 范围；请按相同计时边界比较。
