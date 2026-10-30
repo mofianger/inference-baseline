@@ -66,8 +66,10 @@ with torch.inference_mode():
  metadata['warmup_calls']=10
  if a.mode=='wall':
   ms=[]
+  metadata['measurement_start_unix_ns']=time.time_ns()
   for i in range(50):
    torch.cuda.synchronize();t=time.perf_counter();y=frontend();torch.cuda.synchronize();ms.append((time.perf_counter()-t)*1000)
+  metadata['measurement_end_unix_ns']=time.time_ns()
   metadata['timings']={'frontend':dict(samples_ms=ms,median_ms=statistics.median(ms),min_ms=min(ms),max_ms=max(ms))}
  else:
   torch.cuda.synchronize()
