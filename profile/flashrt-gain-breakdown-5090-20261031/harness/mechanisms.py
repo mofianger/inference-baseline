@@ -1,5 +1,5 @@
 """Isolate DiT-only F1-F8-scope consumers and partial-materialization cost."""
-import os,sys,json,argparse,types
+import os,sys,json,argparse,types,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
 sys.path[:0]=[str(ROOT/'profile/flashrt-recipes-controlled-5090-20261030/harness'),str(ROOT/'profile/flashrt-ablation-5090-20261030/harness')]
@@ -20,6 +20,7 @@ with torch.inference_mode():
   states[mode]=f._k_dit_graph;y=fn();torch.cuda.synchronize();errors[mode]=error(y,ref);assert torch.isfinite(y).all();print('GRAPH',mode,errors[mode],flush=True)
  assert errors['native']['max_abs']==0
  def run(mode):f._k_dit_graph=states[mode];return fn()
+ measure_start=time.time_ns()
  if a.trace:
   for m in states:run(m)
   torch.cuda.synchronize();torch.cuda.cudart().cudaProfilerStart()
@@ -27,4 +28,4 @@ with torch.inference_mode():
    for i in range(5):torch.cuda.nvtx.range_push('MECHANISM|'+m+'|'+str(i));run(m);torch.cuda.synchronize();torch.cuda.nvtx.range_pop()
   torch.cuda.cudart().cudaProfilerStop();timing={}
  else:timing=wall_pairs({m:lambda m=m:run(m) for m in states})
- (out/'results.json').write_text(json.dumps(dict(metadata=meta,timing=timing,errors=errors,scope='Backbone unchanged; DiT consumers only; PDL off; experimental split implementations'),indent=2))
+ (out/'results.json').write_text(json.dumps(dict(metadata=meta,timing=timing,errors=errors,start_ns=measure_start,end_ns=time.time_ns(),scope='Backbone unchanged; DiT consumers only; PDL off; experimental split implementations'),indent=2))

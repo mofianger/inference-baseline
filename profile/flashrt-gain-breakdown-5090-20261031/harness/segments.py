@@ -33,6 +33,7 @@ with torch.inference_mode():
   print('GRAPH',mode,errors[mode],flush=True)
  assert errors['native']['max_abs']==0,errors['native']
  def run(mode):f._k_dit_graph=graphs[mode];return fn()
+ measure_start=time.time_ns()
  if args.trace:
   for mode in modes:run(mode)
   torch.cuda.synchronize();torch.cuda.cudart().cudaProfilerStart()
@@ -41,10 +42,10 @@ with torch.inference_mode():
   torch.cuda.cudart().cudaProfilerStop();timing={}
  elif (out/'full.json').exists():timing=json.loads((out/'full.json').read_text())['timing']
  else:timing=wall_pairs({mode:lambda mode=mode:run(mode) for mode in modes})
- (out/'full.json').write_text(json.dumps(dict(metadata=meta,timing=timing,errors=errors,scope='same aux->action boundary; replacement retains bridge norms/quantization; all PDL off'),indent=2))
+ (out/'full.json').write_text(json.dumps(dict(metadata=meta,timing=timing,errors=errors,start_ns=measure_start,end_ns=time.time_ns(),scope='same aux->action boundary; replacement retains bridge norms/quantization; all PDL off'),indent=2))
  if args.trace:raise SystemExit(0)
  h.active=set();h.set_kv(False);h.cross('native',0)
- local=[]
+ local=[];local_start=time.time_ns()
  for step in ([] if (out/'local.json').exists() else [0,1,2,3]):
   for li in [0,1,2,31]:
    for part in ['attention','o','ffn']:
@@ -58,7 +59,9 @@ with torch.inference_mode():
     reset();reference=funcs['FP8']().clone();reset();y=funcs['NVFP4']();torch.cuda.synchronize();err=error(y,reference);assert torch.isfinite(y).all()
     result=paired_graphs(funcs,reset);local.append(dict(step=step,layer=li,part=part,error=err,timing=result))
     print('LOCAL',step,li,part,{k:v['median_us'] for k,v in result['warm'].items()},flush=True)
- if local:(out/'local.json').write_text(json.dumps(local,indent=2))
+ if local:
+  (out/'local.json').write_text(json.dumps(local,indent=2))
+  (out/'local-window.json').write_text(json.dumps(dict(start_ns=local_start,end_ns=time.time_ns())))
  # Native KV collection boundary, each implementation can retain its own layout.
  kvgraphs={};kvoutputs={}
  for mode in ['native','cross-fp8','cross-split']:
@@ -66,5 +69,5 @@ with torch.inference_mode():
   kvgraphs[mode]=graph(lambda mode=mode:h.cross(mode,torch.cuda.current_stream().cuda_stream))
  def cross_call(mode):
   h.set_kv(mode!='native');h.cross(mode,torch.cuda.current_stream().cuda_stream)
- kvtiming=paired_graphs({m:lambda m=m:cross_call(m) for m in kvgraphs});kverrors={m:error(t,kvoutputs['native']) for m,t in kvoutputs.items()}
- (out/'cross.json').write_text(json.dumps(dict(timing=kvtiming,errors=kverrors,scope='backbone features -> all KV; physical output layout native to variant'),indent=2))
+ cross_start=time.time_ns();kvtiming=paired_graphs({m:lambda m=m:cross_call(m) for m in kvgraphs});kverrors={m:error(t,kvoutputs['native']) for m,t in kvoutputs.items()}
+ (out/'cross.json').write_text(json.dumps(dict(timing=kvtiming,errors=kverrors,start_ns=cross_start,end_ns=time.time_ns(),scope='backbone features -> all KV; physical output layout native to variant'),indent=2))
