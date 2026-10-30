@@ -1,5 +1,7 @@
 # FlashRT 优化收益实验
 
+[Kernel Timeline 可视化](kernel_timeline.html)：标准 PDL + Fusion 完整路径、DiT 的 PDL 开关对照、完整路径的 Fused/Unfused 对照。支持同步缩放、平移、阶段定位与 Kernel 详情；使用本次锁频 Nsys 数据，单文件离线可用。运行 `python profile/flashrt-ablation-5090-20261030/analysis/build_timeline.py` 可从原始 SQLite 重建。Unfused 阶段标注通过未改变的 Kernel 序列锚点映射，跨阶段替换区间保留为 Transition。
+
 ## 默认调频复测（补充）
 
 恢复默认核心/显存调频，原样执行此前 aux-only 脚本（预热 10 次、同步 wall 计时 50 次，PDL/Fusion/Graph 开启），独立运行三轮。外部 nvidia-smi 每 50 ms 查询一次，按计时起止时间筛选，每轮获得 8 条状态记录。

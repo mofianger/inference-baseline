@@ -1,0 +1,137 @@
+[
+  {
+    "id": "standard",
+    "title": "标准路径 · PDL + Fusion",
+    "scope": "完整 aux → action",
+    "subtitle": "PDL 开启 · Fusion 开启 · CUDA Graph 开启",
+    "tracks": [
+      {
+        "label": "标准推理",
+        "request": "PDL|1|3",
+        "span": 10026.686,
+        "lanes": {
+          "7": 1,
+          "157": 2,
+          "158": 7
+        },
+        "median": 10034.062,
+        "all_spans": [
+          10731.427,
+          10148.735,
+          10015.39,
+          10026.686,
+          10044.83,
+          10044.734,
+          10024.254,
+          10017.662,
+          10011.422,
+          10041.438
+        ],
+        "selection": "所有已采集请求中，GPU 跨度最接近中位数的一次真实请求",
+        "kernel_count": 1578
+      }
+    ]
+  },
+  {
+    "id": "pdl",
+    "title": "PDL 对照 · 四步 DiT",
+    "scope": "首个 DiT Kernel → 最后一个 DiT Kernel",
+    "subtitle": "两组均启用 Fusion 和 CUDA Graph；各自以 DiT 首个 Kernel 为 0",
+    "tracks": [
+      {
+        "label": "PDL 关闭",
+        "request": "PDL|0|2",
+        "span": 5607.235,
+        "lanes": {
+          "158": 1
+        },
+        "median": 5606.9310000000005,
+        "all_spans": [
+          5604.259,
+          5615.235,
+          5607.235,
+          5608.963,
+          5604.771,
+          5604.004,
+          5608.291,
+          5603.427,
+          5611.459,
+          5606.627
+        ],
+        "selection": "所有已采集请求中，GPU 跨度最接近中位数的一次真实请求",
+        "kernel_count": 1120
+      },
+      {
+        "label": "PDL 开启",
+        "request": "PDL|1|6",
+        "span": 4666.653,
+        "lanes": {
+          "158": 7
+        },
+        "median": 4665.9490000000005,
+        "all_spans": [
+          4653.117,
+          4665.245,
+          4638.653,
+          4668.765,
+          4676.957,
+          4658.044,
+          4666.653,
+          4660.444,
+          4670.941,
+          4690.109
+        ],
+        "selection": "所有已采集请求中，GPU 跨度最接近中位数的一次真实请求",
+        "kernel_count": 1120
+      }
+    ]
+  },
+  {
+    "id": "fusion",
+    "title": "Fusion 对照 · 完整路径",
+    "scope": "完整 aux → action",
+    "subtitle": "两组均关闭 PDL、启用 CUDA Graph；Unfused 拆分 F1–F8",
+    "tracks": [
+      {
+        "label": "Unfused",
+        "request": "FUSION|unfused|2",
+        "span": 13529.714,
+        "lanes": {
+          "7": 1,
+          "233": 2,
+          "234": 1
+        },
+        "median": 13529.714,
+        "all_spans": [
+          13596.754,
+          13580.178,
+          13529.714,
+          13516.466,
+          13498.482
+        ],
+        "selection": "所有已采集请求中，GPU 跨度最接近中位数的一次真实请求",
+        "kernel_count": 3161
+      },
+      {
+        "label": "Fused",
+        "request": "FUSION|fused|3",
+        "span": 10946.914,
+        "lanes": {
+          "7": 1,
+          "231": 2,
+          "232": 1
+        },
+        "median": 10946.914,
+        "all_spans": [
+          11373.54,
+          10987.682,
+          10931.01,
+          10946.914,
+          10940.45
+        ],
+        "selection": "所有已采集请求中，GPU 跨度最接近中位数的一次真实请求",
+        "kernel_count": 1578
+      }
+    ]
+  }
+]
