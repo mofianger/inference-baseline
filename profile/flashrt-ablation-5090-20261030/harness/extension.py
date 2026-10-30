@@ -1,6 +1,7 @@
-import os
+import os,sys
 from pathlib import Path
 import torch
+os.environ['PATH']=str(Path(sys.executable).parent)+os.pathsep+os.environ.get('PATH','')
 from torch.utils.cpp_extension import load
 HERE=Path(__file__).resolve().parent
 SOURCE=Path('/data/inference-baseline/third_party/FlashRT')
