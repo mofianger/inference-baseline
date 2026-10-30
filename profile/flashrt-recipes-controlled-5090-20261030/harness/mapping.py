@@ -31,7 +31,14 @@ def capture(f,sample,aux,out):
   def __getattr__(self,name):
    if name not in self.cache:self.cache[name]=wrap(getattr(self.obj,name),'GemmRunner.'+name)
    return self.cache[name]
- old=f._gemm;proxy=Proxy(old);f._gemm=proxy
+ proxies={}
+ def proxy_for(obj):
+  if id(obj) not in proxies:proxies[id(obj)]=Proxy(obj)
+  return proxies[id(obj)]
+ for name,value in list(vars(f).items()):
+  if type(value).__name__=='GemmRunner':setattr(f,name,proxy_for(value))
+ for name in ['index_copy_','zero_']:
+  fn=getattr(torch.Tensor,name);original.append((torch.Tensor,name,fn));setattr(torch.Tensor,name,wrap(fn,'Tensor.'+name))
  seen=set()
  def patch_closure(fn):
   if not isinstance(fn,types.FunctionType) or id(fn) in seen:return
@@ -39,7 +46,7 @@ def capture(f,sample,aux,out):
   for cell in fn.__closure__ or []:
    try:v=cell.cell_contents
    except ValueError:continue
-   if v is old:cell.cell_contents=proxy
+   if type(v).__name__=='GemmRunner':cell.cell_contents=proxy_for(v)
    elif isinstance(v,types.FunctionType):patch_closure(v)
  for fn in [f._kbb_forward,*f._kdit_fwd]:patch_closure(fn)
  f._kbb_vit_h.copy_(aux['pixel_features'].half().reshape(f._S_vit,1024))
