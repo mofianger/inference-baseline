@@ -34,6 +34,33 @@ def paired_graphs(funcs,reset=lambda:None,rounds=6,reps=40):
     starts,ends=events[k]
     records[k].append([s.elapsed_time(e)*1000 for s,e in zip(starts,ends)])
   out[cache]={k:dict(round_median_us=[statistics.median(x) for x in rr],median_us=statistics.median(v for x in rr for v in x),samples_us=rr) for k,rr in records.items()}
+ # Warm-cache throughput cross-check: amortize event/graph boundary over 64 tasks.
+ # Subtract a matched reset-only batch for mutating tasks, retaining both raw costs.
+ count=64
+ def reset_batch():
+  for _ in range(count):reset()
+ base=graph(reset_batch);batches={}
+ for k,fn in funcs.items():
+  def batch(fn=fn):
+   for _ in range(count):reset();fn()
+  batches[k]=graph(batch)
+ for g in batches.values():
+  for _ in range(5):g.replay()
+ def elapsed(g):
+  start=torch.cuda.Event(enable_timing=True);end=torch.cuda.Event(enable_timing=True)
+  start.record();g.replay();end.record();end.synchronize();return start.elapsed_time(end)*1000/count
+ raw={k:[] for k in batches};controls={k:[] for k in batches}
+ for rnd in range(rounds):
+  for k in (list(batches) if rnd%2==0 else list(batches)[::-1]):
+   aa=[];bb=[]
+   for _ in range(10):
+    if rnd%2:aa.append(elapsed(batches[k]));bb.append(elapsed(base))
+    else:bb.append(elapsed(base));aa.append(elapsed(batches[k]))
+   raw[k].append(statistics.median(aa));controls[k].append(statistics.median(bb))
+ for k in batches:
+  v=out['warm'][k];v['event_window_median_us']=v['median_us'];v['event_window_round_median_us']=v['round_median_us']
+  adjusted=[x-y for x,y in zip(raw[k],controls[k])]
+  v.update(median_us=statistics.median(adjusted),round_median_us=adjusted,batched_including_reset_us=raw[k],batched_reset_only_us=controls[k],batch_count=count,method='64-task batch, subtract matched reset-only batch; estimate under warm-cache repetition')
  return out
 
 def wall_pairs(funcs,rounds=6,reps=100):
